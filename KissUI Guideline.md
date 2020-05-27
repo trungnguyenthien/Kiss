@@ -1,7 +1,7 @@
 # KissUI Guideline
 
 ```swift
-func layoutRegular() {
+func regularLayout() {
   return hstack(width: 200).minHeight(400).padding(5).align(.left).children(
   		vstack(width: 80).children(image.size(80)).willGone(.never),
     	vstack(fill: 1).leading(5).children(
