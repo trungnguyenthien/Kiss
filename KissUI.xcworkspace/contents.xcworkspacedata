@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Kiss-Sample/Kiss-Sample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/trung/Documents/GitHub/KissUI-iOS/KissUI-Lib/KissUI.xcodeproj">
+   </FileRef>
+</Workspace>
