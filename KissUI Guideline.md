@@ -1,11 +1,18 @@
 # KissUI Guideline
 
 ```swift
-func render() {
-  return stack(.horizontal).width(200).padding(5).align(.left).children(
-  		stack(.vertical).width(80).children(image.size(80)),
-    	stack(.vertical).width(.fill).leading(5).children(
-      		
+func layoutRegular() {
+  return hstack(width: 200).minHeight(400).padding(5).align(.left).children(
+  		vstack(width: 80).children(image.size(80)).willGone(.never),
+    	vstack(fill: 1).leading(5).children(
+      		titleLabel, 
+        	subTitleLabel.top(5),
+        	hstack().top(10).children(
+          		mainPriceLabel, 
+            	originPriceLabel.leading(5)
+          ).willGone(.ifEmpty),
+        	rateStarView,
+        	storeLocationLabel
       )
   )
 }
