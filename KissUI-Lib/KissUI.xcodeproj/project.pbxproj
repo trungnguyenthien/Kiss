@@ -13,6 +13,8 @@
 		871E4495247EB4E4005671D1 /* full.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E4494247EB4E4005671D1 /* full.swift */; };
 		871E449C247EB90B005671D1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871E449B247EB90B005671D1 /* SnapKit.framework */; };
 		871E449D247EB90B005671D1 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 871E449B247EB90B005671D1 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8732133024800C9E00BE2BEE /* vstack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732132F24800C9E00BE2BEE /* vstack.swift */; };
+		8732133224800CD800BE2BEE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133124800CD800BE2BEE /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		871E443F247EB422005671D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		871E4494247EB4E4005671D1 /* full.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = full.swift; sourceTree = "<group>"; };
 		871E449B247EB90B005671D1 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		8732132F24800C9E00BE2BEE /* vstack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vstack.swift; sourceTree = "<group>"; };
+		8732133124800CD800BE2BEE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,8 @@
 				871E4432247EB422005671D1 /* KissUI_Lib.h */,
 				871E4433247EB422005671D1 /* Info.plist */,
 				871E4494247EB4E4005671D1 /* full.swift */,
+				8732132F24800C9E00BE2BEE /* vstack.swift */,
+				8732133124800CD800BE2BEE /* UIView+Extension.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -227,7 +233,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8732133224800CD800BE2BEE /* UIView+Extension.swift in Sources */,
 				871E4495247EB4E4005671D1 /* full.swift in Sources */,
+				8732133024800C9E00BE2BEE /* vstack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

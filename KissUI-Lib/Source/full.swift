@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum KWidthValue {
     case value(Double)
@@ -19,14 +20,30 @@ enum KHeightValue {
     case minMax(Double, Double)
 }
 
-struct KLayout {
-    var leading = 0.0
-    var trailing = 0.0
+protocol KLayout {
+    var paddingLeft: Double { get set }
+    var paddingRight: Double { get set }
+    var paddingTop: Double { get set }
+    var paddingBottom: Double { get set }
     
-    var top = 0.0
-    var bottom = 0.0
+    var leading: Double { get set }
+    var trailing: Double { get set }
     
-    var width = KWidthValue.fill(1)
-    var height = KHeightValue.fit
+    var top: Double { get set }
+    var bottom: Double { get set }
+    
+    var width: KWidthValue { get set }
+    var height: KHeightValue { get set }
+    
+    var realWidth: Double { get set }
+    
+    var views: [UIView] { get set }
 }
 
+protocol KAutoLayoutable {
+    func layout(width: Double) -> CGSize
+}
+
+protocol KLayoutBuildAble {
+    func layout() -> KLayout
+}
