@@ -8,8 +8,8 @@ func regularLayout() {
       		titleLabel, 
         	subTitleLabel.top(5),
         	hstack().top(10).willGone(.ifEmpty).children(
-          		mainPriceLabel, 
-            	originPriceLabel.leading(5)
+              mainPriceLabel, 
+              originPriceLabel.leading(5)
           ),
         	rateStarView,
         	storeLocationLabel
