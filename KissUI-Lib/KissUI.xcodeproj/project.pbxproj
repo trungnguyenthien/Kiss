@@ -10,7 +10,7 @@
 		871E4439247EB422005671D1 /* KissUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871E442F247EB422005671D1 /* KissUI.framework */; };
 		871E443E247EB422005671D1 /* KissUI_LibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E443D247EB422005671D1 /* KissUI_LibTests.swift */; };
 		871E4440247EB422005671D1 /* KissUI_Lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 871E4432247EB422005671D1 /* KissUI_Lib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		871E4495247EB4E4005671D1 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E4494247EB4E4005671D1 /* Test.swift */; };
+		871E4495247EB4E4005671D1 /* full.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E4494247EB4E4005671D1 /* full.swift */; };
 		871E449C247EB90B005671D1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871E449B247EB90B005671D1 /* SnapKit.framework */; };
 		871E449D247EB90B005671D1 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 871E449B247EB90B005671D1 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -46,7 +46,7 @@
 		871E4438247EB422005671D1 /* KissUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KissUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		871E443D247EB422005671D1 /* KissUI_LibTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KissUI_LibTests.swift; sourceTree = "<group>"; };
 		871E443F247EB422005671D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		871E4494247EB4E4005671D1 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		871E4494247EB4E4005671D1 /* full.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = full.swift; sourceTree = "<group>"; };
 		871E449B247EB90B005671D1 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,7 +94,7 @@
 			children = (
 				871E4432247EB422005671D1 /* KissUI_Lib.h */,
 				871E4433247EB422005671D1 /* Info.plist */,
-				871E4494247EB4E4005671D1 /* Test.swift */,
+				871E4494247EB4E4005671D1 /* full.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -227,7 +227,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				871E4495247EB4E4005671D1 /* Test.swift in Sources */,
+				871E4495247EB4E4005671D1 /* full.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
