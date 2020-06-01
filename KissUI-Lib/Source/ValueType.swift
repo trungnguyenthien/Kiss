@@ -8,11 +8,9 @@
 
 import Foundation
 
-
 public enum WidthValue {
     case value(Double)
     case fill(Int8)
-    case fit
 }
 
 public enum HeightValue {

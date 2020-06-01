@@ -11,9 +11,6 @@ public protocol SizeSetter {
     func sizeFillWidth(_ fill: Int8, height: Double) -> Self
     func sizeFillWidth(_ fill: Int8, height: HeightValue) -> Self
     
-    func sizeFitWidth(height: Double) -> Self
-    func sizeFitWidth(height: HeightValue) -> Self
-    
     func sizeFullWidth(equalHeight: Double) -> Self
     func sizeFullWidth(height: Double) -> Self
     func sizeFullWidth(height: HeightValue) -> Self
@@ -70,18 +67,6 @@ extension LayoutAttribute: SizeSetter {
     
     public func sizeFillWidth(_ fill: Int8, height: HeightValue) -> Self {
         widthValue = .fill(fill)
-        heightValue = height
-        return self
-    }
-    
-    public func sizeFitWidth(height: Double) -> Self {
-        widthValue = .fit
-        heightValue = .value(height)
-        return self
-    }
-    
-    public func sizeFitWidth(height: HeightValue) -> Self {
-        widthValue = .fit
         heightValue = height
         return self
     }
