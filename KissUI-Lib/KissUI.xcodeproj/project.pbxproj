@@ -10,11 +10,17 @@
 		871E4439247EB422005671D1 /* KissUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871E442F247EB422005671D1 /* KissUI.framework */; };
 		871E443E247EB422005671D1 /* KissUI_LibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E443D247EB422005671D1 /* KissUI_LibTests.swift */; };
 		871E4440247EB422005671D1 /* KissUI_Lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 871E4432247EB422005671D1 /* KissUI_Lib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		871E4495247EB4E4005671D1 /* full.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E4494247EB4E4005671D1 /* full.swift */; };
+		871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E4494247EB4E4005671D1 /* LayoutAttribute.swift */; };
 		871E449C247EB90B005671D1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871E449B247EB90B005671D1 /* SnapKit.framework */; };
 		871E449D247EB90B005671D1 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 871E449B247EB90B005671D1 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8732133024800C9E00BE2BEE /* vstack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732132F24800C9E00BE2BEE /* vstack.swift */; };
 		8732133224800CD800BE2BEE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133124800CD800BE2BEE /* UIView+Extension.swift */; };
+		8732133424853FC000BE2BEE /* publicProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133324853FC000BE2BEE /* publicProtocol.swift */; };
+		8732133624853FD200BE2BEE /* privateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133524853FD200BE2BEE /* privateProtocol.swift */; };
+		873213382485493B00BE2BEE /* SizeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213372485493B00BE2BEE /* SizeSetter.swift */; };
+		8732133A2485498E00BE2BEE /* PaddingSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213392485498E00BE2BEE /* PaddingSetter.swift */; };
+		8732133C24854A2B00BE2BEE /* AlignmentSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */; };
+		8732133E2485513500BE2BEE /* AnchorSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133D2485513500BE2BEE /* AnchorSetter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,10 +54,16 @@
 		871E4438247EB422005671D1 /* KissUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KissUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		871E443D247EB422005671D1 /* KissUI_LibTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KissUI_LibTests.swift; sourceTree = "<group>"; };
 		871E443F247EB422005671D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		871E4494247EB4E4005671D1 /* full.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = full.swift; sourceTree = "<group>"; };
+		871E4494247EB4E4005671D1 /* LayoutAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAttribute.swift; sourceTree = "<group>"; };
 		871E449B247EB90B005671D1 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		8732132F24800C9E00BE2BEE /* vstack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vstack.swift; sourceTree = "<group>"; };
 		8732133124800CD800BE2BEE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		8732133324853FC000BE2BEE /* publicProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publicProtocol.swift; sourceTree = "<group>"; };
+		8732133524853FD200BE2BEE /* privateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = privateProtocol.swift; sourceTree = "<group>"; };
+		873213372485493B00BE2BEE /* SizeSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeSetter.swift; sourceTree = "<group>"; };
+		873213392485498E00BE2BEE /* PaddingSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingSetter.swift; sourceTree = "<group>"; };
+		8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentSetter.swift; sourceTree = "<group>"; };
+		8732133D2485513500BE2BEE /* AnchorSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorSetter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,9 +110,15 @@
 			children = (
 				871E4432247EB422005671D1 /* KissUI_Lib.h */,
 				871E4433247EB422005671D1 /* Info.plist */,
-				871E4494247EB4E4005671D1 /* full.swift */,
+				871E4494247EB4E4005671D1 /* LayoutAttribute.swift */,
 				8732132F24800C9E00BE2BEE /* vstack.swift */,
 				8732133124800CD800BE2BEE /* UIView+Extension.swift */,
+				8732133324853FC000BE2BEE /* publicProtocol.swift */,
+				8732133524853FD200BE2BEE /* privateProtocol.swift */,
+				873213372485493B00BE2BEE /* SizeSetter.swift */,
+				873213392485498E00BE2BEE /* PaddingSetter.swift */,
+				8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */,
+				8732133D2485513500BE2BEE /* AnchorSetter.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -234,8 +252,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8732133224800CD800BE2BEE /* UIView+Extension.swift in Sources */,
-				871E4495247EB4E4005671D1 /* full.swift in Sources */,
+				873213382485493B00BE2BEE /* SizeSetter.swift in Sources */,
+				871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */,
+				8732133424853FC000BE2BEE /* publicProtocol.swift in Sources */,
+				8732133A2485498E00BE2BEE /* PaddingSetter.swift in Sources */,
+				8732133E2485513500BE2BEE /* AnchorSetter.swift in Sources */,
 				8732133024800C9E00BE2BEE /* vstack.swift in Sources */,
+				8732133C24854A2B00BE2BEE /* AlignmentSetter.swift in Sources */,
+				8732133624853FD200BE2BEE /* privateProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

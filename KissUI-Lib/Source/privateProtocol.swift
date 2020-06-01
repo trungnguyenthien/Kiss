@@ -1,14 +1,9 @@
 //
-//  vstack.swift
+//  privateProtocol.swift
 //  KissUI
 //
-//  Created by Trung on 5/28/20.
+//  Created by Trung on 6/1/20.
 //  Copyright © 2020 trungnguyenthien. All rights reserved.
 //
 
 import Foundation
-
-public class VStack: LayoutAttribute {
-
-}
-
