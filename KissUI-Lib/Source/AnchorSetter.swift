@@ -15,7 +15,7 @@ public protocol AnchorSetter {
     func bottom(_ value: Double) -> Self
 }
 
-extension AnchorSetter where Self: LayoutAttribute {
+public extension AnchorSetter where Self: LayoutAttribute {
     func left(_ value: Double) -> Self {
         leading = value
         return self

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 public class LayoutAttribute {
+    var isControl = true
     var paddingLeft: Double = 0 // internal(set)
     var paddingRight: Double = 0
     var paddingTop: Double = 0
@@ -37,9 +38,5 @@ protocol SelfLayoutable {
 }
 
 protocol Layoutable where Self: LayoutAttribute, Self: SelfLayoutable {
-    
-}
-
-protocol SetItemLayoutable where Self: Layoutable {
     
 }

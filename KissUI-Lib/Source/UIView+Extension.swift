@@ -9,3 +9,30 @@
 import Foundation
 import UIKit
 
+public extension UIView {
+    var vstack: VStack {
+        let stack = VStack()
+        stack.view = self
+        return stack
+    }
+    
+    var hstack: HStack {
+        let stack = HStack()
+        stack.view = self
+        return stack
+    }
+    
+    var wrap: Wrap {
+        let wrap = Wrap()
+        wrap.view = self
+        return wrap
+    }
+    
+    var layout: ViewLayout {
+        let vlayout = ViewLayout()
+        vlayout.view = self
+        return vlayout
+    }
+}
+
+

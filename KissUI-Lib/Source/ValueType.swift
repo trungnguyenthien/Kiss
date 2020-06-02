@@ -19,16 +19,17 @@ public enum HeightValue {
     case minMax(Double, Double)
     // height / width
     case equalWidth(Double)
+    case fill(Int8)
 }
 
 public enum HorizontalAlignmentValue {
     case left
     case right
-    case center
+    case hCenter
 }
 
 public enum VerticalAlignmentValue {
     case bottom
     case top
-    case center
+    case vCenter
 }

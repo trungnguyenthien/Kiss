@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import KissUI
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let label = UILabel()
+        label.wrap.sizeFullWidth(height: .fit).
     }
 
 

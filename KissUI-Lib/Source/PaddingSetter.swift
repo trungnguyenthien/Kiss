@@ -14,8 +14,8 @@ public protocol PaddingSetter {
     func padding(top: Double, bottom: Double, left: Double, right: Double) -> Self
 }
 
-extension PaddingSetter where Self: LayoutAttribute {
-    public func padding(size: Double) -> Self {
+public extension PaddingSetter where Self: LayoutAttribute {
+    func padding(size: Double) -> Self {
         paddingTop = size
         paddingBottom = size
         paddingLeft = size
@@ -23,7 +23,7 @@ extension PaddingSetter where Self: LayoutAttribute {
         return self
     }
     
-    public func padding(top: Double, bottom: Double, left: Double, right: Double) -> Self {
+    func padding(top: Double, bottom: Double, left: Double, right: Double) -> Self {
         paddingTop = top
         paddingBottom = bottom
         paddingLeft = left

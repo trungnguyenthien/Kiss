@@ -14,13 +14,13 @@ public protocol AlignmentSetter {
     func align(_ horizontal: HorizontalAlignmentValue) -> Self
 }
 
-extension AlignmentSetter where Self: LayoutAttribute {
-    public func align(_ vertical: VerticalAlignmentValue) -> Self {
+public extension AlignmentSetter where Self: LayoutAttribute {
+    func align(_ vertical: VerticalAlignmentValue) -> Self {
         verticalAlignment = vertical
         return self
     }
     
-    public func align(_ horizontal: HorizontalAlignmentValue) -> Self {
+    func align(_ horizontal: HorizontalAlignmentValue) -> Self {
         horizontalAlignment = horizontal
         return self
     }
