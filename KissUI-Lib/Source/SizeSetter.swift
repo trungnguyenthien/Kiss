@@ -14,9 +14,22 @@ public protocol SizeSetter {
     func widthFull(equalHeight: Double) -> Self
     func widthFull(height: Double) -> Self
     func widthFull(height: HeightValue) -> Self
+    
+    func min(height: Double) -> Self
+    func min(width: Double) -> Self
 }
 
-extension LayoutAttribute: SizeSetter {
+extension SizeSetter where Self: ViewLayout {
+    
+    public func min(height: Double) -> Self {
+        minHeight = height
+        return self
+    }
+    
+    public func min(width: Double) -> Self {
+        minWidth = width
+        return self
+    }
     
     public func widthFull(equalHeight: Double) -> Self {
         widthValue = .fill(Int8.max)

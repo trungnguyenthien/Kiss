@@ -25,8 +25,10 @@ public class LayoutAttribute {
     var widthValue = WidthValue.fill(1)
     var heightValue = HeightValue.fit
     
-    var realWidth: Double = 0
-    var realHeight: Double = 0
+    var minWidth: Double? = nil
+    var minHeight: Double? = nil
+    
+    var expectedFrame: CGRect? = nil
     
     var verticalAlignment: VerticalAlignmentValue = .top
     var horizontalAlignment: HorizontalAlignmentValue = .left

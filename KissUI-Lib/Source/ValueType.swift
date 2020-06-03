@@ -16,7 +16,6 @@ public enum WidthValue {
 public enum HeightValue {
     case value(Double)
     case fit
-    case minMax(Double, Double)
     // height / width
     case equalWidth(Double)
     case fill(Int8)

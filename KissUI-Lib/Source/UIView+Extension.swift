@@ -10,22 +10,22 @@ import Foundation
 import UIKit
 
 public extension UIView {
-    func vstack(_ items: ViewLayout...) -> VStack {
-        let stack = VStack()
+    func vstack(_ items: LayoutAttribute...) -> VStackLayout {
+        let stack = VStackLayout()
         stack.view = self
         stack.subLayouts.append(contentsOf: items)
         return stack
     }
     
-    func hstack(_ items: ViewLayout...) -> HStack {
-        let stack = HStack()
+    func hstack(_ items: LayoutAttribute...) -> HStackLayout {
+        let stack = HStackLayout()
         stack.view = self
         stack.subLayouts.append(contentsOf: items)
         return stack
     }
     
-    func wrap(_ items: ViewLayout...) -> Wrap {
-        let wrap = Wrap()
+    func wrap(_ items: LayoutAttribute...) -> WrapLayout {
+        let wrap = WrapLayout()
         wrap.view = self
         wrap.subLayouts.append(contentsOf: items)
         return wrap
@@ -38,20 +38,20 @@ public extension UIView {
     }
 }
 
-public func vstack(_ items: ViewLayout...) -> VStack {
-    let stack = VStack()
+public func vstack(_ items: LayoutAttribute...) -> VStackLayout {
+    let stack = VStackLayout()
     stack.subLayouts.append(contentsOf: items)
     return stack
 }
 
-public func hstack(_ items: ViewLayout...) -> HStack {
-    let stack = HStack()
+public func hstack(_ items: LayoutAttribute...) -> HStackLayout {
+    let stack = HStackLayout()
     stack.subLayouts.append(contentsOf: items)
     return stack
 }
 
-public func wrap(_ items: ViewLayout...) -> Wrap {
-    let wrap = Wrap()
+public func wrap(_ items: LayoutAttribute...) -> WrapLayout {
+    let wrap = WrapLayout()
     wrap.subLayouts.append(contentsOf: items)
     return wrap
 }

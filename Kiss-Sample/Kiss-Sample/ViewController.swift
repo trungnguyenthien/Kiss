@@ -16,12 +16,30 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let label = UILabel()
-        let wrap = label.wrap(
-            label.layout
-        ).padding(size: 10)
+        let wrap = label.hstack(
+            label.layout,
+            hspacer, /* |--| */
+            label.layout,
+            vstack(
+                
+            )
+        ).padding(10)
         
     }
 
 
 }
 
+let small = 5.0
+let medium = 10.0
+
+
+let myLayout = hstack (
+    UIImageView().layout.widthFull(equalHeight: 5/3),
+    hstack (
+        UILabel().layout.left(medium).top(small),
+        UILabel().layout.left(medium).top(small),
+        UILabel().layout.left(medium).top(small),
+        UILabel().layout.left(medium).top(small)
+    )
+).width(200, height: .fit).padding(medium)

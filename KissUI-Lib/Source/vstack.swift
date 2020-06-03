@@ -9,31 +9,31 @@
 import Foundation
 import UIKit
 
-public class VStack: ViewLayout, AlignmentSetter {
-    var subLayouts = [ViewLayout]()
+public class VStackLayout: ViewLayout, AlignmentSetter {
+    var subLayouts = [LayoutAttribute]()
     override init() {
         super.init()
         self.isControl = false
     }
 }
 
-public class HStack: ViewLayout, AlignmentSetter {
-    var subLayouts = [ViewLayout]()
+public class HStackLayout: ViewLayout, AlignmentSetter {
+    var subLayouts = [LayoutAttribute]()
     override init() {
         super.init()
         self.isControl = false
     }
 }
 
-public class Wrap: ViewLayout, AlignmentSetter {
-    var subLayouts = [ViewLayout]()
+public class WrapLayout: ViewLayout, AlignmentSetter {
+    var subLayouts = [LayoutAttribute]()
     override init() {
         super.init()
         self.isControl = false
     }
 }
 
-public class ViewLayout: LayoutAttribute, PaddingSetter, AnchorSetter {
+public class ViewLayout: LayoutAttribute, PaddingSetter, AnchorSetter, SizeSetter {
     var view: UIView? = nil
     override init() {
         super.init()
@@ -42,7 +42,7 @@ public class ViewLayout: LayoutAttribute, PaddingSetter, AnchorSetter {
 }
 
 public class VSpacer: LayoutAttribute {
-    public override init() {
+    override init() {
         super.init()
         self.widthValue = .value(0.5)
         self.heightValue = .fill(1)
@@ -51,7 +51,7 @@ public class VSpacer: LayoutAttribute {
 }
 
 public class HSpacer: LayoutAttribute {
-    public override init() {
+    override init() {
         super.init()
         self.heightValue = .value(0.5)
         self.widthValue = .fill(1)

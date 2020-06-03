@@ -10,16 +10,16 @@ import Foundation
 
 
 public protocol PaddingSetter {
-    func padding(size: Double) -> Self
+    func padding(_ value: Double) -> Self
     func padding(top: Double, bottom: Double, left: Double, right: Double) -> Self
 }
 
 public extension PaddingSetter where Self: LayoutAttribute {
-    func padding(size: Double) -> Self {
-        paddingTop = size
-        paddingBottom = size
-        paddingLeft = size
-        paddingRight = size
+    func padding(_ value: Double) -> Self {
+        paddingTop = value
+        paddingBottom = value
+        paddingLeft = value
+        paddingRight = value
         return self
     }
     
