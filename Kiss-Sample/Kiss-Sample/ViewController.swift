@@ -16,7 +16,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let label = UILabel()
-        label.wrap.sizeFullWidth(height: .fit).
+        let wrap = label.wrap(
+            label.layout
+        ).padding(size: 10)
+        
     }
 
 

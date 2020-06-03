@@ -11,7 +11,7 @@ import UIKit
 
 public class VStack: ViewLayout, AlignmentSetter {
     var subLayouts = [ViewLayout]()
-    public override init() {
+    override init() {
         super.init()
         self.isControl = false
     }
@@ -19,7 +19,7 @@ public class VStack: ViewLayout, AlignmentSetter {
 
 public class HStack: ViewLayout, AlignmentSetter {
     var subLayouts = [ViewLayout]()
-    public override init() {
+    override init() {
         super.init()
         self.isControl = false
     }
@@ -27,7 +27,7 @@ public class HStack: ViewLayout, AlignmentSetter {
 
 public class Wrap: ViewLayout, AlignmentSetter {
     var subLayouts = [ViewLayout]()
-    public override init() {
+    override init() {
         super.init()
         self.isControl = false
     }
@@ -35,7 +35,7 @@ public class Wrap: ViewLayout, AlignmentSetter {
 
 public class ViewLayout: LayoutAttribute, PaddingSetter, AnchorSetter {
     var view: UIView? = nil
-    public override init() {
+    override init() {
         super.init()
         self.isControl = true
     }

@@ -25,11 +25,11 @@ public enum HeightValue {
 public enum HorizontalAlignmentValue {
     case left
     case right
-    case hCenter
+    case center
 }
 
 public enum VerticalAlignmentValue {
     case bottom
     case top
-    case vCenter
+    case center
 }

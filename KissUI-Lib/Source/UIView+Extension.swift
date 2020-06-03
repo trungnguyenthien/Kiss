@@ -10,21 +10,24 @@ import Foundation
 import UIKit
 
 public extension UIView {
-    var vstack: VStack {
+    func vstack(_ items: ViewLayout...) -> VStack {
         let stack = VStack()
         stack.view = self
+        stack.subLayouts.append(contentsOf: items)
         return stack
     }
     
-    var hstack: HStack {
+    func hstack(_ items: ViewLayout...) -> HStack {
         let stack = HStack()
         stack.view = self
+        stack.subLayouts.append(contentsOf: items)
         return stack
     }
     
-    var wrap: Wrap {
+    func wrap(_ items: ViewLayout...) -> Wrap {
         let wrap = Wrap()
         wrap.view = self
+        wrap.subLayouts.append(contentsOf: items)
         return wrap
     }
     
@@ -35,4 +38,28 @@ public extension UIView {
     }
 }
 
+public func vstack(_ items: ViewLayout...) -> VStack {
+    let stack = VStack()
+    stack.subLayouts.append(contentsOf: items)
+    return stack
+}
 
+public func hstack(_ items: ViewLayout...) -> HStack {
+    let stack = HStack()
+    stack.subLayouts.append(contentsOf: items)
+    return stack
+}
+
+public func wrap(_ items: ViewLayout...) -> Wrap {
+    let wrap = Wrap()
+    wrap.subLayouts.append(contentsOf: items)
+    return wrap
+}
+
+public var vspacer: VSpacer {
+    return VSpacer()
+}
+
+public var hspacer: HSpacer {
+    return HSpacer();
+}
