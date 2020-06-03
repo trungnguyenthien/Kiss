@@ -22,6 +22,8 @@
 		8732133C24854A2B00BE2BEE /* AlignmentSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */; };
 		8732133E2485513500BE2BEE /* AnchorSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133D2485513500BE2BEE /* AnchorSetter.swift */; };
 		873213402487826B00BE2BEE /* internalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133F2487826B00BE2BEE /* internalFunction.swift */; };
+		873213422487853900BE2BEE /* internalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213412487853900BE2BEE /* internalExtension.swift */; };
+		87321345248785D100BE2BEE /* publicExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87321344248785D100BE2BEE /* publicExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentSetter.swift; sourceTree = "<group>"; };
 		8732133D2485513500BE2BEE /* AnchorSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorSetter.swift; sourceTree = "<group>"; };
 		8732133F2487826B00BE2BEE /* internalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = internalFunction.swift; sourceTree = "<group>"; };
+		873213412487853900BE2BEE /* internalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = internalExtension.swift; sourceTree = "<group>"; };
+		87321344248785D100BE2BEE /* publicExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publicExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 		871E4431247EB422005671D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				87321343248785B900BE2BEE /* ultility */,
 				871E4432247EB422005671D1 /* KissUI_Lib.h */,
 				871E4433247EB422005671D1 /* Info.plist */,
 				871E4494247EB4E4005671D1 /* LayoutAttribute.swift */,
@@ -121,7 +126,6 @@
 				873213392485498E00BE2BEE /* PaddingSetter.swift */,
 				8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */,
 				8732133D2485513500BE2BEE /* AnchorSetter.swift */,
-				8732133F2487826B00BE2BEE /* internalFunction.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -141,6 +145,16 @@
 				871E449B247EB90B005671D1 /* SnapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		87321343248785B900BE2BEE /* ultility */ = {
+			isa = PBXGroup;
+			children = (
+				8732133F2487826B00BE2BEE /* internalFunction.swift */,
+				873213412487853900BE2BEE /* internalExtension.swift */,
+				87321344248785D100BE2BEE /* publicExtension.swift */,
+			);
+			path = ultility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,8 +268,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87321345248785D100BE2BEE /* publicExtension.swift in Sources */,
 				8732133224800CD800BE2BEE /* UIView+Extension.swift in Sources */,
 				873213382485493B00BE2BEE /* SizeSetter.swift in Sources */,
+				873213422487853900BE2BEE /* internalExtension.swift in Sources */,
 				873213402487826B00BE2BEE /* internalFunction.swift in Sources */,
 				871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */,
 				8732133424853FC000BE2BEE /* ValueType.swift in Sources */,

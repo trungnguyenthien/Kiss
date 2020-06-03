@@ -9,24 +9,25 @@
 import Foundation
 import UIKit
 
-public class VStackLayout: ViewLayout, AlignmentSetter {
+public class SetViewLayout: ViewLayout, AlignmentSetter {
     var subLayouts = [LayoutAttribute]()
+}
+
+public class VStackLayout: SetViewLayout {
     override init() {
         super.init()
         self.isControl = false
     }
 }
 
-public class HStackLayout: ViewLayout, AlignmentSetter {
-    var subLayouts = [LayoutAttribute]()
+public class HStackLayout: SetViewLayout {
     override init() {
         super.init()
         self.isControl = false
     }
 }
 
-public class WrapLayout: ViewLayout, AlignmentSetter {
-    var subLayouts = [LayoutAttribute]()
+public class WrapLayout: SetViewLayout {
     override init() {
         super.init()
         self.isControl = false
