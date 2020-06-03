@@ -1,6 +1,6 @@
 
 import Foundation
-
+import UIKit
 
 public protocol SizeSetter {
     func width(_ width: Double, height: Double) -> Self
@@ -17,9 +17,17 @@ public protocol SizeSetter {
     
     func min(height: Double) -> Self
     func min(width: Double) -> Self
+    
+    func size(_ value: CGSize) -> Self
 }
 
 extension SizeSetter where Self: ViewLayout {
+    
+    public func size(_ value: CGSize) -> Self {
+        widthValue = .value(Double(value.width))
+        heightValue = .value(Double(value.height))
+        return self
+    }
     
     public func min(height: Double) -> Self {
         minHeight = height

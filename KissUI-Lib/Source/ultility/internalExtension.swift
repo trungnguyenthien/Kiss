@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-
 extension Sequence where Element: LayoutAttribute {
     func resetExpectedFrame() {
         forEach { $0.expectedFrame = nil }
     }
 }
+

@@ -9,6 +9,15 @@
 import Foundation
 import UIKit
 
+public extension UILabel {
+    func debug(_ text: String) -> Self {
+#if DEBUG
+        self.text = text
+#endif
+        return self
+    }
+}
+
 public extension SetViewLayout {
     var views: [UIView] {
         var output = [UIView?]()
@@ -22,5 +31,24 @@ public extension SetViewLayout {
             }
         }
         return output.compactMap { $0 }
+    }
+}
+
+public extension Sequence where Element: UIView {
+    func hideAll() {
+        forEach { $0.isHidden = true }
+    }
+    
+    func removeFromCurrentSuperview() {
+        forEach {
+            $0.removeFromSuperview()
+        }
+    }
+}
+
+public extension UIView {
+    func addSubviews(inLayout layout: SetViewLayout) {
+        layout.views.removeFromCurrentSuperview()
+        layout.views.forEach { addSubview($0) }
     }
 }

@@ -16,7 +16,6 @@
 		8732133024800C9E00BE2BEE /* vstack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732132F24800C9E00BE2BEE /* vstack.swift */; };
 		8732133224800CD800BE2BEE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133124800CD800BE2BEE /* UIView+Extension.swift */; };
 		8732133424853FC000BE2BEE /* ValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133324853FC000BE2BEE /* ValueType.swift */; };
-		8732133624853FD200BE2BEE /* privateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133524853FD200BE2BEE /* privateProtocol.swift */; };
 		873213382485493B00BE2BEE /* SizeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213372485493B00BE2BEE /* SizeSetter.swift */; };
 		8732133A2485498E00BE2BEE /* PaddingSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213392485498E00BE2BEE /* PaddingSetter.swift */; };
 		8732133C24854A2B00BE2BEE /* AlignmentSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */; };
@@ -24,6 +23,7 @@
 		873213402487826B00BE2BEE /* internalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133F2487826B00BE2BEE /* internalFunction.swift */; };
 		873213422487853900BE2BEE /* internalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213412487853900BE2BEE /* internalExtension.swift */; };
 		87321345248785D100BE2BEE /* publicExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87321344248785D100BE2BEE /* publicExtension.swift */; };
+		873213472487932C00BE2BEE /* publicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213462487932C00BE2BEE /* publicFunction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,6 @@
 		8732132F24800C9E00BE2BEE /* vstack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vstack.swift; sourceTree = "<group>"; };
 		8732133124800CD800BE2BEE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8732133324853FC000BE2BEE /* ValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueType.swift; sourceTree = "<group>"; };
-		8732133524853FD200BE2BEE /* privateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = privateProtocol.swift; sourceTree = "<group>"; };
 		873213372485493B00BE2BEE /* SizeSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeSetter.swift; sourceTree = "<group>"; };
 		873213392485498E00BE2BEE /* PaddingSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingSetter.swift; sourceTree = "<group>"; };
 		8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentSetter.swift; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		8732133F2487826B00BE2BEE /* internalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = internalFunction.swift; sourceTree = "<group>"; };
 		873213412487853900BE2BEE /* internalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = internalExtension.swift; sourceTree = "<group>"; };
 		87321344248785D100BE2BEE /* publicExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publicExtension.swift; sourceTree = "<group>"; };
+		873213462487932C00BE2BEE /* publicFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publicFunction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +121,6 @@
 				8732132F24800C9E00BE2BEE /* vstack.swift */,
 				8732133124800CD800BE2BEE /* UIView+Extension.swift */,
 				8732133324853FC000BE2BEE /* ValueType.swift */,
-				8732133524853FD200BE2BEE /* privateProtocol.swift */,
 				873213372485493B00BE2BEE /* SizeSetter.swift */,
 				873213392485498E00BE2BEE /* PaddingSetter.swift */,
 				8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */,
@@ -153,6 +152,7 @@
 				8732133F2487826B00BE2BEE /* internalFunction.swift */,
 				873213412487853900BE2BEE /* internalExtension.swift */,
 				87321344248785D100BE2BEE /* publicExtension.swift */,
+				873213462487932C00BE2BEE /* publicFunction.swift */,
 			);
 			path = ultility;
 			sourceTree = "<group>";
@@ -277,9 +277,9 @@
 				8732133424853FC000BE2BEE /* ValueType.swift in Sources */,
 				8732133A2485498E00BE2BEE /* PaddingSetter.swift in Sources */,
 				8732133E2485513500BE2BEE /* AnchorSetter.swift in Sources */,
+				873213472487932C00BE2BEE /* publicFunction.swift in Sources */,
 				8732133024800C9E00BE2BEE /* vstack.swift in Sources */,
 				8732133C24854A2B00BE2BEE /* AlignmentSetter.swift in Sources */,
-				8732133624853FD200BE2BEE /* privateProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
