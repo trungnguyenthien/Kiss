@@ -27,29 +27,33 @@ extension LayoutSubviewsAble where Self: VStackLayout {
             case .fill(_): layoutSubviewsAble?.makeSizeSubviews(width: contentWidth)
             }
             
-            switch $0.heightValue {
-            case .equalWidth(let hew):
-                guard let ewidth = $0.expectedWidth else { return }
-                $0.expectedHeight = ewidth * hew
-                
-            case .value(let value):
-                $0.expectedHeight = value
-                
-            case .fill(_):
-                fatalError("Content trong StackLayout thì không height=.fill")
-                
-            case .fit:
-                layoutSubviewsAble?.layoutSubviews(width: contentWidth)
-                if let setViewLayout = $0 as? SetViewLayout {
-                    let expectedHeight = setViewLayout.subLayouts.last?.expectedHeight ?? 0
-                    let y = setViewLayout.subLayouts.last?.expectedY ?? 0
-                    $0.expectedHeight = y + expectedHeight
+            if $0.expectedHeight == nil {
+                switch $0.heightValue {
+                case .equalWidth(let hew):
+                    guard let ewidth = $0.expectedWidth else { return }
+                    $0.expectedHeight = ewidth * hew
+                    
+                case .value(let value):
+                    $0.expectedHeight = value
+                    
+                case .fill(_):
+                    fatalError("Content trong StackLayout thì không height=.fill")
+                    
+                case .fit:
+                    layoutSubviewsAble?.layoutSubviews(width: contentWidth)
+                    if let setViewLayout = $0 as? SetViewLayout {
+                        let expectedHeight = setViewLayout.subLayouts.last?.expectedHeight ?? 0
+                        let y = setViewLayout.subLayouts.last?.expectedY ?? 0
+                        $0.expectedHeight = y + expectedHeight + $0.paddingTop + $0.paddingBottom
+                    }
                 }
             }
+
         }
     }
     
     public func layoutSubviews(width: Double) {
+        makeSizeSubviews(width: width)
         
     }
 }
