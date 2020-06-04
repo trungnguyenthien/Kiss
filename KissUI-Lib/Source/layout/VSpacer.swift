@@ -17,3 +17,13 @@ public class VSpacer: LayoutAttribute {
         self.isControl = true
     }
 }
+
+extension LayoutSubviewsAble where Self: VSpacer {
+    public func makeSizeSubviews(width: Double) {
+        
+    }
+    
+    public func layoutSubviews(width: Double) {
+        
+    }
+}

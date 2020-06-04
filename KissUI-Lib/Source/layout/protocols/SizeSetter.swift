@@ -22,7 +22,6 @@ public protocol SizeSetter {
 }
 
 extension SizeSetter where Self: ViewLayout {
-    
     public func size(_ value: CGSize) -> Self {
         widthValue = .value(Double(value.width))
         heightValue = .value(Double(value.height))

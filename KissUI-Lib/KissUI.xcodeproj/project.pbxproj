@@ -183,7 +183,6 @@
 				8732134F2489381C00BE2BEE /* ViewLayout.swift */,
 				873213512489385A00BE2BEE /* VSpacer.swift */,
 				873213532489386200BE2BEE /* HSpacer.swift */,
-				873213562489393F00BE2BEE /* LayoutSubviewsAble.swift */,
 			);
 			path = layout;
 			sourceTree = "<group>";
@@ -200,6 +199,7 @@
 		8732135A248939CA00BE2BEE /* protocols */ = {
 			isa = PBXGroup;
 			children = (
+				873213562489393F00BE2BEE /* LayoutSubviewsAble.swift */,
 				873213372485493B00BE2BEE /* SizeSetter.swift */,
 				873213392485498E00BE2BEE /* PaddingSetter.swift */,
 				8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */,
@@ -497,7 +497,7 @@
 				);
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -528,7 +528,7 @@
 				);
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

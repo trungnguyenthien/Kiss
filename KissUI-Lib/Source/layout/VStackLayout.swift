@@ -15,3 +15,41 @@ public class VStackLayout: SetViewLayout {
         self.isControl = false
     }
 }
+
+extension LayoutSubviewsAble where Self: VStackLayout {
+    public func makeSizeSubviews(width: Double) {
+        
+        let contentWidth = width - paddingLeft - paddingRight
+        subLayouts.forEach {
+            let layoutSubviewsAble = $0 as? LayoutSubviewsAble
+            switch $0.widthValue {
+            case .value(let evalue): layoutSubviewsAble?.makeSizeSubviews(width: evalue)
+            case .fill(_): layoutSubviewsAble?.makeSizeSubviews(width: contentWidth)
+            }
+            
+            switch $0.heightValue {
+            case .equalWidth(let hew):
+                guard let ewidth = $0.expectedWidth else { return }
+                $0.expectedHeight = ewidth * hew
+                
+            case .value(let value):
+                $0.expectedHeight = value
+                
+            case .fill(_):
+                fatalError("Content trong StackLayout thì không height=.fill")
+                
+            case .fit:
+                layoutSubviewsAble?.layoutSubviews(width: contentWidth)
+                if let setViewLayout = $0 as? SetViewLayout {
+                    let expectedHeight = setViewLayout.subLayouts.last?.expectedHeight ?? 0
+                    let y = setViewLayout.subLayouts.last?.expectedY ?? 0
+                    $0.expectedHeight = y + expectedHeight
+                }
+            }
+        }
+    }
+    
+    public func layoutSubviews(width: Double) {
+        
+    }
+}

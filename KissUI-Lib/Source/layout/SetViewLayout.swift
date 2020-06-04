@@ -12,7 +12,3 @@ import UIKit
 public class SetViewLayout: ViewLayout, AlignmentSetter {
     var subLayouts = [LayoutAttribute]()
 }
-
-
-
-

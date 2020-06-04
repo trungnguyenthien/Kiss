@@ -14,4 +14,15 @@ public class HStackLayout: SetViewLayout {
         super.init()
         self.isControl = false
     }
+    
+}
+
+extension LayoutSubviewsAble where Self: HStackLayout {
+    public func makeSizeSubviews(width: Double) {
+        
+    }
+    
+    public func layoutSubviews(width: Double) {
+        
+    }
 }

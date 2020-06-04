@@ -9,26 +9,31 @@
 import Foundation
 import UIKit
 
-public class LayoutAttribute {
+typealias KFloat = Double
+
+public class LayoutAttribute: NSObject {
     var isControl = true
-    var paddingLeft: Double = 0 // internal(set)
-    var paddingRight: Double = 0
-    var paddingTop: Double = 0
-    var paddingBottom: Double = 0
+    var paddingLeft: KFloat = 0 // internal(set)
+    var paddingRight: KFloat = 0
+    var paddingTop: KFloat = 0
+    var paddingBottom: KFloat = 0
     
-    var leading: Double = 0
-    var trailing: Double = 0
+    var leading: KFloat = 0
+    var trailing: KFloat = 0
     
-    var top: Double = 0
-    var bottom: Double = 0
+    var top: KFloat = 0
+    var bottom: KFloat = 0
     
     var widthValue = WidthValue.fill(1)
     var heightValue = HeightValue.fit
     
-    var minWidth: Double? = nil
-    var minHeight: Double? = nil
+    var minWidth: KFloat? = nil
+    var minHeight: KFloat? = nil
     
-    var expectedFrame: CGRect? = nil
+    var expectedWidth: KFloat? = nil
+    var expectedHeight: KFloat? = nil
+    var expectedX: KFloat? = nil
+    var expectedY: KFloat? = nil
     
     var verticalAlignment: VerticalAlignmentValue = .top
     var horizontalAlignment: HorizontalAlignmentValue = .left

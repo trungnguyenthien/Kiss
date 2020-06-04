@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
-protocol LayoutSubviewsAble {
-    func layoutSubviews(width: Double) -> CGSize
+public protocol LayoutSubviewsAble {
+    func makeSizeSubviews(width: Double)
+    func layoutSubviews(width: Double)
 }

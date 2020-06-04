@@ -17,3 +17,13 @@ public class HSpacer: LayoutAttribute {
         self.isControl = true
     }
 }
+
+extension LayoutSubviewsAble where Self: HSpacer {
+    public func makeSizeSubviews(width: Double) {
+        
+    }
+    
+    public func layoutSubviews(width: Double) {
+        
+    }
+}

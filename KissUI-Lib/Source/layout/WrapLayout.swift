@@ -22,3 +22,14 @@ public class WrapLayout: SetViewLayout {
         return self
     }
 }
+
+extension LayoutSubviewsAble where Self: WrapLayout {
+    public func makeSizeSubviews(width: Double) {
+        
+    }
+    
+    public func layoutSubviews(width: Double) {
+        
+    }
+}
+
