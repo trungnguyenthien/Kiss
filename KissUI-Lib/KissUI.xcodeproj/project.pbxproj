@@ -13,8 +13,8 @@
 		871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E4494247EB4E4005671D1 /* LayoutAttribute.swift */; };
 		871E449C247EB90B005671D1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871E449B247EB90B005671D1 /* SnapKit.framework */; };
 		871E449D247EB90B005671D1 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 871E449B247EB90B005671D1 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8732133024800C9E00BE2BEE /* vstack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732132F24800C9E00BE2BEE /* vstack.swift */; };
-		8732133224800CD800BE2BEE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133124800CD800BE2BEE /* UIView+Extension.swift */; };
+		8732133024800C9E00BE2BEE /* SetViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732132F24800C9E00BE2BEE /* SetViewLayout.swift */; };
+		8732133224800CD800BE2BEE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133124800CD800BE2BEE /* UIView.swift */; };
 		8732133424853FC000BE2BEE /* ValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133324853FC000BE2BEE /* ValueType.swift */; };
 		873213382485493B00BE2BEE /* SizeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213372485493B00BE2BEE /* SizeSetter.swift */; };
 		8732133A2485498E00BE2BEE /* PaddingSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213392485498E00BE2BEE /* PaddingSetter.swift */; };
@@ -24,6 +24,15 @@
 		873213422487853900BE2BEE /* internalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213412487853900BE2BEE /* internalExtension.swift */; };
 		87321345248785D100BE2BEE /* publicExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87321344248785D100BE2BEE /* publicExtension.swift */; };
 		873213472487932C00BE2BEE /* publicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213462487932C00BE2BEE /* publicFunction.swift */; };
+		8732134A248937E500BE2BEE /* VStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87321349248937E500BE2BEE /* VStackLayout.swift */; };
+		8732134C248937F000BE2BEE /* HStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134B248937F000BE2BEE /* HStackLayout.swift */; };
+		8732134E248937FB00BE2BEE /* WrapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134D248937FB00BE2BEE /* WrapLayout.swift */; };
+		873213502489381C00BE2BEE /* ViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134F2489381C00BE2BEE /* ViewLayout.swift */; };
+		873213522489385A00BE2BEE /* VSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213512489385A00BE2BEE /* VSpacer.swift */; };
+		873213542489386200BE2BEE /* HSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213532489386200BE2BEE /* HSpacer.swift */; };
+		873213572489393F00BE2BEE /* LayoutSubviewsAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213562489393F00BE2BEE /* LayoutSubviewsAble.swift */; };
+		8732135C24893A0200BE2BEE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135B24893A0200BE2BEE /* UILabel.swift */; };
+		8732135E24893A0C00BE2BEE /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135D24893A0C00BE2BEE /* UIButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,8 +68,8 @@
 		871E443F247EB422005671D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		871E4494247EB4E4005671D1 /* LayoutAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAttribute.swift; sourceTree = "<group>"; };
 		871E449B247EB90B005671D1 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
-		8732132F24800C9E00BE2BEE /* vstack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vstack.swift; sourceTree = "<group>"; };
-		8732133124800CD800BE2BEE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		8732132F24800C9E00BE2BEE /* SetViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetViewLayout.swift; sourceTree = "<group>"; };
+		8732133124800CD800BE2BEE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		8732133324853FC000BE2BEE /* ValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueType.swift; sourceTree = "<group>"; };
 		873213372485493B00BE2BEE /* SizeSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeSetter.swift; sourceTree = "<group>"; };
 		873213392485498E00BE2BEE /* PaddingSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingSetter.swift; sourceTree = "<group>"; };
@@ -70,6 +79,15 @@
 		873213412487853900BE2BEE /* internalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = internalExtension.swift; sourceTree = "<group>"; };
 		87321344248785D100BE2BEE /* publicExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publicExtension.swift; sourceTree = "<group>"; };
 		873213462487932C00BE2BEE /* publicFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publicFunction.swift; sourceTree = "<group>"; };
+		87321349248937E500BE2BEE /* VStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackLayout.swift; sourceTree = "<group>"; };
+		8732134B248937F000BE2BEE /* HStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackLayout.swift; sourceTree = "<group>"; };
+		8732134D248937FB00BE2BEE /* WrapLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapLayout.swift; sourceTree = "<group>"; };
+		8732134F2489381C00BE2BEE /* ViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLayout.swift; sourceTree = "<group>"; };
+		873213512489385A00BE2BEE /* VSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSpacer.swift; sourceTree = "<group>"; };
+		873213532489386200BE2BEE /* HSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSpacer.swift; sourceTree = "<group>"; };
+		873213562489393F00BE2BEE /* LayoutSubviewsAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutSubviewsAble.swift; sourceTree = "<group>"; };
+		8732135B24893A0200BE2BEE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
+		8732135D24893A0C00BE2BEE /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,17 +132,10 @@
 		871E4431247EB422005671D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				87321348248937D400BE2BEE /* layout */,
 				87321343248785B900BE2BEE /* ultility */,
 				871E4432247EB422005671D1 /* KissUI_Lib.h */,
 				871E4433247EB422005671D1 /* Info.plist */,
-				871E4494247EB4E4005671D1 /* LayoutAttribute.swift */,
-				8732132F24800C9E00BE2BEE /* vstack.swift */,
-				8732133124800CD800BE2BEE /* UIView+Extension.swift */,
-				8732133324853FC000BE2BEE /* ValueType.swift */,
-				873213372485493B00BE2BEE /* SizeSetter.swift */,
-				873213392485498E00BE2BEE /* PaddingSetter.swift */,
-				8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */,
-				8732133D2485513500BE2BEE /* AnchorSetter.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -153,8 +164,48 @@
 				873213412487853900BE2BEE /* internalExtension.swift */,
 				87321344248785D100BE2BEE /* publicExtension.swift */,
 				873213462487932C00BE2BEE /* publicFunction.swift */,
+				8732135B24893A0200BE2BEE /* UILabel.swift */,
+				8732133124800CD800BE2BEE /* UIView.swift */,
+				8732135D24893A0C00BE2BEE /* UIButton.swift */,
 			);
 			path = ultility;
+			sourceTree = "<group>";
+		};
+		87321348248937D400BE2BEE /* layout */ = {
+			isa = PBXGroup;
+			children = (
+				8732135A248939CA00BE2BEE /* protocols */,
+				873213552489391800BE2BEE /* attributes */,
+				8732132F24800C9E00BE2BEE /* SetViewLayout.swift */,
+				87321349248937E500BE2BEE /* VStackLayout.swift */,
+				8732134B248937F000BE2BEE /* HStackLayout.swift */,
+				8732134D248937FB00BE2BEE /* WrapLayout.swift */,
+				8732134F2489381C00BE2BEE /* ViewLayout.swift */,
+				873213512489385A00BE2BEE /* VSpacer.swift */,
+				873213532489386200BE2BEE /* HSpacer.swift */,
+				873213562489393F00BE2BEE /* LayoutSubviewsAble.swift */,
+			);
+			path = layout;
+			sourceTree = "<group>";
+		};
+		873213552489391800BE2BEE /* attributes */ = {
+			isa = PBXGroup;
+			children = (
+				8732133324853FC000BE2BEE /* ValueType.swift */,
+				871E4494247EB4E4005671D1 /* LayoutAttribute.swift */,
+			);
+			path = attributes;
+			sourceTree = "<group>";
+		};
+		8732135A248939CA00BE2BEE /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				873213372485493B00BE2BEE /* SizeSetter.swift */,
+				873213392485498E00BE2BEE /* PaddingSetter.swift */,
+				8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */,
+				8732133D2485513500BE2BEE /* AnchorSetter.swift */,
+			);
+			path = protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,17 +320,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				87321345248785D100BE2BEE /* publicExtension.swift in Sources */,
-				8732133224800CD800BE2BEE /* UIView+Extension.swift in Sources */,
+				8732133224800CD800BE2BEE /* UIView.swift in Sources */,
 				873213382485493B00BE2BEE /* SizeSetter.swift in Sources */,
+				8732134C248937F000BE2BEE /* HStackLayout.swift in Sources */,
+				873213502489381C00BE2BEE /* ViewLayout.swift in Sources */,
 				873213422487853900BE2BEE /* internalExtension.swift in Sources */,
+				873213542489386200BE2BEE /* HSpacer.swift in Sources */,
 				873213402487826B00BE2BEE /* internalFunction.swift in Sources */,
+				8732134A248937E500BE2BEE /* VStackLayout.swift in Sources */,
+				8732134E248937FB00BE2BEE /* WrapLayout.swift in Sources */,
+				8732135C24893A0200BE2BEE /* UILabel.swift in Sources */,
+				8732135E24893A0C00BE2BEE /* UIButton.swift in Sources */,
 				871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */,
 				8732133424853FC000BE2BEE /* ValueType.swift in Sources */,
 				8732133A2485498E00BE2BEE /* PaddingSetter.swift in Sources */,
 				8732133E2485513500BE2BEE /* AnchorSetter.swift in Sources */,
+				873213522489385A00BE2BEE /* VSpacer.swift in Sources */,
 				873213472487932C00BE2BEE /* publicFunction.swift in Sources */,
-				8732133024800C9E00BE2BEE /* vstack.swift in Sources */,
+				8732133024800C9E00BE2BEE /* SetViewLayout.swift in Sources */,
 				8732133C24854A2B00BE2BEE /* AlignmentSetter.swift in Sources */,
+				873213572489393F00BE2BEE /* LayoutSubviewsAble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

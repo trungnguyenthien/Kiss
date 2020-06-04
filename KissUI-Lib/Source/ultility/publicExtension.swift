@@ -9,15 +9,6 @@
 import Foundation
 import UIKit
 
-public extension UILabel {
-    func debug(_ text: String) -> Self {
-#if DEBUG
-        self.text = text
-#endif
-        return self
-    }
-}
-
 public extension SetViewLayout {
     var views: [UIView] {
         var output = [UIView?]()

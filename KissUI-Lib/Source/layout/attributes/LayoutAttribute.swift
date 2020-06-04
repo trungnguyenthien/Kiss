@@ -33,12 +33,3 @@ public class LayoutAttribute {
     var verticalAlignment: VerticalAlignmentValue = .top
     var horizontalAlignment: HorizontalAlignmentValue = .left
 }
-
-
-protocol SelfLayoutable {
-    func selfLayout(width: Double) -> CGSize
-}
-
-protocol Layoutable where Self: LayoutAttribute, Self: SelfLayoutable {
-    
-}

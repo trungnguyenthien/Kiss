@@ -39,7 +39,7 @@ func compactLayout(baseWidth: Double) -> SetViewLayout {
         // Product thumbnail
         UIImageView().layout.widthFull(equalHeight: 5/3),
         vstack (
-            UILabel().debug("1000$").layout.left(medium).top(small).size(.zero),
+            UILabel().layout.left(medium).top(small).size(.zero),
             UILabel().layout.left(medium).top(small).widthFull(height: 15),
             UILabel().layout.left(medium).top(small).widthFull(height: 15),
             UILabel().layout.left(medium).top(small).widthFull(height: 15)
