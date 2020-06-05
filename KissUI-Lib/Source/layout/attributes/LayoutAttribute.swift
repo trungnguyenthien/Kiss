@@ -45,4 +45,11 @@ public class LayoutAttribute {
     public func makeSizeSubviews(width: Double) {
         
     }
+    
+    var id = ""
+    
+    public func id(_ id: String) -> Self {
+        self.id = id
+        return self
+    }
 }
