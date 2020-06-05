@@ -24,8 +24,8 @@ public extension UIView {
         return stack
     }
     
-    func wrap(_ items: LayoutAttribute...) -> WrapLayout {
-        let wrap = WrapLayout()
+    func wrap(_ items: LayoutAttribute...) -> ZStackLayout {
+        let wrap = ZStackLayout()
         wrap.view = self
         wrap.subLayouts.append(contentsOf: items)
         return wrap

@@ -26,7 +26,7 @@
 		873213472487932C00BE2BEE /* publicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213462487932C00BE2BEE /* publicFunction.swift */; };
 		8732134A248937E500BE2BEE /* VStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87321349248937E500BE2BEE /* VStackLayout.swift */; };
 		8732134C248937F000BE2BEE /* HStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134B248937F000BE2BEE /* HStackLayout.swift */; };
-		8732134E248937FB00BE2BEE /* WrapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134D248937FB00BE2BEE /* WrapLayout.swift */; };
+		8732134E248937FB00BE2BEE /* ZStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134D248937FB00BE2BEE /* ZStackLayout.swift */; };
 		873213502489381C00BE2BEE /* ViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134F2489381C00BE2BEE /* ViewLayout.swift */; };
 		873213522489385A00BE2BEE /* VSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213512489385A00BE2BEE /* VSpacer.swift */; };
 		873213542489386200BE2BEE /* HSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213532489386200BE2BEE /* HSpacer.swift */; };
@@ -81,7 +81,7 @@
 		873213462487932C00BE2BEE /* publicFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publicFunction.swift; sourceTree = "<group>"; };
 		87321349248937E500BE2BEE /* VStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackLayout.swift; sourceTree = "<group>"; };
 		8732134B248937F000BE2BEE /* HStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackLayout.swift; sourceTree = "<group>"; };
-		8732134D248937FB00BE2BEE /* WrapLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapLayout.swift; sourceTree = "<group>"; };
+		8732134D248937FB00BE2BEE /* ZStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZStackLayout.swift; sourceTree = "<group>"; };
 		8732134F2489381C00BE2BEE /* ViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLayout.swift; sourceTree = "<group>"; };
 		873213512489385A00BE2BEE /* VSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSpacer.swift; sourceTree = "<group>"; };
 		873213532489386200BE2BEE /* HSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSpacer.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 				8732132F24800C9E00BE2BEE /* SetViewLayout.swift */,
 				87321349248937E500BE2BEE /* VStackLayout.swift */,
 				8732134B248937F000BE2BEE /* HStackLayout.swift */,
-				8732134D248937FB00BE2BEE /* WrapLayout.swift */,
+				8732134D248937FB00BE2BEE /* ZStackLayout.swift */,
 				8732134F2489381C00BE2BEE /* ViewLayout.swift */,
 				873213512489385A00BE2BEE /* VSpacer.swift */,
 				873213532489386200BE2BEE /* HSpacer.swift */,
@@ -328,7 +328,7 @@
 				873213542489386200BE2BEE /* HSpacer.swift in Sources */,
 				873213402487826B00BE2BEE /* internalFunction.swift in Sources */,
 				8732134A248937E500BE2BEE /* VStackLayout.swift in Sources */,
-				8732134E248937FB00BE2BEE /* WrapLayout.swift in Sources */,
+				8732134E248937FB00BE2BEE /* ZStackLayout.swift in Sources */,
 				8732135C24893A0200BE2BEE /* UILabel.swift in Sources */,
 				8732135E24893A0C00BE2BEE /* UIButton.swift in Sources */,
 				871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */,

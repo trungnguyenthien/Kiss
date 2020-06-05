@@ -15,20 +15,26 @@ public class ViewLayout: LayoutAttribute, PaddingSetter, AnchorSetter, SizeSette
         super.init()
         self.isControl = true
     }
-}
-
-extension ViewLayout: LayoutSubviewsAble {
-    public func layoutSubviews(width: Double) { }
     
-    public func makeSizeSubviews(width: Double) {
-        switch widthValue {
+    public override func layoutSubviews(width: Double) {
+        traceClassName(self, message: "layoutSubviews")
+        makeSizeSubviews(width: width)
+    }
+    
+    public override func makeSizeSubviews(width: Double) {
+        traceClassName(self, message: "makeSizeSubviews width=\(width)")
+        switch widthDesignValue {
         case .value(let wvalue): expectedWidth = wvalue
         case .fill(_): expectedWidth = width
         }
         
-        switch heightValue {
+        switch heightDesignValue {
         case .value(let hvalue): expectedHeight = hvalue
-        default: ()
+        case .equalWidth(let e): expectedHeight = (expectedWidth ?? 0) * e
+        case .fit: ()
+        case .fill(_): ()
         }
+        
+        traceClassName(self, message: "width=\(expectedWidth), height=\(expectedHeight)")
     }
 }

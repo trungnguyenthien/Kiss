@@ -12,18 +12,16 @@ import Foundation
 public class VSpacer: LayoutAttribute {
     override init() {
         super.init()
-        self.widthValue = .value(0.5)
-        self.heightValue = .fill(1)
+        self.widthDesignValue = .value(0.5)
+        self.heightDesignValue = .fill(1)
         self.isControl = true
     }
-}
-
-extension LayoutSubviewsAble where Self: VSpacer {
-    public func makeSizeSubviews(width: Double) {
+    
+    public override func makeSizeSubviews(width: Double) {
         
     }
     
-    public func layoutSubviews(width: Double) {
+    public override func layoutSubviews(width: Double) {
         
     }
 }

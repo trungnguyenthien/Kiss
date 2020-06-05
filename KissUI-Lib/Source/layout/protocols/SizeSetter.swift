@@ -23,8 +23,8 @@ public protocol SizeSetter {
 
 extension SizeSetter where Self: ViewLayout {
     public func size(_ value: CGSize) -> Self {
-        widthValue = .value(Double(value.width))
-        heightValue = .value(Double(value.height))
+        widthDesignValue = .value(Double(value.width))
+        heightDesignValue = .value(Double(value.height))
         return self
     }
     
@@ -39,56 +39,56 @@ extension SizeSetter where Self: ViewLayout {
     }
     
     public func widthFull(equalHeight: Double) -> Self {
-        widthValue = .fill(Int8.max)
-        heightValue = .equalWidth(1/equalHeight)
+        widthDesignValue = .fill(Int8.max)
+        heightDesignValue = .equalWidth(1/equalHeight)
         return self
     }
     
     public func widthFull(height: Double) -> Self {
-        widthValue = .fill(Int8.max)
-        heightValue = .value(height)
+        widthDesignValue = .fill(Int8.max)
+        heightDesignValue = .value(height)
         return self
     }
     
     public func widthFull(height: HeightValue) -> Self {
-        widthValue = .fill(Int8.max)
-        heightValue = height
+        widthDesignValue = .fill(Int8.max)
+        heightDesignValue = height
         return self
     }
     
     public func width(_ width: Double, height: Double) -> Self {
-        widthValue = .value(width)
-        heightValue = .value(height)
+        widthDesignValue = .value(width)
+        heightDesignValue = .value(height)
         return self
     }
     
     public func width(_ width: Double, height: HeightValue) -> Self {
-        widthValue = .value(width)
-        heightValue = height
+        widthDesignValue = .value(width)
+        heightDesignValue = height
         return self
     }
     
     public func width(_ width: Double, equalHeight: Double) -> Self {
-        widthValue = .value(width)
-        heightValue = .equalWidth(1/equalHeight)
+        widthDesignValue = .value(width)
+        heightDesignValue = .equalWidth(1/equalHeight)
         return self
     }
     
     public func widthFill(_ fill: Int8, equalHeight: Double) -> Self {
-        widthValue = .fill(fill)
-        heightValue = .equalWidth(1/equalHeight)
+        widthDesignValue = .fill(fill)
+        heightDesignValue = .equalWidth(1/equalHeight)
         return self
     }
     
     public func widthFill(_ fill: Int8, height: Double) -> Self {
-        widthValue = .fill(fill)
-        heightValue = .value(height)
+        widthDesignValue = .fill(fill)
+        heightDesignValue = .value(height)
         return self
     }
     
     public func widthFill(_ fill: Int8, height: HeightValue) -> Self {
-        widthValue = .fill(fill)
-        heightValue = height
+        widthDesignValue = .fill(fill)
+        heightDesignValue = height
         return self
     }
 }

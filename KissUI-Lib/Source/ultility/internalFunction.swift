@@ -1,3 +1,5 @@
+import Foundation
+
 func allLayoutAttributes(from layout: LayoutAttribute) -> [LayoutAttribute] {
     var output = [LayoutAttribute]()
     if let setlayout = layout as? SetViewLayout {
@@ -7,4 +9,22 @@ func allLayoutAttributes(from layout: LayoutAttribute) -> [LayoutAttribute] {
         output.append(layout)
     }
     return output
+}
+
+
+func trace(_ message: String) {
+    print(message)
+}
+
+func traceClassName(_ obj: Any, message: String) {
+    if let obj = obj as? ViewLayout, let view = obj.view {
+        trace("\(className(view)): \(message)")
+    } else {
+        trace("\(className(obj)): \(message)")
+    }
+}
+
+
+func className(_ obj: Any) -> String {
+    return String(describing: type(of: obj))
 }

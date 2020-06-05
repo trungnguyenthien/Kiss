@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public func frame(of layout: SetViewLayout) -> CGRect {
+public func frame(of layout: ViewLayout) -> CGRect {
     guard let width = layout.expectedWidth,
         let height = layout.expectedHeight,
         let x = layout.expectedX,
@@ -18,7 +18,7 @@ public func frame(of layout: SetViewLayout) -> CGRect {
     return CGRect(x: x, y: y, width: width, height: height)
 }
 
-public func size(of layout: SetViewLayout) -> CGSize {
+public func size(of layout: ViewLayout) -> CGSize {
     return frame(of: layout).size
 }
 
@@ -34,8 +34,8 @@ public func hstack(_ items: LayoutAttribute...) -> HStackLayout {
     return stack
 }
 
-public func wrap(_ items: LayoutAttribute...) -> WrapLayout {
-    let wrap = WrapLayout()
+public func wrap(_ items: LayoutAttribute...) -> ZStackLayout {
+    let wrap = ZStackLayout()
     wrap.subLayouts.append(contentsOf: items)
     return wrap
 }

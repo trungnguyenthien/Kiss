@@ -11,7 +11,7 @@ import UIKit
 
 typealias KFloat = Double
 
-public class LayoutAttribute: NSObject {
+public class LayoutAttribute {
     var isControl = true
     var paddingLeft: KFloat = 0 // internal(set)
     var paddingRight: KFloat = 0
@@ -24,8 +24,8 @@ public class LayoutAttribute: NSObject {
     var top: KFloat = 0
     var bottom: KFloat = 0
     
-    var widthValue = WidthValue.fill(1)
-    var heightValue = HeightValue.fit
+    var widthDesignValue = WidthValue.fill(1)
+    var heightDesignValue = HeightValue.fit
     
     var minWidth: KFloat? = nil
     var minHeight: KFloat? = nil
@@ -37,4 +37,12 @@ public class LayoutAttribute: NSObject {
     
     var verticalAlignment: VerticalAlignmentValue = .top
     var horizontalAlignment: HorizontalAlignmentValue = .left
+    
+    public func layoutSubviews(width: Double) {
+        
+    }
+    
+    public func makeSizeSubviews(width: Double) {
+        
+    }
 }

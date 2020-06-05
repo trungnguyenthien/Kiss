@@ -16,13 +16,3 @@ public class HStackLayout: SetViewLayout {
     }
     
 }
-
-extension LayoutSubviewsAble where Self: HStackLayout {
-    public func makeSizeSubviews(width: Double) {
-        
-    }
-    
-    public func layoutSubviews(width: Double) {
-        
-    }
-}

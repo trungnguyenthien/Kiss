@@ -15,15 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let label = UILabel()
-        let wrap = label.hstack(
-            label.layout,
-            hspacer, /* |--| */
-            label.layout,
-            vstack(
-                
-            )
-        ).padding(10)
+        compactLayout(baseWidth: 300).layoutSubviews(width: 300)
         
     }
 

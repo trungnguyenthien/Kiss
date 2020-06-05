@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol LayoutSubviewsAble {
-    func makeSizeSubviews(width: Double)
-    func layoutSubviews(width: Double)
-}
+//public protocol LayoutSubviewsAble {
+//    func makeSizeSubviews(width: Double)
+//    func layoutSubviews(width: Double)
+//}
