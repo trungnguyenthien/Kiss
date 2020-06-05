@@ -34,10 +34,10 @@ public func hstack(_ items: LayoutAttribute...) -> HStackLayout {
     return stack
 }
 
-public func wrap(_ items: LayoutAttribute...) -> ZStackLayout {
-    let wrap = ZStackLayout()
-    wrap.subLayouts.append(contentsOf: items)
-    return wrap
+public func zstack(_ items: LayoutAttribute...) -> ZStackLayout {
+    let stack = ZStackLayout()
+    stack.subLayouts.append(contentsOf: items)
+    return stack
 }
 
 public var vspacer: VSpacer {

@@ -30,7 +30,6 @@
 		873213502489381C00BE2BEE /* ViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134F2489381C00BE2BEE /* ViewLayout.swift */; };
 		873213522489385A00BE2BEE /* VSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213512489385A00BE2BEE /* VSpacer.swift */; };
 		873213542489386200BE2BEE /* HSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213532489386200BE2BEE /* HSpacer.swift */; };
-		873213572489393F00BE2BEE /* LayoutSubviewsAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213562489393F00BE2BEE /* LayoutSubviewsAble.swift */; };
 		8732135C24893A0200BE2BEE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135B24893A0200BE2BEE /* UILabel.swift */; };
 		8732135E24893A0C00BE2BEE /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135D24893A0C00BE2BEE /* UIButton.swift */; };
 /* End PBXBuildFile section */
@@ -85,7 +84,6 @@
 		8732134F2489381C00BE2BEE /* ViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLayout.swift; sourceTree = "<group>"; };
 		873213512489385A00BE2BEE /* VSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSpacer.swift; sourceTree = "<group>"; };
 		873213532489386200BE2BEE /* HSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSpacer.swift; sourceTree = "<group>"; };
-		873213562489393F00BE2BEE /* LayoutSubviewsAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutSubviewsAble.swift; sourceTree = "<group>"; };
 		8732135B24893A0200BE2BEE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		8732135D24893A0C00BE2BEE /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,7 +197,6 @@
 		8732135A248939CA00BE2BEE /* protocols */ = {
 			isa = PBXGroup;
 			children = (
-				873213562489393F00BE2BEE /* LayoutSubviewsAble.swift */,
 				873213372485493B00BE2BEE /* SizeSetter.swift */,
 				873213392485498E00BE2BEE /* PaddingSetter.swift */,
 				8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */,
@@ -339,7 +336,6 @@
 				873213472487932C00BE2BEE /* publicFunction.swift in Sources */,
 				8732133024800C9E00BE2BEE /* SetViewLayout.swift in Sources */,
 				8732133C24854A2B00BE2BEE /* AlignmentSetter.swift in Sources */,
-				873213572489393F00BE2BEE /* LayoutSubviewsAble.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

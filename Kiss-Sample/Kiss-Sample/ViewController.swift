@@ -31,12 +31,12 @@ func compactLayout(baseWidth: Double) -> SetViewLayout {
         // Product thumbnail
         UIImageView().layout.widthFull(equalHeight: 5/3).id("image"),
         vstack (
-            UILabel().layout.left(medium).top(small).widthFull(height: 40).id("lable1"),
-            UILabel().layout.left(medium).top(small).widthFull(height: 15).id("lable2"),
-            UILabel().layout.left(medium).top(small).widthFull(height: 15).id("lable3"),
+            "Nguyen".labelMedium.layout.left(medium).top(small).widthFull(height: 40).id("lable1"),
+            " THIEN".labelSmall.layout.left(medium).top(small).width(200, height: 20).id("lable2"),
+            " trung----".labelBigBold.layout.left(medium).top(small).widthFull(height: 15).id("lable3"),
             UILabel().layout.left(medium).top(small).widthFull(height: 15).id("lable4")
             ).top(medium).widthFull(height: .fit).min(width: 300).hAlign(.right).id("vstack1"),
-        wrap ( // List tags attribute
+        zstack ( // List tags attribute
             UILabel().layout.size(.zero).left(small).id("lable5"),
             UILabel().layout.width(100, height: 20).left(small).id("lable6"),
             UILabel().layout.width(100, height: 20).left(small).id("lable7"),
@@ -45,3 +45,28 @@ func compactLayout(baseWidth: Double) -> SetViewLayout {
     ).width(baseWidth, height: .fit).padding(medium).id("vstackLv0")
 }
 
+extension String {
+    var label: UILabel {
+        let view = UILabel()
+        view.text = self
+        return view;
+    }
+    
+    var labelSmall: UILabel {
+        let label = self.label
+        label.font = UIFont.systemFont(ofSize: 8, weight: .medium)
+        return label
+    }
+    
+    var labelMedium: UILabel {
+        let label = self.label
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        return label
+    }
+    
+    var labelBigBold: UILabel {
+        let label = self.label
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        return label
+    }
+}

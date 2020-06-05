@@ -20,3 +20,9 @@ extension Sequence where Element: LayoutAttribute {
     }
 }
 
+extension UIView {
+    var isVisible: Bool {
+        get { return !isHidden }
+        set { isHidden = !newValue }
+    }
+}

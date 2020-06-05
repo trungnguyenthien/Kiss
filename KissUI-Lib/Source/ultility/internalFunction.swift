@@ -12,6 +12,28 @@ func allLayoutAttributes(from layout: LayoutAttribute) -> [LayoutAttribute] {
 }
 
 
+
+func hasVisibleLayout(_ layout: LayoutAttribute) -> Bool {
+    if let layout = layout as? SetViewLayout {
+        var isVisible = false
+        var hasVisibleViewLayout = false
+        layout.subLayouts.forEach { (attribute) in
+            guard let viewLayout = attribute as? ViewLayout else { return }
+            
+            isVisible = isVisible || hasVisibleLayout(viewLayout)
+            hasVisibleViewLayout = hasVisibleViewLayout || isVisible
+        }
+        return isVisible && hasVisibleViewLayout
+    } else if let viewLayout = layout as? ViewLayout {
+        // view == nil --> INVISIBLE
+        // has View + Hidden --> INVISIBLE
+        // has View + Visible --> VISIBLE
+        return viewLayout.view?.isVisible == true
+    } else {
+        return true
+    }
+}
+
 func trace(_ message: String) {
     print(message)
 }
