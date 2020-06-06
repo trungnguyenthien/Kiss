@@ -11,8 +11,6 @@
 		871E443E247EB422005671D1 /* KissUI_LibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E443D247EB422005671D1 /* KissUI_LibTests.swift */; };
 		871E4440247EB422005671D1 /* KissUI_Lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 871E4432247EB422005671D1 /* KissUI_Lib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E4494247EB4E4005671D1 /* LayoutAttribute.swift */; };
-		871E449C247EB90B005671D1 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871E449B247EB90B005671D1 /* SnapKit.framework */; };
-		871E449D247EB90B005671D1 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 871E449B247EB90B005671D1 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8732133024800C9E00BE2BEE /* SetViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732132F24800C9E00BE2BEE /* SetViewLayout.swift */; };
 		8732133224800CD800BE2BEE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133124800CD800BE2BEE /* UIView.swift */; };
 		8732133424853FC000BE2BEE /* ValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133324853FC000BE2BEE /* ValueType.swift */; };
@@ -43,20 +41,6 @@
 			remoteInfo = "KissUI-Lib";
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		871E449E247EB90B005671D1 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				871E449D247EB90B005671D1 /* SnapKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		871E442F247EB422005671D1 /* KissUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KissUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +77,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				871E449C247EB90B005671D1 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +210,6 @@
 				871E442B247EB422005671D1 /* Sources */,
 				871E442C247EB422005671D1 /* Frameworks */,
 				871E442D247EB422005671D1 /* Resources */,
-				871E449E247EB90B005671D1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
