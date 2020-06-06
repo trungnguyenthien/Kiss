@@ -26,11 +26,10 @@ let small = 4.0
 let medium = 8.0
 
 
-func compactLayout(baseWidth: Double) -> SetViewLayout {
-    return vstack (
-        // Product thumbnail
+var compactLayout: SetViewLayout {
+    return vstack ( // Product thumbnail
         UIImageView().layout.widthFull(equalHeight: 5/3).id("image"),
-        vstack (
+        vstack ( //
             "Nguyen".labelMedium.layout.left(medium).top(small).widthFull(height: 40).id("lable1"),
             " THIEN".labelSmall.layout.left(medium).top(small).width(200, height: 20).id("lable2"),
             " trung----".labelBigBold.layout.left(medium).top(small).widthFull(height: 15).id("lable3"),
@@ -42,7 +41,7 @@ func compactLayout(baseWidth: Double) -> SetViewLayout {
             UILabel().layout.width(100, height: 20).left(small).id("lable7"),
             UILabel().layout.width(100, height: 20).left(small).id("lable8")
             ).line(spacing: small).top(small).widthFill(1, height: 200).id("wrap")
-    ).width(baseWidth, height: .fit).padding(medium).id("vstackLv0")
+    ).padding(medium).id("vstackLv0")
 }
 
 extension String {
