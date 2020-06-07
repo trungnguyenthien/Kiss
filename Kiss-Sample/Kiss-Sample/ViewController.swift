@@ -25,24 +25,23 @@ class ViewController: UIViewController {
 let small = 4.0
 let medium = 8.0
 
-
 var compactLayout =
-    vstack { // Product thumbnail
-        UIImageView().layout.widthFull(equalHeight: 5/3).id("image")
-        vspacer /* |---| */
-        vstack { /* Vertical Stack */
-            "Nguyen".labelMedium.layout.top(small).widthFull(height: 40).id("lable1")
-            " THIEN".labelSmall.layout.top(small).width(200, height: 20).id("lable2")
-            " trung----".labelBigBold.layout.top(small).widthFull(height: 15).id("lable3")
-            UILabel().layout.left(medium).top(small).widthFull(height: 15).id("lable4")
-        }.top(medium).widthFull(height: .fit).min(width: 300).hAlign(.right).id("vstack1")
-        zstack { // List tags attribute
-            UILabel().layout.size(.zero).left(small).id("lable5")
-            UILabel().layout.width(100, height: 20).left(small).id("lable6")
-            UILabel().layout.width(100, height: 20).left(small).id("lable7")
-            UILabel().layout.width(100, height: 20).left(small).id("lable8")
-        }.line(spacing: small).top(small).widthFill(1, height: 200).id("wrap")
-    }.padding(medium).id("vstackLv0")
+vstack { // Product thumbnail
+    UIImageView().layout.widthFull(equalHeight: 5/3).id("image")
+    vspacer /* |---| */
+    vstack { /* Vertical Stack */
+        "Nguyen".labelMedium.layout.top(small).widthFull(height: 40).id("lable1")
+        " THIEN".labelSmall.layout.top(small).width(200, height: 20).id("lable2")
+        " trung----".labelBigBold.layout.top(small).widthFull(height: 15).id("lable3")
+        UILabel().layout.left(medium).top(small).widthFull(height: 15).id("lable4")
+    }.top(medium).widthFull(height: .fit).min(width: 300).hAlign(.right).id("vstack1")
+    zstack { // List tags attribute
+        UILabel().layout.size(.zero).left(small).id("lable5")
+        UILabel().layout.width(100, height: 20).left(small).id("lable6")
+        UILabel().layout.width(100, height: 20).left(small).id("lable7")
+        UILabel().layout.width(100, height: 20).left(small).id("lable8")
+    }.line(spacing: small).top(small).widthFill(1, height: 200).id("wrap")
+}.padding(medium).id("vstackLv0")
 
 extension String {
     var label: UILabel {

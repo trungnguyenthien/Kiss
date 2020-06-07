@@ -24,9 +24,11 @@ public class VStackLayout: SetViewLayout {
              switch $0.widthDesignValue {
              case .value(let evalue):
                 layoutSubviewsAble?.makeSizeSubviews(width: evalue)
-             case .fill(_):
+             case .fillRemain(_):
                 layoutSubviewsAble?.makeSizeSubviews(width: contentWidth)
-             }
+             case .none:
+                ()
+            }
              
              if $0.expectedHeight == nil {
                  switch $0.heightDesignValue {
@@ -37,14 +39,16 @@ public class VStackLayout: SetViewLayout {
                  case .value(let value):
                      $0.expectedHeight = value
                      
-                 case .fill(_), .fit:
+                 case .fillRemain(_), .fit:
                      layoutSubviewsAble?.layoutSubviews(width: contentWidth)
                      if let setViewLayout = $0 as? SetViewLayout {
                          let expectedHeight = setViewLayout.subLayouts.last?.expectedHeight ?? 0
                          let y = setViewLayout.subLayouts.last?.expectedY ?? 0
                          $0.expectedHeight = y + expectedHeight + $0.paddingTop + $0.paddingBottom
                      }
-                 }
+                 case .none:
+                    ()
+                }
              }
 
          }

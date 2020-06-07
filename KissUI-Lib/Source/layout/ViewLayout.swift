@@ -25,14 +25,16 @@ public class ViewLayout: LayoutAttribute, PaddingSetter, AnchorSetter, SizeSette
         traceClassName(self, message: "makeSizeSubviews width=\(width)")
         switch widthDesignValue {
         case .value(let wvalue): expectedWidth = wvalue
-        case .fill(_): expectedWidth = width
+        case .fillRemain(_): expectedWidth = width
+        case .none: expectedWidth = width //
         }
         
         switch heightDesignValue {
         case .value(let hvalue): expectedHeight = hvalue
         case .equalWidth(let e): expectedHeight = (expectedWidth ?? 0) * e
         case .fit: ()
-        case .fill(_): ()
+        case .fillRemain(_): ()
+        case .none: ()
         }
         
         traceClassName(self, message: "width=\(expectedWidth), height=\(expectedHeight)")

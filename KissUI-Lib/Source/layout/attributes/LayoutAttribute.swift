@@ -24,8 +24,8 @@ public class LayoutAttribute {
     var top: KFloat = 0
     var bottom: KFloat = 0
     
-    var widthDesignValue = WidthValue.fill(1)
-    var heightDesignValue = HeightValue.fit
+    var widthDesignValue = DesignWidthValue.fillRemain(1)
+    var heightDesignValue = DesignHeightValue.fit
     
     var minWidth: KFloat? = nil
     var minHeight: KFloat? = nil
