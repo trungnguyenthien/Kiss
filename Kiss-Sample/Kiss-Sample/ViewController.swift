@@ -15,7 +15,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        compactLayout(baseWidth: 300).layoutSubviews(width: 300)
+        compactLayout
+            .width(300, height: .fit)
+            .layoutSubviews(width: 300)
         
     }
 
@@ -26,13 +28,14 @@ let small = 4.0
 let medium = 8.0
 
 
-var compactLayout: SetViewLayout {
+var compactLayout: VStackLayout {
     return vstack ( // Product thumbnail
         UIImageView().layout.widthFull(equalHeight: 5/3).id("image"),
-        vstack ( //
-            "Nguyen".labelMedium.layout.left(medium).top(small).widthFull(height: 40).id("lable1"),
-            " THIEN".labelSmall.layout.left(medium).top(small).width(200, height: 20).id("lable2"),
-            " trung----".labelBigBold.layout.left(medium).top(small).widthFull(height: 15).id("lable3"),
+        vspacer /* |---| */,
+        vstack ( /* Vertical Stack */
+            "Nguyen".labelMedium.layout.top(small).widthFull(height: 40).id("lable1"),
+            " THIEN".labelSmall.layout.top(small).width(200, height: 20).id("lable2"),
+            " trung----".labelBigBold.layout.top(small).widthFull(height: 15).id("lable3"),
             UILabel().layout.left(medium).top(small).widthFull(height: 15).id("lable4")
             ).top(medium).widthFull(height: .fit).min(width: 300).hAlign(.right).id("vstack1"),
         zstack ( // List tags attribute
