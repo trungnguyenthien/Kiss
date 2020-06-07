@@ -10,27 +10,46 @@ import Foundation
 import UIKit
 
 public extension UIView {
-    func vstack(_ items: LayoutAttribute...) -> VStackLayout {
+    // MARK: - VSTACK LAYOUT
+    func vstack(@ViewBuilder builder: () -> [LayoutAttribute]) -> VStackLayout {
         let stack = VStackLayout()
-        stack.view = self
-        stack.subLayouts.append(contentsOf: items)
+        stack.subLayouts.append(contentsOf: builder())
         return stack
     }
-    
-    func hstack(_ items: LayoutAttribute...) -> HStackLayout {
+
+    func vstack(@ViewBuilder builder: () -> LayoutAttribute) -> VStackLayout {
+        let stack = VStackLayout()
+        stack.subLayouts.append(builder())
+        return stack
+    }
+
+    // MARK: - HSTACK LAYOUT
+    func hstack(@ViewBuilder builder: () -> [LayoutAttribute]) -> HStackLayout {
         let stack = HStackLayout()
-        stack.view = self
-        stack.subLayouts.append(contentsOf: items)
+        stack.subLayouts.append(contentsOf: builder())
+        return stack
+    }
+
+    func hstack(@ViewBuilder builder: () -> LayoutAttribute) -> HStackLayout {
+        let stack = HStackLayout()
+        stack.subLayouts.append(builder())
+        return stack
+    }
+
+    // MARK: - ZSTACK LAYOUT
+    func zstack(@ViewBuilder builder: () -> [LayoutAttribute]) -> ZStackLayout {
+        let stack = ZStackLayout()
+        stack.subLayouts.append(contentsOf: builder())
+        return stack
+    }
+
+    func zstack(@ViewBuilder builder: () -> LayoutAttribute) -> ZStackLayout {
+        let stack = ZStackLayout()
+        stack.subLayouts.append(builder())
         return stack
     }
     
-    func zStack(_ items: LayoutAttribute...) -> ZStackLayout {
-        let wrap = ZStackLayout()
-        wrap.view = self
-        wrap.subLayouts.append(contentsOf: items)
-        return wrap
-    }
-    
+    // MARK: - VIEWLAYOUT
     var layout: ViewLayout {
         let vlayout = ViewLayout()
         vlayout.view = self
