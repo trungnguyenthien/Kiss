@@ -8,19 +8,19 @@
 
 import Foundation
 
-public protocol AnchorSetter {
-    func left(_ value: Double) -> Self
-    func right(_ value: Double) -> Self
+public protocol EdgeSetter {
+    func leading(_ value: Double) -> Self
+    func trailing(_ value: Double) -> Self
     func top(_ value: Double) -> Self
     func bottom(_ value: Double) -> Self
 }
 
-public extension AnchorSetter where Self: LayoutAttribute {
-    func left(_ value: Double) -> Self {
+public extension EdgeSetter where Self: LayoutAttribute {
+    func leading(_ value: Double) -> Self {
         leading = value
         return self
     }
-    func right(_ value: Double) -> Self {
+    func trailing(_ value: Double) -> Self {
         trailing = value
         return self
     }

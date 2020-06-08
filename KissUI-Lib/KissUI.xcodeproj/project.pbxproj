@@ -17,7 +17,7 @@
 		873213382485493B00BE2BEE /* SizeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213372485493B00BE2BEE /* SizeSetter.swift */; };
 		8732133A2485498E00BE2BEE /* PaddingSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213392485498E00BE2BEE /* PaddingSetter.swift */; };
 		8732133C24854A2B00BE2BEE /* AlignmentSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */; };
-		8732133E2485513500BE2BEE /* AnchorSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133D2485513500BE2BEE /* AnchorSetter.swift */; };
+		8732133E2485513500BE2BEE /* EdgeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133D2485513500BE2BEE /* EdgeSetter.swift */; };
 		873213402487826B00BE2BEE /* internalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133F2487826B00BE2BEE /* internalFunction.swift */; };
 		873213422487853900BE2BEE /* internalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213412487853900BE2BEE /* internalExtension.swift */; };
 		87321345248785D100BE2BEE /* publicExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87321344248785D100BE2BEE /* publicExtension.swift */; };
@@ -58,7 +58,7 @@
 		873213372485493B00BE2BEE /* SizeSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeSetter.swift; sourceTree = "<group>"; };
 		873213392485498E00BE2BEE /* PaddingSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingSetter.swift; sourceTree = "<group>"; };
 		8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignmentSetter.swift; sourceTree = "<group>"; };
-		8732133D2485513500BE2BEE /* AnchorSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchorSetter.swift; sourceTree = "<group>"; };
+		8732133D2485513500BE2BEE /* EdgeSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeSetter.swift; sourceTree = "<group>"; };
 		8732133F2487826B00BE2BEE /* internalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = internalFunction.swift; sourceTree = "<group>"; };
 		873213412487853900BE2BEE /* internalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = internalExtension.swift; sourceTree = "<group>"; };
 		87321344248785D100BE2BEE /* publicExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publicExtension.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 				873213372485493B00BE2BEE /* SizeSetter.swift */,
 				873213392485498E00BE2BEE /* PaddingSetter.swift */,
 				8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */,
-				8732133D2485513500BE2BEE /* AnchorSetter.swift */,
+				8732133D2485513500BE2BEE /* EdgeSetter.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -317,7 +317,7 @@
 				871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */,
 				8732133424853FC000BE2BEE /* ValueType.swift in Sources */,
 				8732133A2485498E00BE2BEE /* PaddingSetter.swift in Sources */,
-				8732133E2485513500BE2BEE /* AnchorSetter.swift in Sources */,
+				8732133E2485513500BE2BEE /* EdgeSetter.swift in Sources */,
 				873213522489385A00BE2BEE /* VSpacer.swift in Sources */,
 				873213472487932C00BE2BEE /* publicFunction.swift in Sources */,
 				8732133024800C9E00BE2BEE /* SetViewLayout.swift in Sources */,

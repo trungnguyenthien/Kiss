@@ -36,15 +36,15 @@ public extension UIView {
         return stack
     }
 
-    // MARK: - ZSTACK LAYOUT
-    func zstack(@ViewBuilder builder: () -> [LayoutAttribute]) -> ZStackLayout {
-        let stack = ZStackLayout()
+    // MARK: - WRAP LAYOUT
+    func wrap(@ViewBuilder builder: () -> [LayoutAttribute]) -> WrapLayout {
+        let stack = WrapLayout()
         stack.subLayouts.append(contentsOf: builder())
         return stack
     }
 
-    func zstack(@ViewBuilder builder: () -> LayoutAttribute) -> ZStackLayout {
-        let stack = ZStackLayout()
+    func wrap(@ViewBuilder builder: () -> LayoutAttribute) -> WrapLayout {
+        let stack = WrapLayout()
         stack.subLayouts.append(builder())
         return stack
     }

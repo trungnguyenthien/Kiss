@@ -31,13 +31,13 @@ vstack { // Product thumbnail
         "Nguyen".labelMedium.layout.top(small)
         " THIEN".labelSmall.layout.top(small)
         " trung----".labelBigBold.layout.top(small)
-        UILabel().layout.left(medium).top(small)
+        UILabel().layout.leading(medium).top(small)
     }.top(medium).min(width: 300).hAlign(.right)
-    zstack { // List tags attribute
-        UILabel().layout.size(.zero).left(small)
-        UILabel().layout.left(small)
-        UILabel().layout.left(small)
-        UILabel().layout.left(small)
+    wrap { // List tags attribute
+        UILabel().layout.size(.zero).leading(small)
+        UILabel().layout.leading(small)
+        UILabel().layout.leading(small)
+        UILabel().layout.leading(small)
     }.line(spacing: small).top(small)
 }.padding(medium)
 

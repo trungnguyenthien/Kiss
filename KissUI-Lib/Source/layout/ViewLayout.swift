@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class ViewLayout: LayoutAttribute, PaddingSetter, AnchorSetter, SizeSetter {
+public class ViewLayout: LayoutAttribute, PaddingSetter, EdgeSetter, SizeSetter {
     var view: UIView? = nil
     override init() {
         super.init()

@@ -31,15 +31,15 @@ public func hstack(@ViewBuilder builder: () -> LayoutAttribute) -> HStackLayout 
     return stack
 }
 
-// MARK: - ZSTACK LAYOUT
-public func zstack(@ViewBuilder builder: () -> [LayoutAttribute]) -> ZStackLayout {
-    let stack = ZStackLayout()
+// MARK: - WRAP LAYOUT
+public func wrap(@ViewBuilder builder: () -> [LayoutAttribute]) -> WrapLayout {
+    let stack = WrapLayout()
     stack.subLayouts.append(contentsOf: builder())
     return stack
 }
 
-public func zstack(@ViewBuilder builder: () -> LayoutAttribute) -> ZStackLayout {
-    let stack = ZStackLayout()
+public func wrap(@ViewBuilder builder: () -> LayoutAttribute) -> WrapLayout {
+    let stack = WrapLayout()
     stack.subLayouts.append(builder())
     return stack
 }
