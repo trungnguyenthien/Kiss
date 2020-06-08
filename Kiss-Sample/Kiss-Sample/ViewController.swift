@@ -15,9 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        compactLayout
-            .width(300, height: .fit)
-            .layoutSubviews(width: 300)
+        compactLayout.layoutSubviews(width: 300)
         
     }
 }
@@ -27,21 +25,21 @@ let medium = 8.0
 
 var compactLayout =
 vstack { // Product thumbnail
-    UIImageView().layout.widthFull(equalHeight: 5/3).id("image")
+    UIImageView().layout
     vspacer /* |---| */
     vstack { /* Vertical Stack */
-        "Nguyen".labelMedium.layout.top(small).widthFull(height: 40).id("lable1")
-        " THIEN".labelSmall.layout.top(small).width(200, height: 20).id("lable2")
-        " trung----".labelBigBold.layout.top(small).widthFull(height: 15).id("lable3")
-        UILabel().layout.left(medium).top(small).widthFull(height: 15).id("lable4")
-    }.top(medium).widthFull(height: .fit).min(width: 300).hAlign(.right).id("vstack1")
+        "Nguyen".labelMedium.layout.top(small)
+        " THIEN".labelSmall.layout.top(small)
+        " trung----".labelBigBold.layout.top(small)
+        UILabel().layout.left(medium).top(small)
+    }.top(medium).min(width: 300).hAlign(.right)
     zstack { // List tags attribute
-        UILabel().layout.size(.zero).left(small).id("lable5")
-        UILabel().layout.width(100, height: 20).left(small).id("lable6")
-        UILabel().layout.width(100, height: 20).left(small).id("lable7")
-        UILabel().layout.width(100, height: 20).left(small).id("lable8")
-    }.line(spacing: small).top(small).widthFill(1, height: 200).id("wrap")
-}.padding(medium).id("vstackLv0")
+        UILabel().layout.size(.zero).left(small)
+        UILabel().layout.left(small)
+        UILabel().layout.left(small)
+        UILabel().layout.left(small)
+    }.line(spacing: small).top(small)
+}.padding(medium)
 
 extension String {
     var label: UILabel {
