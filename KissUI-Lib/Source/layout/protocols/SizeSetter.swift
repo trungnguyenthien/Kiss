@@ -41,7 +41,8 @@ extension SizeSetter where Self: ViewLayout {
     public func width(_ value: WidthValue) -> Self {
         switch value {
         case .fillRemain(let fill): widthDesignValue = .fillRemain(fill)
-        case .full: widthDesignValue = .fillRemain(Int8.max)
+        case .full: widthDesignValue = .fillRemain(Double.max)
+        case .fit: widthDesignValue = .fit
         }
         return self
     }
@@ -54,7 +55,7 @@ extension SizeSetter where Self: ViewLayout {
     public func height(_ value: HeightValue) -> Self {
         switch value {
         case .fit: heightDesignValue = .fit
-        case .full: heightDesignValue = .fillRemain(Int8.max)
+        case .full: heightDesignValue = .fillRemain(Double.max)
         case .equalWidth(let ew): heightDesignValue = .equalWidth(ew)
         case .fillRemain(let part): heightDesignValue = .fillRemain(part)
         }

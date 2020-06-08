@@ -16,12 +16,4 @@ public class HSpacer: LayoutAttribute {
         self.widthDesignValue = .fillRemain(1)
         self.isControl = true
     }
-    
-    public override func makeSizeSubviews(width: Double) {
-        
-    }
-    
-    public override func layoutSubviews(width: Double) {
-        
-    }
 }

@@ -26,3 +26,7 @@ extension UIView {
         set { isHidden = !newValue }
     }
 }
+
+extension Double {
+    static public var max: Double = 9999999999
+}

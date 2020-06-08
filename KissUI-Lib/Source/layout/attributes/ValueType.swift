@@ -10,13 +10,14 @@ import Foundation
 
 public enum DesignWidthValue {
     case value(Double)
-    case fillRemain(Int8)
-    case none
+    case fillRemain(Double)
+    case fit
 }
 
 public enum WidthValue {
-    case fillRemain(Int8)
+    case fillRemain(Double)
     case full
+    case fit
 }
 
 public enum DesignHeightValue {
@@ -24,8 +25,7 @@ public enum DesignHeightValue {
     case fit
     // height / width
     case equalWidth(Double)
-    case fillRemain(Int8)
-    case none
+    case fillRemain(Double)
 }
 
 public enum HeightValue {
@@ -33,7 +33,7 @@ public enum HeightValue {
     case full
     // height / width
     case equalWidth(Double)
-    case fillRemain(Int8)
+    case fillRemain(Double)
 }
 
 public enum HorizontalAlignmentValue {

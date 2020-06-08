@@ -13,13 +13,13 @@ func allLayoutAttributes(from layout: LayoutAttribute) -> [LayoutAttribute] {
 
 
 // Has at least one Visible View
-func hasVisibleLayout(_ selfLayout: LayoutAttribute) -> Bool {
+func isVisibledLayout(_ selfLayout: LayoutAttribute) -> Bool {
     if let setViewLayout = selfLayout as? SetViewLayout {
         var hasVisibleViewLayout = false
         setViewLayout.subLayouts.forEach { (attribute) in
             guard let viewLayout = attribute as? ViewLayout else { return }
             // Make sure layoutAttribute is not Spacer
-            hasVisibleViewLayout = hasVisibleViewLayout || hasVisibleLayout(viewLayout)
+            hasVisibleViewLayout = hasVisibleViewLayout || isVisibledLayout(viewLayout)
         }
         return hasVisibleViewLayout
     } else if let viewLayout = selfLayout as? ViewLayout {
@@ -29,7 +29,7 @@ func hasVisibleLayout(_ selfLayout: LayoutAttribute) -> Bool {
         return viewLayout.view?.isVisible == true
     } else {
         // VSpace, HSpacer
-        return true
+        return false
     }
 }
 

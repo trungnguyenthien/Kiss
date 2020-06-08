@@ -17,11 +17,4 @@ public class VSpacer: LayoutAttribute {
         self.isControl = true
     }
     
-    public override func makeSizeSubviews(width: Double) {
-        
-    }
-    
-    public override func layoutSubviews(width: Double) {
-        
-    }
 }

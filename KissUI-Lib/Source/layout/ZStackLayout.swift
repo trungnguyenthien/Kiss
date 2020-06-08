@@ -21,12 +21,4 @@ public class WrapLayout: SetViewLayout {
         lineSpacing = spacing
         return self
     }
-    
-    public override func makeSizeSubviews(width: Double) {
-        
-    }
-    
-    public override func layoutSubviews(width: Double) {
-        
-    }
 }

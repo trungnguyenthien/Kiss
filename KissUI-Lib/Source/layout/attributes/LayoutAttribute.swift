@@ -38,18 +38,59 @@ public class LayoutAttribute {
     var verticalAlignment: VerticalAlignmentValue = .top
     var horizontalAlignment: HorizontalAlignmentValue = .left
     
-    public func layoutSubviews(width: Double) {
-        
-    }
-    
-    public func makeSizeSubviews(width: Double) {
-        
-    }
-    
     var id = ""
     
     public func id(_ id: String) -> Self {
         self.id = id
         return self
+    }
+    
+    
+    // ------ //
+    func applySelfWidth() {
+        switch widthDesignValue {
+        case .value(let size):
+            expectedWidth = size
+        case .fit: ()
+        case .fillRemain: ()
+        }
+    }
+    
+    func applySelfHeight(selfWidth: KFloat) {
+        
+    }
+    
+    func applySubsWidth(selfWidth: KFloat) {
+        // HSTACK
+        guard let setViewLayout = self as? SetViewLayout else { return }
+        let visibledLayouts = setViewLayout.subLayouts.filter { isVisibledLayout($0) }
+        var sumPart: Double = 0
+        var remainWidth = selfWidth
+        remainWidth -= paddingLeft
+        remainWidth -= paddingRight
+        
+        visibledLayouts.forEach { (subLayout) in
+            switch(subLayout.widthDesignValue) {
+            case .value, .fit:
+                subLayout.applySelfWidth()
+            case .fillRemain(let part):
+                sumPart += part
+            }
+            remainWidth -= subLayout.expectedWidth ?? 0
+            remainWidth -= subLayout.leading - subLayout.trailing
+        }
+
+        visibledLayouts.forEach { (subLayout) in
+            guard subLayout.expectedWidth == nil else { return }
+            switch(subLayout.widthDesignValue) {
+            case .value, .fit: ()
+            case .fillRemain(let part):
+                subLayout.expectedWidth = remainWidth * part / sumPart
+            }
+        }
+    }
+    
+    func applySubFrames() {
+        
     }
 }
