@@ -19,14 +19,18 @@ public protocol SizeSetter {
 extension SizeSetter where Self: ViewLayout {
     public func size(_ value: CGSize) -> Self {
         widthDesignValue = .value(Double(value.width))
+        expectedWidth = KFloat(value.width)
         heightDesignValue = .value(Double(value.height))
+        expectedHeight = KFloat(value.height)
         return self
     }
     
     public func size(_ width: Double, _ height: Double?) -> Self {
         widthDesignValue = .value(Double(width))
+        expectedWidth = width
         if let height = height {
             heightDesignValue = .value(Double(height))
+            expectedHeight = height
         } else {
             heightDesignValue = .fit
         }
@@ -35,12 +39,14 @@ extension SizeSetter where Self: ViewLayout {
     
     public func width(_ value: Double) -> Self {
         widthDesignValue = .value(Double(value))
+        expectedWidth = value
         return self
     }
     
     public func width(_ value: WidthValue) -> Self {
         switch value {
-        case .fillRemain(let fill): widthDesignValue = .fillRemain(fill)
+        case .fillRemain(let fill):
+            widthDesignValue = .fillRemain(fill)
         case .full: widthDesignValue = .fillRemain(Double.max)
         case .fit: widthDesignValue = .fit
         }
@@ -49,6 +55,7 @@ extension SizeSetter where Self: ViewLayout {
     
     public func height(_ value: Double) -> Self {
         heightDesignValue = .value(Double(value))
+        expectedHeight = value
         return self
     }
     

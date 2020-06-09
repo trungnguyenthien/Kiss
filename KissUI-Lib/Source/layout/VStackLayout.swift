@@ -15,3 +15,37 @@ public class VStackLayout: SetViewLayout {
         self.isControl = false
     }
 }
+
+extension VStackLayout: LayoutArrangeAble {
+    func startLayout() {
+        
+    }
+    
+    func applySelfHardSize() {
+        
+    }
+    
+    func applySubsWidth() {
+        
+    }
+    
+    func applySubsHeight() {
+        
+    }
+    
+    func applySubsFrame() {
+        
+    }
+    
+    func applySelfHeight() {
+        
+    }
+    
+    func applySubSpacers() {
+        
+    }
+    
+    func applySubsAlignments() {
+        
+    }
+}

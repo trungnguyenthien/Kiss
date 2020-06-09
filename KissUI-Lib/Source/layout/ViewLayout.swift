@@ -15,6 +15,4 @@ public class ViewLayout: LayoutAttribute, PaddingSetter, EdgeSetter, SizeSetter 
         super.init()
         self.isControl = true
     }
-    
-   
 }

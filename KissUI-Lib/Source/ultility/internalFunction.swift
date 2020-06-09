@@ -39,7 +39,7 @@ func trace(_ message: String) {
 
 func traceClassName(_ obj: Any, message: String) {
     if let obj = obj as? ViewLayout {
-        let name = obj.id ?? className(obj.view)
+        let name = className(obj.view)
         trace("\(name): \(message)")
     } else {
         trace("\(className(obj)): \(message)")

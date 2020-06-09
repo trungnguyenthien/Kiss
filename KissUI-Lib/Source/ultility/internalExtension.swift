@@ -28,5 +28,5 @@ extension UIView {
 }
 
 extension Double {
-    static public var max: Double = 9999999999
+    static public var max: Double = 99999999999999999.0
 }
