@@ -1,5 +1,5 @@
 //
-//  ZStackLayout.swift
+//  WrapLayout.swift
 //  KissUI
 //
 //  Created by Trung on 6/4/20.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class ZStackLayout: SetViewLayout {
+public class WrapLayout: SetViewLayout {
     override init() {
         super.init()
         self.isControl = false
@@ -20,13 +20,5 @@ public class ZStackLayout: SetViewLayout {
     public func line(spacing: Double) -> Self {
         lineSpacing = spacing
         return self
-    }
-    
-    public override func makeSizeSubviews(width: Double) {
-        
-    }
-    
-    public override func layoutSubviews(width: Double) {
-        
     }
 }

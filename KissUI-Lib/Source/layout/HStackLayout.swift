@@ -25,31 +25,49 @@ extension HStackLayout: LayoutArrangeAble {
         remainWidth -= paddingLeft
         remainWidth -= paddingRight
         
-        visibledAttrs.forEach { (attr) in
-            switch(attr.widthDesignValue) {
+        visibledAttrs.forEach { (subAttr) in
+            switch(subAttr.widthDesignValue) {
             case .value, .fit:
-                let layoutArrangeAble = attr as? LayoutArrangeAble
+                let layoutArrangeAble = subAttr as? LayoutArrangeAble
                 layoutArrangeAble?.applySelfHardSize()
+                
             case .fillRemain(let part):
                 sumPart += part
             }
-            remainWidth -= attr.expectedWidth ?? 0
-            remainWidth -= attr.leading - attr.trailing
+            remainWidth -= subAttr.expectedWidth ?? 0
+            remainWidth -= subAttr.leading - subAttr.trailing
         }
 
-        visibledAttrs.forEach { (subLayout) in
-            guard subLayout.expectedWidth == nil else { return }
-            switch(subLayout.widthDesignValue) {
-            case .value, .fit: ()
+        visibledAttrs.forEach { (subAttr) in
+            guard subAttr.expectedWidth == nil else { return }
+            switch(subAttr.widthDesignValue) {
+            case .value: () // Đã được xác định ở bước trên
+            case .fit: ()   // Đã được xác định ở bước trên
             case .fillRemain(let part):
-                subLayout.expectedWidth = remainWidth * part / sumPart
+                subAttr.expectedWidth = remainWidth * part / sumPart
             }
         }
     }
 
     
     func applySubsHeight() {
+        let visibledAttrs = subLayouts.filter { isVisibledLayout($0) }
         
+        visibledAttrs.forEach { (subAttr) in
+            switch(subAttr.heightDesignValue) {
+            case .value(_): () // Đã được xác định trong applySelfHardSize ở bước applySubsWidth
+                
+            case .fit:
+                guard subAttr.expectedHeight == nil else { return }
+                
+            case .equalWidth(let hw):
+                guard let expectedWidth = subAttr.expectedWidth else { return }
+                subAttr.expectedHeight = expectedWidth * hw
+                
+            case .fillRemain(_): ()
+                
+            }
+        }
     }
     
     func applySubsFrame() {

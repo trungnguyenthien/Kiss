@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 func allLayoutAttributes(from layout: LayoutAttribute) -> [LayoutAttribute] {
     var output = [LayoutAttribute]()
@@ -9,6 +10,40 @@ func allLayoutAttributes(from layout: LayoutAttribute) -> [LayoutAttribute] {
         output.append(layout)
     }
     return output
+}
+
+func fitSize(of layout: LayoutAttribute) -> CGSize? {
+    guard isVisibledLayout(layout) else { return .zero }
+    
+    if let setViewLayout = layout as? SetViewLayout {
+        var minX = Double.max
+        var minY = Double.max
+        var maxX = Double.min
+        var maxY = Double.min
+        
+        setViewLayout.subLayouts.forEach { (attr) in
+            if let subExpectedX = attr.expectedX {
+                minX = min(minX, subExpectedX)
+                if let subExpectedWidth = attr.expectedWidth {
+                    maxX = max(maxX, subExpectedX + subExpectedWidth)
+                }
+            }
+            
+            if let subExpectedY = attr.expectedY {
+                minY = min(minY, subExpectedY)
+                if let subExpectedHeight = attr.expectedHeight {
+                    maxY = max(maxY, subExpectedY + subExpectedHeight)
+                }
+            }
+        }
+        if minX == .max || minY == .max || maxX == .min || maxY == .min {
+            return nil
+        }
+        return CGSize(width: maxX - minX + layout.paddingLeft + layout.paddingRight,
+                      height: maxY - minY + layout.paddingBottom + layout.paddingTop)
+    }
+    
+    return .zero
 }
 
 
