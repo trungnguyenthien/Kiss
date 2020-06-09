@@ -85,3 +85,7 @@ func traceClassName(_ obj: Any, message: String) {
 func className(_ obj: Any) -> String {
     return String(describing: type(of: obj))
 }
+
+func printWarning(_ message: String) {
+    trace("⚠️ KISSUI: " + message)
+}
