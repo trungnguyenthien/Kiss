@@ -12,7 +12,7 @@ func allLayoutAttributes(from layout: LayoutAttribute) -> [LayoutAttribute] {
     return output
 }
 
-func fitSize(of layout: LayoutAttribute) -> CGSize? {
+func fitSizeSetLayout(of layout: LayoutAttribute) -> CGSize? {
     guard isVisibledLayout(layout) else { return .zero }
     
     if let setViewLayout = layout as? SetViewLayout {

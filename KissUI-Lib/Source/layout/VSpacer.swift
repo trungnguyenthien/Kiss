@@ -13,7 +13,7 @@ public class VSpacer: LayoutAttribute {
     override init() {
         super.init()
         self.widthDesignValue = .value(0.5)
-        self.heightDesignValue = .fillRemain(1)
+        self.heightDesignValue = .grow(1)
         self.isControl = true
     }
     

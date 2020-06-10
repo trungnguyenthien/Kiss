@@ -15,4 +15,9 @@ public class ViewLayout: LayoutAttribute, PaddingSetter, EdgeSetter, SizeSetter 
         super.init()
         self.isControl = true
     }
+    
+    var labelContent: UILabel? {
+        return view as? UILabel
+    }
 }
+

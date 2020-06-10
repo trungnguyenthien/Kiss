@@ -24,8 +24,8 @@ public class LayoutAttribute {
     var top: KFloat = 0
     var bottom: KFloat = 0
     
-    var widthDesignValue = DesignWidthValue.fillRemain(1)
-    var heightDesignValue = DesignHeightValue.fit
+    var widthDesignValue = DesignWidthValue.grow(1)
+    var heightDesignValue = DesignHeightValue.autoFit
     
     var minWidth: KFloat? = nil
     var minHeight: KFloat? = nil
@@ -35,6 +35,6 @@ public class LayoutAttribute {
     var expectedX: KFloat? = nil
     var expectedY: KFloat? = nil
     
-    var verticalAlignment: VerticalAlignmentValue = .top
-    var horizontalAlignment: HorizontalAlignmentValue = .left
+    var verticalAlignment: AlignVertical = .top
+    var horizontalAlignment: AlignHorizontal = .left
 }

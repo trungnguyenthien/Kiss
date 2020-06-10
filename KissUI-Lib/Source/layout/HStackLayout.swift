@@ -27,11 +27,11 @@ extension HStackLayout: LayoutArrangeAble {
         
         visibledAttrs.forEach { (subAttr) in
             switch(subAttr.widthDesignValue) {
-            case .value, .fit:
+            case .value, .autoFit:
                 let layoutArrangeAble = subAttr as? LayoutArrangeAble
                 layoutArrangeAble?.applySelfHardSize()
                 
-            case .fillRemain(let part):
+            case .grow(let part):
                 sumPart += part
             }
             remainWidth -= subAttr.expectedWidth ?? 0
@@ -42,8 +42,8 @@ extension HStackLayout: LayoutArrangeAble {
             guard subAttr.expectedWidth == nil else { return }
             switch(subAttr.widthDesignValue) {
             case .value: () // Đã được xác định ở bước trên
-            case .fit: ()   // Đã được xác định ở bước trên
-            case .fillRemain(let part):
+            case .autoFit: ()   // Đã được xác định ở bước trên
+            case .grow(let part):
                 subAttr.expectedWidth = remainWidth * part / sumPart
             }
         }
@@ -61,16 +61,16 @@ extension HStackLayout: LayoutArrangeAble {
             switch(subAttr.heightDesignValue) {
             case .value: () // Đã được xác định trong applySelfHardSize ở bước applySubsWidth
                 
-            case .fit:
-                guard subAttr.expectedHeight == nil, let size = fitSize(of: subAttr) else { return }
+            case .autoFit:
+                guard subAttr.expectedHeight == nil, let size = fitSizeSetLayout(of: subAttr) else { return }
                 subAttr.expectedHeight = KFloat(size.height)
                 
             case .equalWidth(let hw):
                 guard let expectedWidth = subAttr.expectedWidth else { return }
                 subAttr.expectedHeight = expectedWidth * hw
                 
-            case .fillRemain(_): // Tạm thời nó sẽ là FitSize
-                guard let size = fitSize(of: subAttr) else { return }
+            case .grow(_): // Tạm thời nó sẽ là FitSize
+                guard let size = fitSizeSetLayout(of: subAttr) else { return }
                 subAttr.expectedHeight = KFloat(size.height)
             }
             maxHeight = max(maxHeight, subAttr.expectedHeight ?? 0.0)
@@ -78,7 +78,7 @@ extension HStackLayout: LayoutArrangeAble {
         
         visibledAttrs.forEach { (subAttr) in
             switch(subAttr.heightDesignValue) {
-            case .fillRemain:
+            case .grow:
                 printWarning("Item trong HStack thì việc gán height(.fillRemain) tương đương height(.fullLine)")
                 subAttr.expectedHeight = maxHeight
                 
@@ -103,6 +103,8 @@ extension HStackLayout: LayoutArrangeAble {
             subAttr.expectedY = selfY
             let subWidth = subAttr.expectedWidth ?? 0.0
             runX = runX - subWidth - subAttr.trailing
+            
+//            maxHeight = max(maxHeight, <#T##y: Comparable##Comparable#>)
         }
     }
     

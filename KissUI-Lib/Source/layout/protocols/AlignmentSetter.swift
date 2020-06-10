@@ -10,17 +10,17 @@ import Foundation
 
 
 public protocol AlignmentSetter {
-    func vAlign(_ value: VerticalAlignmentValue) -> Self
-    func hAlign(_ value: HorizontalAlignmentValue) -> Self
+    func vAlign(_ value: AlignVertical) -> Self
+    func hAlign(_ value: AlignHorizontal) -> Self
 }
 
 public extension AlignmentSetter where Self: LayoutAttribute {
-    func vAlign(_ value: VerticalAlignmentValue) -> Self {
+    func vAlign(_ value: AlignVertical) -> Self {
         verticalAlignment = value
         return self
     }
     
-    func hAlign(_ value: HorizontalAlignmentValue) -> Self {
+    func hAlign(_ value: AlignHorizontal) -> Self {
         horizontalAlignment = value
         return self
     }

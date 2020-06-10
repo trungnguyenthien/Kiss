@@ -13,7 +13,7 @@ public class HSpacer: LayoutAttribute {
     override init() {
         super.init()
         self.heightDesignValue = .value(0.5)
-        self.widthDesignValue = .fillRemain(1)
+        self.widthDesignValue = .grow(1)
         self.isControl = true
     }
     

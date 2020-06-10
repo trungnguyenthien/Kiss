@@ -10,40 +10,44 @@ import Foundation
 
 public enum DesignWidthValue {
     case value(Double)
-    case fillRemain(Double)
-    case fit
+    case grow(Double)
+    case autoFit
 }
 
 public enum WidthValue {
-    case fillRemain(Double)
+    case grow(Double)
     case full
-    case fit
+    case autoFit
 }
 
 public enum DesignHeightValue {
     case value(Double)
-    case fit
+    case autoFit
     // height / width
     case equalWidth(Double)
-    case fillRemain(Double)
+    case grow(Double)
 }
 
 public enum HeightValue {
-    case fit
+    case autoFit
     case full
     // height / width
     case equalWidth(Double)
-    case fillRemain(Double)
+    case grow(Double)
 }
 
-public enum HorizontalAlignmentValue {
-    case left
-    case right
-    case center
+public enum AlignHorizontal {
+    case left, right, center
 }
 
-public enum VerticalAlignmentValue {
-    case bottom
-    case top
-    case center
+public enum AlignVertical {
+    case bottom, top, center
+}
+
+public enum AlignItem {
+    case start, end, center, stretch
+}
+
+public enum AlignContent {
+    case start, end, center, stretch
 }

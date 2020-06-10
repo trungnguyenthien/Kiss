@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LayoutArrangeAble {
     func startLayout()
@@ -35,6 +36,18 @@ extension LayoutArrangeAble {
         }
     }
     
+    private func applySelfSizeWithLabel() {
+        guard let viewLayout = self as? ViewLayout,
+            let label = viewLayout.labelContent else { return }
+        
+        label.frame.size.width = CGFloat(viewLayout.expectedWidth ?? .max)
+        label.frame.size.height = CGFloat(viewLayout.expectedHeight ?? .max)
+        label.sizeToFit()
+        
+        viewLayout.expectedWidth = viewLayout.expectedWidth ?? KFloat(label.frame.size.width)
+        viewLayout.expectedHeight = viewLayout.expectedHeight ?? KFloat(label.frame.size.height)
+    }
+    
     func startLayout() {
         /*
           2.applySubsWidth
@@ -48,10 +61,13 @@ extension LayoutArrangeAble {
          */
         
         applySubsWidth()
+        applySelfSizeWithLabel()
+        
         if let setLayout = self as? SetViewLayout {
             let subLayoutAbles = setLayout.subLayouts.compactMap { $0 as? LayoutArrangeAble }
             subLayoutAbles.forEach { $0.startLayout() }
         }
+        
         applySubsHeight()
         applySubsFrame()
         applySelfHardSize()
