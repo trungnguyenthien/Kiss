@@ -46,9 +46,37 @@ func fitSizeSetLayout(of layout: LayoutAttribute) -> CGSize? {
     return .zero
 }
 
+func transitFrame(viewLayout: ViewLayout, newX: Double, newY: Double) {
+    if viewLayout.expectedX == nil {
+        viewLayout.expectedX = newX
+    }
+    
+    if viewLayout.expectedY == nil {
+        viewLayout.expectedY = newY
+    }
+    
+    guard let setViewLayout = viewLayout as? SetViewLayout else { return }
+    let dx = newX - (viewLayout.expectedX ?? 0)
+    let dy = newY - (viewLayout.expectedY ?? 0)
+    
+    setViewLayout.subLayouts.forEach { (subLayout) in
+        var newX = subLayout.expectedX ?? 0
+        if let currentX = subLayout.expectedX {
+            newX = currentX + dx
+        }
+        var newY = subLayout.expectedY ?? 0
+        if let currentY = subLayout.expectedY {
+            newY = currentY + dy
+        }
+        
+        if let layout = subLayout as? ViewLayout {
+            transitFrame(viewLayout: layout, newX: newX, newY: newY)
+        }
+    }
+}
 
 // Has at least one Visible View
-func isVisibledLayout(_ selfLayout: LayoutAttribute) -> Bool {
+func isVisibledLayout(_ selfLayout: LayoutAttribute, andSpacer: Bool = false) -> Bool {
     if let setViewLayout = selfLayout as? SetViewLayout {
         var hasVisibleViewLayout = false
         setViewLayout.subLayouts.forEach { (attribute) in
@@ -64,7 +92,7 @@ func isVisibledLayout(_ selfLayout: LayoutAttribute) -> Bool {
         return viewLayout.view?.isVisible == true
     } else {
         // VSpace, HSpacer
-        return false
+        return false || andSpacer
     }
 }
 

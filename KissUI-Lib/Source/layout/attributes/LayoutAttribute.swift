@@ -27,7 +27,7 @@ public class LayoutAttribute {
     var widthDesignValue = DesignWidthValue.grow(1)
     var heightDesignValue = DesignHeightValue.autoFit
     
-    var minWidth: KFloat? = nil
+//    var minWidth: KFloat? = nil
     var minHeight: KFloat? = nil
     
     var expectedWidth: KFloat? = nil

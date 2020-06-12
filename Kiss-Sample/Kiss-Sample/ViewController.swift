@@ -50,7 +50,7 @@ vstack { // Product thumbnail
         " THIEN".labelSmall.layout.top(small)
         " trung----".labelBigBold.layout.top(small)
         UILabel().layout.leading(medium).top(small)
-    }.top(medium).min(width: 300).hAlign(.right)
+    }.top(medium).hAlign(.right)
     wrap { // List tags attribute
         UILabel().layout.size(.zero).leading(small)
         UILabel().layout.leading(small)

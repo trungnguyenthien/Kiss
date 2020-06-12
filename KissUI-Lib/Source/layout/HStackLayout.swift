@@ -44,7 +44,8 @@ extension HStackLayout: LayoutArrangeAble {
             case .value: () // Đã được xác định ở bước trên
             case .autoFit: ()   // Đã được xác định ở bước trên
             case .grow(let part):
-                subAttr.expectedWidth = remainWidth * part / sumPart
+                let expectedWidth = remainWidth * part / sumPart
+                subAttr.expectedWidth = expectedWidth
             }
         }
     }
@@ -93,7 +94,6 @@ extension HStackLayout: LayoutArrangeAble {
         var selfY = expectedY ?? 0
         runX -= paddingLeft
         selfY -= paddingTop
-        var maxHeight = 0.0
         
         visibledAttrs.enumerated().forEach { (index, subAttr) in
             if index != 0 {
@@ -103,16 +103,25 @@ extension HStackLayout: LayoutArrangeAble {
             subAttr.expectedY = selfY
             let subWidth = subAttr.expectedWidth ?? 0.0
             runX = runX - subWidth - subAttr.trailing
-            
-//            maxHeight = max(maxHeight, <#T##y: Comparable##Comparable#>)
         }
     }
     
     func applySelfHeight() {
-        
+        let visibledAttrs = subLayouts.filter { isVisibledLayout($0) }
+        var selfHeight = 0.0
+        visibledAttrs.forEach { (subAttr) in
+            selfHeight = max(selfHeight, subAttr.expectedHeight ?? 0)
+        }
+        selfHeight += paddingTop + paddingBottom
+        self.expectedHeight = max(minHeight ?? 0, selfHeight)
     }
     
     func applySubSpacers() {
+        let visibledAttrs = subLayouts.filter { isVisibledLayout($0, andSpacer: true) }
+        var sumVisiblePadding = paddingLeft + paddingRight
+        visibledAttrs.enumerated().forEach { (index, attr) in
+            
+        }
         
     }
     
