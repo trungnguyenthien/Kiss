@@ -14,7 +14,7 @@ public class ViewLayout: LayoutAttribute, PaddingSetter, EdgeSetter, SizeSetter 
     override init() {
         super.init()
         self.widthDesignValue = .autoFit
-        self.isControl = true
+        self.heightDesignValue = .autoFit
     }
     
     var labelContent: UILabel? {

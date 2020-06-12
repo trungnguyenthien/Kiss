@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 protocol LayoutArrangeAble {
+    func addTemptSpacerIfNeed()
     func startLayout()
     func applySelfHardSize()
     func applySubsWidth()
@@ -21,6 +22,11 @@ protocol LayoutArrangeAble {
 }
 
 extension LayoutArrangeAble {
+    private func removeTemptSpacerIfNeed() {
+        guard let setViewLayout = self as? SetViewLayout else { return }
+        setViewLayout.subLayouts.removeAll {  $0 is _TemptSpacer }
+    }
+    
     func applySelfHardSize() {
         guard let attr = self as? LayoutAttribute else { return }
         switch attr.widthDesignValue {
@@ -50,6 +56,7 @@ extension LayoutArrangeAble {
     
     func startLayout() {
         /*
+          1.addTemptSpacerIfNeed
           2.applySubsWidth
           3.sub.startLayout
           4.applySubsHeight

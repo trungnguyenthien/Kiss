@@ -13,7 +13,7 @@ public class WrapLayout: SetViewLayout {
     override init() {
         super.init()
         self.widthDesignValue = .grow(.max)
-        self.isControl = false
+        self.heightDesignValue = .autoFit
     }
     
     var lineSpacing = 0.0

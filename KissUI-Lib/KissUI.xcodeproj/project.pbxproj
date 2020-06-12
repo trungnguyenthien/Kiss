@@ -27,7 +27,7 @@
 		8732134E248937FB00BE2BEE /* WrapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134D248937FB00BE2BEE /* WrapLayout.swift */; };
 		873213502489381C00BE2BEE /* ViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134F2489381C00BE2BEE /* ViewLayout.swift */; };
 		873213522489385A00BE2BEE /* VSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213512489385A00BE2BEE /* VSpacer.swift */; };
-		873213542489386200BE2BEE /* HSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213532489386200BE2BEE /* HSpacer.swift */; };
+		873213542489386200BE2BEE /* _TemptSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213532489386200BE2BEE /* _TemptSpacer.swift */; };
 		8732135C24893A0200BE2BEE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135B24893A0200BE2BEE /* UILabel.swift */; };
 		8732135E24893A0C00BE2BEE /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135D24893A0C00BE2BEE /* UIButton.swift */; };
 		874D91F6248D2D9B00D378AD /* layoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D91F5248D2D9B00D378AD /* layoutBuilder.swift */; };
@@ -69,7 +69,7 @@
 		8732134D248937FB00BE2BEE /* WrapLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapLayout.swift; sourceTree = "<group>"; };
 		8732134F2489381C00BE2BEE /* ViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLayout.swift; sourceTree = "<group>"; };
 		873213512489385A00BE2BEE /* VSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSpacer.swift; sourceTree = "<group>"; };
-		873213532489386200BE2BEE /* HSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSpacer.swift; sourceTree = "<group>"; };
+		873213532489386200BE2BEE /* _TemptSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _TemptSpacer.swift; sourceTree = "<group>"; };
 		8732135B24893A0200BE2BEE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		8732135D24893A0C00BE2BEE /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		874D91F5248D2D9B00D378AD /* layoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layoutBuilder.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 				8732134D248937FB00BE2BEE /* WrapLayout.swift */,
 				8732134F2489381C00BE2BEE /* ViewLayout.swift */,
 				873213512489385A00BE2BEE /* VSpacer.swift */,
-				873213532489386200BE2BEE /* HSpacer.swift */,
+				873213532489386200BE2BEE /* _TemptSpacer.swift */,
 			);
 			path = layout;
 			sourceTree = "<group>";
@@ -310,7 +310,7 @@
 				8732134C248937F000BE2BEE /* HStackLayout.swift in Sources */,
 				873213502489381C00BE2BEE /* ViewLayout.swift in Sources */,
 				873213422487853900BE2BEE /* internalExtension.swift in Sources */,
-				873213542489386200BE2BEE /* HSpacer.swift in Sources */,
+				873213542489386200BE2BEE /* _TemptSpacer.swift in Sources */,
 				873213402487826B00BE2BEE /* internalFunction.swift in Sources */,
 				874D91F8248FCC6000D378AD /* LayoutArrangeAble.swift in Sources */,
 				8732134A248937E500BE2BEE /* VStackLayout.swift in Sources */,

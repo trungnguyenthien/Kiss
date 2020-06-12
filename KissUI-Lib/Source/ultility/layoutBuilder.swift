@@ -45,10 +45,10 @@ public func wrap(@ViewBuilder builder: () -> LayoutAttribute) -> WrapLayout {
 }
 
 // MARK: - SPACER
-public var vspacer: VSpacer {
-    return VSpacer()
+public var spacer: Spacer {
+    return Spacer()
 }
 
-public var hspacer: HSpacer {
-    return HSpacer();
+var temptSpacer: _TemptSpacer {
+    return _TemptSpacer()
 }

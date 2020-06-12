@@ -9,13 +9,10 @@
 import Foundation
 
 
-public class VSpacer: LayoutAttribute {
+public class Spacer: LayoutAttribute {
     override init() {
         super.init()
-        self.widthDesignValue = .value(.sameZero)
+        self.widthDesignValue = .grow(.sameZero)
         self.heightDesignValue = .grow(.sameZero)
-        self.isControl = true
     }
-    
-
 }

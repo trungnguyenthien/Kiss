@@ -44,7 +44,7 @@ let medium = 8.0
 var compactLayout =
 vstack { // Product thumbnail
     UIImageView().layout
-    vspacer /* |---| */
+    spacer /* |---| */
     vstack { /* Vertical Stack */
         "Nguyen".labelMedium.layout.top(small)
         " THIEN".labelSmall.layout.top(small)

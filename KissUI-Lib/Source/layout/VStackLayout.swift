@@ -13,11 +13,25 @@ public class VStackLayout: SetViewLayout {
     override init() {
         super.init()
         self.widthDesignValue = .grow(.max)
-        self.isControl = false
+        self.heightDesignValue = .autoFit
     }
 }
 
 extension VStackLayout: LayoutArrangeAble {
+    func addTemptSpacerIfNeed() {
+        switch self.verticalAlignment {
+        case .top:
+            subLayouts.insert(temptSpacer, at: 0)
+        
+        case .bottom:
+            subLayouts.append(temptSpacer)
+            
+        case .center:
+            subLayouts.append(temptSpacer)
+            subLayouts.insert(temptSpacer, at: 0)
+        }
+    }
+    
     func startLayout() {
         
     }

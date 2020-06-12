@@ -9,12 +9,12 @@
 import Foundation
 
 
-public class HSpacer: LayoutAttribute {
+class _TemptSpacer: Spacer {
     override init() {
         super.init()
-        self.heightDesignValue = .value(.sameZero)
+        self.heightDesignValue = .grow(.sameZero)
         self.widthDesignValue = .grow(.sameZero)
-        self.isControl = true
     }
     
 }
+

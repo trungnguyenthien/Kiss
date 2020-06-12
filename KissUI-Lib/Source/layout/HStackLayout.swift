@@ -13,11 +13,25 @@ public class HStackLayout: SetViewLayout {
     override init() {
         super.init()
         self.widthDesignValue = .grow(.max)
-        self.isControl = false
+        self.heightDesignValue = .autoFit
     }
 }
 
 extension HStackLayout: LayoutArrangeAble {
+    
+    func addTemptSpacerIfNeed() {
+        switch self.horizontalAlignment {
+        case .left:
+            subLayouts.insert(temptSpacer, at: 0)
+        
+        case .right:
+            subLayouts.append(temptSpacer)
+            
+        case .center:
+            subLayouts.append(temptSpacer)
+            subLayouts.insert(temptSpacer, at: 0)
+        }
+    }
     
     func applySubsWidth() {
         let visibledAttrs = subLayouts.filter { isVisibledLayout($0, andSpacer: false) }
@@ -60,7 +74,7 @@ extension HStackLayout: LayoutArrangeAble {
         remainWidth -= paddingRight
         
         visibledAttrs.forEach { (subAttr) in
-            let isSpacer = subAttr is HSpacer
+            let isSpacer = subAttr is Spacer
             switch(subAttr.widthDesignValue) {
             case .value, .autoFit: ()
             case .grow(let part) where isSpacer:
@@ -74,7 +88,7 @@ extension HStackLayout: LayoutArrangeAble {
             }
         }
         
-        visibledAttrs.filter { $0 is HSpacer }.forEach { (hspacer) in
+        visibledAttrs.filter { $0 is Spacer }.forEach { (hspacer) in
             switch hspacer.widthDesignValue {
             case .grow(let part):
                 let expectedWidth = remainWidth * part / sumPartSpacer

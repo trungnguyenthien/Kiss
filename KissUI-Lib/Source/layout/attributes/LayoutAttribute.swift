@@ -12,7 +12,6 @@ import UIKit
 typealias KFloat = Double
 
 public class LayoutAttribute {
-    var isControl = true
     var paddingLeft: KFloat = 0 // internal(set)
     var paddingRight: KFloat = 0
     var paddingTop: KFloat = 0
