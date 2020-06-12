@@ -12,8 +12,8 @@ import Foundation
 public class VSpacer: LayoutAttribute {
     override init() {
         super.init()
-        self.widthDesignValue = .value(0.5)
-        self.heightDesignValue = .grow(1)
+        self.widthDesignValue = .value(.sameZero)
+        self.heightDesignValue = .grow(.sameZero)
         self.isControl = true
     }
     

@@ -12,6 +12,7 @@ import Foundation
 public class WrapLayout: SetViewLayout {
     override init() {
         super.init()
+        self.widthDesignValue = .grow(.max)
         self.isControl = false
     }
     

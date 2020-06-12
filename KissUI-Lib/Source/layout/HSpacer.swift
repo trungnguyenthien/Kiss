@@ -12,8 +12,8 @@ import Foundation
 public class HSpacer: LayoutAttribute {
     override init() {
         super.init()
-        self.heightDesignValue = .value(0.5)
-        self.widthDesignValue = .grow(1)
+        self.heightDesignValue = .value(.sameZero)
+        self.widthDesignValue = .grow(.sameZero)
         self.isControl = true
     }
     

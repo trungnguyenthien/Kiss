@@ -10,14 +10,13 @@ import Foundation
 
 public enum DesignWidthValue {
     case value(Double)
-    case grow(Double)
+    case grow(Double) // full = grow(9999999999999)
     case autoFit
 }
 
 public enum WidthValue {
     case grow(Double)
     case full
-    case autoFit
 }
 
 public enum DesignHeightValue {

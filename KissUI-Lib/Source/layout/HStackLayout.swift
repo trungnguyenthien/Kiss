@@ -12,6 +12,7 @@ import Foundation
 public class HStackLayout: SetViewLayout {
     override init() {
         super.init()
+        self.widthDesignValue = .grow(.max)
         self.isControl = false
     }
 }
@@ -19,14 +20,14 @@ public class HStackLayout: SetViewLayout {
 extension HStackLayout: LayoutArrangeAble {
     
     func applySubsWidth() {
-        let visibledAttrs = subLayouts.filter { isVisibledLayout($0) }
+        let visibledAttrs = subLayouts.filter { isVisibledLayout($0, andSpacer: false) }
         var sumPart: Double = 0
         var remainWidth = expectedWidth ?? 0
         remainWidth -= paddingLeft
         remainWidth -= paddingRight
         
         visibledAttrs.forEach { (subAttr) in
-            switch(subAttr.widthDesignValue) {
+            switch subAttr.widthDesignValue {
             case .value, .autoFit:
                 let layoutArrangeAble = subAttr as? LayoutArrangeAble
                 layoutArrangeAble?.applySelfHardSize()
@@ -48,6 +49,42 @@ extension HStackLayout: LayoutArrangeAble {
                 subAttr.expectedWidth = expectedWidth
             }
         }
+        applyHSpacer()
+    }
+    
+    private func applyHSpacer() {
+        let visibledAttrs = subLayouts.filter { isVisibledLayout($0, andSpacer: true) }
+        var sumPartSpacer: Double = 0
+        var remainWidth = expectedWidth ?? 0
+        remainWidth -= paddingLeft
+        remainWidth -= paddingRight
+        
+        visibledAttrs.forEach { (subAttr) in
+            let isSpacer = subAttr is HSpacer
+            switch(subAttr.widthDesignValue) {
+            case .value, .autoFit: ()
+            case .grow(let part) where isSpacer:
+                sumPartSpacer += part
+            case .grow(_): ()
+            }
+            
+            if !isSpacer {
+                remainWidth -= subAttr.expectedWidth ?? 0
+                remainWidth -= subAttr.leading - subAttr.trailing
+            }
+        }
+        
+        visibledAttrs.filter { $0 is HSpacer }.forEach { (hspacer) in
+            switch hspacer.widthDesignValue {
+            case .grow(let part):
+                let expectedWidth = remainWidth * part / sumPartSpacer
+                hspacer.expectedWidth = expectedWidth
+                
+            default: ()
+            }
+        }
+        
+        
     }
 
     /*
@@ -117,12 +154,7 @@ extension HStackLayout: LayoutArrangeAble {
     }
     
     func applySubSpacers() {
-        let visibledAttrs = subLayouts.filter { isVisibledLayout($0, andSpacer: true) }
-        var sumVisiblePadding = paddingLeft + paddingRight
-        visibledAttrs.enumerated().forEach { (index, attr) in
-            
-        }
-        
+        // Đã xác định ở applyHSpacer
     }
     
     func applySubsAlignments() {

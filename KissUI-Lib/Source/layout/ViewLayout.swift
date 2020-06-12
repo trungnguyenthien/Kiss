@@ -13,6 +13,7 @@ public class ViewLayout: LayoutAttribute, PaddingSetter, EdgeSetter, SizeSetter 
     var view: UIView? = nil
     override init() {
         super.init()
+        self.widthDesignValue = .autoFit
         self.isControl = true
     }
     
