@@ -117,3 +117,9 @@ func className(_ obj: Any) -> String {
 func printWarning(_ message: String) {
     trace("⚠️ KISSUI: " + message)
 }
+
+func throwError(_ message: String) {
+    trace("🔴 KISSUI: " + message)
+    fatalError("🔴 KISSUI: " + message)
+}
+

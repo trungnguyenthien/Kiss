@@ -7,3 +7,27 @@
 //
 
 import Foundation
+import UIKit
+extension UILabel {
+    func applyFitSize(attr: LayoutAttribute) {
+        switch (attr.widthDesignValue, attr.heightDesignValue) {
+        case (.autoFit, _), (_, .autoFit):
+            frame.size.width = CGFloat(Double.max)
+            frame.size.height = CGFloat(Double.max)
+            sizeToFit()
+        default: ()
+        }
+        
+        let fitSize = frame.size
+        switch attr.widthDesignValue {
+        case .autoFit: attr.expectedWidth = KFloat(fitSize.width)
+        default: ()
+        }
+        
+        switch attr.heightDesignValue {
+        case .autoFit: attr.expectedHeight = KFloat(fitSize.height)
+        default: ()
+        }
+
+    }
+}

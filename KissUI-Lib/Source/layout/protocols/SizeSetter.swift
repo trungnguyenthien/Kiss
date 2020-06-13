@@ -61,7 +61,7 @@ extension SizeSetter where Self: ViewLayout {
         switch value {
         case .autoFit: heightDesignValue = .autoFit
         case .full: heightDesignValue = .grow(.max)
-        case .equalWidth(let ew): heightDesignValue = .equalWidth(ew)
+        case .equalWidth(let ew): heightDesignValue = .widthPerHeightRatio(ew)
         case .grow(let part): heightDesignValue = .grow(part)
         }
         return self

@@ -10,54 +10,37 @@ import UIKit
 import KissUI
 
 class ViewController: UIViewController {
-
+    let blueView = makeView(.blue)
+    let label1 = "0001".label
+    let label2 = "002 Trung".label
+    let redView = makeView(.red)
+    
+    private func makeLayout() -> SetViewLayout {
+        return  hstack {
+               blueView.layout.width(100).height(50)
+               label1.layout.leading(10)
+               label2.layout.width(.full)
+               redView.layout.width(50).height(100)
+        }.width(.full).height(.autoFit)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        let label = UILabel()
-        label.text = "Hello world, Nguyen Thien Trung, Nguyen Thi Phuong THao, 1 2 3 4 5 6 7 8 9 0 0 -"
-        label.font = UIFont.systemFont(ofSize: 16)
-//        label.preferredMaxLayoutWidth = 100
-        label.frame.size.width = 100
-        label.numberOfLines = 5
-        label.lineBreakMode = .byWordWrapping
-        label.sizeToFit()
-//        label.layoutIfNeeded()
-        print("Frame = \(label.frame)")
-        
-        
-        label.font = UIFont.systemFont(ofSize: 20)
-//        label.preferredMaxLayoutWidth = 150
-        label.frame.size.width = CGFloat.greatestFiniteMagnitude
-        label.numberOfLines = 2
-        label.lineBreakMode = .byWordWrapping
-        label.sizeToFit()
-//        label.layoutIfNeeded()
-        print("Frame = \(label.frame)")
+        view.addSubview(blueView)
+        view.addSubview(label1)
+        view.addSubview(label2)
+        view.addSubview(redView)
     }
 }
 
 let small = 4.0
 let medium = 8.0
 
-var compactLayout =
-vstack { // Product thumbnail
-    UIImageView().layout
-    spacer /* |---| */
-    vstack { /* Vertical Stack */
-        "Nguyen".labelMedium.layout.top(small)
-        " THIEN".labelSmall.layout.top(small)
-        " trung----".labelBigBold.layout.top(small)
-        UILabel().layout.leading(medium).top(small)
-    }.top(medium).hAlign(.right)
-    wrap { // List tags attribute
-        UILabel().layout.size(.zero).leading(small)
-        UILabel().layout.leading(small)
-        UILabel().layout.leading(small)
-        UILabel().layout.leading(small)
-    }.line(spacing: small).top(small)
-}.padding(medium)
+func makeView(_ color: UIColor) -> UIView {
+    let view = UIView()
+    view.backgroundColor = color
+    return view
+}
 
 extension String {
     var label: UILabel {

@@ -16,7 +16,7 @@ public class HStackLayout: SetViewLayout {
         self.heightDesignValue = .autoFit
     }
 }
-
+/*
 extension HStackLayout: LayoutArrangeAble {
     
     func addTemptSpacerIfNeed() {
@@ -114,7 +114,8 @@ extension HStackLayout: LayoutArrangeAble {
             case .value: () // Đã được xác định trong applySelfHardSize ở bước applySubsWidth
                 
             case .autoFit:
-                guard subAttr.expectedHeight == nil, let size = fitSizeSetLayout(of: subAttr) else { return }
+                guard subAttr.expectedHeight == nil, let size = fitSizeSetLayout(of: subAttr)
+                    else { return }
                 subAttr.expectedHeight = KFloat(size.height)
                 
             case .equalWidth(let hw):
@@ -143,17 +144,17 @@ extension HStackLayout: LayoutArrangeAble {
         let visibledAttrs = subLayouts.filter { isVisibledLayout($0) }
         var runX = expectedX ?? 0
         var selfY = expectedY ?? 0
-        runX -= paddingLeft
-        selfY -= paddingTop
+        runX += paddingLeft
+        selfY += paddingTop
         
         visibledAttrs.enumerated().forEach { (index, subAttr) in
             if index != 0 {
-                runX -= subAttr.leading
+                runX += subAttr.leading
             }
             subAttr.expectedX = runX
             subAttr.expectedY = selfY
             let subWidth = subAttr.expectedWidth ?? 0.0
-            runX = runX - subWidth - subAttr.trailing
+            runX = runX + subWidth + subAttr.trailing
         }
     }
     
@@ -172,8 +173,7 @@ extension HStackLayout: LayoutArrangeAble {
     }
     
     func applySubsAlignments() {
-        
+        // Nhờ TempSpacer định vị trí
     }
-    
-    
 }
+*/

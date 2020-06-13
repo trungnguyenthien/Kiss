@@ -55,4 +55,11 @@ public extension UIView {
         vlayout.view = self
         return vlayout
     }
+    
+    func render(layout: SetViewLayout) {
+        layout.view = self
+        layout.expectedX = KFloat(frame.origin.x)
+        layout.expectedY = KFloat(frame.origin.y)
+        KissUI.render(layout: layout)
+    }
 }
