@@ -75,6 +75,10 @@ func transitFrame(viewLayout: ViewLayout, newX: Double, newY: Double) {
     }
 }
 
+func hasAllSubFrame(_ selfLayout: LayoutAttribute) -> Bool {
+    
+}
+
 // Has at least one Visible View
 func isVisibledLayout(_ selfLayout: LayoutAttribute, andSpacer: Bool = false) -> Bool {
     if let setViewLayout = selfLayout as? SetViewLayout {

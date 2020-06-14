@@ -15,12 +15,12 @@ class ViewController: UIViewController {
     let label2 = "002 Trung".label
     let redView = makeView(.red)
     
-    private func makeLayout() -> SetViewLayout {
-        return  hstack {
-               blueView.layout.width(100).height(50)
-               label1.layout.leading(10)
-               label2.layout.width(.full)
-               redView.layout.width(50).height(100)
+    private var regularLayout: SetViewLayout {
+        hstack {
+            blueView.layout.width(100).height(50)
+            label1.layout.leading(10)
+            label2.layout.width(.full)
+            redView.layout.width(50).height(100)
         }.width(.full).height(.autoFit)
     }
     
