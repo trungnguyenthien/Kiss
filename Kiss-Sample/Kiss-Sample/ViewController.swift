@@ -21,7 +21,7 @@ class ViewController: UIViewController {
             label1.layout.leading(10)
             label2.layout.width(.full)
             redView.layout.width(50).height(100)
-        }.width(.full).height(.autoFit)
+        }.height(.autoFit)
     }
     
     override func viewDidLoad() {
