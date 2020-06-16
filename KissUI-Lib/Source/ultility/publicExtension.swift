@@ -13,7 +13,7 @@ public extension SetViewLayout {
     var views: [UIView] {
         var output = [UIView?]()
         output.append(view)
-        subLayouts.forEach {
+        subItems.forEach {
             if let setViewLayout = $0 as? SetViewLayout {
                 // Recursive to get all views
                 output.append(contentsOf: setViewLayout.views)

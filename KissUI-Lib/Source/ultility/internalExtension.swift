@@ -42,3 +42,22 @@ extension Optional {
         return self != nil
     }
 }
+
+internal extension LayoutItem {
+    var attr: LayoutAttribute {
+        if let item = self as? ViewLayout {
+            return item.attr
+        }
+        return (self as! LayoutAttribute)
+    }
+    
+    var view: UIView? {
+        guard let viewLayout = self as? ViewLayout else { return nil }
+        return viewLayout.view
+    }
+    
+    var subItems: [LayoutItem] {
+        guard let viewLayout = self as? SetViewLayout else { return [] }
+        return viewLayout.subItems
+    }
+}

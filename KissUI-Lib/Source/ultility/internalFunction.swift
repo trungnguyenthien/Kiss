@@ -29,22 +29,3 @@ func throwError(_ message: String) {
 }
 
 
-internal extension LayoutItem {
-    var attr: LayoutAttribute {
-        if let item = self as? ViewLayout {
-            return item.attr
-        }
-        return (self as! LayoutAttribute)
-    }
-}
-func attr(_ item: LayoutItem) -> LayoutAttribute {
-    if let item = item as? ViewLayout {
-        return item.attr
-    }
-    return (item as! LayoutAttribute)
-}
-
-func isSetLayout(_ item: LayoutItem) -> Bool {
-    return item is SetViewLayout
-}
-

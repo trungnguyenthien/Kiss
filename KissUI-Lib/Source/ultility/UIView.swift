@@ -13,39 +13,39 @@ public extension UIView {
     // MARK: - VSTACK LAYOUT
     func vstack(@ViewBuilder builder: () -> [LayoutItem]) -> VStackLayout {
         let stack = VStackLayout()
-        stack.subLayouts.append(contentsOf: builder())
+        stack.subItems.append(contentsOf: builder())
         return stack
     }
 
     func vstack(@ViewBuilder builder: () -> LayoutItem) -> VStackLayout {
         let stack = VStackLayout()
-        stack.subLayouts.append(builder())
+        stack.subItems.append(builder())
         return stack
     }
 
     // MARK: - HSTACK LAYOUT
     func hstack(@ViewBuilder builder: () -> [LayoutItem]) -> HStackLayout {
         let stack = HStackLayout()
-        stack.subLayouts.append(contentsOf: builder())
+        stack.subItems.append(contentsOf: builder())
         return stack
     }
 
     func hstack(@ViewBuilder builder: () -> LayoutItem) -> HStackLayout {
         let stack = HStackLayout()
-        stack.subLayouts.append(builder())
+        stack.subItems.append(builder())
         return stack
     }
 
     // MARK: - WRAP LAYOUT
     func wrap(@ViewBuilder builder: () -> [LayoutItem]) -> WrapLayout {
         let stack = WrapLayout()
-        stack.subLayouts.append(contentsOf: builder())
+        stack.subItems.append(contentsOf: builder())
         return stack
     }
 
     func wrap(@ViewBuilder builder: () -> LayoutItem) -> WrapLayout {
         let stack = WrapLayout()
-        stack.subLayouts.append(builder())
+        stack.subItems.append(builder())
         return stack
     }
     

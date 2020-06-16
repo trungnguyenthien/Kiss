@@ -12,5 +12,5 @@ import UIKit
 public protocol LayoutItem { }
 
 public class SetViewLayout: ViewLayout, AlignmentSetter {
-    var subLayouts = [LayoutItem]()
+    var subItems = [LayoutItem]()
 }
