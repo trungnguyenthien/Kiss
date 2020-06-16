@@ -20,12 +20,12 @@ extension UILabel {
         
         let fitSize = frame.size
         switch attr.widthDesignValue {
-        case .autoFit: attr.expectedWidth = KFloat(fitSize.width)
+        case .autoFit: attr.expectedWidth = Double(fitSize.width)
         default: ()
         }
         
         switch attr.heightDesignValue {
-        case .autoFit: attr.expectedHeight = KFloat(fitSize.height)
+        case .autoFit: attr.expectedHeight = Double(fitSize.height)
         default: ()
         }
 

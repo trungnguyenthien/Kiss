@@ -11,39 +11,39 @@ import UIKit
 
 public extension UIView {
     // MARK: - VSTACK LAYOUT
-    func vstack(@ViewBuilder builder: () -> [LayoutItem]) -> VStackLayout {
+    func vstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> VStackLayout {
         let stack = VStackLayout()
         stack.subItems.append(contentsOf: builder())
         return stack
     }
 
-    func vstack(@ViewBuilder builder: () -> LayoutItem) -> VStackLayout {
+    func vstack(@LayoutItemBuilder builder: () -> LayoutItem) -> VStackLayout {
         let stack = VStackLayout()
         stack.subItems.append(builder())
         return stack
     }
 
     // MARK: - HSTACK LAYOUT
-    func hstack(@ViewBuilder builder: () -> [LayoutItem]) -> HStackLayout {
+    func hstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> HStackLayout {
         let stack = HStackLayout()
         stack.subItems.append(contentsOf: builder())
         return stack
     }
 
-    func hstack(@ViewBuilder builder: () -> LayoutItem) -> HStackLayout {
+    func hstack(@LayoutItemBuilder builder: () -> LayoutItem) -> HStackLayout {
         let stack = HStackLayout()
         stack.subItems.append(builder())
         return stack
     }
 
     // MARK: - WRAP LAYOUT
-    func wrap(@ViewBuilder builder: () -> [LayoutItem]) -> WrapLayout {
+    func wrap(@LayoutItemBuilder builder: () -> [LayoutItem]) -> WrapLayout {
         let stack = WrapLayout()
         stack.subItems.append(contentsOf: builder())
         return stack
     }
 
-    func wrap(@ViewBuilder builder: () -> LayoutItem) -> WrapLayout {
+    func wrap(@LayoutItemBuilder builder: () -> LayoutItem) -> WrapLayout {
         let stack = WrapLayout()
         stack.subItems.append(builder())
         return stack
@@ -58,8 +58,8 @@ public extension UIView {
     
     func render(layout: SetViewLayout) {
         layout.view = self
-        layout.attr.expectedX = KFloat(frame.origin.x)
-        layout.attr.expectedY = KFloat(frame.origin.y)
+        layout.attr.expectedX = Double(frame.origin.x)
+        layout.attr.expectedY = Double(frame.origin.y)
         KissUI.render(layout: layout)
     }
 }

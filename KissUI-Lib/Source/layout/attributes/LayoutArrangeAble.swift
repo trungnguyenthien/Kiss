@@ -186,9 +186,9 @@ func _6_apply_FitHeight_To_SubLayout(viewLayout: ViewLayout) {
     reUpdateExpectedHeightByMinHeight(viewLayout)
 }
 
-private func reUpdateExpectedHeightByMinHeight(_ attr: LayoutItem) {
-    guard let height = attr.attr.expectedHeight, let minHeight = attr.attr.minHeight else { return }
-    attr.attr.expectedHeight = max(height, minHeight)
+private func reUpdateExpectedHeightByMinHeight(_ lItem: LayoutItem) {
+    guard let height = lItem.attr.expectedHeight, let minHeight = lItem.attr.minHeight else { return }
+    lItem.attr.expectedHeight = max(height, minHeight)
 }
 
 func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
@@ -293,9 +293,9 @@ func _10_reCheck(viewLayout: ViewLayout) -> Bool {
 /// ----------------------------------------------------------------------
 
 
-func fitSizeSetLayout(of layout: LayoutItem) -> CGSize? {
+func fitSizeSetLayout(of lItem: LayoutItem) -> CGSize? {
     
-    if let setViewLayout = layout as? SetViewLayout {
+    if let setViewLayout = lItem as? SetViewLayout {
         var minX = Double.max
         var minY = Double.max
         var maxX = Double.min
@@ -320,8 +320,8 @@ func fitSizeSetLayout(of layout: LayoutItem) -> CGSize? {
         if minX == .max || minY == .max || maxX == .min || maxY == .min {
             return nil
         }
-        return CGSize(width: maxX - minX + layout.attr.paddingLeft + layout.attr.paddingRight,
-                      height: maxY - minY + layout.attr.paddingBottom + layout.attr.paddingTop)
+        return CGSize(width: maxX - minX + lItem.attr.paddingLeft + lItem.attr.paddingRight,
+                      height: maxY - minY + lItem.attr.paddingBottom + lItem.attr.paddingTop)
     }
     
     return .zero
@@ -356,8 +356,8 @@ func transitFrame(viewLayout: ViewLayout, newX: Double, newY: Double) {
     }
 }
 
-private func isSpacer(_ attr: LayoutItem) -> Bool {
-    return attr is Spacer
+private func isSpacer(_ lItem: LayoutItem) -> Bool {
+    return lItem is Spacer
 }
 
 private func isLabelLayout(attr: ViewLayout) -> Bool {
@@ -369,20 +369,20 @@ private func hasSelfSize(_ selfLayout: LayoutAttribute) -> Bool {
     return selfLayout.expectedWidth != nil && selfLayout.expectedHeight != nil
 }
 
-private func hasSelfFrame(_ selfLayout: LayoutItem) -> Bool {
-    if selfLayout is Spacer { return true }
-    return selfLayout.attr.expectedWidth.notNil &&
-        selfLayout.attr.expectedHeight.notNil &&
-        selfLayout.attr.expectedX.notNil &&
-        selfLayout.attr.expectedY.notNil
+private func hasSelfFrame(_ lItem: LayoutItem) -> Bool {
+    if lItem is Spacer { return true }
+    return lItem.attr.expectedWidth.notNil &&
+        lItem.attr.expectedHeight.notNil &&
+        lItem.attr.expectedX.notNil &&
+        lItem.attr.expectedY.notNil
 }
 
-func hasAllSubFrame(_ selfLayout: LayoutItem) -> Bool {
-    if let setLayout = selfLayout as? SetViewLayout {
+func hasAllSubFrame(_ lItem: LayoutItem) -> Bool {
+    if let setLayout = lItem as? SetViewLayout {
         return setLayout.subItems.reduce(true) { previous, currentLayout in
             previous && hasAllSubFrame(currentLayout)
         }
     } else {
-        return hasSelfFrame(selfLayout)
+        return hasSelfFrame(lItem)
     }
 }

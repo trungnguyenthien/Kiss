@@ -19,9 +19,9 @@ public protocol SizeSetter {
 extension SizeSetter where Self: ViewLayout {
     public func size(_ value: CGSize) -> Self {
         attr.widthDesignValue = .value(Double(value.width))
-        attr.expectedWidth = KFloat(value.width)
+        attr.expectedWidth = Double(value.width)
         attr.heightDesignValue = .value(Double(value.height))
-        attr.expectedHeight = KFloat(value.height)
+        attr.expectedHeight = Double(value.height)
         return self
     }
     

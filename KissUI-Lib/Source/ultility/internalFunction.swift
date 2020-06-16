@@ -5,16 +5,6 @@ func trace(_ message: String) {
     print(message)
 }
 
-func traceClassName(_ obj: Any, message: String) {
-    if let obj = obj as? ViewLayout {
-        let name = className(obj.view)
-        trace("\(name): \(message)")
-    } else {
-        trace("\(className(obj)): \(message)")
-    }
-}
-
-
 func className(_ obj: Any) -> String {
     return String(describing: type(of: obj))
 }
