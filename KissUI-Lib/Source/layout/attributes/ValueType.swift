@@ -23,7 +23,7 @@ public enum DesignHeightValue {
     case value(Double)
     case autoFit
     // height / width
-    case widthPerHeightRatio(Double)
+    case whRatio(Double)
     case grow(Double)
 }
 
@@ -31,7 +31,7 @@ public enum HeightValue {
     case autoFit
     case full
     // height / width
-    case equalWidth(Double)
+    case widthPerHeightRatio(Double)
     case grow(Double)
 }
 

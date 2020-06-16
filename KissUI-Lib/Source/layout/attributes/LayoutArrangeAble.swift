@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol LayoutArrangeAble {
-    func arrangeLayout()
+    func makeSubLayout()
 }
 
 public func render(layout: ViewLayout) {
@@ -33,7 +33,7 @@ private func _render(layout: ViewLayout) {
     _10_reCheck(viewLayout: layout)
 }
 
-private func _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: ViewLayout) {
+func _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: ViewLayout) {
     guard let setViewLayout = viewLayout as? SetViewLayout, isVisibledLayout(setViewLayout) else { return }
     setViewLayout.subLayouts.removeAll { $0 is _TemptSpacer }
     
@@ -62,12 +62,12 @@ private func _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: ViewL
     }
 }
 
-private func _2_apply_AutoFitWidth_For_Label(viewLayout: ViewLayout) {
+func _2_apply_AutoFitWidth_For_Label(viewLayout: ViewLayout) {
     guard let label = viewLayout.view as? UILabel, isVisibledLayout(viewLayout) else { return }
     label.applyFitSize(attr: viewLayout)
 }
 
-private func _3_apply_FixWidth_For_SubLayout(viewLayout: ViewLayout) {
+func _3_apply_FixWidth_For_SubLayout(viewLayout: ViewLayout) {
     guard let setViewLayout = viewLayout as? SetViewLayout, isVisibledLayout(viewLayout) else { return }
     setViewLayout.subLayouts.filter { isVisibledLayout($0) }.forEach {
         switch $0.widthDesignValue {
@@ -82,7 +82,7 @@ private func _3_apply_FixWidth_For_SubLayout(viewLayout: ViewLayout) {
 //
 //}
 
-private func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: ViewLayout) {
+func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: ViewLayout) {
     guard isVisibledLayout(viewLayout) else { return }
 
     // HSTACK ONLY
@@ -151,14 +151,14 @@ private func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: ViewLayout)
     }
 }
 
-private func _5_apply_FixHeight_To_SubLayout(viewLayout: ViewLayout) {
+func _5_apply_FixHeight_To_SubLayout(viewLayout: ViewLayout) {
     guard let setLayout = viewLayout as? SetViewLayout, isVisibledLayout(viewLayout) else { return }
     setLayout.subLayouts.forEach {
         guard isVisibledLayout($0) else { return }
         switch $0.heightDesignValue {
         case .value(let size):
             $0.expectedHeight = size
-        case .widthPerHeightRatio(let ratio):
+        case .whRatio(let ratio):
             guard let eWidth = $0.expectedWidth else {
                 throwError("Khi sử dụng height(.widthPerHeightRatio), thì width phải là .value/.grow/.autoFit (nếu là Label)")
                 return
@@ -170,7 +170,7 @@ private func _5_apply_FixHeight_To_SubLayout(viewLayout: ViewLayout) {
     }
 }
 
-private func _6_apply_FitHeight_To_SubLayout(viewLayout: ViewLayout) {
+func _6_apply_FitHeight_To_SubLayout(viewLayout: ViewLayout) {
     switch viewLayout.heightDesignValue {
     case .autoFit: ()
     default: return
@@ -184,7 +184,7 @@ private func _6_apply_FitHeight_To_SubLayout(viewLayout: ViewLayout) {
         selfHeight += Double(viewLayout.labelContent?.frame.height ?? 0)
         viewLayout.expectedHeight = selfHeight
     } else if let setLayout = viewLayout as? SetViewLayout, !hasAllSubFrame(setLayout) {
-        setLayout.subLayouts.compactMap { $0 as? LayoutArrangeAble }.forEach { $0.arrangeLayout() }
+        setLayout.subLayouts.compactMap { $0 as? LayoutArrangeAble }.forEach { $0.makeSubLayout() }
         if let fitSize = fitSizeSetLayout(of: viewLayout) {
             selfHeight += Double(fitSize.height)
             viewLayout.expectedHeight = selfHeight
@@ -198,7 +198,7 @@ private func reUpdateExpectedHeightByMinHeight(_ attr: LayoutAttribute) {
     attr.expectedHeight = max(height, minHeight)
 }
 
-private func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
+func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
     
     if let vstack = viewLayout as? VStackLayout {
         var remainHeight = 0.0
@@ -221,7 +221,7 @@ private func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
                 
             case .value(_): ()
             case .autoFit: ()
-            case .widthPerHeightRatio(_): ()
+            case .whRatio(_): ()
             }
         }
         
@@ -233,8 +233,9 @@ private func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
                 
             case .value(_): ()
             case .autoFit: ()
-            case .widthPerHeightRatio(_): ()
+            case .whRatio(_): ()
             }
+            reUpdateExpectedHeightByMinHeight($0)
         }
     }
     
@@ -242,23 +243,45 @@ private func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
         var remainHeight = 0.0
         remainHeight -= hstack.paddingBottom
         remainHeight -= hstack.paddingTop
-        
+        var maxHeight = 0.0
         let visibleLayout = hstack.subLayouts.filter { isVisibledLayout($0) && !isSpacer($0) }
         visibleLayout.forEach {
             switch $0.heightDesignValue {
             case .grow(_):
+                printWarning("Khi sử dụng height(.grow) trong HStack sẽ tự ép về height(.full)")
+                $0.heightDesignValue = .grow(.max)
             
             case .value(_): ()
             case .autoFit: ()
-            case .widthPerHeightRatio(_): ()
+            case .whRatio(_): ()
             }
+            maxHeight = max(maxHeight, $0.expectedHeight ?? 0.0)
+        }
+        
+        visibleLayout.forEach {
+            switch $0.heightDesignValue {
+            case .grow(_):
+                $0.expectedHeight = maxHeight
+            
+            case .value(_): ()
+            case .autoFit: ()
+            case .whRatio(_): ()
+            }
+            
         }
     }
-    
 
     
     if let wrap = viewLayout as? WrapLayout {
-        
+        let visibleLayout = wrap.subLayouts.filter { isVisibledLayout($0) && !isSpacer($0) }
+        visibleLayout.forEach {
+            switch $0.heightDesignValue {
+            case .grow(_): throwError("Trong Wrap không sử dụng width(.grow), width(.full), height(.grow), height(.full)")
+            case .value(_): ()
+            case .autoFit: ()
+            case .whRatio(_): ()
+            }
+        }
     }
 }
 
@@ -270,8 +293,8 @@ private func _9_apply_SelfHeight(viewLayout: ViewLayout) {
     
 }
 
-private func _10_reCheck(viewLayout: ViewLayout) {
-    
+func _10_reCheck(viewLayout: ViewLayout) -> Bool {
+    return false
 }
 
 /// ----------------------------------------------------------------------

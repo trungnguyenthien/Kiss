@@ -26,10 +26,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(blueView)
-        view.addSubview(label1)
-        view.addSubview(label2)
-        view.addSubview(redView)
+        let view = label2
+        view.frame.size = CGSize(width: 99999999, height: 99999999)
+        view.sizeToFit()
+        print("SizeToFit = \(view.frame.size)")
     }
 }
 
