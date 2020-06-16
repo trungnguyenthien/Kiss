@@ -12,7 +12,7 @@ import Foundation
 public class VStackLayout: SetViewLayout {
     override init() {
         super.init()
-        self.widthDesignValue = .grow(.max)
-        self.heightDesignValue = .autoFit
+        self.attr.widthDesignValue = .grow(.max)
+        self.attr.heightDesignValue = .autoFit
     }
 }

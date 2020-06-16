@@ -18,57 +18,57 @@ public protocol SizeSetter {
 
 extension SizeSetter where Self: ViewLayout {
     public func size(_ value: CGSize) -> Self {
-        widthDesignValue = .value(Double(value.width))
-        expectedWidth = KFloat(value.width)
-        heightDesignValue = .value(Double(value.height))
-        expectedHeight = KFloat(value.height)
+        attr.widthDesignValue = .value(Double(value.width))
+        attr.expectedWidth = KFloat(value.width)
+        attr.heightDesignValue = .value(Double(value.height))
+        attr.expectedHeight = KFloat(value.height)
         return self
     }
     
     public func size(_ width: Double, _ height: Double?) -> Self {
-        widthDesignValue = .value(Double(width))
-        expectedWidth = width
+        attr.widthDesignValue = .value(Double(width))
+        attr.expectedWidth = width
         if let height = height {
-            heightDesignValue = .value(Double(height))
-            expectedHeight = height
+            attr.heightDesignValue = .value(Double(height))
+            attr.expectedHeight = height
         } else {
-            heightDesignValue = .autoFit
+            attr.heightDesignValue = .autoFit
         }
         return self
     }
     
     public func width(_ value: Double) -> Self {
-        widthDesignValue = .value(Double(value))
-        expectedWidth = value
+        attr.widthDesignValue = .value(Double(value))
+        attr.expectedWidth = value
         return self
     }
     
     public func width(_ value: WidthValue) -> Self {
         switch value {
-        case .grow(let fill): widthDesignValue = .grow(fill)
-        case .full: widthDesignValue = .grow(.max)
+        case .grow(let fill): attr.widthDesignValue = .grow(fill)
+        case .full: attr.widthDesignValue = .grow(.max)
         }
         return self
     }
     
     public func height(_ value: Double) -> Self {
-        heightDesignValue = .value(Double(value))
-        expectedHeight = value
+        attr.heightDesignValue = .value(Double(value))
+        attr.expectedHeight = value
         return self
     }
     
     public func height(_ value: HeightValue) -> Self {
         switch value {
-        case .autoFit: heightDesignValue = .autoFit
-        case .full: heightDesignValue = .grow(.max)
-        case .widthPerHeightRatio(let ew): heightDesignValue = .whRatio(ew)
-        case .grow(let part): heightDesignValue = .grow(part)
+        case .autoFit: attr.heightDesignValue = .autoFit
+        case .full: attr.heightDesignValue = .grow(.max)
+        case .widthPerHeightRatio(let ew): attr.heightDesignValue = .whRatio(ew)
+        case .grow(let part): attr.heightDesignValue = .grow(part)
         }
         return self
     }
     
     public func min(height: Double) -> Self {
-        minHeight = height
+        attr.minHeight = height
         return self
     }
     

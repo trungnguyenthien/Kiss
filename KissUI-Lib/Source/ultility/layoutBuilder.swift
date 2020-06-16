@@ -1,44 +1,44 @@
 @_functionBuilder
 public struct ViewBuilder {
-    public static func buildBlock(_ items: LayoutAttribute...) -> [LayoutAttribute] {
+    public static func buildBlock(_ items: LayoutItem...) -> [LayoutItem] {
         items
     }
 }
 
 // MARK: - VSTACK LAYOUT
-public func vstack(@ViewBuilder builder: () -> [LayoutAttribute]) -> VStackLayout {
+public func vstack(@ViewBuilder builder: () -> [LayoutItem]) -> VStackLayout {
     let stack = VStackLayout()
     stack.subLayouts.append(contentsOf: builder())
     return stack
 }
 
-public func vstack(@ViewBuilder builder: () -> LayoutAttribute) -> VStackLayout {
+public func vstack(@ViewBuilder builder: () -> LayoutItem) -> VStackLayout {
     let stack = VStackLayout()
     stack.subLayouts.append(builder())
     return stack
 }
 
 // MARK: - HSTACK LAYOUT
-public func hstack(@ViewBuilder builder: () -> [LayoutAttribute]) -> HStackLayout {
+public func hstack(@ViewBuilder builder: () -> [LayoutItem]) -> HStackLayout {
     let stack = HStackLayout()
     stack.subLayouts.append(contentsOf: builder())
     return stack
 }
 
-public func hstack(@ViewBuilder builder: () -> LayoutAttribute) -> HStackLayout {
+public func hstack(@ViewBuilder builder: () -> LayoutItem) -> HStackLayout {
     let stack = HStackLayout()
     stack.subLayouts.append(builder())
     return stack
 }
 
 // MARK: - WRAP LAYOUT
-public func wrap(@ViewBuilder builder: () -> [LayoutAttribute]) -> WrapLayout {
+public func wrap(@ViewBuilder builder: () -> [LayoutItem]) -> WrapLayout {
     let stack = WrapLayout()
     stack.subLayouts.append(contentsOf: builder())
     return stack
 }
 
-public func wrap(@ViewBuilder builder: () -> LayoutAttribute) -> WrapLayout {
+public func wrap(@ViewBuilder builder: () -> LayoutItem) -> WrapLayout {
     let stack = WrapLayout()
     stack.subLayouts.append(builder())
     return stack

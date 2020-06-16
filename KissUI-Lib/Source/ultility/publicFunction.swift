@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 public func frame(of layout: ViewLayout) -> CGRect {
-    guard let width = layout.expectedWidth,
-        let height = layout.expectedHeight,
-        let x = layout.expectedX,
-        let y = layout.expectedY
+    guard let width = layout.attr.expectedWidth,
+        let height = layout.attr.expectedHeight,
+        let x = layout.attr.expectedX,
+        let y = layout.attr.expectedY
     else { return .zero }
     return CGRect(x: x, y: y, width: width, height: height)
 }

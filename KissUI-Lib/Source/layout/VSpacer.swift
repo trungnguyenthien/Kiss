@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class Spacer: LayoutAttribute {
+public class Spacer: LayoutAttribute, LayoutItem {
     override init() {
         super.init()
         self.widthDesignValue = .grow(.sameZero)

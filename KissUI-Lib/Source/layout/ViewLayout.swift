@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-public class ViewLayout: LayoutAttribute, PaddingSetter, EdgeSetter, SizeSetter {
+public class ViewLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem {
+    var attr = LayoutAttribute()
     var view: UIView? = nil
-    override init() {
-        super.init()
-        self.widthDesignValue = .autoFit
-        self.heightDesignValue = .autoFit
+    init() {
+        self.attr.widthDesignValue = .autoFit
+        self.attr.heightDesignValue = .autoFit
     }
     
     var labelContent: UILabel? {

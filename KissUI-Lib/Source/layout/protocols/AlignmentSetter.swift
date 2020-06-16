@@ -14,14 +14,14 @@ public protocol AlignmentSetter {
     func hAlign(_ value: AlignHorizontal) -> Self
 }
 
-public extension AlignmentSetter where Self: LayoutAttribute {
+public extension AlignmentSetter where Self: SetViewLayout {
     func vAlign(_ value: AlignVertical) -> Self {
-        verticalAlignment = value
+        attr.verticalAlignment = value
         return self
     }
     
     func hAlign(_ value: AlignHorizontal) -> Self {
-        horizontalAlignment = value
+        attr.horizontalAlignment = value
         return self
     }
 }

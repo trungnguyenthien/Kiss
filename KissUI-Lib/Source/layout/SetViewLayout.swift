@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+public protocol LayoutItem { }
+
 public class SetViewLayout: ViewLayout, AlignmentSetter {
-    var subLayouts = [LayoutAttribute]()
+    var subLayouts = [LayoutItem]()
 }
