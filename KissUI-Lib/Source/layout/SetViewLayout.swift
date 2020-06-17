@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import UIKit
 
-public protocol LayoutItem { }
 
 public class SetViewLayout: ViewLayout, AlignmentSetter {
     var subItems = [LayoutItem]()

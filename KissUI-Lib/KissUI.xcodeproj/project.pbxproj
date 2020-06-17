@@ -32,6 +32,7 @@
 		8732135E24893A0C00BE2BEE /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135D24893A0C00BE2BEE /* UIButton.swift */; };
 		874D91F6248D2D9B00D378AD /* layoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D91F5248D2D9B00D378AD /* layoutBuilder.swift */; };
 		874D91F8248FCC6000D378AD /* LayoutArrangeAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D91F7248FCC6000D378AD /* LayoutArrangeAble.swift */; };
+		8754A19A2499916B000A6163 /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754A1992499916B000A6163 /* LayoutItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		8732135D24893A0C00BE2BEE /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		874D91F5248D2D9B00D378AD /* layoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layoutBuilder.swift; sourceTree = "<group>"; };
 		874D91F7248FCC6000D378AD /* LayoutArrangeAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutArrangeAble.swift; sourceTree = "<group>"; };
+		8754A1992499916B000A6163 /* LayoutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				8732134F2489381C00BE2BEE /* ViewLayout.swift */,
 				873213512489385A00BE2BEE /* VSpacer.swift */,
 				873213532489386200BE2BEE /* _TemptSpacer.swift */,
+				8754A1992499916B000A6163 /* LayoutItem.swift */,
 			);
 			path = layout;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				8732134A248937E500BE2BEE /* VStackLayout.swift in Sources */,
 				874D91F6248D2D9B00D378AD /* layoutBuilder.swift in Sources */,
 				8732134E248937FB00BE2BEE /* WrapLayout.swift in Sources */,
+				8754A19A2499916B000A6163 /* LayoutItem.swift in Sources */,
 				8732135C24893A0200BE2BEE /* UILabel.swift in Sources */,
 				8732135E24893A0C00BE2BEE /* UIButton.swift in Sources */,
 				871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */,

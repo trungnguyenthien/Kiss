@@ -70,8 +70,8 @@ func _2_apply_AutoFitWidth_For_Label(viewLayout: ViewLayout) {
 func _3_apply_FixWidth_For_SubLayout(viewLayout: ViewLayout) {
     guard let setViewLayout = viewLayout as? SetViewLayout else { return }
     setViewLayout.subItems.forEach {
-        switch $0.attr.widthDesignValue {
-        case .value(let size): $0.attr.expectedWidth = size
+        switch $0.widthDesignValue {
+        case .value(let size): $0.mutableAttribute.expectedWidth = size
         case .grow(_): ()
         case .autoFit: ()
         }
@@ -91,18 +91,18 @@ func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: ViewLayout) {
         remainWidth -= viewLayout.attr.paddingRight
         var sumPart = 0.0
         hstack.subItems.forEach {
-            remainWidth -= $0.attr.expectedWidth ?? 0
-            switch $0.attr.widthDesignValue {
+            remainWidth -= $0.expectedWidth ?? 0
+            switch $0.widthDesignValue {
             case .grow(let part): sumPart += part
             default: ()
             }
         }
         
         hstack.subItems.forEach {
-            switch $0.attr.widthDesignValue {
+            switch $0.widthDesignValue {
             case .grow(let part):
                 let growWidth = remainWidth * part / sumPart
-                $0.attr.expectedWidth = growWidth
+                $0.mutableAttribute.expectedWidth = growWidth
             default: ()
             }
         }
@@ -114,13 +114,13 @@ func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: ViewLayout) {
         remainWidth -= viewLayout.attr.paddingLeft
         remainWidth -= viewLayout.attr.paddingRight
         vstack.subItems.forEach {
-            switch $0.attr.widthDesignValue {
+            switch $0.widthDesignValue {
             case .grow(let part):
                 if part != .max {
                     printWarning("Trong VStack không thể gán thuộc tính width(.grow), sẽ ép về width(.full)")
-                    $0.attr.widthDesignValue = .grow(.max)
+                    $0.mutableAttribute.widthDesignValue = .grow(.max)
                 }
-                $0.attr.expectedWidth = remainWidth
+                $0.mutableAttribute.expectedWidth = remainWidth
                 
             default: ()
             }
@@ -131,10 +131,10 @@ func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: ViewLayout) {
     if let wrap = viewLayout as? WrapLayout {
         wrap.subItems
             .forEach {
-                switch $0.attr.widthDesignValue {
+                switch $0.widthDesignValue {
                 case .grow(_) where $0.view is UILabel:
                     printWarning("Trong Wrap không thể gán thuộc tính width(.grow), sẽ ép về width(.autoFit)")
-                    $0.attr.widthDesignValue = .autoFit
+                    $0.mutableAttribute.widthDesignValue = .autoFit
                     
                 case .grow(_):
                     throwError("Trong Wrap không thể gán width(.grow)")
@@ -148,15 +148,15 @@ func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: ViewLayout) {
 func _5_apply_FixHeight_To_SubLayout(viewLayout: ViewLayout) {
     guard let setLayout = viewLayout as? SetViewLayout else { return }
     setLayout.subItems.forEach {
-        switch $0.attr.heightDesignValue {
+        switch $0.heightDesignValue {
         case .value(let size):
-            $0.attr.expectedHeight = size
+            $0.mutableAttribute.expectedHeight = size
         case .whRatio(let ratio):
-            guard let eWidth = $0.attr.expectedWidth else {
+            guard let eWidth = $0.expectedWidth else {
                 throwError("Khi sử dụng height(.widthPerHeightRatio), thì width phải là .value/.grow/.autoFit (nếu là Label)")
                 return
             }
-            $0.attr.expectedHeight = eWidth / ratio
+            $0.mutableAttribute.expectedHeight = eWidth / ratio
         case .autoFit: ()
         case .grow(_): ()
         }
@@ -187,8 +187,8 @@ func _6_apply_FitHeight_To_SubLayout(viewLayout: ViewLayout) {
 }
 
 private func reUpdateExpectedHeightByMinHeight(_ lItem: LayoutItem) {
-    guard let height = lItem.attr.expectedHeight, let minHeight = lItem.attr.minHeight else { return }
-    lItem.attr.expectedHeight = max(height, minHeight)
+    guard let height = lItem.expectedHeight, let minHeight = lItem.minHeight else { return }
+    lItem.mutableAttribute.expectedHeight = max(height, minHeight)
 }
 
 func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
@@ -202,13 +202,13 @@ func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
             let startIndex = 0
             let endIndex = visibleLayout.count - 1
                 
-            if index > startIndex { remainHeight -= layout.attr.top }
-            remainHeight -= layout.attr.expectedHeight ?? 0.0
-            if index < endIndex { remainHeight -= layout.attr.bottom }
+            if index > startIndex { remainHeight -= layout.top }
+            remainHeight -= layout.expectedHeight ?? 0.0
+            if index < endIndex { remainHeight -= layout.bottom }
         }
         var sumPart = 0.0
         vstack.subItems.filter { isSpacer($0) }.forEach {
-            switch $0.attr.heightDesignValue {
+            switch $0.heightDesignValue {
             case .grow(let part):
                 sumPart += part
                 
@@ -219,10 +219,10 @@ func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
         }
         
         vstack.subItems.filter { isSpacer($0) }.forEach {
-            switch $0.attr.heightDesignValue {
+            switch $0.heightDesignValue {
             case .grow(let part):
                 let height = remainHeight * part / sumPart
-                $0.attr.expectedHeight = height
+                $0.mutableAttribute.expectedHeight = height
                 
             case .value(_): ()
             case .autoFit: ()
@@ -239,22 +239,22 @@ func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
         var maxHeight = 0.0
         let visibleLayout = hstack.subItems.filter { !isSpacer($0) }
         visibleLayout.forEach {
-            switch $0.attr.heightDesignValue {
+            switch $0.heightDesignValue {
             case .grow(_):
                 printWarning("Khi sử dụng height(.grow) trong HStack sẽ tự ép về height(.full)")
-                $0.attr.heightDesignValue = .grow(.max)
+                $0.mutableAttribute.heightDesignValue = .grow(.max)
             
             case .value(_): ()
             case .autoFit: ()
             case .whRatio(_): ()
             }
-            maxHeight = max(maxHeight, $0.attr.expectedHeight ?? 0.0)
+            maxHeight = max(maxHeight, $0.expectedHeight ?? 0.0)
         }
         
         visibleLayout.forEach {
-            switch $0.attr.heightDesignValue {
+            switch $0.heightDesignValue {
             case .grow(_):
-                $0.attr.expectedHeight = maxHeight
+                $0.mutableAttribute.expectedHeight = maxHeight
             
             case .value(_): ()
             case .autoFit: ()
@@ -268,7 +268,7 @@ func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
     if let wrap = viewLayout as? WrapLayout {
         let visibleLayout = wrap.subItems.filter { !isSpacer($0) }
         visibleLayout.forEach {
-            switch $0.attr.heightDesignValue {
+            switch $0.heightDesignValue {
             case .grow(_): throwError("Trong Wrap không sử dụng width(.grow), width(.full), height(.grow), height(.full)")
             case .value(_): ()
             case .autoFit: ()
@@ -303,16 +303,16 @@ func fitSizeSetLayout(of lItem: LayoutItem) -> CGSize? {
         
         setViewLayout.subItems.forEach { (attr) in
             guard !isSpacer(attr) else { return }
-            if let subExpectedX = attr.attr.expectedX {
+            if let subExpectedX = attr.expectedX {
                 minX = min(minX, subExpectedX)
-                if let subExpectedWidth = attr.attr.expectedWidth {
+                if let subExpectedWidth = attr.expectedWidth {
                     maxX = max(maxX, subExpectedX + subExpectedWidth)
                 }
             }
             
-            if let subExpectedY = attr.attr.expectedY {
+            if let subExpectedY = attr.expectedY {
                 minY = min(minY, subExpectedY)
-                if let subExpectedHeight = attr.attr.expectedHeight {
+                if let subExpectedHeight = attr.expectedHeight {
                     maxY = max(maxY, subExpectedY + subExpectedHeight)
                 }
             }
@@ -320,8 +320,8 @@ func fitSizeSetLayout(of lItem: LayoutItem) -> CGSize? {
         if minX == .max || minY == .max || maxX == .min || maxY == .min {
             return nil
         }
-        return CGSize(width: maxX - minX + lItem.attr.paddingLeft + lItem.attr.paddingRight,
-                      height: maxY - minY + lItem.attr.paddingBottom + lItem.attr.paddingTop)
+        return CGSize(width: maxX - minX + lItem.paddingLeft + lItem.paddingRight,
+                      height: maxY - minY + lItem.paddingBottom + lItem.paddingTop)
     }
     
     return .zero
@@ -341,12 +341,12 @@ func transitFrame(viewLayout: ViewLayout, newX: Double, newY: Double) {
     let dy = newY - (viewLayout.attr.expectedY ?? 0)
     
     setViewLayout.subItems.forEach { (subLayout) in
-        var newX = subLayout.attr.expectedX ?? 0
-        if let currentX = subLayout.attr.expectedX {
+        var newX = subLayout.expectedX ?? 0
+        if let currentX = subLayout.expectedX {
             newX = currentX + dx
         }
-        var newY = subLayout.attr.expectedY ?? 0
-        if let currentY = subLayout.attr.expectedY {
+        var newY = subLayout.expectedY ?? 0
+        if let currentY = subLayout.expectedY {
             newY = currentY + dy
         }
         
@@ -371,10 +371,10 @@ private func hasSelfSize(_ selfLayout: LayoutAttribute) -> Bool {
 
 private func hasSelfFrame(_ lItem: LayoutItem) -> Bool {
     if lItem is Spacer { return true }
-    return lItem.attr.expectedWidth.notNil &&
-        lItem.attr.expectedHeight.notNil &&
-        lItem.attr.expectedX.notNil &&
-        lItem.attr.expectedY.notNil
+    return lItem.expectedWidth.notNil &&
+        lItem.expectedHeight.notNil &&
+        lItem.expectedX.notNil &&
+        lItem.expectedY.notNil
 }
 
 func hasAllSubFrame(_ lItem: LayoutItem) -> Bool {
