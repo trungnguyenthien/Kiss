@@ -4,7 +4,6 @@ import UIKit
 
 public protocol SizeSetter {
     func min(height: Double) -> Self
-//    func min(width: Double) -> Self
     
     func width(_ value: Double) -> Self
     func width(_ value: WidthValue) -> Self
@@ -71,10 +70,4 @@ extension SizeSetter where Self: ViewLayout {
         attr.minHeight = height
         return self
     }
-    
-//    public func min(width: Double) -> Self {
-//        minWidth = width
-//        return self
-//    }
-    
 }

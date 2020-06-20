@@ -22,7 +22,6 @@ public enum WidthValue {
 public enum DesignHeightValue {
     case value(Double)
     case autoFit
-    // height / width
     case whRatio(Double)
     case grow(Double)
 }

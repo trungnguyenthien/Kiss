@@ -10,17 +10,17 @@ import Foundation
 
 
 public protocol AlignmentSetter {
-    func vAlign(_ value: AlignVertical) -> Self
-    func hAlign(_ value: AlignHorizontal) -> Self
+    func align(vertical value: AlignVertical) -> Self
+    func align(horizontal value: AlignHorizontal) -> Self
 }
 
 public extension AlignmentSetter where Self: SetViewLayout {
-    func vAlign(_ value: AlignVertical) -> Self {
+    func align(vertical value: AlignVertical) -> Self {
         attr.verticalAlignment = value
         return self
     }
     
-    func hAlign(_ value: AlignHorizontal) -> Self {
+    func align(horizontal value: AlignHorizontal) -> Self {
         attr.horizontalAlignment = value
         return self
     }

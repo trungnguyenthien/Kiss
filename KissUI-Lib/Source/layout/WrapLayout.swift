@@ -25,11 +25,11 @@ public class WrapLayout: SetViewLayout {
 
 extension WrapLayout {
     public override func copy(with zone: NSZone? = nil) -> Any {
-        let copy = WrapLayout()
-        copy.subItems = self.subItems.copy(with: zone)
-        copy.view = self.view
-        copy.attr = self.attr.copy(with: zone)
-        copy.lineSpacing = self.lineSpacing
-        return copy
+        let instance = WrapLayout()
+        instance.subItems = self.subItems.copy(with: zone)
+        instance.view = self.view
+        instance.attr = self.attr.copy(with: zone)
+        instance.lineSpacing = self.lineSpacing
+        return instance
     }
 }

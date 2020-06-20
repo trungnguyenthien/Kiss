@@ -20,14 +20,17 @@ public extension EdgeSetter where Self: ViewLayout {
         attr.leading = value
         return self
     }
+    
     func trailing(_ value: Double) -> Self {
         attr.trailing = value
         return self
     }
+    
     func top(_ value: Double) -> Self {
         attr.top = value
         return self
     }
+    
     func bottom(_ value: Double) -> Self {
         attr.bottom = value
         return self

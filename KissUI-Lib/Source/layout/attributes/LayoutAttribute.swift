@@ -37,24 +37,24 @@ public class LayoutAttribute {
 
 extension LayoutAttribute {
     public func copy(with zone: NSZone? = nil) -> LayoutAttribute {
-        let copy = LayoutAttribute()
-        copy.paddingLeft = self.paddingLeft
-        copy.paddingRight = self.paddingRight
-        copy.paddingTop = self.paddingTop
-        copy.paddingBottom = self.paddingBottom
-        copy.leading = self.leading
-        copy.trailing = self.trailing
-        copy.top = self.top
-        copy.bottom = self.bottom
-        copy.widthDesignValue = self.widthDesignValue
-        copy.heightDesignValue = self.heightDesignValue
-        copy.minHeight = self.minHeight
-        copy.expectedWidth = self.expectedWidth
-        copy.expectedHeight = self.expectedHeight
-        copy.expectedX = self.expectedX
-        copy.expectedY = self.expectedY
-        copy.verticalAlignment = self.verticalAlignment
-        copy.horizontalAlignment = self.horizontalAlignment
-        return copy
+        let instance = LayoutAttribute()
+        instance.paddingLeft = self.paddingLeft
+        instance.paddingRight = self.paddingRight
+        instance.paddingTop = self.paddingTop
+        instance.paddingBottom = self.paddingBottom
+        instance.leading = self.leading
+        instance.trailing = self.trailing
+        instance.top = self.top
+        instance.bottom = self.bottom
+        instance.widthDesignValue = self.widthDesignValue
+        instance.heightDesignValue = self.heightDesignValue
+        instance.minHeight = self.minHeight
+        instance.expectedWidth = self.expectedWidth
+        instance.expectedHeight = self.expectedHeight
+        instance.expectedX = self.expectedX
+        instance.expectedY = self.expectedY
+        instance.verticalAlignment = self.verticalAlignment
+        instance.horizontalAlignment = self.horizontalAlignment
+        return instance
     }  
 }
