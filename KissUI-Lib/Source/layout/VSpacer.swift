@@ -17,8 +17,8 @@ public class Spacer: LayoutAttribute, LayoutItem {
     }
 }
 
-extension Spacer: NSCopying {
-    public func copy(with zone: NSZone? = nil) -> Any {
+extension Spacer {
+    public override func copy(with zone: NSZone? = nil) -> Any {
         return super.copy(with: zone)
     }
 }

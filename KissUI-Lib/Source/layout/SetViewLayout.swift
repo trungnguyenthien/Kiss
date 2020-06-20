@@ -18,7 +18,7 @@ extension SetViewLayout {
         let clone = SetViewLayout()
         clone.view = self.view
         clone.subItems = self.subItems.copy(with: zone)
-        clone.attr = self.attr.copy(with: zone)
+        clone.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return clone
     }
 }

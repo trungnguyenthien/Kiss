@@ -35,8 +35,8 @@ public class LayoutAttribute {
     var horizontalAlignment: AlignHorizontal = .left
 }
 
-extension LayoutAttribute {
-    public func copy(with zone: NSZone? = nil) -> LayoutAttribute {
+extension LayoutAttribute: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
         let instance = LayoutAttribute()
         instance.paddingLeft = self.paddingLeft
         instance.paddingRight = self.paddingRight

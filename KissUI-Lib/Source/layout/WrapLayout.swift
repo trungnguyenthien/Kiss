@@ -28,7 +28,7 @@ extension WrapLayout {
         let instance = WrapLayout()
         instance.subItems = self.subItems.copy(with: zone)
         instance.view = self.view
-        instance.attr = self.attr.copy(with: zone)
+        instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         instance.lineSpacing = self.lineSpacing
         return instance
     }

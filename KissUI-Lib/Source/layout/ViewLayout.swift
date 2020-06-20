@@ -26,7 +26,7 @@ extension ViewLayout: NSCopying {
     public func copy(with zone: NSZone? = nil) -> Any {
         let instance = ViewLayout()
         instance.view = self.view
-        instance.attr = self.attr.copy(with: zone)
+        instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return instance
     }
 }

@@ -29,7 +29,7 @@ extension HStackLayout {
         let instance = HStackLayout()
         instance.subItems = self.subItems.copy(with: zone)
         instance.view = self.view
-        instance.attr = self.attr.copy(with: zone)
+        instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return instance
     }
 }
