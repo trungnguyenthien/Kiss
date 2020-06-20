@@ -30,20 +30,22 @@ internal extension LayoutItem {
     }
 }
 
-
 internal extension LayoutItem {
     var paddingLeft: Double {
         get {return mutableAttribute.paddingLeft}
         set {mutableAttribute.paddingLeft = newValue}
     }
+    
     var paddingRight: Double {
         get {return mutableAttribute.paddingRight}
         set {mutableAttribute.paddingRight = newValue}
     }
+    
     var paddingTop: Double {
         get {return mutableAttribute.paddingTop}
         set {mutableAttribute.paddingTop = newValue}
     }
+    
     var paddingBottom: Double {
         get {return mutableAttribute.paddingBottom}
         set {mutableAttribute.paddingBottom = newValue}
@@ -53,6 +55,7 @@ internal extension LayoutItem {
         get {return mutableAttribute.leading}
         set {mutableAttribute.leading = newValue}
     }
+    
     var trailing: Double {
         get {return mutableAttribute.trailing}
         set {mutableAttribute.trailing = newValue}
@@ -62,6 +65,7 @@ internal extension LayoutItem {
         get {return mutableAttribute.top}
         set {mutableAttribute.top = newValue}
     }
+    
     var bottom: Double {
         get {return mutableAttribute.bottom}
         set {mutableAttribute.bottom = newValue}
@@ -71,6 +75,7 @@ internal extension LayoutItem {
         get {return mutableAttribute.widthDesignValue}
         set {mutableAttribute.widthDesignValue = newValue}
     }
+    
     var heightDesignValue: DesignHeightValue{
         get {return mutableAttribute.heightDesignValue}
         set {mutableAttribute.heightDesignValue = newValue}
@@ -85,14 +90,17 @@ internal extension LayoutItem {
         get {return mutableAttribute.expectedWidth}
         set {mutableAttribute.expectedWidth = newValue}
     }
+    
     var expectedHeight: Double? {
         get {return mutableAttribute.expectedHeight}
         set {mutableAttribute.expectedHeight = newValue}
     }
+    
     var expectedX: Double? {
         get {return mutableAttribute.expectedX}
         set {mutableAttribute.expectedX = newValue}
     }
+    
     var expectedY: Double? {
         get {return mutableAttribute.expectedY}
         set {mutableAttribute.expectedY = newValue}
@@ -102,6 +110,7 @@ internal extension LayoutItem {
         get {return mutableAttribute.verticalAlignment}
         set {mutableAttribute.verticalAlignment = newValue}
     }
+    
     var horizontalAlignment: AlignHorizontal {
         get {return mutableAttribute.horizontalAlignment}
         set {mutableAttribute.horizontalAlignment = newValue}
