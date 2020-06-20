@@ -13,14 +13,14 @@ protocol LayoutArrangeAble {
     func makeSubLayout()
 }
 
-public func render(layout: ViewLayout) {
+public func render(layout: UIViewLayout) {
     if layout.view == nil {
         throwError("Thuộc tính view của MainLayout đang nil")
     }
     _render(layout: layout)
 }
 
-private func _render(layout: ViewLayout) {
+private func _render(layout: UIViewLayout) {
     _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: layout)
     _2_apply_AutoFitWidth_For_Label(viewLayout: layout)
     _3_apply_FixWidth_For_SubLayout(viewLayout: layout)
@@ -33,7 +33,7 @@ private func _render(layout: ViewLayout) {
     _10_reCheck(viewLayout: layout)
 }
 
-func _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: ViewLayout) {
+func _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: UIViewLayout) {
     guard let group = viewLayout as? GroupLayout else { return }
     group.layoutItems.removeAll { $0 is _TemptSpacer }
     
@@ -62,12 +62,12 @@ func _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: ViewLayout) {
     }
 }
 
-func _2_apply_AutoFitWidth_For_Label(viewLayout: ViewLayout) {
+func _2_apply_AutoFitWidth_For_Label(viewLayout: UIViewLayout) {
     guard let label = viewLayout.view as? UILabel else { return }
     label.applyFitSize(attr: viewLayout.attr)
 }
 
-func _3_apply_FixWidth_For_SubLayout(viewLayout: ViewLayout) {
+func _3_apply_FixWidth_For_SubLayout(viewLayout: UIViewLayout) {
     guard let group = viewLayout as? GroupLayout else { return }
     group.layoutItems.forEach {
         switch $0.widthDesignValue {
@@ -82,7 +82,7 @@ func _3_apply_FixWidth_For_SubLayout(viewLayout: ViewLayout) {
 //
 //}
 
-func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: ViewLayout) {
+func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: UIViewLayout) {
 
     // HSTACK ONLY
     if let hstack = viewLayout as? HStackLayout {
@@ -145,7 +145,7 @@ func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: ViewLayout) {
     }
 }
 
-func _5_apply_FixHeight_To_SubLayout(viewLayout: ViewLayout) {
+func _5_apply_FixHeight_To_SubLayout(viewLayout: UIViewLayout) {
     guard let setLayout = viewLayout as? GroupLayout else { return }
     setLayout.layoutItems.forEach {
         switch $0.heightDesignValue {
@@ -163,7 +163,7 @@ func _5_apply_FixHeight_To_SubLayout(viewLayout: ViewLayout) {
     }
 }
 
-func _6_apply_FitHeight_To_SubLayout(viewLayout: ViewLayout) {
+func _6_apply_FitHeight_To_SubLayout(viewLayout: UIViewLayout) {
     switch viewLayout.attr.heightDesignValue {
     case .autoFit: ()
     default: return
@@ -191,7 +191,7 @@ private func reUpdateExpectedHeightByMinHeight(_ lItem: LayoutItem) {
     lItem.attr.expectedHeight = max(height, minHeight)
 }
 
-func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
+func _7_apply_GrowHeight_To_SubLayout(viewLayout: UIViewLayout) {
     
     if let vstack = viewLayout as? VStackLayout {
         var remainHeight = 0.0
@@ -278,15 +278,15 @@ func _7_apply_GrowHeight_To_SubLayout(viewLayout: ViewLayout) {
     }
 }
 
-private func _8_apply_Frame_To_SubLayout(viewLayout: ViewLayout) {
+private func _8_apply_Frame_To_SubLayout(viewLayout: UIViewLayout) {
     
 }
 
-private func _9_apply_SelfHeight(viewLayout: ViewLayout) {
+private func _9_apply_SelfHeight(viewLayout: UIViewLayout) {
     
 }
 
-func _10_reCheck(viewLayout: ViewLayout) -> Bool {
+func _10_reCheck(viewLayout: UIViewLayout) -> Bool {
     return false
 }
 
@@ -327,7 +327,7 @@ func fitSizeSetLayout(of lItem: LayoutItem) -> CGSize? {
     return .zero
 }
 
-func transitFrame(viewLayout: ViewLayout, newX: Double, newY: Double) {
+func transitFrame(viewLayout: UIViewLayout, newX: Double, newY: Double) {
     if viewLayout.attr.expectedX == nil {
         viewLayout.attr.expectedX = newX
     }
@@ -350,7 +350,7 @@ func transitFrame(viewLayout: ViewLayout, newX: Double, newY: Double) {
             newY = currentY + dy
         }
         
-        if let layout = subLayout as? ViewLayout {
+        if let layout = subLayout as? UIViewLayout {
             transitFrame(viewLayout: layout, newX: newX, newY: newY)
         }
     }
@@ -360,7 +360,7 @@ private func isSpacer(_ lItem: LayoutItem) -> Bool {
     return lItem is Spacer
 }
 
-private func isLabelLayout(attr: ViewLayout) -> Bool {
+private func isLabelLayout(attr: UIViewLayout) -> Bool {
     return attr.view is UILabel
 }
 

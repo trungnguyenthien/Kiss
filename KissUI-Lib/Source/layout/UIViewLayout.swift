@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class ViewLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem {
+public class UIViewLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem {
     public var isVisible: Bool {
         return view?.isVisible == true
     }
@@ -27,9 +27,9 @@ public class ViewLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem {
     }
 }
 
-extension ViewLayout: NSCopying {
+extension UIViewLayout: NSCopying {
     public func copy(with zone: NSZone? = nil) -> Any {
-        let instance = ViewLayout()
+        let instance = UIViewLayout()
         instance.view = self.view
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return instance

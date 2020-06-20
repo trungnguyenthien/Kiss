@@ -24,14 +24,14 @@ extension Array where Array.Element == LayoutItem {
 
 internal extension LayoutItem {
     var attr: LayoutAttribute {
-        if let item = self as? ViewLayout {
+        if let item = self as? UIViewLayout {
             return item.attr
         }
         return (self as! LayoutAttribute)
     }
     
     var view: UIView? {
-        guard let viewLayout = self as? ViewLayout else { return nil }
+        guard let viewLayout = self as? UIViewLayout else { return nil }
         return viewLayout.view
     }
     

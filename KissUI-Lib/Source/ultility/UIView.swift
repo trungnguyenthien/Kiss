@@ -50,16 +50,9 @@ public extension UIView {
     }
     
     // MARK: - VIEWLAYOUT
-    var layout: ViewLayout {
-        let vlayout = ViewLayout()
+    var layout: UIViewLayout {
+        let vlayout = UIViewLayout()
         vlayout.view = self
         return vlayout
-    }
-    
-    func render(layout: GroupLayout) {
-        layout.view = self
-        layout.attr.expectedX = Double(frame.origin.x)
-        layout.attr.expectedY = Double(frame.origin.y)
-        KissUI.render(layout: layout)
     }
 }

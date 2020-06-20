@@ -23,11 +23,10 @@ public class WrapLayout: GroupLayout {
     }
 }
 
-extension WrapLayout {
-    public override func copy(with zone: NSZone? = nil) -> Any {
+extension WrapLayout: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
         let instance = WrapLayout()
         instance.layoutItems = self.layoutItems.copy(with: zone)
-        instance.view = self.view
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         instance.lineSpacing = self.lineSpacing
         return instance

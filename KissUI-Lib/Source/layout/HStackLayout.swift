@@ -17,18 +17,17 @@ public class HStackLayout: GroupLayout {
     }
 }
 
-extension HStackLayout: LayoutArrangeAble {
-    func makeSubLayout() {
-         _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: self)
-        _2_apply_AutoFitWidth_For_Label(viewLayout: self)
-    }
-}
+//extension HStackLayout: LayoutArrangeAble {
+//    func makeSubLayout() {
+//         _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: self)
+//        _2_apply_AutoFitWidth_For_Label(viewLayout: self)
+//    }
+//}
 
-extension HStackLayout {
-    public override func copy(with zone: NSZone? = nil) -> Any {
+extension HStackLayout: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
         let instance = HStackLayout()
         instance.layoutItems = self.layoutItems.copy(with: zone)
-        instance.view = self.view
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return instance
     }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public func frame(of layout: ViewLayout) -> CGRect {
+public func frame(of layout: UIViewLayout) -> CGRect {
     guard let width = layout.attr.expectedWidth,
         let height = layout.attr.expectedHeight,
         let x = layout.attr.expectedX,
@@ -18,7 +18,7 @@ public func frame(of layout: ViewLayout) -> CGRect {
     return CGRect(x: x, y: y, width: width, height: height)
 }
 
-public func size(of layout: ViewLayout) -> CGSize {
+public func size(of layout: UIViewLayout) -> CGSize {
     return frame(of: layout).size
 }
 

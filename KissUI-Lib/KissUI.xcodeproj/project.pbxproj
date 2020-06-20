@@ -25,7 +25,7 @@
 		8732134A248937E500BE2BEE /* VStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87321349248937E500BE2BEE /* VStackLayout.swift */; };
 		8732134C248937F000BE2BEE /* HStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134B248937F000BE2BEE /* HStackLayout.swift */; };
 		8732134E248937FB00BE2BEE /* WrapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134D248937FB00BE2BEE /* WrapLayout.swift */; };
-		873213502489381C00BE2BEE /* ViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134F2489381C00BE2BEE /* ViewLayout.swift */; };
+		873213502489381C00BE2BEE /* UIViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134F2489381C00BE2BEE /* UIViewLayout.swift */; };
 		873213522489385A00BE2BEE /* VSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213512489385A00BE2BEE /* VSpacer.swift */; };
 		873213542489386200BE2BEE /* _TemptSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213532489386200BE2BEE /* _TemptSpacer.swift */; };
 		8732135C24893A0200BE2BEE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135B24893A0200BE2BEE /* UILabel.swift */; };
@@ -68,7 +68,7 @@
 		87321349248937E500BE2BEE /* VStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackLayout.swift; sourceTree = "<group>"; };
 		8732134B248937F000BE2BEE /* HStackLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackLayout.swift; sourceTree = "<group>"; };
 		8732134D248937FB00BE2BEE /* WrapLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapLayout.swift; sourceTree = "<group>"; };
-		8732134F2489381C00BE2BEE /* ViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLayout.swift; sourceTree = "<group>"; };
+		8732134F2489381C00BE2BEE /* UIViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewLayout.swift; sourceTree = "<group>"; };
 		873213512489385A00BE2BEE /* VSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSpacer.swift; sourceTree = "<group>"; };
 		873213532489386200BE2BEE /* _TemptSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _TemptSpacer.swift; sourceTree = "<group>"; };
 		8732135B24893A0200BE2BEE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 				87321349248937E500BE2BEE /* VStackLayout.swift */,
 				8732134B248937F000BE2BEE /* HStackLayout.swift */,
 				8732134D248937FB00BE2BEE /* WrapLayout.swift */,
-				8732134F2489381C00BE2BEE /* ViewLayout.swift */,
+				8732134F2489381C00BE2BEE /* UIViewLayout.swift */,
 				873213512489385A00BE2BEE /* VSpacer.swift */,
 				873213532489386200BE2BEE /* _TemptSpacer.swift */,
 				8754A1992499916B000A6163 /* LayoutItem.swift */,
@@ -311,7 +311,7 @@
 				8732133224800CD800BE2BEE /* UIView.swift in Sources */,
 				873213382485493B00BE2BEE /* SizeSetter.swift in Sources */,
 				8732134C248937F000BE2BEE /* HStackLayout.swift in Sources */,
-				873213502489381C00BE2BEE /* ViewLayout.swift in Sources */,
+				873213502489381C00BE2BEE /* UIViewLayout.swift in Sources */,
 				873213422487853900BE2BEE /* internalExtension.swift in Sources */,
 				873213542489386200BE2BEE /* _TemptSpacer.swift in Sources */,
 				873213402487826B00BE2BEE /* internalFunction.swift in Sources */,

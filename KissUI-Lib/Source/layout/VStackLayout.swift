@@ -17,11 +17,11 @@ public class VStackLayout: GroupLayout {
     }
 }
 
-extension VStackLayout {
-    public override func copy(with zone: NSZone? = nil) -> Any {
+extension VStackLayout: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
         let instance = VStackLayout()
         instance.layoutItems = self.layoutItems.copy(with: zone)
-        instance.view = self.view
+//        instance.view = self.view
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return instance
     }

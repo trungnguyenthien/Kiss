@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 
-public class GroupLayout: ViewLayout, AlignmentSetter {
+public class GroupLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem, AlignmentSetter {
     var layoutItems = [LayoutItem]()
+    var attr = LayoutAttribute()
     
-    public override var isVisible: Bool {
+    public var isVisible: Bool {
         return hasVisibleView
     }
     
@@ -42,15 +43,14 @@ public class GroupLayout: ViewLayout, AlignmentSetter {
     }
 }
 
-extension GroupLayout {
-    public override func copy(with zone: NSZone? = nil) -> Any {
-        let newInstance = GroupLayout()
-        newInstance.view = self.view
-        newInstance.layoutItems = self.layoutItems.copy(with: zone)
-        newInstance.attr = self.attr.copy(with: zone) as! LayoutAttribute
-        return newInstance
-    }
-}
+//extension GroupLayout: NSCopying {
+//    public func copy(with zone: NSZone? = nil) -> Any {
+//        let newInstance = GroupLayout()
+//        newInstance.layoutItems = self.layoutItems.copy(with: zone)
+//        newInstance.attr = self.attr.copy(with: zone) as! LayoutAttribute
+//        return newInstance
+//    }
+//}
 
 extension GroupLayout {
     var views: [UIView] {
@@ -60,7 +60,7 @@ extension GroupLayout {
             if let group = $0 as? GroupLayout {
                 // Recursive to get all views
                 output.append(contentsOf: group.views)
-            } else if let viewLayout = $0 as? ViewLayout {
+            } else if let viewLayout = $0 as? UIViewLayout {
                 output.append(viewLayout.view)
             }
         }
