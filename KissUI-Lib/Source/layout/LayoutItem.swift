@@ -35,7 +35,7 @@ internal extension LayoutItem {
     }
     
     var subItems: [LayoutItem] {
-        guard let viewLayout = self as? SetViewLayout else { return [] }
+        guard let viewLayout = self as? GroupLayout else { return [] }
         return viewLayout.subItems
     }
 }

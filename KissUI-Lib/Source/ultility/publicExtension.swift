@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-public extension SetViewLayout {
+public extension GroupLayout {
     var views: [UIView] {
         var output = [UIView?]()
         output.append(view)
         subItems.forEach {
-            if let setViewLayout = $0 as? SetViewLayout {
+            if let group = $0 as? GroupLayout {
                 // Recursive to get all views
-                output.append(contentsOf: setViewLayout.views)
+                output.append(contentsOf: group.views)
             } else if let viewLayout = $0 as? ViewLayout {
                 output.append(viewLayout.view)
             }
@@ -38,7 +38,7 @@ public extension Sequence where Element: UIView {
 }
 
 public extension UIView {
-    func addSubviews(inLayout layout: SetViewLayout) {
+    func addSubviews(inLayout layout: GroupLayout) {
         layout.views.removeFromCurrentSuperview()
         layout.views.forEach { addSubview($0) }
     }

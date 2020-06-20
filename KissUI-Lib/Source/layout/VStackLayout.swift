@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class VStackLayout: SetViewLayout {
+public class VStackLayout: GroupLayout {
     override init() {
         super.init()
         self.attr.widthDesignValue = .grow(.max)

@@ -56,7 +56,7 @@ public extension UIView {
         return vlayout
     }
     
-    func render(layout: SetViewLayout) {
+    func render(layout: GroupLayout) {
         layout.view = self
         layout.attr.expectedX = Double(frame.origin.x)
         layout.attr.expectedY = Double(frame.origin.y)

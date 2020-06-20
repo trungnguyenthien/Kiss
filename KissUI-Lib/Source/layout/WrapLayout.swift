@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class WrapLayout: SetViewLayout {
+public class WrapLayout: GroupLayout {
     var lineSpacing = 0.0
     
     override init() {

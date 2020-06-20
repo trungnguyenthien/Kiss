@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     let label2 = "002 Trung".label
     let redView = makeView(.red)
     
-    private var regularLayout: SetViewLayout {
+    private var regularLayout: GroupLayout {
         hstack {
             blueView.layout.width(100).height(50)
             label1.layout.leading(10)

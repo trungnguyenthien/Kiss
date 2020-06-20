@@ -34,31 +34,31 @@ private func _render(layout: ViewLayout) {
 }
 
 func _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: ViewLayout) {
-    guard let setViewLayout = viewLayout as? SetViewLayout else { return }
-    setViewLayout.subItems.removeAll { $0 is _TemptSpacer }
+    guard let group = viewLayout as? GroupLayout else { return }
+    group.subItems.removeAll { $0 is _TemptSpacer }
     
-    switch setViewLayout.attr.horizontalAlignment {
+    switch group.attr.horizontalAlignment {
     case .left:
-        setViewLayout.subItems.insert(temptSpacer, at: 0)
+        group.subItems.insert(temptSpacer, at: 0)
     
     case .right:
-        setViewLayout.subItems.append(temptSpacer)
+        group.subItems.append(temptSpacer)
         
     case .center:
-        setViewLayout.subItems.append(temptSpacer)
-        setViewLayout.subItems.insert(temptSpacer, at: 0)
+        group.subItems.append(temptSpacer)
+        group.subItems.insert(temptSpacer, at: 0)
     }
     
-    switch setViewLayout.attr.verticalAlignment {
+    switch group.attr.verticalAlignment {
     case .top:
-        setViewLayout.subItems.insert(temptSpacer, at: 0)
+        group.subItems.insert(temptSpacer, at: 0)
     
     case .bottom:
-        setViewLayout.subItems.append(temptSpacer)
+        group.subItems.append(temptSpacer)
         
     case .center:
-        setViewLayout.subItems.append(temptSpacer)
-        setViewLayout.subItems.insert(temptSpacer, at: 0)
+        group.subItems.append(temptSpacer)
+        group.subItems.insert(temptSpacer, at: 0)
     }
 }
 
@@ -68,8 +68,8 @@ func _2_apply_AutoFitWidth_For_Label(viewLayout: ViewLayout) {
 }
 
 func _3_apply_FixWidth_For_SubLayout(viewLayout: ViewLayout) {
-    guard let setViewLayout = viewLayout as? SetViewLayout else { return }
-    setViewLayout.subItems.forEach {
+    guard let group = viewLayout as? GroupLayout else { return }
+    group.subItems.forEach {
         switch $0.widthDesignValue {
         case .value(let size): $0.mutableAttribute.expectedWidth = size
         case .grow(_): ()
@@ -146,7 +146,7 @@ func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: ViewLayout) {
 }
 
 func _5_apply_FixHeight_To_SubLayout(viewLayout: ViewLayout) {
-    guard let setLayout = viewLayout as? SetViewLayout else { return }
+    guard let setLayout = viewLayout as? GroupLayout else { return }
     setLayout.subItems.forEach {
         switch $0.heightDesignValue {
         case .value(let size):
@@ -176,7 +176,7 @@ func _6_apply_FitHeight_To_SubLayout(viewLayout: ViewLayout) {
     if isLabelLayout(attr: viewLayout)  {
         selfHeight += Double(viewLayout.labelContent?.frame.height ?? 0)
         viewLayout.attr.expectedHeight = selfHeight
-    } else if let setLayout = viewLayout as? SetViewLayout, !hasAllSubFrame(setLayout) {
+    } else if let setLayout = viewLayout as? GroupLayout, !hasAllSubFrame(setLayout) {
         setLayout.subItems.compactMap { $0 as? LayoutArrangeAble }.forEach { $0.makeSubLayout() }
         if let fitSize = fitSizeSetLayout(of: viewLayout) {
             selfHeight += Double(fitSize.height)
@@ -295,13 +295,13 @@ func _10_reCheck(viewLayout: ViewLayout) -> Bool {
 
 func fitSizeSetLayout(of lItem: LayoutItem) -> CGSize? {
     
-    if let setViewLayout = lItem as? SetViewLayout {
+    if let group = lItem as? GroupLayout {
         var minX = Double.max
         var minY = Double.max
         var maxX = Double.min
         var maxY = Double.min
         
-        setViewLayout.subItems.forEach { (attr) in
+        group.subItems.forEach { (attr) in
             guard !isSpacer(attr) else { return }
             if let subExpectedX = attr.expectedX {
                 minX = min(minX, subExpectedX)
@@ -336,11 +336,11 @@ func transitFrame(viewLayout: ViewLayout, newX: Double, newY: Double) {
         viewLayout.attr.expectedY = newY
     }
     
-    guard let setViewLayout = viewLayout as? SetViewLayout else { return }
+    guard let group = viewLayout as? GroupLayout else { return }
     let dx = newX - (viewLayout.attr.expectedX ?? 0)
     let dy = newY - (viewLayout.attr.expectedY ?? 0)
     
-    setViewLayout.subItems.forEach { (subLayout) in
+    group.subItems.forEach { (subLayout) in
         var newX = subLayout.expectedX ?? 0
         if let currentX = subLayout.expectedX {
             newX = currentX + dx
@@ -378,11 +378,18 @@ private func hasSelfFrame(_ lItem: LayoutItem) -> Bool {
 }
 
 func hasAllSubFrame(_ lItem: LayoutItem) -> Bool {
-    if let setLayout = lItem as? SetViewLayout {
+    if let setLayout = lItem as? GroupLayout {
         return setLayout.subItems.reduce(true) { previous, currentLayout in
             previous && hasAllSubFrame(currentLayout)
         }
     } else {
         return hasSelfFrame(lItem)
     }
+}
+
+func hasVisibleView(item: LayoutItem) -> Bool {
+    if let group = item as? GroupLayout {
+        
+    }
+    return false
 }

@@ -17,5 +17,3 @@ func throwError(_ message: String) {
     trace("🔴 KISSUI: " + message)
     fatalError("🔴 KISSUI: " + message)
 }
-
-

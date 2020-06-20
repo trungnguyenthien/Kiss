@@ -9,7 +9,7 @@
 import Foundation
 
 
-public class HStackLayout: SetViewLayout {
+public class HStackLayout: GroupLayout {
     override init() {
         super.init()
         self.attr.widthDesignValue = .grow(.max)
