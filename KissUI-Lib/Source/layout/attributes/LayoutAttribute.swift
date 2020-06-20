@@ -34,3 +34,27 @@ public class LayoutAttribute {
     var verticalAlignment: AlignVertical = .top
     var horizontalAlignment: AlignHorizontal = .left
 }
+
+extension LayoutAttribute {
+    public func copy(with zone: NSZone? = nil) -> LayoutAttribute {
+        let copy = LayoutAttribute()
+        copy.paddingLeft = self.paddingLeft
+        copy.paddingRight = self.paddingRight
+        copy.paddingTop = self.paddingTop
+        copy.paddingBottom = self.paddingBottom
+        copy.leading = self.leading
+        copy.trailing = self.trailing
+        copy.top = self.top
+        copy.bottom = self.bottom
+        copy.widthDesignValue = self.widthDesignValue
+        copy.heightDesignValue = self.heightDesignValue
+        copy.minHeight = self.minHeight
+        copy.expectedWidth = self.expectedWidth
+        copy.expectedHeight = self.expectedHeight
+        copy.expectedX = self.expectedX
+        copy.expectedY = self.expectedY
+        copy.verticalAlignment = self.verticalAlignment
+        copy.horizontalAlignment = self.horizontalAlignment
+        return copy
+    }  
+}

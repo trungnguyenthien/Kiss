@@ -22,3 +22,11 @@ public class ViewLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem {
     }
 }
 
+extension ViewLayout: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
+        let copy = ViewLayout()
+        copy.view = self.view
+        copy.attr = self.attr.copy(with: zone)
+        return copy
+    }
+}

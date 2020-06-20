@@ -16,3 +16,9 @@ public class Spacer: LayoutAttribute, LayoutItem {
         self.heightDesignValue = .grow(.sameZero)
     }
 }
+
+extension Spacer: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
+        return super.copy(with: zone)
+    }
+}

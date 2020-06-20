@@ -23,3 +23,13 @@ extension HStackLayout: LayoutArrangeAble {
         _2_apply_AutoFitWidth_For_Label(viewLayout: self)
     }
 }
+
+extension HStackLayout {
+    public override func copy(with zone: NSZone? = nil) -> Any {
+        let copy = HStackLayout()
+        copy.subItems = self.subItems.copy(with: zone)
+        copy.view = self.view
+        copy.attr = self.attr.copy(with: zone)
+        return copy
+    }
+}

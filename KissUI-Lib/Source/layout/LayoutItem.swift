@@ -11,6 +11,16 @@ import UIKit
 
 public protocol LayoutItem { }
 
+
+extension Array where Array.Element == LayoutItem {
+    func copy(with zone: NSZone? = nil) -> [Array.Element] {
+        return self.map {
+            guard let cloneable = $0 as? NSCopying else { return $0 }
+            return cloneable.copy(with: zone) as! LayoutItem
+        }
+    }
+}
+
 internal extension LayoutItem {
     var mutableAttribute: LayoutAttribute {
         if let item = self as? ViewLayout {

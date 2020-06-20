@@ -16,3 +16,13 @@ public class VStackLayout: SetViewLayout {
         self.attr.heightDesignValue = .autoFit
     }
 }
+
+extension VStackLayout {
+    public override func copy(with zone: NSZone? = nil) -> Any {
+        let copy = VStackLayout()
+        copy.subItems = self.subItems.copy(with: zone)
+        copy.view = self.view
+        copy.attr = self.attr.copy(with: zone)
+        return copy
+    }
+}
