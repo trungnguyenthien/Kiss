@@ -12,6 +12,12 @@ import UIKit
 public class GroupLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem, AlignmentSetter {
     var layoutItems = [LayoutItem]()
     var attr = LayoutAttribute()
+    var overlayGroups = [GroupLayout]()
+    
+    func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
+        overlayGroups.append(contentsOf: builder())
+        return self
+    }
     
     public var isVisible: Bool {
         return hasVisibleView
@@ -41,11 +47,10 @@ public class GroupLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem, Ali
             guard let spacer = layoutItems[index] as? Spacer, previousItem is Spacer else { return }
             secondarySpacer.append(spacer)
         }
+        
         layoutItems.removeAll { (layoutItem) -> Bool in
-            guard let spacer = layoutItem as? Spacer else { return false }
-            return secondarySpacer.contains { (second) -> Bool in
-                return spacer == second
-            }
+            let spacer = layoutItem as? Spacer
+            return secondarySpacer.contains { spacer == $0 }
         }
     }
 }
@@ -55,6 +60,7 @@ extension GroupLayout: NSCopying {
         let newInstance = GroupLayout()
         newInstance.layoutItems = self.layoutItems.copy(with: zone)
         newInstance.attr = self.attr.copy(with: zone) as! LayoutAttribute
+        newInstance.overlayGroups = self.overlayGroups.copy()
         return newInstance
     }
 }

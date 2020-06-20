@@ -22,6 +22,12 @@ extension Array where Array.Element == LayoutItem {
     }
 }
 
+extension Array where Array.Element == GroupLayout {
+    func copy(with zone: NSZone? = nil) -> [Array.Element] {
+        return self.map { $0.copy(with: zone) as! GroupLayout }
+    }
+}
+
 internal extension LayoutItem {
     var attr: LayoutAttribute {
         if let item = self as? UIViewLayout {

@@ -29,6 +29,7 @@ extension WrapLayout {
         instance.layoutItems = self.layoutItems.copy(with: zone)
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         instance.lineSpacing = self.lineSpacing
+        instance.overlayGroups = self.overlayGroups.copy()
         return instance
     }
 }

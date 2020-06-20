@@ -5,6 +5,13 @@ public struct LayoutItemBuilder {
     }
 }
 
+@_functionBuilder
+public struct GroupLayoutBuilder {
+    public static func buildBlock(_ groups: GroupLayout...) -> [GroupLayout] {
+        groups
+    }
+}
+
 // MARK: - VSTACK LAYOUT
 public func vstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> VStackLayout {
     let stack = VStackLayout()

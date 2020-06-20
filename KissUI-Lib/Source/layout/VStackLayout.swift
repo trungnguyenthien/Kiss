@@ -22,6 +22,7 @@ extension VStackLayout {
         let instance = VStackLayout()
         instance.layoutItems = self.layoutItems.copy(with: zone)
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
+        instance.overlayGroups = self.overlayGroups.copy()
         return instance
     }
 }
