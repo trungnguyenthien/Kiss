@@ -24,8 +24,8 @@ public class HStackLayout: GroupLayout {
 //    }
 //}
 
-extension HStackLayout: NSCopying {
-    public func copy(with zone: NSZone? = nil) -> Any {
+extension HStackLayout {
+    public override func copy(with zone: NSZone? = nil) -> Any {
         let instance = HStackLayout()
         instance.layoutItems = self.layoutItems.copy(with: zone)
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute

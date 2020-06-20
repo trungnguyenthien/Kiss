@@ -17,7 +17,14 @@ public class GroupLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem, Ali
         return hasVisibleView
     }
     
-    func optimize() {
+    func fullOptimize() {
+        selfOptimize()
+        layoutItems
+            .compactMap { $0 as? GroupLayout }
+            .forEach { $0.selfOptimize() }
+    }
+    
+    private func selfOptimize() {
         removeInvisibleItem()
         reduceSpacer()
     }
@@ -43,14 +50,14 @@ public class GroupLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem, Ali
     }
 }
 
-//extension GroupLayout: NSCopying {
-//    public func copy(with zone: NSZone? = nil) -> Any {
-//        let newInstance = GroupLayout()
-//        newInstance.layoutItems = self.layoutItems.copy(with: zone)
-//        newInstance.attr = self.attr.copy(with: zone) as! LayoutAttribute
-//        return newInstance
-//    }
-//}
+extension GroupLayout: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
+        let newInstance = GroupLayout()
+        newInstance.layoutItems = self.layoutItems.copy(with: zone)
+        newInstance.attr = self.attr.copy(with: zone) as! LayoutAttribute
+        return newInstance
+    }
+}
 
 extension GroupLayout {
     var views: [UIView] {
