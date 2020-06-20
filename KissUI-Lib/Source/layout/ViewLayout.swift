@@ -10,8 +10,13 @@ import Foundation
 import UIKit
 
 public class ViewLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem {
+    public var isVisible: Bool {
+        return view?.isVisible == true
+    }
+    
     var attr = LayoutAttribute()
     var view: UIView? = nil
+    
     init() {
         self.attr.widthDesignValue = .autoFit
         self.attr.heightDesignValue = .autoFit

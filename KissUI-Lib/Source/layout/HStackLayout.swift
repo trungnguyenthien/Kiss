@@ -27,7 +27,7 @@ extension HStackLayout: LayoutArrangeAble {
 extension HStackLayout {
     public override func copy(with zone: NSZone? = nil) -> Any {
         let instance = HStackLayout()
-        instance.subItems = self.subItems.copy(with: zone)
+        instance.layoutItems = self.layoutItems.copy(with: zone)
         instance.view = self.view
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return instance

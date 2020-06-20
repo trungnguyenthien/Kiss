@@ -20,7 +20,7 @@ public class VStackLayout: GroupLayout {
 extension VStackLayout {
     public override func copy(with zone: NSZone? = nil) -> Any {
         let instance = VStackLayout()
-        instance.subItems = self.subItems.copy(with: zone)
+        instance.layoutItems = self.layoutItems.copy(with: zone)
         instance.view = self.view
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return instance

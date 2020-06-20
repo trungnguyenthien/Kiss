@@ -10,6 +10,10 @@ import Foundation
 
 
 public class Spacer: LayoutAttribute, LayoutItem {
+    public var isVisible: Bool {
+        return true
+    }
+    
     override init() {
         super.init()
         self.widthDesignValue = .grow(.sameZero)
@@ -20,5 +24,11 @@ public class Spacer: LayoutAttribute, LayoutItem {
 extension Spacer {
     public override func copy(with zone: NSZone? = nil) -> Any {
         return super.copy(with: zone)
+    }
+}
+
+extension Spacer: Equatable {
+    public static func == (lhs: Spacer, rhs: Spacer) -> Bool {
+        return lhs == rhs
     }
 }

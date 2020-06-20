@@ -9,20 +9,21 @@
 import Foundation
 import UIKit
 
-public protocol LayoutItem { }
-
+public protocol LayoutItem {
+    var isVisible: Bool { get }
+}
 
 extension Array where Array.Element == LayoutItem {
     func copy(with zone: NSZone? = nil) -> [Array.Element] {
         return self.map {
-            guard let cloneable = $0 as? NSCopying else { return $0 }
-            return cloneable.copy(with: zone) as! LayoutItem
+            guard let objectCopyAble = $0 as? NSCopying else { return $0 }
+            return objectCopyAble.copy(with: zone) as! LayoutItem
         }
     }
 }
 
 internal extension LayoutItem {
-    var mutableAttribute: LayoutAttribute {
+    var attr: LayoutAttribute {
         if let item = self as? ViewLayout {
             return item.attr
         }
@@ -34,95 +35,95 @@ internal extension LayoutItem {
         return viewLayout.view
     }
     
-    var subItems: [LayoutItem] {
+    var layoutItems: [LayoutItem] {
         guard let viewLayout = self as? GroupLayout else { return [] }
-        return viewLayout.subItems
+        return viewLayout.layoutItems
     }
 }
 
 internal extension LayoutItem {
     var paddingLeft: Double {
-        get {return mutableAttribute.paddingLeft}
-        set {mutableAttribute.paddingLeft = newValue}
+        get {return attr.paddingLeft}
+        set {attr.paddingLeft = newValue}
     }
     
     var paddingRight: Double {
-        get {return mutableAttribute.paddingRight}
-        set {mutableAttribute.paddingRight = newValue}
+        get {return attr.paddingRight}
+        set {attr.paddingRight = newValue}
     }
     
     var paddingTop: Double {
-        get {return mutableAttribute.paddingTop}
-        set {mutableAttribute.paddingTop = newValue}
+        get {return attr.paddingTop}
+        set {attr.paddingTop = newValue}
     }
     
     var paddingBottom: Double {
-        get {return mutableAttribute.paddingBottom}
-        set {mutableAttribute.paddingBottom = newValue}
+        get {return attr.paddingBottom}
+        set {attr.paddingBottom = newValue}
     }
     
     var leading: Double {
-        get {return mutableAttribute.leading}
-        set {mutableAttribute.leading = newValue}
+        get {return attr.leading}
+        set {attr.leading = newValue}
     }
     
     var trailing: Double {
-        get {return mutableAttribute.trailing}
-        set {mutableAttribute.trailing = newValue}
+        get {return attr.trailing}
+        set {attr.trailing = newValue}
     }
     
     var top: Double {
-        get {return mutableAttribute.top}
-        set {mutableAttribute.top = newValue}
+        get {return attr.top}
+        set {attr.top = newValue}
     }
     
     var bottom: Double {
-        get {return mutableAttribute.bottom}
-        set {mutableAttribute.bottom = newValue}
+        get {return attr.bottom}
+        set {attr.bottom = newValue}
     }
     
     var widthDesignValue: DesignWidthValue{
-        get {return mutableAttribute.widthDesignValue}
-        set {mutableAttribute.widthDesignValue = newValue}
+        get {return attr.widthDesignValue}
+        set {attr.widthDesignValue = newValue}
     }
     
     var heightDesignValue: DesignHeightValue{
-        get {return mutableAttribute.heightDesignValue}
-        set {mutableAttribute.heightDesignValue = newValue}
+        get {return attr.heightDesignValue}
+        set {attr.heightDesignValue = newValue}
     }
     
     var minHeight: Double? {
-        get {return mutableAttribute.minHeight}
-        set {mutableAttribute.minHeight = newValue}
+        get {return attr.minHeight}
+        set {attr.minHeight = newValue}
     }
     
     var expectedWidth: Double? {
-        get {return mutableAttribute.expectedWidth}
-        set {mutableAttribute.expectedWidth = newValue}
+        get {return attr.expectedWidth}
+        set {attr.expectedWidth = newValue}
     }
     
     var expectedHeight: Double? {
-        get {return mutableAttribute.expectedHeight}
-        set {mutableAttribute.expectedHeight = newValue}
+        get {return attr.expectedHeight}
+        set {attr.expectedHeight = newValue}
     }
     
     var expectedX: Double? {
-        get {return mutableAttribute.expectedX}
-        set {mutableAttribute.expectedX = newValue}
+        get {return attr.expectedX}
+        set {attr.expectedX = newValue}
     }
     
     var expectedY: Double? {
-        get {return mutableAttribute.expectedY}
-        set {mutableAttribute.expectedY = newValue}
+        get {return attr.expectedY}
+        set {attr.expectedY = newValue}
     }
     
     var verticalAlignment: AlignVertical {
-        get {return mutableAttribute.verticalAlignment}
-        set {mutableAttribute.verticalAlignment = newValue}
+        get {return attr.verticalAlignment}
+        set {attr.verticalAlignment = newValue}
     }
     
     var horizontalAlignment: AlignHorizontal {
-        get {return mutableAttribute.horizontalAlignment}
-        set {mutableAttribute.horizontalAlignment = newValue}
+        get {return attr.horizontalAlignment}
+        set {attr.horizontalAlignment = newValue}
     }
 }
