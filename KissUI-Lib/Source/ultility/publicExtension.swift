@@ -23,18 +23,20 @@ public extension GroupLayout {
         }
         return output.compactMap { $0 }
     }
+    
+    var visibleViews: [UIView] {
+        return views.filter { $0.isVisible }
+    }
+    
+    var hasVisibleView: Bool {
+        return !visibleViews.isEmpty
+    }
 }
 
 public extension Sequence where Element: UIView {
-    func hideAll() {
-        forEach { $0.isHidden = true }
-    }
+    func hideAll() { forEach { $0.isHidden = true } }
     
-    func removeFromCurrentSuperview() {
-        forEach {
-            $0.removeFromSuperview()
-        }
-    }
+    func removeFromCurrentSuperview() { forEach { $0.removeFromSuperview() } }
 }
 
 public extension UIView {
