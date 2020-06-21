@@ -21,3 +21,21 @@ public extension UIView {
         layout.views.forEach { addSubview($0) }
     }
 }
+
+public extension Sequence where Element == Optional<Any> {
+    var compacts: [Element] {
+        compactMap { $0 }
+    }
+}
+
+public extension Sequence {
+    func max<T: Comparable>(`where`: (Element?) -> T) -> T? {
+        let ts = compactMap { $0 }.compactMap { `where`($0) }
+        return ts.sorted { $0 < $1 }.last
+    }
+    
+    func min<T: Comparable>(`where`: (Element?) -> T) -> T? {
+        let ts = compactMap { $0 }.compactMap { `where`($0) }
+        return ts.sorted { $0 < $1 }.first
+    }
+}
