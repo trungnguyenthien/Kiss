@@ -27,8 +27,8 @@ extension Spacer {
     }
 }
 
-extension Spacer: Equatable {
-    public static func == (lhs: Spacer, rhs: Spacer) -> Bool {
-        return lhs == rhs
-    }
-}
+//extension Spacer: Equatable {
+//    public static func == (lhs: Spacer, rhs: Spacer) -> Bool {
+//        return lhs == rhs
+//    }
+//}

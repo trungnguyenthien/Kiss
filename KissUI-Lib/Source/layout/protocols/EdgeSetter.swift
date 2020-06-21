@@ -15,7 +15,7 @@ public protocol EdgeSetter {
     func bottom(_ value: Double) -> Self
 }
 
-public extension EdgeSetter where Self: UIViewLayout {
+public extension EdgeSetter where Self: LayoutItem {
     func leading(_ value: Double) -> Self {
         attr.leading = value
         return self
@@ -36,26 +36,3 @@ public extension EdgeSetter where Self: UIViewLayout {
         return self
     }
 }
-
-public extension EdgeSetter where Self: GroupLayout {
-    func leading(_ value: Double) -> Self {
-        attr.leading = value
-        return self
-    }
-    
-    func trailing(_ value: Double) -> Self {
-        attr.trailing = value
-        return self
-    }
-    
-    func top(_ value: Double) -> Self {
-        attr.top = value
-        return self
-    }
-    
-    func bottom(_ value: Double) -> Self {
-        attr.bottom = value
-        return self
-    }
-}
-

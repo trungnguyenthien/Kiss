@@ -56,3 +56,31 @@ public extension UIView {
         return vlayout
     }
 }
+
+
+extension UIView {
+    var x: Double {
+        get { Double(frame.origin.x) }
+        set { frame.origin.x = CGFloat(newValue) }
+    }
+    
+    var y: Double {
+        get { Double(frame.origin.y) }
+        set { frame.origin.y = CGFloat(newValue) }
+    }
+    
+    var height: Double {
+        get { Double(frame.height) }
+        set { frame.size = CGSize(width: width, height: newValue) }
+    }
+    
+    var width: Double {
+        get { Double(frame.width) }
+        set { frame.size = CGSize(width: newValue, height: height) }
+    }
+    
+    func shift(dx: Double = 0, dy: Double = 0) {
+        x += dx
+        y += dy
+    }
+}

@@ -32,14 +32,17 @@ internal extension LayoutItem {
     var attr: LayoutAttribute {
         if let item = self as? UIViewLayout {
             return item.attr
+        } else if let group = self as? GroupLayout {
+            return group.attr
+        } else {
+            return (self as! LayoutAttribute)
         }
-        return (self as! LayoutAttribute)
     }
     
-    var view: UIView? {
-        guard let viewLayout = self as? UIViewLayout else { return nil }
-        return viewLayout.view
-    }
+//    var view: UIView? {
+//        guard let viewLayout = self as? UIViewLayout else { return nil }
+//        return viewLayout.view
+//    }
     
     var layoutItems: [LayoutItem] {
         guard let viewLayout = self as? GroupLayout else { return [] }

@@ -9,7 +9,9 @@
 import Foundation
 import UIKit
 
-public class GroupLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem, AlignmentSetter {
+protocol GroupLayoutSetter: PaddingSetter, EdgeSetter, SizeSetter, AlignmentSetter {}
+
+public class GroupLayout: LayoutItem, GroupLayoutSetter {
     var layoutItems = [LayoutItem]()
     var attr = LayoutAttribute()
     var overlayGroups = [GroupLayout]()
@@ -21,6 +23,10 @@ public class GroupLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem, Ali
     
     public var isVisible: Bool {
         return hasVisibleView
+    }
+    
+    var arrangeAble: LayoutArrangeAble? {
+        return self as? LayoutArrangeAble
     }
     
     func fullOptimize() {
@@ -39,6 +45,9 @@ public class GroupLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem, Ali
         layoutItems.removeAll { !$0.isVisible }
     }
     
+    /*
+     Loại bỏ trường hợp 2 hay nhiều spacer liên tục nhau thành 1 spacer
+     */
     private func reduceSpacer() {
         var secondarySpacer = [Spacer]()
         layoutItems.enumerated().forEach { (index, item) in
@@ -50,7 +59,7 @@ public class GroupLayout: PaddingSetter, EdgeSetter, SizeSetter, LayoutItem, Ali
         
         layoutItems.removeAll { (layoutItem) -> Bool in
             let spacer = layoutItem as? Spacer
-            return secondarySpacer.contains { spacer == $0 }
+            return secondarySpacer.contains { spacer === $0 }
         }
     }
 }
@@ -68,7 +77,6 @@ extension GroupLayout: NSCopying {
 extension GroupLayout {
     var views: [UIView] {
         var output = [UIView?]()
-        output.append(view)
         layoutItems.forEach {
             if let group = $0 as? GroupLayout {
                 // Recursive to get all views

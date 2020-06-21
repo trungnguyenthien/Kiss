@@ -10,64 +10,64 @@ import Foundation
 import UIKit
 
 protocol LayoutArrangeAble {
-    func makeSubLayout()
+    func arrangeItems()
 }
 
-public func render(layout: UIViewLayout) {
-    if layout.view == nil {
-        throwError("Thuộc tính view của MainLayout đang nil")
+public func render(group: GroupLayout, forRoot view: UIView) {
+    let copy = group.copy() as! GroupLayout
+    copy.attr.expectedX = view.x
+    copy.attr.expectedY = view.y
+    
+    switch copy.attr.widthDesignValue {
+    case .grow(let part) where part == .max: copy.attr.expectedWidth = view.width
+    case .grow: throwError("Root View không thể set width(.grow)")
+    case .value(let width): copy.attr.expectedWidth = width
+    case .autoFit: throwError("Root View không thể set width(.autoFit)")
     }
-    _render(layout: layout)
-}
-
-private func _render(layout: UIViewLayout) {
-    _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: layout)
-    _2_apply_AutoFitWidth_For_Label(viewLayout: layout)
-    _3_apply_FixWidth_For_SubLayout(viewLayout: layout)
-    _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: layout)
-    _5_apply_FixHeight_To_SubLayout(viewLayout: layout)
-    _6_apply_FitHeight_To_SubLayout(viewLayout: layout)
-    _7_apply_GrowHeight_To_SubLayout(viewLayout: layout)
-    _8_apply_Frame_To_SubLayout(viewLayout: layout)
-    _9_apply_SelfHeight(viewLayout: layout)
-    _10_reCheck(viewLayout: layout)
-}
-
-func _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: UIViewLayout) {
-    guard let group = viewLayout as? GroupLayout else { return }
-    group.layoutItems.removeAll { $0 is _TemptSpacer }
     
+    switch copy.attr.heightDesignValue {
+    case .grow(let part) where part == .max: copy.attr.expectedHeight = view.height
+    case .grow: throwError("Root View không thể set height(.grow)")
+    case .whRatio: throwError("Root View không thể set height(.whRatio)")
+    case .autoFit: ()
+    case .value(let height): copy.attr.expectedHeight = height
+    }
+    
+    group.arrangeAble?.arrangeItems()
+}
+
+private func _render(group: GroupLayout) {
+    add_spacer_To_SelfLayout_For_AutoAlignment(group: group)
+    _3_apply_FixWidth_For_SubLayout(viewLayout: group)
+    _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: group)
+    _5_apply_FixHeight_To_SubLayout(viewLayout: group)
+    _7_apply_GrowHeight_To_SubLayout(viewLayout: group)
+    _8_apply_Frame_To_SubLayout(viewLayout: group)
+    _9_apply_SelfHeight(viewLayout: group)
+    _10_reCheck(viewLayout: group)
+}
+
+func add_spacer_To_SelfLayout_For_AutoAlignment(group: GroupLayout) {
     switch group.attr.horizontalAlignment {
-    case .left:
-        group.layoutItems.insert(temptSpacer, at: 0)
-    
-    case .right:
-        group.layoutItems.append(temptSpacer)
-        
+    case .left: group.layoutItems.insert(spacer, at: 0)
+    case .right: group.layoutItems.append(spacer)
     case .center:
-        group.layoutItems.append(temptSpacer)
-        group.layoutItems.insert(temptSpacer, at: 0)
+        group.layoutItems.append(spacer)
+        group.layoutItems.insert(spacer, at: 0)
     }
     
     switch group.attr.verticalAlignment {
-    case .top:
-        group.layoutItems.insert(temptSpacer, at: 0)
-    
-    case .bottom:
-        group.layoutItems.append(temptSpacer)
-        
+    case .top: group.layoutItems.insert(spacer, at: 0)
+    case .bottom: group.layoutItems.append(spacer)
     case .center:
-        group.layoutItems.append(temptSpacer)
-        group.layoutItems.insert(temptSpacer, at: 0)
+        group.layoutItems.append(spacer)
+        group.layoutItems.insert(spacer, at: 0)
     }
+    
+    group.fullOptimize()
 }
 
-func _2_apply_AutoFitWidth_For_Label(viewLayout: UIViewLayout) {
-    guard let label = viewLayout.view as? UILabel else { return }
-    label.applyFitSize(attr: viewLayout.attr)
-}
-
-func _3_apply_FixWidth_For_SubLayout(viewLayout: UIViewLayout) {
+func _3_apply_FixWidth_For_SubLayout(viewLayout: GroupLayout) {
     guard let group = viewLayout as? GroupLayout else { return }
     group.layoutItems.forEach {
         switch $0.widthDesignValue {
@@ -82,7 +82,7 @@ func _3_apply_FixWidth_For_SubLayout(viewLayout: UIViewLayout) {
 //
 //}
 
-func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: UIViewLayout) {
+func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: GroupLayout) {
 
     // HSTACK ONLY
     if let hstack = viewLayout as? HStackLayout {
@@ -127,25 +127,9 @@ func _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: UIViewLayout) {
         }
     }
     
-    // WRAP ONLY
-    if let wrap = viewLayout as? WrapLayout {
-        wrap.layoutItems
-            .forEach {
-                switch $0.widthDesignValue {
-                case .grow(_) where $0.view is UILabel:
-                    printWarning("Trong Wrap không thể gán thuộc tính width(.grow), sẽ ép về width(.autoFit)")
-                    $0.attr.widthDesignValue = .autoFit
-                    
-                case .grow(_):
-                    throwError("Trong Wrap không thể gán width(.grow)")
-                    
-                default: ()
-                }
-            }
-    }
 }
 
-func _5_apply_FixHeight_To_SubLayout(viewLayout: UIViewLayout) {
+func _5_apply_FixHeight_To_SubLayout(viewLayout: GroupLayout) {
     guard let setLayout = viewLayout as? GroupLayout else { return }
     setLayout.layoutItems.forEach {
         switch $0.heightDesignValue {
@@ -163,35 +147,12 @@ func _5_apply_FixHeight_To_SubLayout(viewLayout: UIViewLayout) {
     }
 }
 
-func _6_apply_FitHeight_To_SubLayout(viewLayout: UIViewLayout) {
-    switch viewLayout.attr.heightDesignValue {
-    case .autoFit: ()
-    default: return
-    }
-    
-    var selfHeight = 0.0
-    selfHeight += viewLayout.attr.paddingTop
-    selfHeight += viewLayout.attr.paddingBottom
-    
-    if isLabelLayout(attr: viewLayout)  {
-        selfHeight += Double(viewLayout.labelContent?.frame.height ?? 0)
-        viewLayout.attr.expectedHeight = selfHeight
-    } else if let setLayout = viewLayout as? GroupLayout, !hasAllSubFrame(setLayout) {
-        setLayout.layoutItems.compactMap { $0 as? LayoutArrangeAble }.forEach { $0.makeSubLayout() }
-        if let fitSize = fitSizeSetLayout(of: viewLayout) {
-            selfHeight += Double(fitSize.height)
-            viewLayout.attr.expectedHeight = selfHeight
-        }
-    }
-    reUpdateExpectedHeightByMinHeight(viewLayout)
-}
-
 private func reUpdateExpectedHeightByMinHeight(_ lItem: LayoutItem) {
     guard let height = lItem.expectedHeight, let minHeight = lItem.minHeight else { return }
     lItem.attr.expectedHeight = max(height, minHeight)
 }
 
-func _7_apply_GrowHeight_To_SubLayout(viewLayout: UIViewLayout) {
+func _7_apply_GrowHeight_To_SubLayout(viewLayout: GroupLayout) {
     
     if let vstack = viewLayout as? VStackLayout {
         var remainHeight = 0.0
@@ -278,15 +239,15 @@ func _7_apply_GrowHeight_To_SubLayout(viewLayout: UIViewLayout) {
     }
 }
 
-private func _8_apply_Frame_To_SubLayout(viewLayout: UIViewLayout) {
+private func _8_apply_Frame_To_SubLayout(viewLayout: GroupLayout) {
     
 }
 
-private func _9_apply_SelfHeight(viewLayout: UIViewLayout) {
+private func _9_apply_SelfHeight(viewLayout: GroupLayout) {
     
 }
 
-func _10_reCheck(viewLayout: UIViewLayout) -> Bool {
+func _10_reCheck(viewLayout: GroupLayout) -> Bool {
     return false
 }
 

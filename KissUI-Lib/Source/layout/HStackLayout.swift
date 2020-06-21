@@ -17,13 +17,6 @@ public class HStackLayout: GroupLayout {
     }
 }
 
-//extension HStackLayout: LayoutArrangeAble {
-//    func makeSubLayout() {
-//         _1_add_TempSpacer_To_SelfLayout_For_AutoAlignment(viewLayout: self)
-//        _2_apply_AutoFitWidth_For_Label(viewLayout: self)
-//    }
-//}
-
 extension HStackLayout {
     public override func copy(with zone: NSZone? = nil) -> Any {
         let instance = HStackLayout()
@@ -31,5 +24,51 @@ extension HStackLayout {
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         instance.overlayGroups = self.overlayGroups.copy()
         return instance
+    }
+}
+
+extension HStackLayout: LayoutArrangeAble {
+    func arrangeItems() {
+        add_spacer_To_SelfLayout_For_AutoAlignment(group: self)
+        makeItemsWidth()
+    }
+    
+    private func makeItemsWidth() {
+        var sumPart = 0.0
+        var remainWidth = expectedWidth ?? 0
+        remainWidth -= paddingLeft
+        remainWidth -= paddingRight
+        
+        layoutItems.forEach {
+            switch $0.widthDesignValue {
+            case .value(let fix):
+                $0.attr.expectedWidth = fix
+                remainWidth -= fix
+            case .grow(let part):
+                sumPart += part
+                
+            case .autoFit:
+                if let viewLayout = $0 as? UIViewLayout {
+                    viewLayout.view?.applyFitSize(attr: viewLayout.attr)
+                    $0.attr.expectedWidth = viewLayout.view?.width ?? 0
+                    $0.attr.expectedHeight = viewLayout.view?.height ?? 0
+                    remainWidth -= ($0.attr.expectedWidth ?? 0)
+                }
+                if $0 is GroupLayout {
+                    throwError("Thuộc tính width(.autoFit) chỉ dành cho UIViewLayout")
+                }
+            }
+        }
+        
+        layoutItems.forEach {
+            switch $0.widthDesignValue {
+            case .grow(let part):
+                let myWidth = remainWidth * part / sumPart
+                $0.attr.expectedWidth = myWidth
+                
+            case .value(_): ()
+            case .autoFit: ()
+            }
+        }
     }
 }

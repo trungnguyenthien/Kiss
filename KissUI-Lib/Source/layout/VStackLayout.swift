@@ -26,3 +26,9 @@ extension VStackLayout {
         return instance
     }
 }
+
+extension VStackLayout: LayoutArrangeAble {
+    func arrangeItems() {
+        
+    }
+}

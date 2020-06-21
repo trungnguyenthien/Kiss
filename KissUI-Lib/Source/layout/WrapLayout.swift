@@ -33,3 +33,9 @@ extension WrapLayout {
         return instance
     }
 }
+
+extension WrapLayout: LayoutArrangeAble {
+    func arrangeItems() {
+        
+    }
+}

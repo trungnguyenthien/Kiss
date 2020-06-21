@@ -14,7 +14,7 @@ public protocol AlignmentSetter {
     func align(horizontal value: AlignHorizontal) -> Self
 }
 
-public extension AlignmentSetter where Self: GroupLayout {
+public extension AlignmentSetter where Self: LayoutItem {
     func align(vertical value: AlignVertical) -> Self {
         attr.verticalAlignment = value
         return self

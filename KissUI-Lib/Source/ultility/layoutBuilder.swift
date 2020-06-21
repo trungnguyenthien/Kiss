@@ -55,7 +55,3 @@ public func wrap(@LayoutItemBuilder builder: () -> LayoutItem) -> WrapLayout {
 public var spacer: Spacer {
     return Spacer()
 }
-
-var temptSpacer: _TemptSpacer {
-    return _TemptSpacer()
-}
