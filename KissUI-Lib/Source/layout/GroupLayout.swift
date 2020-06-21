@@ -29,6 +29,10 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
         return self as? LayoutArrangeAble
     }
     
+    var arrangeAbleItems: [LayoutArrangeAble] {
+        return layoutItems.compactMap { $0 as? LayoutArrangeAble }
+    }
+    
     func fullOptimize() {
         selfOptimize()
         layoutItems

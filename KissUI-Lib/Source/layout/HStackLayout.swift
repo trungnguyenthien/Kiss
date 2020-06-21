@@ -27,10 +27,93 @@ extension HStackLayout {
     }
 }
 
+func autofitHeight(item: LayoutItem) -> Double {
+    
+    if let viewlayout = item as? UIViewLayout {
+        let viewHeight = viewlayout.view?.height ?? 0.0
+        return item.paddingTop + viewHeight + item.paddingBottom
+    } else if let group = item as? GroupLayout {
+        var maxY = 0.0
+        group.layoutItems.compactMap { $0 as? UIViewLayout }.forEach {
+            let myMaxY = ($0.expectedY ?? 0) + ($0.expectedHeight ?? 0)
+            maxY = max(maxY, myMaxY)
+        }
+        return maxY + item.paddingBottom
+    }
+    return 0
+}
+
+
 extension HStackLayout: LayoutArrangeAble {
     func arrangeItems() {
-        add_spacer_To_SelfLayout_For_AutoAlignment(group: self)
+        addSpacerForAlignment(group: self)
         makeItemsWidth()
+        
+        arrangeAbleItems.forEach { $0.arrangeItems() }
+        makeItemsFitHeight(lineHeight: lineHeight())
+        makeItemXY()
+    }
+    
+    private func lineHeight() -> Double {
+        var lineHeight = 0.0
+        layoutItems.forEach {
+            let myHeight = $0.expectedHeight ?? autofitHeight(item: $0)
+            lineHeight = max(lineHeight, myHeight)
+        }
+        return lineHeight
+    }
+    
+    private func makeItemXY() {
+        var runX = 0.0
+        var runY = 0.0
+        var lineHeight = 0.0
+        var isInvalidate = false
+        runX += paddingLeft
+        layoutItems.forEach {
+            let myWidth = $0.expectedWidth ?? 0
+            let myHeight = $0.expectedHeight ?? autofitHeight(item: $0)
+            
+            $0.attr.expectedX = runX
+            runX += myWidth
+            lineHeight = max(lineHeight, myHeight)
+        }
+        
+        layoutItems.forEach {
+            switch $0.heightDesignValue {
+            case .grow:
+                let fitHeight = autofitHeight(item: $0)
+                if $0.expectedHeight != fitHeight {
+                    $0.attr.expectedHeight = fitHeight
+                    ($0 as? LayoutArrangeAble)?.arrangeItems()
+                }
+                
+            case .value(_): ()
+            case .autoFit: ()
+            case .whRatio(_): ()
+            }
+        }
+    }
+    
+    private func makeItemsFitHeight(lineHeight: Double) {
+        layoutItems.forEach {
+            let myWidth = $0.attr.expectedWidth ?? 0
+            switch $0.heightDesignValue {
+            case .value(let fixHeight):
+                $0.attr.expectedHeight = fixHeight
+            case .autoFit:
+                $0.attr.expectedHeight = autofitHeight(item: $0)
+            case .whRatio where $0.attr.expectedWidth.isNil:
+                throwError("")
+            case .whRatio(let ratio):
+                $0.attr.expectedHeight = myWidth / ratio
+            case .grow:
+                if $0.attr.expectedHeight != lineHeight {
+                    $0.attr.expectedHeight = lineHeight
+                    ($0 as? LayoutArrangeAble)?.arrangeItems()
+                }
+                
+            }
+        }
     }
     
     private func makeItemsWidth() {
@@ -53,8 +136,7 @@ extension HStackLayout: LayoutArrangeAble {
                     $0.attr.expectedWidth = viewLayout.view?.width ?? 0
                     $0.attr.expectedHeight = viewLayout.view?.height ?? 0
                     remainWidth -= ($0.attr.expectedWidth ?? 0)
-                }
-                if $0 is GroupLayout {
+                } else if $0 is GroupLayout {
                     throwError("Thuộc tính width(.autoFit) chỉ dành cho UIViewLayout")
                 }
             }

@@ -37,8 +37,8 @@ public func render(group: GroupLayout, forRoot view: UIView) {
 }
 
 private func _render(group: GroupLayout) {
-    add_spacer_To_SelfLayout_For_AutoAlignment(group: group)
-    _3_apply_FixWidth_For_SubLayout(viewLayout: group)
+    addSpacerForAlignment(group: group)
+    _3_apply_FixWidth_For_SubLayout(group: group)
     _4_apply_GrowWidth_For_SubLayout_And_Spacer(viewLayout: group)
     _5_apply_FixHeight_To_SubLayout(viewLayout: group)
     _7_apply_GrowHeight_To_SubLayout(viewLayout: group)
@@ -47,7 +47,7 @@ private func _render(group: GroupLayout) {
     _10_reCheck(viewLayout: group)
 }
 
-func add_spacer_To_SelfLayout_For_AutoAlignment(group: GroupLayout) {
+func addSpacerForAlignment(group: GroupLayout) {
     switch group.attr.horizontalAlignment {
     case .left: group.layoutItems.insert(spacer, at: 0)
     case .right: group.layoutItems.append(spacer)
@@ -67,8 +67,7 @@ func add_spacer_To_SelfLayout_For_AutoAlignment(group: GroupLayout) {
     group.fullOptimize()
 }
 
-func _3_apply_FixWidth_For_SubLayout(viewLayout: GroupLayout) {
-    guard let group = viewLayout as? GroupLayout else { return }
+func _3_apply_FixWidth_For_SubLayout(group: GroupLayout) {
     group.layoutItems.forEach {
         switch $0.widthDesignValue {
         case .value(let size): $0.attr.expectedWidth = size
