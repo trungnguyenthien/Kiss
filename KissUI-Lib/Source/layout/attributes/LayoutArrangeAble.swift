@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol LayoutArrangeAble {
-    func arrangeItems(draft: Bool)
+    func arrangeItems(hasAlign: Bool)
 }
 
 public func render(group: GroupLayout, forRoot view: UIView) {
@@ -33,7 +33,7 @@ public func render(group: GroupLayout, forRoot view: UIView) {
     case .value(let height): copy.attr.height = height
     }
     
-    group.arrangeAble?.arrangeItems(draft: false)
+    group.arrangeAble?.arrangeItems(hasAlign: true)
 }
 
 

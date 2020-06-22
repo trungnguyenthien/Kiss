@@ -35,7 +35,7 @@ extension WrapLayout {
 }
 
 extension WrapLayout: LayoutArrangeAble {
-    func arrangeItems(draft: Bool) {
+    func arrangeItems(hasAlign: Bool) {
         
     }
 }

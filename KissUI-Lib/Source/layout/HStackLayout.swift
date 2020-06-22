@@ -64,17 +64,14 @@ func autofitWidth(item: LayoutItem) -> Double {
 
 
 extension HStackLayout: LayoutArrangeAble {
-    func arrangeItems(draft: Bool) {
-        attr.resetDevEdgeValue()                            // Reset lại các giá trị trailing, leading, top, bottom
-        
+    func arrangeItems(hasAlign: Bool) {
         addSpacerForAlignment(group: self)                  // For horizontal alignment
         removeStartLeadingEndTrailing()
-        removeLeadingTrailingIfHasSpacer(draft: draft)
+        removeLeadingTrailingIfHasSpacer(hasAlign: hasAlign)
         makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho UIViewLayout
-        arrangeAbleItems.forEach { $0.arrangeItems(draft: true) } // Dựa vào width đã xác định trước, arrangeItems cho
+        arrangeAbleItems.forEach { $0.arrangeItems(hasAlign: true) } // Dựa vào width đã xác định trước, arrangeItems cho
         let lineHeight = self.makeItemsHeightWithoutPadding()
-        removeLeadingTrailingIfHasSpacer(draft: draft)
-        makeItemXY(lineHeight: lineHeight, draft: draft)
+        makeItemXY(lineHeight: lineHeight, hasAlign: hasAlign)
     }
     
     private func makeItemsHeightWithoutPadding() -> Double {
@@ -123,9 +120,9 @@ extension HStackLayout: LayoutArrangeAble {
         return fitLineHeight
     }
     
-    private func makeItemXY(lineHeight: Double, draft: Bool) {
+    private func makeItemXY(lineHeight: Double, hasAlign: Bool) {
         let itemWithOutSpacer = layoutItems.filter { !$0.isSpacer }
-        let arrangeItems = draft ? itemWithOutSpacer : layoutItems
+        let arrangeItems = !hasAlign ? itemWithOutSpacer : layoutItems
         var runX = 0.0
         runX += attr.userPaddingLeft
         arrangeItems.forEach {
@@ -148,12 +145,12 @@ extension HStackLayout: LayoutArrangeAble {
         noSpacerLayoutItems.last?.attr.trailing = 0
     }
     
-    private func removeLeadingTrailingIfHasSpacer(draft: Bool) {
+    private func removeLeadingTrailingIfHasSpacer(hasAlign: Bool) {
         layoutItems.enumerated().forEach { (index, item) in
             guard item is Spacer else { return }
             layoutItems.element(index - 1)?.attr.trailing = layoutItems.element(index - 1)?.attr.userTrailing ?? 0
             layoutItems.element(index + 1)?.attr.leading = layoutItems.element(index + 1)?.attr.userLeading ?? 0
-            if draft {
+            if !hasAlign {
                 layoutItems.element(index - 1)?.attr.trailing = 0
                 layoutItems.element(index + 1)?.attr.leading = 0
             }
@@ -178,7 +175,7 @@ extension HStackLayout: LayoutArrangeAble {
             case .fit where item is GroupLayout:
                 guard let group = item as? GroupLayout else { return }
                 guard group.attr.width == nil else { return }
-                group.arrangeAble?.arrangeItems(draft: true)
+                group.arrangeAble?.arrangeItems(hasAlign: true)
                 group.attr.width = autofitWidth(item: group)
                 remainWidth -= (item.attr.width ?? 0)
                 

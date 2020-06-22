@@ -35,12 +35,12 @@ class LayoutAttribute {
     var x: Double? = nil
     var y: Double? = nil
     
-    func resetDevEdgeValue() {
-        leading = userLeading
-        trailing = userTrailing
-        top = userTop
-        bottom = userBottom
-    }
+//    func resetDevEdgeValue() {
+//        leading = userLeading
+//        trailing = userTrailing
+//        top = userTop
+//        bottom = userBottom
+//    }
     
     var userVerticalAlign: AlignVertical = .top
     var userHorizontalAlign: AlignHorizontal = .left

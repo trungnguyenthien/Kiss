@@ -29,12 +29,12 @@ extension VStackLayout {
 }
 
 extension VStackLayout: LayoutArrangeAble {
-    func arrangeItems(draft: Bool) {
+    func arrangeItems(hasAlign: Bool) {
         addSpacerForAlignment(group: self) // For vertical alignment
         removeStartEndPadding()
         removePaddingIfHasSpacer()
         makeItemsWidth() //
-        arrangeAbleItems.forEach { $0.arrangeItems(draft: true) } // Dựa vào width đã xác định trước, arrangeItems cho
+        arrangeAbleItems.forEach { $0.arrangeItems(hasAlign: false) } // Dựa vào width đã xác định trước, arrangeItems cho
         makeItemsHeight()
         makeItemXY()
     }
@@ -127,7 +127,7 @@ extension VStackLayout: LayoutArrangeAble {
             case .fit where $0 is GroupLayout:
                 guard let group = $0 as? GroupLayout else { return }
                 guard group.attr.width == nil else { return }
-                group.arrangeAble?.arrangeItems(draft: true)
+                group.arrangeAble?.arrangeItems(hasAlign: false)
                 group.attr.width = autofitWidth(item: group)
                 
             case .fit:
