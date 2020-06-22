@@ -1,5 +1,5 @@
 //
-//  VSpacer.swift
+//  Spacer.swift
 //  KissUI
 //
 //  Created by Trung on 6/4/20.

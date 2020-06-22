@@ -2,46 +2,45 @@
 import Foundation
 import UIKit
 
-public enum DevWidthValue {
+enum DevWidthValue {
     case value(Double)
     case grow(Double) // full = grow(9999999999999)
-    case autoFit
+    case fit
 }
 
-public enum DevHeightValue {
+enum DevHeightValue {
     case value(Double)
-    case autoFit
+    case fit
     case whRatio(Double)
     case grow(Double)
 }
 
 
-public enum DevMaxHeightValue {
+enum DevMaxHeightValue {
     case none
     case value(Double)
-    case infinite
+    case full
     case fit
 }
 
-//
+// -------------
 
 public enum WidthValue {
-    case grow(Double)
+    case fit
     case full
+    case grow(Double)
 }
 
 public enum HeightValue {
-    case autoFit
+    case fit
     case full
-    // height / width
-    case widthPerHeightRatio(Double)
-    case grow(Double)
+    case whRatio(Double) // height / width
 }
 
 public enum MaxHeightValue {
     case none
     case fit
-    case infinite
+    case full
 }
 
 
@@ -64,27 +63,22 @@ public protocol SizeSetter {
 extension SizeSetter where Self: LayoutItem {
     public func size(_ value: CGSize) -> Self {
         attr.userWidth = .value(Double(value.width))
-        attr.devWidth = Double(value.width)
         attr.userHeight = .value(Double(value.height))
-        attr.devHeight = Double(value.height)
         return self
     }
     
     public func size(_ width: Double, _ height: Double?) -> Self {
         attr.userWidth = .value(Double(width))
-        attr.devWidth = width
         if let height = height {
             attr.userHeight = .value(Double(height))
-            attr.devHeight = height
         } else {
-            attr.userHeight = .autoFit
+            attr.userHeight = .fit
         }
         return self
     }
     
     public func width(_ value: Double) -> Self {
         attr.userWidth = .value(Double(value))
-        attr.devWidth = value
         return self
     }
     
@@ -92,22 +86,21 @@ extension SizeSetter where Self: LayoutItem {
         switch value {
         case .grow(let fill): attr.userWidth = .grow(fill)
         case .full: attr.userWidth = .grow(.max)
+        case .fit: attr.userWidth = .fit
         }
         return self
     }
     
     public func height(_ value: Double) -> Self {
         attr.userHeight = .value(Double(value))
-        attr.devHeight = value
         return self
     }
     
     public func height(_ value: HeightValue) -> Self {
         switch value {
-        case .autoFit: attr.userHeight = .autoFit
+        case .fit: attr.userHeight = .fit
         case .full: attr.userHeight = .grow(.max)
-        case .widthPerHeightRatio(let ew): attr.userHeight = .whRatio(ew)
-        case .grow(let part): attr.userHeight = .grow(part)
+        case .whRatio(let ew): attr.userHeight = .whRatio(ew)
         }
         return self
     }
@@ -140,16 +133,11 @@ extension SizeSetter where Self: LayoutItem {
         switch value {
         case .none: attr.userMaxHeight = .none
         case .fit: attr.userMaxHeight = .fit
-        case .infinite: attr.userMaxHeight = .infinite
+        case .full: attr.userMaxHeight = .full
         }
     }
     
     private func setMaxHeight(_ value: Double) {
         attr.userMaxHeight = .value(value)
     }
-    
-//    public func min(height: Double) -> Self {
-//        attr.minHeight = height
-//        return self
-//    }
 }

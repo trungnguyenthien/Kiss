@@ -14,7 +14,7 @@ public class WrapLayout: GroupLayout {
     override init() {
         super.init()
         self.attr.userWidth = .grow(.max)
-        self.attr.userHeight = .autoFit
+        self.attr.userHeight = .fit
     }
     
     public func line(spacing: Double) -> Self {
@@ -35,7 +35,7 @@ extension WrapLayout {
 }
 
 extension WrapLayout: LayoutArrangeAble {
-    func arrangeItems() {
+    func arrangeItems(draft: Bool) {
         
     }
 }

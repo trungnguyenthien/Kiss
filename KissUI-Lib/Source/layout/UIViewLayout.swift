@@ -16,8 +16,9 @@ public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
     var view: UIView? = nil
     
     init() {
-        self.attr.userWidth = .autoFit
-        self.attr.userHeight = .autoFit
+        self.attr.userWidth = .fit
+        self.attr.userHeight = .fit
+        self.attr.userMaxHeight = .fit
     }
     
     public var isVisible: Bool {

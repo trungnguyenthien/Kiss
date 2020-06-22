@@ -20,6 +20,12 @@ public extension PaddingSetter where Self: LayoutItem {
         attr.userPaddingBottom = value
         attr.userPaddingLeft = value
         attr.userPaddingRight = value
+        
+//        attr.devPaddingTop = value
+//        attr.devPaddingBottom = value
+//        attr.devPaddingLeft = value
+//        attr.devPaddingRight = value
+        
         return self
     }
     
@@ -28,6 +34,12 @@ public extension PaddingSetter where Self: LayoutItem {
         attr.userPaddingBottom = bottom
         attr.userPaddingLeft = left
         attr.userPaddingRight = right
+        
+//        attr.devPaddingTop = top
+//        attr.devPaddingBottom = bottom
+//        attr.devPaddingLeft = left
+//        attr.devPaddingRight = right
+        
         return self
     }
 }

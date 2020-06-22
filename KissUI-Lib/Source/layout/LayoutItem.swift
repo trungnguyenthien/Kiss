@@ -34,6 +34,8 @@ internal extension LayoutItem {
             return item.attr
         } else if let group = self as? GroupLayout {
             return group.attr
+        } else if let spacer = self as? Spacer {
+            return spacer.attr
         } else {
             return (self as! LayoutAttribute)
         }
@@ -43,90 +45,98 @@ internal extension LayoutItem {
         guard let viewLayout = self as? GroupLayout else { return [] }
         return viewLayout.layoutItems
     }
+    
+    var isSpacer: Bool {
+        return self is Spacer
+    }
+    
+    var isGroup: Bool {
+        return self is GroupLayout
+    }
 }
 
 internal extension LayoutItem {
-    var userPaddingLeft: Double {
-        get {return attr.userPaddingLeft}
-        set {attr.userPaddingLeft = newValue}
-    }
-    
-    var userPaddingRight: Double {
-        get {return attr.userPaddingRight}
-        set {attr.userPaddingRight = newValue}
-    }
-    
-    var userPaddingTop: Double {
-        get {return attr.userPaddingTop}
-        set {attr.userPaddingTop = newValue}
-    }
-    
-    var userPaddingBottom: Double {
-        get {return attr.userPaddingBottom}
-        set {attr.userPaddingBottom = newValue}
-    }
-    
-    var userLeading: Double {
-        get {return attr.userLeading}
-        set {attr.userLeading = newValue}
-    }
-    
-    var userTrailing: Double {
-        get {return attr.userTrailing}
-        set {attr.userTrailing = newValue}
-    }
-    
-    var userTop: Double {
-        get {return attr.userTop}
-        set {attr.userTop = newValue}
-    }
-    
-    var userBottom: Double {
-        get {return attr.userBottom}
-        set {attr.userBottom = newValue}
-    }
-    
-    var userWidth: DevWidthValue{
-        get {return attr.userWidth}
-        set {attr.userWidth = newValue}
-    }
-    
-    var userHeight: DevHeightValue{
-        get {return attr.userHeight}
-        set {attr.userHeight = newValue}
-    }
-    
-    var userMaxHeight: DevMaxHeightValue {
-        get {return attr.userMaxHeight}
-    }
-    
-    var devWidth: Double? {
-        get {return attr.devWidth}
-        set {attr.devWidth = newValue}
-    }
-    
-    var devHeight: Double? {
-        get {return attr.devHeight}
-        set {attr.devHeight = newValue}
-    }
-    
-    var devX: Double? {
-        get {return attr.devX}
-        set {attr.devX = newValue}
-    }
-    
-    var devY: Double? {
-        get {return attr.devY}
-        set {attr.devY = newValue}
-    }
-    
-    var userVerticalAlign: AlignVertical {
-        get {return attr.userVerticalAlign}
-        set {attr.userVerticalAlign = newValue}
-    }
-    
-    var userHorizontalAlign: AlignHorizontal {
-        get {return attr.userHorizontalAlign}
-        set {attr.userHorizontalAlign = newValue}
-    }
+//    var userPaddingLeft: Double {
+//        get {return attr.userPaddingLeft}
+//        set {attr.userPaddingLeft = newValue}
+//    }
+//    
+//    var userPaddingRight: Double {
+//        get {return attr.userPaddingRight}
+//        set {attr.userPaddingRight = newValue}
+//    }
+//    
+//    var userPaddingTop: Double {
+//        get {return attr.userPaddingTop}
+//        set {attr.userPaddingTop = newValue}
+//    }
+//    
+//    var userPaddingBottom: Double {
+//        get {return attr.userPaddingBottom}
+//        set {attr.userPaddingBottom = newValue}
+//    }
+//    
+//    var userLeading: Double {
+//        get {return attr.userLeading}
+//        set {attr.userLeading = newValue}
+//    }
+//    
+//    var userTrailing: Double {
+//        get {return attr.userTrailing}
+//        set {attr.userTrailing = newValue}
+//    }
+//    
+//    var userTop: Double {
+//        get {return attr.userTop}
+//        set {attr.userTop = newValue}
+//    }
+//    
+//    var userBottom: Double {
+//        get {return attr.userBottom}
+//        set {attr.userBottom = newValue}
+//    }
+//    
+//    var userWidth: DevWidthValue{
+//        get {return attr.userWidth}
+//        set {attr.userWidth = newValue}
+//    }
+//    
+//    var userHeight: DevHeightValue{
+//        get {return attr.userHeight}
+//        set {attr.userHeight = newValue}
+//    }
+//    
+//    var userMaxHeight: DevMaxHeightValue {
+//        get {return attr.userMaxHeight}
+//    }
+//    
+//    var devWidth: Double? {
+//        get {return attr.devWidth}
+//        set {attr.devWidth = newValue}
+//    }
+//    
+//    var devHeight: Double? {
+//        get {return attr.devHeight}
+//        set {attr.devHeight = newValue}
+//    }
+//    
+//    var devX: Double? {
+//        get {return attr.devX}
+//        set {attr.devX = newValue}
+//    }
+//    
+//    var devY: Double? {
+//        get {return attr.devY}
+//        set {attr.devY = newValue}
+//    }
+//    
+//    var userVerticalAlign: AlignVertical {
+//        get {return attr.userVerticalAlign}
+//        set {attr.userVerticalAlign = newValue}
+//    }
+//    
+//    var userHorizontalAlign: AlignHorizontal {
+//        get {return attr.userHorizontalAlign}
+//        set {attr.userHorizontalAlign = newValue}
+//    }
 }

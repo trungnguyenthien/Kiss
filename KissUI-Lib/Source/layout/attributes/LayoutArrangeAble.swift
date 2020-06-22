@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol LayoutArrangeAble {
-    func arrangeItems()
+    func arrangeItems(draft: Bool)
 }
 
 public func render(group: GroupLayout, forRoot view: UIView) {
@@ -22,18 +22,18 @@ public func render(group: GroupLayout, forRoot view: UIView) {
     case .grow(let part) where part == .max: copy.attr.devWidth = view.width
     case .grow: throwError("Root View không thể set width(.grow)")
     case .value(let width): copy.attr.devWidth = width
-    case .autoFit: throwError("Root View không thể set width(.autoFit)")
+    case .fit: throwError("Root View không thể set width(.autoFit)")
     }
     
     switch copy.attr.userHeight {
     case .grow(let part) where part == .max: copy.attr.devHeight = view.height
     case .grow: throwError("Root View không thể set height(.grow)")
     case .whRatio: throwError("Root View không thể set height(.whRatio)")
-    case .autoFit: ()
+    case .fit: ()
     case .value(let height): copy.attr.devHeight = height
     }
     
-    group.arrangeAble?.arrangeItems()
+    group.arrangeAble?.arrangeItems(draft: false)
 }
 
 
