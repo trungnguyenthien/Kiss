@@ -35,17 +35,11 @@ class LayoutAttribute {
     var x: Double? = nil
     var y: Double? = nil
     
-    func resetDevValue() {
-        
+    func resetDevEdgeValue() {
         leading = userLeading
         trailing = userTrailing
         top = userTop
         bottom = userBottom
-        
-        width = nil
-        height = nil
-        x = nil
-        y = nil
     }
     
     var userVerticalAlign: AlignVertical = .top
@@ -70,7 +64,7 @@ extension LayoutAttribute: NSCopying {
         instance.userVerticalAlign = self.userVerticalAlign
         instance.userHorizontalAlign = self.userHorizontalAlign
         
-        instance.resetDevValue()
+        instance.resetDevEdgeValue()
         return instance
     }  
 }

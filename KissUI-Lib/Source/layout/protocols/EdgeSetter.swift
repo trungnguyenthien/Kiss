@@ -18,21 +18,25 @@ public protocol EdgeSetter {
 public extension EdgeSetter where Self: LayoutItem {
     func leading(_ value: Double) -> Self {
         attr.userLeading = value
+        attr.leading = value
         return self
     }
     
     func trailing(_ value: Double) -> Self {
         attr.userTrailing = value
+        attr.trailing = value
         return self
     }
     
     func top(_ value: Double) -> Self {
         attr.userTop = value
+        attr.top = value
         return self
     }
     
     func bottom(_ value: Double) -> Self {
         attr.userBottom = value
+        attr.bottom = value
         return self
     }
 }

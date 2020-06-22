@@ -65,107 +65,78 @@ func autofitWidth(item: LayoutItem) -> Double {
 
 extension HStackLayout: LayoutArrangeAble {
     func arrangeItems(draft: Bool) {
-        attr.resetDevValue()
+        attr.resetDevEdgeValue()                            // Reset lại các giá trị trailing, leading, top, bottom
         
-        addSpacerForAlignment(group: self) // For horizontal alignment
+        addSpacerForAlignment(group: self)                  // For horizontal alignment
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer(draft: draft)
-        makeItemsWidth() // Xác định width(.value), width(.grow), xác định width(.autoFit) cho UIViewLayout
+        makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho UIViewLayout
         arrangeAbleItems.forEach { $0.arrangeItems(draft: true) } // Dựa vào width đã xác định trước, arrangeItems cho
-        let lineHeight = self.fitLineHeightWithoutPadding()
-//        makeItemsHeight(lineHeight: lineHeight)
+        let lineHeight = self.makeItemsHeightWithoutPadding()
         makeItemXY(lineHeight: lineHeight, draft: draft)
     }
     
-    private func fitLineHeightWithoutPadding() -> Double {
+    private func makeItemsHeightWithoutPadding() -> Double {
         layoutItems.forEach {
             switch $0.attr.userHeight {
-            case .value(let height): $0.attr.height = height
-            case .whRatio(let wh): $0.attr.height = ($0.attr.width ?? 0) / wh
-                
-            case .fit, .grow:
-                $0.attr.height = autofitHeight(item: $0)
+            case .value(let height):    $0.attr.height = height
+            case .whRatio(let wh):      $0.attr.height = ($0.attr.width ?? 0) / wh
+            case .fit, .grow:           $0.attr.height = autofitHeight(item: $0)
             }
         }
         
         var fitLineHeight = 0.0
         layoutItems.forEach {
             switch $0.attr.userMaxHeight {
-            case .none, .full: break
+            case .none: ()                                  // Không tính lại, vẫn giữ height được xác định từ userHeight
+            case .full: ()                                  // Sẽ xác định ở bước dưới
+                
             case .value(let max):
-                guard max < ($0.attr.height ?? 0) else { break }
+                let devHeight = $0.attr.height ?? 0
+                guard max < devHeight else { break }
                 $0.attr.height = max
+                
             case .fit:
                 let myFitHeight = autofitHeight(item: $0)
                 let devHeight = $0.attr.height ?? 0
                 guard myFitHeight < devHeight else { break }
                 $0.attr.height = myFitHeight
             }
-            let myHeight = $0.attr.height ?? 0
-            fitLineHeight = max(fitLineHeight, myHeight)
+            let devHeight = $0.attr.height ?? 0
+            fitLineHeight = max(fitLineHeight, devHeight)
+        }
+        
+        layoutItems.forEach {
+            switch $0.attr.userMaxHeight {
+            case .none: ()                                  // Không tính lại, vẫn giữ height được xác định từ userHeight
+            case .value: ()                                 // Không tính lại vì đã xác định ở trên rồi
+                
+            case .full:
+                let devHeight = $0.attr.height ?? 0
+                guard fitLineHeight < devHeight else { break }
+                $0.attr.height = fitLineHeight
+                
+            case .fit: ()       // Không tính lại vì đã xác định ở trên rồi
+            }
         }
         return fitLineHeight
     }
     
-    private func makeItemXYForDraff(lineHeight: Double) {
-        var runX = 0.0
-        runX += attr.userPaddingLeft
-        layoutItems.filter { !$0.isSpacer }.forEach {
-            let myWidth = $0.attr.width ?? 0
-            let myHeight = $0.attr.height ?? 0
-            $0.attr.x = runX
-            runX += myWidth
-            let remainSpaceY = (lineHeight - myHeight)
-            switch $0.attr.userVerticalAlign {
-            case .top: $0.attr.y = attr.userTop
-            case .bottom: $0.attr.y = attr.userTop + remainSpaceY
-            case .center: $0.attr.y = attr.userTop + remainSpaceY / 2
-            }
-        }
-    }
-    
     private func makeItemXY(lineHeight: Double, draft: Bool) {
-        if draft {
-            makeItemXYForDraff(lineHeight: lineHeight)
-            return
-        }
-        
+        let itemWithOutSpacer = layoutItems.filter { !$0.isSpacer }
+        let arrangeItems = draft ? itemWithOutSpacer : layoutItems
         var runX = 0.0
         runX += attr.userPaddingLeft
-        layoutItems.forEach {
+        arrangeItems.forEach {
             let myWidth = $0.attr.width ?? 0
             let myHeight = $0.attr.height ?? 0
             $0.attr.x = runX
             runX += myWidth
             let remainSpaceY = (lineHeight - myHeight)
             switch $0.attr.userVerticalAlign {
-            case .top: $0.attr.y = attr.userTop
-            case .bottom: $0.attr.y = attr.userTop + remainSpaceY
-            case .center: $0.attr.y = attr.userTop + remainSpaceY / 2
-            }
-        }
-    }
-    
-    private func makeItemsHeight(lineHeight: Double) {
-        layoutItems.forEach {
-            let myWidth = $0.attr.width ?? 0
-            switch $0.attr.userHeight {
-            case .value(let fixHeight):
-                $0.attr.height = fixHeight
-                
-            case .fit:
-                $0.attr.height = autofitHeight(item: $0)
-                
-            case .whRatio where $0.attr.width.isNil:
-                throwError("")
-                
-            case .whRatio(let ratio):
-                $0.attr.height = myWidth / ratio
-                
-            case .grow:
-                guard $0.attr.height != lineHeight else { return }
-                $0.attr.height = lineHeight
-                ($0 as? LayoutArrangeAble)?.arrangeItems(draft: true)
+            case .top: $0.attr.y = attr.top
+            case .bottom: $0.attr.y = attr.top + remainSpaceY
+            case .center: $0.attr.y = attr.top + remainSpaceY / 2
             }
         }
     }
