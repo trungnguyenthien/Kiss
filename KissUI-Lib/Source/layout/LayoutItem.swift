@@ -39,11 +39,6 @@ internal extension LayoutItem {
         }
     }
     
-//    var view: UIView? {
-//        guard let viewLayout = self as? UIViewLayout else { return nil }
-//        return viewLayout.view
-//    }
-    
     var layoutItems: [LayoutItem] {
         guard let viewLayout = self as? GroupLayout else { return [] }
         return viewLayout.layoutItems
@@ -51,87 +46,87 @@ internal extension LayoutItem {
 }
 
 internal extension LayoutItem {
-    var paddingLeft: Double {
-        get {return attr.paddingLeft}
-        set {attr.paddingLeft = newValue}
+    var userPaddingLeft: Double {
+        get {return attr.userPaddingLeft}
+        set {attr.userPaddingLeft = newValue}
     }
     
-    var paddingRight: Double {
-        get {return attr.paddingRight}
-        set {attr.paddingRight = newValue}
+    var userPaddingRight: Double {
+        get {return attr.userPaddingRight}
+        set {attr.userPaddingRight = newValue}
     }
     
-    var paddingTop: Double {
-        get {return attr.paddingTop}
-        set {attr.paddingTop = newValue}
+    var userPaddingTop: Double {
+        get {return attr.userPaddingTop}
+        set {attr.userPaddingTop = newValue}
     }
     
-    var paddingBottom: Double {
-        get {return attr.paddingBottom}
-        set {attr.paddingBottom = newValue}
+    var userPaddingBottom: Double {
+        get {return attr.userPaddingBottom}
+        set {attr.userPaddingBottom = newValue}
     }
     
-    var leading: Double {
-        get {return attr.leading}
-        set {attr.leading = newValue}
+    var userLeading: Double {
+        get {return attr.userLeading}
+        set {attr.userLeading = newValue}
     }
     
-    var trailing: Double {
-        get {return attr.trailing}
-        set {attr.trailing = newValue}
+    var userTrailing: Double {
+        get {return attr.userTrailing}
+        set {attr.userTrailing = newValue}
     }
     
-    var top: Double {
-        get {return attr.top}
-        set {attr.top = newValue}
+    var userTop: Double {
+        get {return attr.userTop}
+        set {attr.userTop = newValue}
     }
     
-    var bottom: Double {
-        get {return attr.bottom}
-        set {attr.bottom = newValue}
+    var userBottom: Double {
+        get {return attr.userBottom}
+        set {attr.userBottom = newValue}
     }
     
-    var widthDesignValue: DesignWidthValue{
-        get {return attr.widthDesignValue}
-        set {attr.widthDesignValue = newValue}
+    var userWidth: DevWidthValue{
+        get {return attr.userWidth}
+        set {attr.userWidth = newValue}
     }
     
-    var heightDesignValue: DesignHeightValue{
-        get {return attr.heightDesignValue}
-        set {attr.heightDesignValue = newValue}
+    var userHeight: DevHeightValue{
+        get {return attr.userHeight}
+        set {attr.userHeight = newValue}
     }
     
-    var maxHeight: MaxHeightValue {
-        get {return attr.maxHeight}
+    var userMaxHeight: DevMaxHeightValue {
+        get {return attr.userMaxHeight}
     }
     
-    var expectedWidth: Double? {
-        get {return attr.expectedWidth}
-        set {attr.expectedWidth = newValue}
+    var devWidth: Double? {
+        get {return attr.devWidth}
+        set {attr.devWidth = newValue}
     }
     
-    var expectedHeight: Double? {
-        get {return attr.expectedHeight}
-        set {attr.expectedHeight = newValue}
+    var devHeight: Double? {
+        get {return attr.devHeight}
+        set {attr.devHeight = newValue}
     }
     
-    var expectedX: Double? {
-        get {return attr.expectedX}
-        set {attr.expectedX = newValue}
+    var devX: Double? {
+        get {return attr.devX}
+        set {attr.devX = newValue}
     }
     
-    var expectedY: Double? {
-        get {return attr.expectedY}
-        set {attr.expectedY = newValue}
+    var devY: Double? {
+        get {return attr.devY}
+        set {attr.devY = newValue}
     }
     
-    var verticalAlignment: AlignVertical {
-        get {return attr.verticalAlignment}
-        set {attr.verticalAlignment = newValue}
+    var userVerticalAlign: AlignVertical {
+        get {return attr.userVerticalAlign}
+        set {attr.userVerticalAlign = newValue}
     }
     
-    var horizontalAlignment: AlignHorizontal {
-        get {return attr.horizontalAlignment}
-        set {attr.horizontalAlignment = newValue}
+    var userHorizontalAlign: AlignHorizontal {
+        get {return attr.userHorizontalAlign}
+        set {attr.userHorizontalAlign = newValue}
     }
 }

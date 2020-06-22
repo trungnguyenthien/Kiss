@@ -8,27 +8,23 @@
 
 import Foundation
 
-
-public class Spacer: LayoutAttribute, LayoutItem {
+public class Spacer: LayoutItem {
     public var isVisible: Bool {
         return true
     }
     
-    override init() {
-        super.init()
-        self.widthDesignValue = .grow(.sameZero)
-        self.heightDesignValue = .grow(.sameZero)
+    var attr = LayoutAttribute()
+    
+    init() {
+        self.attr.userWidth = .grow(.sameZero)
+        self.attr.userHeight = .grow(.sameZero)
     }
 }
 
-extension Spacer {
-    public override func copy(with zone: NSZone? = nil) -> Any {
-        return super.copy(with: zone)
+extension Spacer: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
+        let instance = Spacer()
+        instance.attr = self.attr
+        return instance
     }
 }
-
-//extension Spacer: Equatable {
-//    public static func == (lhs: Spacer, rhs: Spacer) -> Bool {
-//        return lhs == rhs
-//    }
-//}

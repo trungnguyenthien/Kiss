@@ -15,22 +15,22 @@ protocol LayoutArrangeAble {
 
 public func render(group: GroupLayout, forRoot view: UIView) {
     let copy = group.copy() as! GroupLayout
-    copy.attr.expectedX = view.x
-    copy.attr.expectedY = view.y
+    copy.attr.devX = view.x
+    copy.attr.devY = view.y
     
-    switch copy.attr.widthDesignValue {
-    case .grow(let part) where part == .max: copy.attr.expectedWidth = view.width
+    switch copy.attr.userWidth {
+    case .grow(let part) where part == .max: copy.attr.devWidth = view.width
     case .grow: throwError("Root View không thể set width(.grow)")
-    case .value(let width): copy.attr.expectedWidth = width
+    case .value(let width): copy.attr.devWidth = width
     case .autoFit: throwError("Root View không thể set width(.autoFit)")
     }
     
-    switch copy.attr.heightDesignValue {
-    case .grow(let part) where part == .max: copy.attr.expectedHeight = view.height
+    switch copy.attr.userHeight {
+    case .grow(let part) where part == .max: copy.attr.devHeight = view.height
     case .grow: throwError("Root View không thể set height(.grow)")
     case .whRatio: throwError("Root View không thể set height(.whRatio)")
     case .autoFit: ()
-    case .value(let height): copy.attr.expectedHeight = height
+    case .value(let height): copy.attr.devHeight = height
     }
     
     group.arrangeAble?.arrangeItems()
@@ -38,7 +38,7 @@ public func render(group: GroupLayout, forRoot view: UIView) {
 
 
 func addSpacerForAlignment(group: GroupLayout) {
-    switch group.attr.horizontalAlignment {
+    switch group.attr.userHorizontalAlign {
     case .left: group.layoutItems.insert(spacer, at: 0)
     case .right: group.layoutItems.append(spacer)
     case .center:
@@ -46,7 +46,7 @@ func addSpacerForAlignment(group: GroupLayout) {
         group.layoutItems.insert(spacer, at: 0)
     }
     
-    switch group.attr.verticalAlignment {
+    switch group.attr.userVerticalAlign {
     case .top: group.layoutItems.insert(spacer, at: 0)
     case .bottom: group.layoutItems.append(spacer)
     case .center:

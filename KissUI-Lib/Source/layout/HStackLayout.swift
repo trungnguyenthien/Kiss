@@ -12,8 +12,8 @@ import Foundation
 public class HStackLayout: GroupLayout {
     override init() {
         super.init()
-        self.attr.widthDesignValue = .grow(.max)
-        self.attr.heightDesignValue = .autoFit
+        self.attr.userWidth = .grow(.max)
+        self.attr.userHeight = .autoFit
     }
 }
 
@@ -30,16 +30,16 @@ extension HStackLayout {
 func autofitHeight(item: LayoutItem) -> Double {
     if let viewlayout = item as? UIViewLayout {
         let viewHeight = viewlayout.view?.height ?? 0.0
-        return item.paddingTop + viewHeight + item.paddingBottom
+        return item.userPaddingTop + viewHeight + item.userPaddingBottom
         
     } else if let group = item as? GroupLayout {
         var maxY = 0.0
         group.layoutItems.forEach {
-            let myY = $0.expectedY ?? 0
-            let myHeight = $0.expectedHeight ?? 0
+            let myY = $0.devY ?? 0
+            let myHeight = $0.devHeight ?? 0
             maxY = max(maxY, myY + myHeight)
         }
-        return maxY + item.paddingBottom
+        return maxY + item.userPaddingBottom
     }
     return 0
 }
@@ -47,16 +47,16 @@ func autofitHeight(item: LayoutItem) -> Double {
 func autofitWidth(item: LayoutItem) -> Double {
     if let viewlayout = item as? UIViewLayout {
         let viewWidth = viewlayout.view?.width ?? 0.0
-        return item.paddingLeft + viewWidth + item.paddingRight
+        return item.userPaddingLeft + viewWidth + item.userPaddingRight
         
     } else if let group = item as? GroupLayout {
         var maxX = 0.0
         group.layoutItems.forEach {
-            let myX = $0.expectedX ?? 0
-            let myWidth = $0.expectedWidth ?? 0
+            let myX = $0.devX ?? 0
+            let myWidth = $0.devWidth ?? 0
             maxX = max(maxX, myX + myWidth)
         }
-        return maxX + item.paddingRight
+        return maxX + item.userPaddingRight
     }
     return 0
 }
@@ -76,8 +76,8 @@ extension HStackLayout: LayoutArrangeAble {
         var lineHeight = 0.0
         layoutItems.forEach {
             var myHeight = 0.0
-            switch $0.heightDesignValue {
-            case .value, .whRatio: myHeight = $0.expectedHeight ?? 0
+            switch $0.userHeight {
+            case .value, .whRatio: myHeight = $0.devHeight ?? 0
             case .autoFit, .grow: myHeight = autofitHeight(item: $0)
             }
             lineHeight = max(lineHeight, myHeight)
@@ -87,40 +87,40 @@ extension HStackLayout: LayoutArrangeAble {
     
     private func makeItemXY(lineHeight: Double) {
         var runX = 0.0
-        runX += paddingLeft
+        runX += userPaddingLeft
         layoutItems.forEach {
-            let myWidth = $0.expectedWidth ?? 0
-            let myHeight = $0.expectedHeight ?? 0
-            $0.attr.expectedX = runX
+            let myWidth = $0.devWidth ?? 0
+            let myHeight = $0.devHeight ?? 0
+            $0.attr.devX = runX
             runX += myWidth
             let remainSpaceY = (lineHeight - myHeight)
-            switch $0.verticalAlignment {
-            case .top: $0.attr.expectedY = paddingTop
-            case .bottom: $0.attr.expectedY = paddingTop + remainSpaceY
-            case .center: $0.attr.expectedY = paddingTop + remainSpaceY / 2
+            switch $0.userVerticalAlign {
+            case .top: $0.attr.devY = userPaddingTop
+            case .bottom: $0.attr.devY = userPaddingTop + remainSpaceY
+            case .center: $0.attr.devY = userPaddingTop + remainSpaceY / 2
             }
         }
     }
     
     private func makeItemsHeight(lineHeight: Double) {
         layoutItems.forEach {
-            let myWidth = $0.attr.expectedWidth ?? 0
-            switch $0.heightDesignValue {
+            let myWidth = $0.attr.devWidth ?? 0
+            switch $0.userHeight {
             case .value(let fixHeight):
-                $0.attr.expectedHeight = fixHeight
+                $0.attr.devHeight = fixHeight
                 
             case .autoFit:
-                $0.attr.expectedHeight = autofitHeight(item: $0)
+                $0.attr.devHeight = autofitHeight(item: $0)
                 
-            case .whRatio where $0.attr.expectedWidth.isNil:
+            case .whRatio where $0.attr.devWidth.isNil:
                 throwError("")
                 
             case .whRatio(let ratio):
-                $0.attr.expectedHeight = myWidth / ratio
+                $0.attr.devHeight = myWidth / ratio
                 
             case .grow:
-                guard $0.attr.expectedHeight != lineHeight else { return }
-                $0.attr.expectedHeight = lineHeight
+                guard $0.attr.devHeight != lineHeight else { return }
+                $0.attr.devHeight = lineHeight
                 ($0 as? LayoutArrangeAble)?.arrangeItems()
             }
         }
@@ -128,14 +128,14 @@ extension HStackLayout: LayoutArrangeAble {
     
     private func makeItemsWidth() {
         var sumPart = 0.0
-        var remainWidth = expectedWidth ?? 0
-        remainWidth -= paddingLeft
-        remainWidth -= paddingRight
+        var remainWidth = devWidth ?? 0
+        remainWidth -= userPaddingLeft
+        remainWidth -= userPaddingRight
         
         layoutItems.forEach {
-            switch $0.widthDesignValue {
+            switch $0.userWidth {
             case .value(let fix):
-                $0.attr.expectedWidth = fix
+                $0.attr.devWidth = fix
                 remainWidth -= fix
                 
             case .grow(let part):
@@ -143,25 +143,25 @@ extension HStackLayout: LayoutArrangeAble {
                 
             case .autoFit where $0 is GroupLayout:
                 guard let group = $0 as? GroupLayout else { return }
-                guard group.expectedWidth == nil else { return }
+                guard group.devWidth == nil else { return }
                 group.arrangeAble?.arrangeItems()
-                group.attr.expectedWidth = autofitWidth(item: group)
-                remainWidth -= ($0.attr.expectedWidth ?? 0)
+                group.attr.devWidth = autofitWidth(item: group)
+                remainWidth -= ($0.attr.devWidth ?? 0)
                 
             case .autoFit:
                 guard let viewLayout = $0 as? UIViewLayout else { return }
                 viewLayout.view?.applyFitSize(attr: viewLayout.attr)
-                viewLayout.attr.expectedWidth = viewLayout.view?.width ?? 0
-                viewLayout.attr.expectedHeight = viewLayout.view?.height ?? 0
-                remainWidth -= ($0.attr.expectedWidth ?? 0)
+                viewLayout.attr.devWidth = viewLayout.view?.width ?? 0
+                viewLayout.attr.devHeight = viewLayout.view?.height ?? 0
+                remainWidth -= ($0.attr.devWidth ?? 0)
             }
         }
         
         layoutItems.forEach {
-            switch $0.widthDesignValue {
+            switch $0.userWidth {
             case .grow(let part):
                 let myWidth = remainWidth * part / sumPart
-                $0.attr.expectedWidth = myWidth
+                $0.attr.devWidth = myWidth
                 
             case .value, .autoFit: ()
             }

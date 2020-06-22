@@ -19,26 +19,26 @@ extension UIView {
     }
     
     private func defaultViewFitSize(attr: LayoutAttribute) {
-        switch (attr.widthDesignValue, attr.heightDesignValue) {
+        switch (attr.userWidth, attr.userHeight) {
         case (.autoFit, _), (_, .autoFit):
             sizeToFit()
         default: ()
         }
         
         let fitSize = frame.size
-        switch attr.widthDesignValue {
-        case .autoFit: attr.expectedWidth = Double(fitSize.width)
+        switch attr.userWidth {
+        case .autoFit: attr.devWidth = Double(fitSize.width)
         default: ()
         }
         
-        switch attr.heightDesignValue {
-        case .autoFit: attr.expectedHeight = Double(fitSize.height)
+        switch attr.userHeight {
+        case .autoFit: attr.devHeight = Double(fitSize.height)
         default: ()
         }
     }
     
     private func labelFitSize(attr: LayoutAttribute) {
-        switch (attr.widthDesignValue, attr.heightDesignValue) {
+        switch (attr.userWidth, attr.userHeight) {
         case (.autoFit, _), (_, .autoFit):
             frame.size.width = CGFloat(Double.max)
             frame.size.height = CGFloat(Double.max)
@@ -47,13 +47,13 @@ extension UIView {
         }
         
         let fitSize = frame.size
-        switch attr.widthDesignValue {
-        case .autoFit: attr.expectedWidth = Double(fitSize.width)
+        switch attr.userWidth {
+        case .autoFit: attr.devWidth = Double(fitSize.width)
         default: ()
         }
         
-        switch attr.heightDesignValue {
-        case .autoFit: attr.expectedHeight = Double(fitSize.height)
+        switch attr.userHeight {
+        case .autoFit: attr.devHeight = Double(fitSize.height)
         default: ()
         }
     }

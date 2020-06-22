@@ -16,12 +16,12 @@ public protocol AlignmentSetter {
 
 public extension AlignmentSetter where Self: LayoutItem {
     func align(vertical value: AlignVertical) -> Self {
-        attr.verticalAlignment = value
+        attr.userVerticalAlign = value
         return self
     }
     
     func align(horizontal value: AlignHorizontal) -> Self {
-        attr.horizontalAlignment = value
+        attr.userHorizontalAlign = value
         return self
     }
 }

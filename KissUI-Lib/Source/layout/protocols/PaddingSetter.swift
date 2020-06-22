@@ -16,18 +16,18 @@ public protocol PaddingSetter {
 
 public extension PaddingSetter where Self: LayoutItem {
     func padding(_ value: Double) -> Self {
-        attr.paddingTop = value
-        attr.paddingBottom = value
-        attr.paddingLeft = value
-        attr.paddingRight = value
+        attr.userPaddingTop = value
+        attr.userPaddingBottom = value
+        attr.userPaddingLeft = value
+        attr.userPaddingRight = value
         return self
     }
     
     func padding(top: Double, bottom: Double, left: Double, right: Double) -> Self {
-        attr.paddingTop = top
-        attr.paddingBottom = bottom
-        attr.paddingLeft = left
-        attr.paddingRight = right
+        attr.userPaddingTop = top
+        attr.userPaddingBottom = bottom
+        attr.userPaddingLeft = left
+        attr.userPaddingRight = right
         return self
     }
 }

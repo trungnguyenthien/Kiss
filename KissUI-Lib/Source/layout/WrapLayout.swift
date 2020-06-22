@@ -13,8 +13,8 @@ public class WrapLayout: GroupLayout {
     
     override init() {
         super.init()
-        self.attr.widthDesignValue = .grow(.max)
-        self.attr.heightDesignValue = .autoFit
+        self.attr.userWidth = .grow(.max)
+        self.attr.userHeight = .autoFit
     }
     
     public func line(spacing: Double) -> Self {

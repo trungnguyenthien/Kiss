@@ -10,52 +10,51 @@ import Foundation
 import UIKit
 
 
-
-public class LayoutAttribute {
-    var paddingLeft: Double = 0 // internal(set)
-    var paddingRight: Double = 0
-    var paddingTop: Double = 0
-    var paddingBottom: Double = 0
+class LayoutAttribute {
+    var userPaddingLeft: Double = 0 // internal(set)
+    var userPaddingRight: Double = 0
+    var userPaddingTop: Double = 0
+    var userPaddingBottom: Double = 0
     
-    var leading: Double = 0
-    var trailing: Double = 0
+    var userLeading: Double = 0
+    var userTrailing: Double = 0
     
-    var top: Double = 0
-    var bottom: Double = 0
+    var userTop: Double = 0
+    var userBottom: Double = 0
     
-    var widthDesignValue = DesignWidthValue.grow(1)
-    var heightDesignValue = DesignHeightValue.autoFit
-    var maxHeight = MaxHeightValue.none
+    var userWidth = DevWidthValue.grow(1)
+    var userHeight = DevHeightValue.autoFit
+    var userMaxHeight = DevMaxHeightValue.none
     
-    var expectedWidth: Double? = nil
-    var expectedHeight: Double? = nil
-    var expectedX: Double? = nil
-    var expectedY: Double? = nil
+    var devWidth: Double? = nil
+    var devHeight: Double? = nil
+    var devX: Double? = nil
+    var devY: Double? = nil
     
-    var verticalAlignment: AlignVertical = .top
-    var horizontalAlignment: AlignHorizontal = .left
+    var userVerticalAlign: AlignVertical = .top
+    var userHorizontalAlign: AlignHorizontal = .left
 }
 
 extension LayoutAttribute: NSCopying {
     public func copy(with zone: NSZone? = nil) -> Any {
         let instance = LayoutAttribute()
-        instance.paddingLeft = self.paddingLeft
-        instance.paddingRight = self.paddingRight
-        instance.paddingTop = self.paddingTop
-        instance.paddingBottom = self.paddingBottom
-        instance.leading = self.leading
-        instance.trailing = self.trailing
-        instance.top = self.top
-        instance.bottom = self.bottom
-        instance.widthDesignValue = self.widthDesignValue
-        instance.heightDesignValue = self.heightDesignValue
-        instance.maxHeight = self.maxHeight
-        instance.expectedWidth = self.expectedWidth
-        instance.expectedHeight = self.expectedHeight
-        instance.expectedX = self.expectedX
-        instance.expectedY = self.expectedY
-        instance.verticalAlignment = self.verticalAlignment
-        instance.horizontalAlignment = self.horizontalAlignment
+        instance.userPaddingLeft = self.userPaddingLeft
+        instance.userPaddingRight = self.userPaddingRight
+        instance.userPaddingTop = self.userPaddingTop
+        instance.userPaddingBottom = self.userPaddingBottom
+        instance.userLeading = self.userLeading
+        instance.userTrailing = self.userTrailing
+        instance.userTop = self.userTop
+        instance.userBottom = self.userBottom
+        instance.userWidth = self.userWidth
+        instance.userHeight = self.userHeight
+        instance.userMaxHeight = self.userMaxHeight
+        instance.devWidth = self.devWidth
+        instance.devHeight = self.devHeight
+        instance.devX = self.devX
+        instance.devY = self.devY
+        instance.userVerticalAlign = self.userVerticalAlign
+        instance.userHorizontalAlign = self.userHorizontalAlign
         return instance
     }  
 }
