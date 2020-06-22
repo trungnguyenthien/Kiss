@@ -16,45 +16,36 @@ class LayoutAttribute {
     var userPaddingTop: Double = 0
     var userPaddingBottom: Double = 0
     
-//    var devPaddingLeft: Double = 0 // internal(set)
-//    var devPaddingRight: Double = 0
-//    var devPaddingTop: Double = 0
-//    var devPaddingBottom: Double = 0
-    
     var userLeading: Double = 0
     var userTrailing: Double = 0
     var userTop: Double = 0
     var userBottom: Double = 0
     
-    var devLeading: Double = 0
-    var devTrailing: Double = 0
-    var devTop: Double = 0
-    var devBottom: Double = 0
+    var leading: Double = 0
+    var trailing: Double = 0
+    var top: Double = 0
+    var bottom: Double = 0
     
     var userWidth = DevWidthValue.grow(1)
     var userHeight = DevHeightValue.fit
     var userMaxHeight = DevMaxHeightValue.none
     
-    var devWidth: Double? = nil
-    var devHeight: Double? = nil
-    var devX: Double? = nil
-    var devY: Double? = nil
+    var width: Double? = nil
+    var height: Double? = nil
+    var x: Double? = nil
+    var y: Double? = nil
     
     func resetDevValue() {
-//        devPaddingLeft = userPaddingLeft
-//        devPaddingRight = userPaddingRight
-//        devPaddingTop = userPaddingTop
-//        devPaddingBottom = userPaddingBottom
         
-        devLeading = userLeading
-        devTrailing = userTrailing
-        devTop = userTop
-        devBottom = userBottom
+        leading = userLeading
+        trailing = userTrailing
+        top = userTop
+        bottom = userBottom
         
-        devWidth = nil
-        devHeight = nil
-        devX = nil
-        devY = nil
+        width = nil
+        height = nil
+        x = nil
+        y = nil
     }
     
     var userVerticalAlign: AlignVertical = .top

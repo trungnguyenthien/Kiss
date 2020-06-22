@@ -27,12 +27,12 @@ extension UIView {
         
         let fitSize = frame.size
         switch attr.userWidth {
-        case .fit: attr.devWidth = Double(fitSize.width)
+        case .fit: attr.width = Double(fitSize.width)
         default: ()
         }
         
         switch attr.userHeight {
-        case .fit: attr.devHeight = Double(fitSize.height)
+        case .fit: attr.height = Double(fitSize.height)
         default: ()
         }
     }
@@ -48,12 +48,12 @@ extension UIView {
         
         let fitSize = frame.size
         switch attr.userWidth {
-        case .fit: attr.devWidth = Double(fitSize.width)
+        case .fit: attr.width = Double(fitSize.width)
         default: ()
         }
         
         switch attr.userHeight {
-        case .fit: attr.devHeight = Double(fitSize.height)
+        case .fit: attr.height = Double(fitSize.height)
         default: ()
         }
     }

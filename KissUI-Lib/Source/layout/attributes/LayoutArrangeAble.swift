@@ -15,22 +15,22 @@ protocol LayoutArrangeAble {
 
 public func render(group: GroupLayout, forRoot view: UIView) {
     let copy = group.copy() as! GroupLayout
-    copy.attr.devX = view.x
-    copy.attr.devY = view.y
+    copy.attr.x = view.x
+    copy.attr.y = view.y
     
     switch copy.attr.userWidth {
-    case .grow(let part) where part == .max: copy.attr.devWidth = view.width
+    case .grow(let part) where part == .max: copy.attr.width = view.width
     case .grow: throwError("Root View không thể set width(.grow)")
-    case .value(let width): copy.attr.devWidth = width
+    case .value(let width): copy.attr.width = width
     case .fit: throwError("Root View không thể set width(.autoFit)")
     }
     
     switch copy.attr.userHeight {
-    case .grow(let part) where part == .max: copy.attr.devHeight = view.height
+    case .grow(let part) where part == .max: copy.attr.height = view.height
     case .grow: throwError("Root View không thể set height(.grow)")
     case .whRatio: throwError("Root View không thể set height(.whRatio)")
     case .fit: ()
-    case .value(let height): copy.attr.devHeight = height
+    case .value(let height): copy.attr.height = height
     }
     
     group.arrangeAble?.arrangeItems(draft: false)
