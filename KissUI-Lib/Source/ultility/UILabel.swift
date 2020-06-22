@@ -56,7 +56,5 @@ extension UIView {
         case .autoFit: attr.expectedHeight = Double(fitSize.height)
         default: ()
         }
-        
-        updateForMinHeight(item: attr)
     }
 }

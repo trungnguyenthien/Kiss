@@ -8,31 +8,6 @@
 
 import Foundation
 
-public enum DesignWidthValue {
-    case value(Double)
-    case grow(Double) // full = grow(9999999999999)
-    case autoFit
-}
-
-public enum WidthValue {
-    case grow(Double)
-    case full
-}
-
-public enum DesignHeightValue {
-    case value(Double)
-    case autoFit
-    case whRatio(Double)
-    case grow(Double)
-}
-
-public enum HeightValue {
-    case autoFit
-    case full
-    // height / width
-    case widthPerHeightRatio(Double)
-    case grow(Double)
-}
 
 public enum AlignHorizontal {
     case left, right, center

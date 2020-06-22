@@ -123,7 +123,6 @@ extension HStackLayout: LayoutArrangeAble {
                 $0.attr.expectedHeight = lineHeight
                 ($0 as? LayoutArrangeAble)?.arrangeItems()
             }
-            updateForMinHeight(item: $0.attr)
         }
     }
     

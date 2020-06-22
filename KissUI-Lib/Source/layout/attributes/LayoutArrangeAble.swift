@@ -56,9 +56,3 @@ func addSpacerForAlignment(group: GroupLayout) {
     
     group.fullOptimize()
 }
-
-func updateForMinHeight(item: LayoutAttribute) {
-    guard let currentHeight = item.expectedHeight,
-        let minHeight = item.minHeight else { return }
-    item.expectedHeight = max(currentHeight, minHeight)
-}

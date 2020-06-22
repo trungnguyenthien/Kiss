@@ -9,10 +9,10 @@
 import Foundation
 
 public protocol EdgeSetter {
-    func leading(_ value: Double) -> Self
-    func trailing(_ value: Double) -> Self
-    func top(_ value: Double) -> Self
-    func bottom(_ value: Double) -> Self
+    @discardableResult func leading(_ value: Double) -> Self
+    @discardableResult func trailing(_ value: Double) -> Self
+    @discardableResult func top(_ value: Double) -> Self
+    @discardableResult func bottom(_ value: Double) -> Self
 }
 
 public extension EdgeSetter where Self: LayoutItem {

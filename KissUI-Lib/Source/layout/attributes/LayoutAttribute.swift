@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+
+
 public class LayoutAttribute {
     var paddingLeft: Double = 0 // internal(set)
     var paddingRight: Double = 0
@@ -23,8 +25,7 @@ public class LayoutAttribute {
     
     var widthDesignValue = DesignWidthValue.grow(1)
     var heightDesignValue = DesignHeightValue.autoFit
-    
-    var minHeight: Double? = nil
+    var maxHeight = MaxHeightValue.none
     
     var expectedWidth: Double? = nil
     var expectedHeight: Double? = nil
@@ -48,7 +49,7 @@ extension LayoutAttribute: NSCopying {
         instance.bottom = self.bottom
         instance.widthDesignValue = self.widthDesignValue
         instance.heightDesignValue = self.heightDesignValue
-        instance.minHeight = self.minHeight
+        instance.maxHeight = self.maxHeight
         instance.expectedWidth = self.expectedWidth
         instance.expectedHeight = self.expectedHeight
         instance.expectedX = self.expectedX

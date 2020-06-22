@@ -2,17 +2,59 @@
 import Foundation
 import UIKit
 
+public enum DesignWidthValue {
+    case value(Double)
+    case grow(Double) // full = grow(9999999999999)
+    case autoFit
+}
+
+public enum WidthValue {
+    case grow(Double)
+    case full
+}
+
+public enum DesignHeightValue {
+    case value(Double)
+    case autoFit
+    case whRatio(Double)
+    case grow(Double)
+}
+
+public enum HeightValue {
+    case autoFit
+    case full
+    // height / width
+    case widthPerHeightRatio(Double)
+    case grow(Double)
+}
+
+public enum DesignMaxHeightValue {
+    case none
+    case fit
+    case infinite
+}
+
+public enum MaxHeightValue {
+    case none
+    case value(Double)
+    case infinite
+    case fit
+}
+
 public protocol SizeSetter {
-    func min(height: Double) -> Self
+    @discardableResult func width(_ value: Double) -> Self
+    @discardableResult func width(_ value: WidthValue) -> Self
     
-    func width(_ value: Double) -> Self
-    func width(_ value: WidthValue) -> Self
+    @discardableResult func height(_ value: Double) -> Self
+    @discardableResult func height(_ value: Double, max: DesignMaxHeightValue) -> Self
+    @discardableResult func height(_ value: Double, max: Double) -> Self
     
-    func height(_ value: Double) -> Self
-    func height(_ value: HeightValue) -> Self
+    @discardableResult func height(_ value: HeightValue) -> Self
+    @discardableResult func height(_ value: HeightValue, max: DesignMaxHeightValue) -> Self
+    @discardableResult func height(_ value: HeightValue, max: Double) -> Self
     
-    func size(_ value: CGSize) -> Self
-    func size(_ width: Double, _ height: Double?) -> Self
+    @discardableResult func size(_ value: CGSize) -> Self
+    @discardableResult func size(_ width: Double, _ height: Double?) -> Self
 }
 
 extension SizeSetter where Self: LayoutItem {
@@ -66,8 +108,44 @@ extension SizeSetter where Self: LayoutItem {
         return self
     }
     
-    public func min(height: Double) -> Self {
-        attr.minHeight = height
+    public func height(_ value: Double, max: DesignMaxHeightValue) -> Self {
+        height(value)
+        setMaxHeight(max)
         return self
     }
+    
+    public func height(_ value: Double, max: Double) -> Self {
+        height(value)
+        setMaxHeight(max)
+        return self
+    }
+    
+    public func height(_ value: HeightValue, max: DesignMaxHeightValue) -> Self {
+        height(value)
+        setMaxHeight(max)
+        return self
+    }
+    
+    public func height(_ value: HeightValue, max: Double) -> Self {
+        height(value)
+        setMaxHeight(max)
+        return self
+    }
+    
+    private func setMaxHeight(_ value: DesignMaxHeightValue) {
+        switch value {
+        case .none: attr.maxHeight = .none
+        case .fit: attr.maxHeight = .fit
+        case .infinite: attr.maxHeight = .infinite
+        }
+    }
+    
+    private func setMaxHeight(_ value: Double) {
+        attr.maxHeight = .value(value)
+    }
+    
+//    public func min(height: Double) -> Self {
+//        attr.minHeight = height
+//        return self
+//    }
 }

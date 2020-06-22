@@ -10,8 +10,8 @@ import Foundation
 
 
 public protocol AlignmentSetter {
-    func align(vertical value: AlignVertical) -> Self
-    func align(horizontal value: AlignHorizontal) -> Self
+    @discardableResult func align(vertical value: AlignVertical) -> Self
+    @discardableResult func align(horizontal value: AlignHorizontal) -> Self
 }
 
 public extension AlignmentSetter where Self: LayoutItem {

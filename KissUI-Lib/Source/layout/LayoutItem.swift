@@ -101,9 +101,8 @@ internal extension LayoutItem {
         set {attr.heightDesignValue = newValue}
     }
     
-    var minHeight: Double? {
-        get {return attr.minHeight}
-        set {attr.minHeight = newValue}
+    var maxHeight: MaxHeightValue {
+        get {return attr.maxHeight}
     }
     
     var expectedWidth: Double? {

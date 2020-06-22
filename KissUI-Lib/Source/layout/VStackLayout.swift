@@ -32,7 +32,7 @@ extension VStackLayout: LayoutArrangeAble {
         addSpacerForAlignment(group: self) // For vertical alignment
         makeItemsWidth() //
         arrangeAbleItems.forEach { $0.arrangeItems() } // Dựa vào width đã xác định trước, arrangeItems cho
-        makeItemsFitHeight()
+        makeItemsHeight()
         makeItemXY()
     }
     
@@ -54,7 +54,7 @@ extension VStackLayout: LayoutArrangeAble {
         }
     }
     
-    private func makeItemsFitHeight() {
+    private func makeItemsHeight() {
         var remainHeight = expectedHeight ?? 0
         remainHeight -= paddingTop
         remainHeight -= paddingBottom
@@ -63,12 +63,10 @@ extension VStackLayout: LayoutArrangeAble {
             switch $0.heightDesignValue {
             case .value(let fixHeight):
                 $0.attr.expectedHeight = fixHeight
-                updateForMinHeight(item: $0.attr)
                 remainHeight -= $0.attr.expectedHeight ?? 0
                 
             case .autoFit:
                 $0.attr.expectedHeight = autofitHeight(item: $0)
-                updateForMinHeight(item: $0.attr)
                 remainHeight -= $0.attr.expectedHeight ?? 0
                 
             case .whRatio where $0.attr.expectedWidth.isNil:
@@ -77,7 +75,6 @@ extension VStackLayout: LayoutArrangeAble {
             case .whRatio(let ratio):
                 let myWidth = $0.attr.expectedWidth ?? 0
                 $0.attr.expectedHeight = myWidth / ratio
-                updateForMinHeight(item: $0.attr)
                 remainHeight -= $0.attr.expectedHeight ?? 0
                 
             case .grow(let part):
@@ -90,7 +87,6 @@ extension VStackLayout: LayoutArrangeAble {
             case .value, .autoFit,.whRatio: break
             case .grow(let part):
                 $0.attr.expectedHeight = remainHeight * part / sumPart
-                updateForMinHeight(item: $0.attr)
             }
         }
         

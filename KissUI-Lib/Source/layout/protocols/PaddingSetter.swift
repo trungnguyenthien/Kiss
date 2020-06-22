@@ -10,8 +10,8 @@ import Foundation
 
 
 public protocol PaddingSetter {
-    func padding(_ value: Double) -> Self
-    func padding(top: Double, bottom: Double, left: Double, right: Double) -> Self
+    @discardableResult func padding(_ value: Double) -> Self
+    @discardableResult func padding(top: Double, bottom: Double, left: Double, right: Double) -> Self
 }
 
 public extension PaddingSetter where Self: LayoutItem {
