@@ -73,6 +73,7 @@ extension HStackLayout: LayoutArrangeAble {
         makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho UIViewLayout
         arrangeAbleItems.forEach { $0.arrangeItems(draft: true) } // Dựa vào width đã xác định trước, arrangeItems cho
         let lineHeight = self.makeItemsHeightWithoutPadding()
+        removeLeadingTrailingIfHasSpacer(draft: draft)
         makeItemXY(lineHeight: lineHeight, draft: draft)
     }
     
