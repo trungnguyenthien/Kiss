@@ -68,17 +68,20 @@ extension HStackLayout: LayoutArrangeAble {
         addSpacerForAlignment(group: self)                  // For horizontal alignment
         removeStartLeadingEndTrailing()
         let hasAlign = forceWidth != nil && forceHeight != nil
+        
         removeLeadingTrailingIfHasSpacer(hasAlign: hasAlign)
         makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho UIViewLayout
-        arrangeAbleItems.forEach {
+        arrangeAbleItems.forEach { // Dựa vào width đã xác định trước, arrangeItems cho fitHeight
             let item = ($0 as? LayoutItem)
             $0.arrangeItems(forceWidth: item?.attr.width , forceHeight: nil)
-        } // Dựa vào width đã xác định trước, arrangeItems cho
+        }
         let lineHeight = self.makeItemsHeightWithoutPadding()
-        arrangeAbleItems.forEach {
+        
+        arrangeAbleItems.forEach { // arrangeItems với width, height chính xác
             let item = ($0 as? LayoutItem)
             $0.arrangeItems(forceWidth: item?.attr.width , forceHeight: item?.attr.height)
-        } // Dựa vào width đã xác định trước, arrangeItems cho
+        }
+        
         makeItemXY(lineHeight: lineHeight, hasAlign: hasAlign)
     }
     
@@ -122,7 +125,7 @@ extension HStackLayout: LayoutArrangeAble {
                 guard fitLineHeight < devHeight else { break }
                 $0.attr.height = fitLineHeight
                 
-            case .fit: ()       // Không tính lại vì đã xác định ở trên rồi
+            case .fit: ()                                   // Không tính lại vì đã xác định ở trên rồi
             }
         }
         return fitLineHeight
