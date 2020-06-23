@@ -28,7 +28,7 @@ extension HStackLayout {
     }
 }
 
-func autofitHeight(item: LayoutItem) -> Double {
+func autofitHeightWithPadding(item: LayoutItem) -> Double {
     if let viewlayout = item as? UIViewLayout {
         let viewHeight = viewlayout.view?.height ?? 0.0
         return item.attr.userPaddingTop + viewHeight + item.attr.userPaddingBottom
@@ -45,7 +45,7 @@ func autofitHeight(item: LayoutItem) -> Double {
     return 0
 }
 
-func autofitWidth(item: LayoutItem) -> Double {
+func autofitWidthWithPadding(item: LayoutItem) -> Double {
     if let viewlayout = item as? UIViewLayout {
         let viewWidth = viewlayout.view?.width ?? 0.0
         return item.attr.userPaddingLeft + viewWidth + item.attr.userPaddingRight
@@ -64,13 +64,21 @@ func autofitWidth(item: LayoutItem) -> Double {
 
 
 extension HStackLayout: LayoutArrangeAble {
-    func arrangeItems(hasAlign: Bool) {
+    func arrangeItems(forceWidth: Double?, forceHeight: Double?) {
         addSpacerForAlignment(group: self)                  // For horizontal alignment
         removeStartLeadingEndTrailing()
+        let hasAlign = forceWidth != nil && forceHeight != nil
         removeLeadingTrailingIfHasSpacer(hasAlign: hasAlign)
         makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho UIViewLayout
-        arrangeAbleItems.forEach { $0.arrangeItems(hasAlign: true) } // Dựa vào width đã xác định trước, arrangeItems cho
+        arrangeAbleItems.forEach {
+            let item = ($0 as? LayoutItem)
+            $0.arrangeItems(forceWidth: item?.attr.width , forceHeight: nil)
+        } // Dựa vào width đã xác định trước, arrangeItems cho
         let lineHeight = self.makeItemsHeightWithoutPadding()
+        arrangeAbleItems.forEach {
+            let item = ($0 as? LayoutItem)
+            $0.arrangeItems(forceWidth: item?.attr.width , forceHeight: item?.attr.height)
+        } // Dựa vào width đã xác định trước, arrangeItems cho
         makeItemXY(lineHeight: lineHeight, hasAlign: hasAlign)
     }
     
@@ -79,7 +87,7 @@ extension HStackLayout: LayoutArrangeAble {
             switch $0.attr.userHeight {
             case .value(let height):    $0.attr.height = height
             case .whRatio(let wh):      $0.attr.height = ($0.attr.width ?? 0) / wh
-            case .fit, .grow:           $0.attr.height = autofitHeight(item: $0)
+            case .fit, .grow:           $0.attr.height = autofitHeightWithPadding(item: $0)
             }
         }
         
@@ -95,7 +103,7 @@ extension HStackLayout: LayoutArrangeAble {
                 $0.attr.height = max
                 
             case .fit:
-                let myFitHeight = autofitHeight(item: $0)
+                let myFitHeight = autofitHeightWithPadding(item: $0)
                 let devHeight = $0.attr.height ?? 0
                 guard myFitHeight < devHeight else { break }
                 $0.attr.height = myFitHeight
@@ -175,8 +183,8 @@ extension HStackLayout: LayoutArrangeAble {
             case .fit where item is GroupLayout:
                 guard let group = item as? GroupLayout else { return }
                 guard group.attr.width == nil else { return }
-                group.arrangeAble?.arrangeItems(hasAlign: true)
-                group.attr.width = autofitWidth(item: group)
+                group.arrangeAble?.arrangeItems(forceWidth: nil, forceHeight: nil)
+                group.attr.width = autofitWidthWithPadding(item: group)
                 remainWidth -= (item.attr.width ?? 0)
                 
             case .fit:

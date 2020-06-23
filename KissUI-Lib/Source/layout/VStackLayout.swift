@@ -29,12 +29,12 @@ extension VStackLayout {
 }
 
 extension VStackLayout: LayoutArrangeAble {
-    func arrangeItems(hasAlign: Bool) {
+    func arrangeItems(forceWidth: Double?, forceHeight: Double?) {
         addSpacerForAlignment(group: self) // For vertical alignment
         removeStartEndPadding()
         removePaddingIfHasSpacer()
         makeItemsWidth() //
-        arrangeAbleItems.forEach { $0.arrangeItems(hasAlign: false) } // Dựa vào width đã xác định trước, arrangeItems cho
+        arrangeAbleItems.forEach { $0.arrangeItems(forceWidth: nil, forceHeight: nil) } // Dựa vào width đã xác định trước, arrangeItems cho
         makeItemsHeight()
         makeItemXY()
     }
@@ -83,7 +83,7 @@ extension VStackLayout: LayoutArrangeAble {
                 remainHeight -= $0.attr.height ?? 0
                 
             case .fit:
-                $0.attr.height = autofitHeight(item: $0)
+                $0.attr.height = autofitHeightWithPadding(item: $0)
                 remainHeight -= $0.attr.height ?? 0
                 
             case .whRatio where $0.attr.width.isNil:
@@ -127,8 +127,8 @@ extension VStackLayout: LayoutArrangeAble {
             case .fit where $0 is GroupLayout:
                 guard let group = $0 as? GroupLayout else { return }
                 guard group.attr.width == nil else { return }
-                group.arrangeAble?.arrangeItems(hasAlign: false)
-                group.attr.width = autofitWidth(item: group)
+                group.arrangeAble?.arrangeItems(forceWidth: nil, forceHeight: nil)
+                group.attr.width = autofitWidthWithPadding(item: group)
                 
             case .fit:
                 guard let viewLayout = $0 as? UIViewLayout else { return }

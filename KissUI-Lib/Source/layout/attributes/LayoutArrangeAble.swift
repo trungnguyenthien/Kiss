@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol LayoutArrangeAble {
-    func arrangeItems(hasAlign: Bool)
+    func arrangeItems(forceWidth: Double?, forceHeight: Double?)
 }
 
 public func render(group: GroupLayout, forRoot view: UIView) {
@@ -18,22 +18,25 @@ public func render(group: GroupLayout, forRoot view: UIView) {
     copy.attr.x = view.x
     copy.attr.y = view.y
     
+    var forceWidth: Double? = nil
+    var forceHeight: Double? = nil
+    
     switch copy.attr.userWidth {
-    case .grow(let part) where part == .max: copy.attr.width = view.width
+    case .grow(let part) where part == .max: forceWidth = view.width
     case .grow: throwError("Root View không thể set width(.grow)")
-    case .value(let width): copy.attr.width = width
-    case .fit: throwError("Root View không thể set width(.autoFit)")
+    case .value(let width): forceWidth = width
+    case .fit: () // forceWidth = nil --> autoFit
     }
     
     switch copy.attr.userHeight {
-    case .grow(let part) where part == .max: copy.attr.height = view.height
+    case .grow(let part) where part == .max: forceHeight = view.height
     case .grow: throwError("Root View không thể set height(.grow)")
     case .whRatio: throwError("Root View không thể set height(.whRatio)")
-    case .fit: ()
-    case .value(let height): copy.attr.height = height
+    case .fit: () // forceHeight = nil --> autoFit
+    case .value(let height): forceHeight = height
     }
     
-    group.arrangeAble?.arrangeItems(hasAlign: true)
+    group.arrangeAble?.arrangeItems(forceWidth: forceWidth, forceHeight: forceHeight)
 }
 
 

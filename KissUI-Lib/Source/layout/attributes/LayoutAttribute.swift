@@ -63,8 +63,6 @@ extension LayoutAttribute: NSCopying {
         instance.userMaxHeight = self.userMaxHeight
         instance.userVerticalAlign = self.userVerticalAlign
         instance.userHorizontalAlign = self.userHorizontalAlign
-        
-        instance.resetDevEdgeValue()
         return instance
     }  
 }
