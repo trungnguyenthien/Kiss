@@ -29,11 +29,17 @@ public func render(group: GroupLayout, forRoot view: UIView) {
     }
     
     switch copy.attr.userHeight {
-    case .grow(let part) where part == .max: forceHeight = view.height
-    case .grow: throwError("Root View không thể set height(.grow)")
-    case .whRatio: throwError("Root View không thể set height(.whRatio)")
-    case .fit: () // forceHeight = nil --> autoFit
     case .value(let height): forceHeight = height
+    case .grow: forceHeight = view.height
+    case .whRatio(let wh):
+        guard let forceWidth = forceWidth else {
+            throwError("Root View không thể set height(.whRatio) nếu width không xác định chính xác")
+            return
+        }
+        forceHeight = forceWidth / wh
+        
+    case .fit: () // forceHeight = nil --> autoFit
+    
     }
     
     group.arrangeAble?.arrangeItems(forceWidth: forceWidth, forceHeight: forceHeight)

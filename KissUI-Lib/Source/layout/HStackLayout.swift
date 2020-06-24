@@ -65,6 +65,9 @@ func autofitWidthWithPadding(item: LayoutItem) -> Double {
 
 extension HStackLayout: LayoutArrangeAble {
     func arrangeItems(forceWidth: Double?, forceHeight: Double?) {
+        attr.width = forceWidth
+        attr.height = forceHeight
+        
         addSpacerForAlignment(group: self)                  // For horizontal alignment
         removeStartLeadingEndTrailing()
         let hasAlign = forceWidth != nil && forceHeight != nil
