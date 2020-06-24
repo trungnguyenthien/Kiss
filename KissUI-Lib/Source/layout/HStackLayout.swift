@@ -136,7 +136,7 @@ extension HStackLayout: LayoutArrangeAble {
     
     private func makeItemXY(lineHeight: Double, hasAlign: Bool) {
         let itemWithOutSpacer = layoutItems.filter { !$0.isSpacer }
-        let arrangeItems = !hasAlign ? itemWithOutSpacer : layoutItems
+        let arrangeItems = hasAlign ? layoutItems : itemWithOutSpacer
         var runX = 0.0
         runX += attr.userPaddingLeft
         arrangeItems.forEach {
