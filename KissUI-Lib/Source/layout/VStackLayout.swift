@@ -41,19 +41,37 @@ extension VStackLayout: FlexLayoutItemCreator {
             return cache
         }
         
-        root = UIView()
-        guard let root = root else { return UIView() }
-        
         attr.width = forceWidth
         attr.height = forceHeight
         
-        addSpacerForAlignment(group: self)                  // For horizontal alignment
         removeStartLeadingEndTrailing()
-        let hasAlign = forceWidth != nil && forceHeight != nil
-        
-        removeLeadingTrailingIfHasSpacer(hasAlign: hasAlign)
+        removeLeadingTrailingIfHasSpacer()
         makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho
         
+        root = UIView()
+        guard let root = root else { return UIView() }
+        
+        root.configureLayout { (l) in
+            l.isEnabled = true
+            l.direction = .LTR
+            l.flexDirection = .column
+            
+            self.attr.mapPaddingMarginMaxHeight(to: l)
+            
+            switch self.attr.userHorizontalAlign {
+            case .left:     l.justifyContent = .flexStart
+            case .right:    l.justifyContent = .flexEnd
+            case .center:   l.justifyContent = .center
+            }
+            
+            switch self.attr.userVerticalAlign {
+            case .bottom:   l.alignItems = .flexEnd
+            case .top:      l.alignItems = .flexStart
+            case .center:   l.alignItems = .center
+            }
+        }
+        
+        root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)
         return root
     }
     
@@ -64,15 +82,11 @@ extension VStackLayout: FlexLayoutItemCreator {
         noSpacerLayoutItems.last?.attr.userBottom = 0
     }
     
-    private func removeLeadingTrailingIfHasSpacer(hasAlign: Bool) {
+    private func removeLeadingTrailingIfHasSpacer() {
         layoutItems.enumerated().forEach { (index, item) in
             guard item is Spacer else { return }
-            layoutItems.element(index - 1)?.attr.userBottom = layoutItems.element(index - 1)?.attr.userBottom ?? 0
-            layoutItems.element(index + 1)?.attr.userTop = layoutItems.element(index + 1)?.attr.userTop ?? 0
-            if !hasAlign {
-                layoutItems.element(index - 1)?.attr.userBottom = 0
-                layoutItems.element(index + 1)?.attr.userTop = 0
-            }
+            layoutItems.element(index - 1)?.attr.userTrailing = 0
+            layoutItems.element(index + 1)?.attr.userLeading = 0
         }
     }
     
@@ -89,19 +103,13 @@ extension VStackLayout: FlexLayoutItemCreator {
             case .grow:
                 item.attr.width = remainWidth
                 
-            case .fit where item is GroupLayout:
+            case .fit:
                 guard let group = item as? GroupLayout else { return }
                 guard group.attr.width == nil else { return }
-                group.arrangeAble?.flexLayoutItem(forceWidth: nil, forceHeight: nil)
-                remainWidth -= (item.attr.width ?? 0)
+                let myFitWidth = group.arrangeAble?.flexLayoutItem(forceWidth: nil, forceHeight: nil).frame.width
+                item.attr.width = Double(myFitWidth ?? 0)
                 
-            case .fit:
-                guard let viewLayout = item as? UIViewLayout else { return }
-                viewLayout.view?.applyFitSize(attr: viewLayout.attr)
-                viewLayout.attr.width = viewLayout.view?.width ?? 0
-                viewLayout.attr.height = viewLayout.view?.height ?? 0
             }
-            remainWidth -= item.attr.userLeading - item.attr.userTrailing
         }
     }
 }
