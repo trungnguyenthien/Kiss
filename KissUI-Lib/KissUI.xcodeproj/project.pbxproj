@@ -29,9 +29,14 @@
 		873213522489385A00BE2BEE /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213512489385A00BE2BEE /* Spacer.swift */; };
 		8732135C24893A0200BE2BEE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135B24893A0200BE2BEE /* UILabel.swift */; };
 		8732135E24893A0C00BE2BEE /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135D24893A0C00BE2BEE /* UIButton.swift */; };
+		8748C58124A4D8E500E90FDE /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8748C58024A4D8D200E90FDE /* YogaKit.framework */; };
+		8748C58224A4D8E500E90FDE /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8748C58024A4D8D200E90FDE /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8748C58424A4D8E800E90FDE /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8748C57E24A4D8D200E90FDE /* yoga.framework */; };
+		8748C58524A4D8E800E90FDE /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8748C57E24A4D8D200E90FDE /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		874D91F6248D2D9B00D378AD /* layoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D91F5248D2D9B00D378AD /* layoutBuilder.swift */; };
-		874D91F8248FCC6000D378AD /* LayoutArrangeAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D91F7248FCC6000D378AD /* LayoutArrangeAble.swift */; };
+		874D91F8248FCC6000D378AD /* FlexLayoutItemCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D91F7248FCC6000D378AD /* FlexLayoutItemCreator.swift */; };
 		8754A19A2499916B000A6163 /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754A1992499916B000A6163 /* LayoutItem.swift */; };
+		886FAEDD349780E1AE50843F /* Pods_KissUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F13FD0758E0ED7A47FBEF5 /* Pods_KissUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +47,43 @@
 			remoteGlobalIDString = 871E442E247EB422005671D1;
 			remoteInfo = "KissUI-Lib";
 		};
+		8748C57B24A4D8D200E90FDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8748C57524A4D8D200E90FDE /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 110FE277CB23104F401C12AC4FBBE24E;
+			remoteInfo = "Pods-KissUI";
+		};
+		8748C57D24A4D8D200E90FDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8748C57524A4D8D200E90FDE /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65D0A19C165FA1126B1360680FE6DB12;
+			remoteInfo = Yoga;
+		};
+		8748C57F24A4D8D200E90FDE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8748C57524A4D8D200E90FDE /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5B3357A1CE67C0BF4AE31936A1BE6888;
+			remoteInfo = YogaKit;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8748C58324A4D8E500E90FDE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8748C58524A4D8E800E90FDE /* yoga.framework in Embed Frameworks */,
+				8748C58224A4D8E500E90FDE /* YogaKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		871E442F247EB422005671D1 /* KissUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KissUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,9 +112,13 @@
 		873213512489385A00BE2BEE /* Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
 		8732135B24893A0200BE2BEE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		8732135D24893A0C00BE2BEE /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		8748C57524A4D8D200E90FDE /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = ../Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		874D91F5248D2D9B00D378AD /* layoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layoutBuilder.swift; sourceTree = "<group>"; };
-		874D91F7248FCC6000D378AD /* LayoutArrangeAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutArrangeAble.swift; sourceTree = "<group>"; };
+		874D91F7248FCC6000D378AD /* FlexLayoutItemCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexLayoutItemCreator.swift; sourceTree = "<group>"; };
 		8754A1992499916B000A6163 /* LayoutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
+		88F13FD0758E0ED7A47FBEF5 /* Pods_KissUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KissUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A03EBB2D044AF162BE2152F8 /* Pods-KissUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KissUI.debug.xcconfig"; path = "../../Pods/Target Support Files/Pods-KissUI/Pods-KissUI.debug.xcconfig"; sourceTree = "<group>"; };
+		DF3A0C220CEC1D5205161C4E /* Pods-KissUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KissUI.release.xcconfig"; path = "../../Pods/Target Support Files/Pods-KissUI/Pods-KissUI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +126,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				886FAEDD349780E1AE50843F /* Pods_KissUI.framework in Frameworks */,
+				8748C58124A4D8E500E90FDE /* YogaKit.framework in Frameworks */,
+				8748C58424A4D8E800E90FDE /* yoga.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,10 +146,12 @@
 		871E4425247EB422005671D1 = {
 			isa = PBXGroup;
 			children = (
+				8748C57524A4D8D200E90FDE /* Pods.xcodeproj */,
 				871E4431247EB422005671D1 /* Source */,
 				871E443C247EB422005671D1 /* Tests */,
 				871E4430247EB422005671D1 /* Products */,
 				871E449A247EB90B005671D1 /* Frameworks */,
+				8C5B3217B5190108CD2EE7B1 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				871E449B247EB90B005671D1 /* SnapKit.framework */,
+				88F13FD0758E0ED7A47FBEF5 /* Pods_KissUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -178,7 +229,7 @@
 			children = (
 				8732133324853FC000BE2BEE /* ValueType.swift */,
 				871E4494247EB4E4005671D1 /* LayoutAttribute.swift */,
-				874D91F7248FCC6000D378AD /* LayoutArrangeAble.swift */,
+				874D91F7248FCC6000D378AD /* FlexLayoutItemCreator.swift */,
 			);
 			path = attributes;
 			sourceTree = "<group>";
@@ -192,6 +243,25 @@
 				8732133D2485513500BE2BEE /* EdgeSetter.swift */,
 			);
 			path = protocols;
+			sourceTree = "<group>";
+		};
+		8748C57624A4D8D200E90FDE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8748C57C24A4D8D200E90FDE /* Pods_KissUI.framework */,
+				8748C57E24A4D8D200E90FDE /* yoga.framework */,
+				8748C58024A4D8D200E90FDE /* YogaKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C5B3217B5190108CD2EE7B1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A03EBB2D044AF162BE2152F8 /* Pods-KissUI.debug.xcconfig */,
+				DF3A0C220CEC1D5205161C4E /* Pods-KissUI.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,10 +282,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 871E4443247EB422005671D1 /* Build configuration list for PBXNativeTarget "KissUI" */;
 			buildPhases = (
+				3EC3999CBEDBE0626B09B37F /* [CP] Check Pods Manifest.lock */,
 				871E442A247EB422005671D1 /* Headers */,
 				871E442B247EB422005671D1 /* Sources */,
 				871E442C247EB422005671D1 /* Frameworks */,
 				871E442D247EB422005671D1 /* Resources */,
+				8748C58324A4D8E500E90FDE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -274,6 +346,12 @@
 			mainGroup = 871E4425247EB422005671D1;
 			productRefGroup = 871E4430247EB422005671D1 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8748C57624A4D8D200E90FDE /* Products */;
+					ProjectRef = 8748C57524A4D8D200E90FDE /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				871E442E247EB422005671D1 /* KissUI */,
@@ -281,6 +359,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8748C57C24A4D8D200E90FDE /* Pods_KissUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_KissUI.framework;
+			remoteRef = 8748C57B24A4D8D200E90FDE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8748C57E24A4D8D200E90FDE /* yoga.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = yoga.framework;
+			remoteRef = 8748C57D24A4D8D200E90FDE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8748C58024A4D8D200E90FDE /* YogaKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = YogaKit.framework;
+			remoteRef = 8748C57F24A4D8D200E90FDE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		871E442D247EB422005671D1 /* Resources */ = {
@@ -299,6 +401,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3EC3999CBEDBE0626B09B37F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KissUI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		871E442B247EB422005671D1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -311,7 +438,7 @@
 				873213502489381C00BE2BEE /* UIViewLayout.swift in Sources */,
 				873213422487853900BE2BEE /* internalExtension.swift in Sources */,
 				873213402487826B00BE2BEE /* internalFunction.swift in Sources */,
-				874D91F8248FCC6000D378AD /* LayoutArrangeAble.swift in Sources */,
+				874D91F8248FCC6000D378AD /* FlexLayoutItemCreator.swift in Sources */,
 				8732134A248937E500BE2BEE /* VStackLayout.swift in Sources */,
 				874D91F6248D2D9B00D378AD /* layoutBuilder.swift in Sources */,
 				8732134E248937FB00BE2BEE /* WrapLayout.swift in Sources */,
@@ -470,6 +597,7 @@
 		};
 		871E4444247EB422005671D1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A03EBB2D044AF162BE2152F8 /* Pods-KissUI.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -501,6 +629,7 @@
 		};
 		871E4445247EB422005671D1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF3A0C220CEC1D5205161C4E /* Pods-KissUI.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;

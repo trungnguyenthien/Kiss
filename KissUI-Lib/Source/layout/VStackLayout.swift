@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 public class VStackLayout: GroupLayout {
     override init() {
@@ -28,8 +28,9 @@ extension VStackLayout {
     }
 }
 
-extension VStackLayout: LayoutArrangeAble {
-    func arrangeItems(forceWidth: Double?, forceHeight: Double?) {
+extension VStackLayout: FlexLayoutItemCreator {
+    func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
+        let rootView = UIView()
         attr.width = forceWidth
         attr.height = forceHeight
         
@@ -38,85 +39,11 @@ extension VStackLayout: LayoutArrangeAble {
         let hasAlign = forceWidth != nil && forceHeight != nil
         
         removeLeadingTrailingIfHasSpacer(hasAlign: hasAlign)
-        makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho UIViewLayout
-        arrangeAbleItems.forEach { // Dựa vào width đã xác định trước, arrangeItems cho fitHeight
-            let item = ($0 as? LayoutItem)
-            $0.arrangeItems(forceWidth: item?.attr.width , forceHeight: nil)
-        }
-        let lineHeight = self.makeItemsHeightWithoutPadding()
+        makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho
         
-        arrangeAbleItems.forEach { // arrangeItems với width, height chính xác
-            let item = ($0 as? LayoutItem)
-            $0.arrangeItems(forceWidth: item?.attr.width , forceHeight: item?.attr.height)
-        }
-        
-        makeItemXY(lineHeight: lineHeight, hasAlign: hasAlign)
+        return rootView
     }
     
-    private func makeItemsHeightWithoutPadding() -> Double {
-        layoutItems.forEach {
-            switch $0.attr.userHeight {
-            case .value(let height):    $0.attr.height = height
-            case .whRatio(let wh):      $0.attr.height = ($0.attr.width ?? 0) / wh
-            case .fit, .grow:           $0.attr.height = autofitHeightWithPadding(item: $0)
-            }
-        }
-        
-        var fitLineHeight = 0.0
-        layoutItems.forEach {
-            switch $0.attr.userMaxHeight {
-            case .none: ()                                  // Không tính lại, vẫn giữ height được xác định từ userHeight
-            case .full: ()                                  // Sẽ xác định ở bước dưới
-                
-            case .value(let max):
-                let devHeight = $0.attr.height ?? 0
-                guard max < devHeight else { break }
-                $0.attr.height = max
-                
-            case .fit:
-                let myFitHeight = autofitHeightWithPadding(item: $0)
-                let devHeight = $0.attr.height ?? 0
-                guard myFitHeight < devHeight else { break }
-                $0.attr.height = myFitHeight
-            }
-            let devHeight = $0.attr.height ?? 0
-            fitLineHeight = max(fitLineHeight, devHeight)
-        }
-        
-        layoutItems.forEach {
-            switch $0.attr.userMaxHeight {
-            case .none: ()                                  // Không tính lại, vẫn giữ height được xác định từ userHeight
-            case .value: ()                                 // Không tính lại vì đã xác định ở trên rồi
-                
-            case .full:
-                let devHeight = $0.attr.height ?? 0
-                guard fitLineHeight < devHeight else { break }
-                $0.attr.height = fitLineHeight
-                
-            case .fit: ()                                   // Không tính lại vì đã xác định ở trên rồi
-            }
-        }
-        return fitLineHeight
-    }
-    
-    private func makeItemXY(lineHeight: Double, hasAlign: Bool) {
-        let itemWithOutSpacer = layoutItems.filter { !$0.isSpacer }
-        let arrangeItems = hasAlign ? layoutItems : itemWithOutSpacer
-        var runX = 0.0
-        runX += attr.userPaddingLeft
-        arrangeItems.forEach {
-            let myWidth = $0.attr.width ?? 0
-            let myHeight = $0.attr.height ?? 0
-            $0.attr.x = runX
-            runX += myWidth
-            let remainSpaceY = (lineHeight - myHeight)
-            switch $0.attr.userVerticalAlign {
-            case .top: $0.attr.y = attr.top
-            case .bottom: $0.attr.y = attr.top + remainSpaceY
-            case .center: $0.attr.y = attr.top + remainSpaceY / 2
-            }
-        }
-    }
     
     private func removeStartLeadingEndTrailing() {
         let noSpacerLayoutItems = layoutItems.filter { !$0.isSpacer }
@@ -152,8 +79,7 @@ extension VStackLayout: LayoutArrangeAble {
             case .fit where item is GroupLayout:
                 guard let group = item as? GroupLayout else { return }
                 guard group.attr.width == nil else { return }
-                group.arrangeAble?.arrangeItems(forceWidth: nil, forceHeight: nil)
-                group.attr.width = autofitWidthWithPadding(item: group)
+                group.arrangeAble?.flexLayoutItem(forceWidth: nil, forceHeight: nil)
                 remainWidth -= (item.attr.width ?? 0)
                 
             case .fit:

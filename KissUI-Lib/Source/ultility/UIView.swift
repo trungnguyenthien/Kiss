@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import YogaKit
 
 public extension UIView {
     // MARK: - VSTACK LAYOUT
@@ -16,33 +17,33 @@ public extension UIView {
         stack.layoutItems.append(contentsOf: builder())
         return stack
     }
-
+    
     func vstack(@LayoutItemBuilder builder: () -> LayoutItem) -> VStackLayout {
         let stack = VStackLayout()
         stack.layoutItems.append(builder())
         return stack
     }
-
+    
     // MARK: - HSTACK LAYOUT
     func hstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> HStackLayout {
         let stack = HStackLayout()
         stack.layoutItems.append(contentsOf: builder())
         return stack
     }
-
+    
     func hstack(@LayoutItemBuilder builder: () -> LayoutItem) -> HStackLayout {
         let stack = HStackLayout()
         stack.layoutItems.append(builder())
         return stack
     }
-
+    
     // MARK: - WRAP LAYOUT
     func wrap(@LayoutItemBuilder builder: () -> [LayoutItem]) -> WrapLayout {
         let stack = WrapLayout()
         stack.layoutItems.append(contentsOf: builder())
         return stack
     }
-
+    
     func wrap(@LayoutItemBuilder builder: () -> LayoutItem) -> WrapLayout {
         let stack = WrapLayout()
         stack.layoutItems.append(builder())
@@ -82,5 +83,28 @@ extension UIView {
     func shift(dx: Double = 0, dy: Double = 0) {
         x += dx
         y += dy
+    }
+    
+    func applyLayoutFlexibleAll(preservingOrigin: Bool) {
+        yoga.applyLayout(preservingOrigin: preservingOrigin,
+                         dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight, .flexibleWidth))
+    }
+    
+    func applyLayout(preservingOrigin: Bool, fixWidth: Double?, fixHeight: Double?) {
+        if let width = fixWidth, let height = fixHeight {
+            yoga.width = YGValue(CGFloat(width))
+            yoga.height = YGValue(CGFloat(height))
+            yoga.applyLayout(preservingOrigin: preservingOrigin)
+        } else if let width = fixWidth, fixHeight == nil {
+            yoga.width = YGValue(CGFloat(width))
+            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight))
+        } else if let height = fixHeight, fixWidth == nil {
+            yoga.height = YGValue(CGFloat(height))
+            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleWidth))
+        } else {
+            yoga.width = YGValueUndefined
+            yoga.height = YGValueUndefined
+            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleWidth, .flexibleHeight))
+        }
     }
 }

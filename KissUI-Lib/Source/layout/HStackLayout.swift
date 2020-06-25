@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 public class HStackLayout: GroupLayout {
     override init() {
@@ -28,147 +28,34 @@ extension HStackLayout {
     }
 }
 
-func autofitHeightWithPadding(item: LayoutItem) -> Double {
-    if let viewlayout = item as? UIViewLayout {
-        let viewHeight = viewlayout.view?.height ?? 0.0
-        return item.attr.userPaddingTop + viewHeight + item.attr.userPaddingBottom
-        
-    } else if let group = item as? GroupLayout {
-        var maxY = 0.0
-        group.layoutItems.forEach {
-            let myY = $0.attr.y ?? 0
-            let myHeight = $0.attr.height ?? 0
-            maxY = max(maxY, myY + myHeight)
-        }
-        return maxY + item.attr.userPaddingBottom
-    }
-    return 0
-}
-
-func autofitWidthWithPadding(item: LayoutItem) -> Double {
-    if let viewlayout = item as? UIViewLayout {
-        let viewWidth = viewlayout.view?.width ?? 0.0
-        return item.attr.userPaddingLeft + viewWidth + item.attr.userPaddingRight
-        
-    } else if let group = item as? GroupLayout {
-        var maxX = 0.0
-        group.layoutItems.forEach {
-            let myX = $0.attr.x ?? 0
-            let myWidth = $0.attr.width ?? 0
-            maxX = max(maxX, myX + myWidth)
-        }
-        return maxX + item.attr.userPaddingRight
-    }
-    return 0
-}
-
-
-extension HStackLayout: LayoutArrangeAble {
-    func arrangeItems(forceWidth: Double?, forceHeight: Double?) {
+extension HStackLayout: FlexLayoutItemCreator {
+    func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
         attr.width = forceWidth
         attr.height = forceHeight
-        
         addSpacerForAlignment(group: self)                  // For horizontal alignment
         removeStartLeadingEndTrailing()
-        let hasAlign = forceWidth != nil && forceHeight != nil
+        removeLeadingTrailingIfHasSpacer()
         
-        removeLeadingTrailingIfHasSpacer(hasAlign: hasAlign)
-        makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho UIViewLayout
-        arrangeAbleItems.forEach { // Dựa vào width đã xác định trước, arrangeItems cho fitHeight
-            let item = ($0 as? LayoutItem)
-            $0.arrangeItems(forceWidth: item?.attr.width , forceHeight: nil)
-        }
-        let lineHeight = self.makeItemsHeightWithoutPadding()
+        makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho
         
-        arrangeAbleItems.forEach { // arrangeItems với width, height chính xác
-            let item = ($0 as? LayoutItem)
-            $0.arrangeItems(forceWidth: item?.attr.width , forceHeight: item?.attr.height)
-        }
         
-        makeItemXY(lineHeight: lineHeight, hasAlign: hasAlign)
-    }
-    
-    private func makeItemsHeightWithoutPadding() -> Double {
-        layoutItems.forEach {
-            switch $0.attr.userHeight {
-            case .value(let height):    $0.attr.height = height
-            case .whRatio(let wh):      $0.attr.height = ($0.attr.width ?? 0) / wh
-            case .fit, .grow:           $0.attr.height = autofitHeightWithPadding(item: $0)
-            }
+        let root = UIView()
+        
+        root.configureLayout { (l) in
+            l.isEnabled = true
+            l.justifyContent = .flexStart
+            l.direction = .LTR
+            l.flexDirection = .row
         }
         
-        var fitLineHeight = 0.0
-        layoutItems.forEach {
-            switch $0.attr.userMaxHeight {
-            case .none: ()                                  // Không tính lại, vẫn giữ height được xác định từ userHeight
-            case .full: ()                                  // Sẽ xác định ở bước dưới
-                
-            case .value(let max):
-                let devHeight = $0.attr.height ?? 0
-                guard max < devHeight else { break }
-                $0.attr.height = max
-                
-            case .fit:
-                let myFitHeight = autofitHeightWithPadding(item: $0)
-                let devHeight = $0.attr.height ?? 0
-                guard myFitHeight < devHeight else { break }
-                $0.attr.height = myFitHeight
-            }
-            let devHeight = $0.attr.height ?? 0
-            fitLineHeight = max(fitLineHeight, devHeight)
+        layoutItems.forEach { (layoutItem) in
+            guard let flexItem = layoutItem as? FlexLayoutItemCreator else { return }
+            root.addSubview(flexItem.flexLayoutItem(forceWidth: layoutItem.attr.width, forceHeight: layoutItem.attr.height))
         }
         
-        layoutItems.forEach {
-            switch $0.attr.userMaxHeight {
-            case .none: ()                                  // Không tính lại, vẫn giữ height được xác định từ userHeight
-            case .value: ()                                 // Không tính lại vì đã xác định ở trên rồi
-                
-            case .full:
-                let devHeight = $0.attr.height ?? 0
-                guard fitLineHeight < devHeight else { break }
-                $0.attr.height = fitLineHeight
-                
-            case .fit: ()                                   // Không tính lại vì đã xác định ở trên rồi
-            }
-        }
-        return fitLineHeight
-    }
-    
-    private func makeItemXY(lineHeight: Double, hasAlign: Bool) {
-        let itemWithOutSpacer = layoutItems.filter { !$0.isSpacer }
-        let arrangeItems = hasAlign ? layoutItems : itemWithOutSpacer
-        var runX = 0.0
-        runX += attr.userPaddingLeft
-        arrangeItems.forEach {
-            let myWidth = $0.attr.width ?? 0
-            let myHeight = $0.attr.height ?? 0
-            $0.attr.x = runX
-            runX += myWidth
-            let remainSpaceY = (lineHeight - myHeight)
-            switch $0.attr.userVerticalAlign {
-            case .top: $0.attr.y = attr.top
-            case .bottom: $0.attr.y = attr.top + remainSpaceY
-            case .center: $0.attr.y = attr.top + remainSpaceY / 2
-            }
-        }
-    }
-    
-    private func removeStartLeadingEndTrailing() {
-        let noSpacerLayoutItems = layoutItems.filter { !$0.isSpacer }
-        noSpacerLayoutItems.first?.attr.leading = 0
-        noSpacerLayoutItems.last?.attr.trailing = 0
-    }
-    
-    private func removeLeadingTrailingIfHasSpacer(hasAlign: Bool) {
-        layoutItems.enumerated().forEach { (index, item) in
-            guard item is Spacer else { return }
-            layoutItems.element(index - 1)?.attr.trailing = layoutItems.element(index - 1)?.attr.userTrailing ?? 0
-            layoutItems.element(index + 1)?.attr.leading = layoutItems.element(index + 1)?.attr.userLeading ?? 0
-            if !hasAlign {
-                layoutItems.element(index - 1)?.attr.trailing = 0
-                layoutItems.element(index + 1)?.attr.leading = 0
-            }
-        }
+        root.applyLayout(preservingOrigin: false, fixWidth: forceWidth, fixHeight: forceHeight)
+        
+        return root
     }
     
     private func makeItemsWidth() {
@@ -186,19 +73,13 @@ extension HStackLayout: LayoutArrangeAble {
             case .grow(let part):
                 sumPart += part
                 
-            case .fit where item is GroupLayout:
+            case .fit:
                 guard let group = item as? GroupLayout else { return }
                 guard group.attr.width == nil else { return }
-                group.arrangeAble?.arrangeItems(forceWidth: nil, forceHeight: nil)
-                group.attr.width = autofitWidthWithPadding(item: group)
+                let myFitWidth = group.arrangeAble?.flexLayoutItem(forceWidth: nil, forceHeight: nil).frame.width
+                item.attr.width = Double(myFitWidth ?? 0)
                 remainWidth -= (item.attr.width ?? 0)
                 
-            case .fit:
-                guard let viewLayout = item as? UIViewLayout else { return }
-                viewLayout.view?.applyFitSize(attr: viewLayout.attr)
-                viewLayout.attr.width = viewLayout.view?.width ?? 0
-                viewLayout.attr.height = viewLayout.view?.height ?? 0
-                remainWidth -= (item.attr.width ?? 0)
             }
             remainWidth -= item.attr.leading - item.attr.trailing
         }
@@ -213,4 +94,20 @@ extension HStackLayout: LayoutArrangeAble {
             }
         }
     }
+    
+    private func removeStartLeadingEndTrailing() {
+        let noSpacerLayoutItems = layoutItems.filter { !$0.isSpacer }
+        noSpacerLayoutItems.first?.attr.leading = 0
+        noSpacerLayoutItems.last?.attr.trailing = 0
+    }
+    
+    private func removeLeadingTrailingIfHasSpacer() {
+        layoutItems.enumerated().forEach { (index, item) in
+            guard item is Spacer else { return }
+            layoutItems.element(index - 1)?.attr.trailing = 0
+            layoutItems.element(index + 1)?.attr.leading = 0
+        }
+    }
+    
+
 }

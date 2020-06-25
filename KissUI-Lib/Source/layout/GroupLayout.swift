@@ -25,12 +25,12 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
         return hasVisibleView
     }
     
-    var arrangeAble: LayoutArrangeAble? {
-        return self as? LayoutArrangeAble
+    var arrangeAble: FlexLayoutItemCreator? {
+        return self as? FlexLayoutItemCreator
     }
     
-    var arrangeAbleItems: [LayoutArrangeAble] {
-        return layoutItems.compactMap { $0 as? LayoutArrangeAble }
+    var arrangeAbleItems: [FlexLayoutItemCreator] {
+        return layoutItems.compactMap { $0 as? FlexLayoutItemCreator }
     }
     
     func fullOptimize() {

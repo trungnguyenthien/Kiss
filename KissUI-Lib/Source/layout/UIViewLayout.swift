@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import YogaKit
 protocol UIViewLayoutSetter: PaddingSetter, EdgeSetter, SizeSetter { }
 
 public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
@@ -19,6 +19,7 @@ public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
         self.attr.userWidth = .fit
         self.attr.userHeight = .fit
         self.attr.userMaxHeight = .fit
+        
     }
     
     public var isVisible: Bool {

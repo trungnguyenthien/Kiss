@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class WrapLayout: GroupLayout {
     var lineSpacing = 0.0
@@ -34,8 +35,8 @@ extension WrapLayout {
     }
 }
 
-extension WrapLayout: LayoutArrangeAble {
-    func arrangeItems(forceWidth: Double?, forceHeight: Double?) {
-        
+extension WrapLayout: FlexLayoutItemCreator {
+    func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
+        return UIView()
     }
 }
