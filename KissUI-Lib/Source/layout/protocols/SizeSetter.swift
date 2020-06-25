@@ -49,15 +49,12 @@ public protocol SizeSetter {
     @discardableResult func width(_ value: WidthValue) -> Self
     
     @discardableResult func height(_ value: Double) -> Self
-    @discardableResult func height(_ value: Double, max: MaxHeightValue) -> Self
-    @discardableResult func height(_ value: Double, max: Double) -> Self
-    
     @discardableResult func height(_ value: HeightValue) -> Self
-    @discardableResult func height(_ value: HeightValue, max: MaxHeightValue) -> Self
-    @discardableResult func height(_ value: HeightValue, max: Double) -> Self
     
     @discardableResult func size(_ value: CGSize) -> Self
     @discardableResult func size(_ width: Double, _ height: Double?) -> Self
+    
+    @discardableResult func maxHeight(_ value: Double) -> Self
 }
 
 extension SizeSetter where Self: LayoutItem {
@@ -104,40 +101,9 @@ extension SizeSetter where Self: LayoutItem {
         }
         return self
     }
-    
-    public func height(_ value: Double, max: MaxHeightValue) -> Self {
-        height(value)
-        setMaxHeight(max)
+
+    public func maxHeight(_ value: Double) -> Self {
+        attr.userMaxHeight = value
         return self
-    }
-    
-    public func height(_ value: Double, max: Double) -> Self {
-        height(value)
-        setMaxHeight(max)
-        return self
-    }
-    
-    public func height(_ value: HeightValue, max: MaxHeightValue) -> Self {
-        height(value)
-        setMaxHeight(max)
-        return self
-    }
-    
-    public func height(_ value: HeightValue, max: Double) -> Self {
-        height(value)
-        setMaxHeight(max)
-        return self
-    }
-    
-    private func setMaxHeight(_ value: MaxHeightValue) {
-        switch value {
-        case .none: attr.userMaxHeight = .none
-        case .fit: attr.userMaxHeight = .fit
-        case .full: attr.userMaxHeight = .full
-        }
-    }
-    
-    private func setMaxHeight(_ value: Double) {
-        attr.userMaxHeight = .value(value)
     }
 }

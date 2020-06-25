@@ -21,26 +21,14 @@ class LayoutAttribute {
     var userTop: Double = 0
     var userBottom: Double = 0
     
-    var leading: Double = 0
-    var trailing: Double = 0
-    var top: Double = 0
-    var bottom: Double = 0
-    
     var userWidth = DevWidthValue.grow(1)
     var userHeight = DevHeightValue.fit
-    var userMaxHeight = DevMaxHeightValue.none
+    var userMaxHeight: Double? = nil
     
     var width: Double? = nil
     var height: Double? = nil
     var x: Double? = nil
     var y: Double? = nil
-    
-//    func resetDevEdgeValue() {
-//        leading = userLeading
-//        trailing = userTrailing
-//        top = userTop
-//        bottom = userBottom
-//    }
     
     var userVerticalAlign: AlignVertical = .top
     var userHorizontalAlign: AlignHorizontal = .left

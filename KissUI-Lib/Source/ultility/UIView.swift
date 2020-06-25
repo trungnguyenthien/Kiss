@@ -90,6 +90,15 @@ extension UIView {
                          dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight, .flexibleWidth))
     }
     
+    func applyLayout(layoutItems: [LayoutItem], fixWidth: Double?, fixHeight: Double?) {
+        layoutItems.forEach { (layoutItem) in
+            guard let flexItem = layoutItem as? FlexLayoutItemCreator else { return }
+            self.addSubview(flexItem.flexLayoutItem(forceWidth: layoutItem.attr.width, forceHeight: layoutItem.attr.height))
+        }
+        
+        self.applyLayout(preservingOrigin: false, fixWidth: fixWidth, fixHeight: fixHeight)
+    }
+    
     func applyLayout(preservingOrigin: Bool, fixWidth: Double?, fixHeight: Double?) {
         if let width = fixWidth, let height = fixHeight {
             yoga.width = YGValue(CGFloat(width))

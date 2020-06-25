@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import YogaKit
 
 extension UIView {
     var isVisible: Bool {
@@ -45,4 +46,9 @@ extension Array {
     var lastIndex: Int {
         return count - 1
     }
+}
+
+func YGValue(_ value: Double?) -> YGValue {
+    guard let value = value else { return YGValueUndefined }
+    return YGValue(value)
 }

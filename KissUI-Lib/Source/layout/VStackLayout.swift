@@ -47,18 +47,18 @@ extension VStackLayout: FlexLayoutItemCreator {
     
     private func removeStartLeadingEndTrailing() {
         let noSpacerLayoutItems = layoutItems.filter { !$0.isSpacer }
-        noSpacerLayoutItems.first?.attr.top = 0
-        noSpacerLayoutItems.last?.attr.bottom = 0
+        noSpacerLayoutItems.first?.attr.userTop = 0
+        noSpacerLayoutItems.last?.attr.userBottom = 0
     }
     
     private func removeLeadingTrailingIfHasSpacer(hasAlign: Bool) {
         layoutItems.enumerated().forEach { (index, item) in
             guard item is Spacer else { return }
-            layoutItems.element(index - 1)?.attr.bottom = layoutItems.element(index - 1)?.attr.userBottom ?? 0
-            layoutItems.element(index + 1)?.attr.top = layoutItems.element(index + 1)?.attr.userTop ?? 0
+            layoutItems.element(index - 1)?.attr.userBottom = layoutItems.element(index - 1)?.attr.userBottom ?? 0
+            layoutItems.element(index + 1)?.attr.userTop = layoutItems.element(index + 1)?.attr.userTop ?? 0
             if !hasAlign {
-                layoutItems.element(index - 1)?.attr.bottom = 0
-                layoutItems.element(index + 1)?.attr.top = 0
+                layoutItems.element(index - 1)?.attr.userBottom = 0
+                layoutItems.element(index + 1)?.attr.userTop = 0
             }
         }
     }
@@ -88,7 +88,7 @@ extension VStackLayout: FlexLayoutItemCreator {
                 viewLayout.attr.width = viewLayout.view?.width ?? 0
                 viewLayout.attr.height = viewLayout.view?.height ?? 0
             }
-            remainWidth -= item.attr.leading - item.attr.trailing
+            remainWidth -= item.attr.userLeading - item.attr.userTrailing
         }
     }
 }

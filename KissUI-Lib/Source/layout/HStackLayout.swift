@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import YogaKit
 
 public class HStackLayout: GroupLayout {
     override init() {
@@ -46,14 +47,18 @@ extension HStackLayout: FlexLayoutItemCreator {
             l.justifyContent = .flexStart
             l.direction = .LTR
             l.flexDirection = .row
+            l.paddingLeft = YGValue(self.attr.userPaddingLeft)
+            l.paddingRight = YGValue(self.attr.userPaddingRight)
+            l.paddingTop = YGValue(self.attr.userPaddingTop)
+            l.paddingBottom = YGValue(self.attr.userPaddingBottom)
+            l.marginLeft = YGValue(self.attr.userLeading)
+            l.marginRight = YGValue(self.attr.userTrailing)
+            l.marginTop = YGValue(self.attr.userTop)
+            l.marginBottom = YGValue(self.attr.userBottom)
+            l.maxHeight = YGValue(self.attr.userMaxHeight)
         }
         
-        layoutItems.forEach { (layoutItem) in
-            guard let flexItem = layoutItem as? FlexLayoutItemCreator else { return }
-            root.addSubview(flexItem.flexLayoutItem(forceWidth: layoutItem.attr.width, forceHeight: layoutItem.attr.height))
-        }
-        
-        root.applyLayout(preservingOrigin: false, fixWidth: forceWidth, fixHeight: forceHeight)
+        root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)
         
         return root
     }
@@ -81,7 +86,7 @@ extension HStackLayout: FlexLayoutItemCreator {
                 remainWidth -= (item.attr.width ?? 0)
                 
             }
-            remainWidth -= item.attr.leading - item.attr.trailing
+            remainWidth -= item.attr.userLeading - item.attr.userTrailing
         }
         
         layoutItems.forEach {
@@ -97,17 +102,15 @@ extension HStackLayout: FlexLayoutItemCreator {
     
     private func removeStartLeadingEndTrailing() {
         let noSpacerLayoutItems = layoutItems.filter { !$0.isSpacer }
-        noSpacerLayoutItems.first?.attr.leading = 0
-        noSpacerLayoutItems.last?.attr.trailing = 0
+        noSpacerLayoutItems.first?.attr.userLeading = 0
+        noSpacerLayoutItems.last?.attr.userTrailing = 0
     }
     
     private func removeLeadingTrailingIfHasSpacer() {
         layoutItems.enumerated().forEach { (index, item) in
             guard item is Spacer else { return }
-            layoutItems.element(index - 1)?.attr.trailing = 0
-            layoutItems.element(index + 1)?.attr.leading = 0
+            layoutItems.element(index - 1)?.attr.userTrailing = 0
+            layoutItems.element(index + 1)?.attr.userLeading = 0
         }
     }
-    
-
 }

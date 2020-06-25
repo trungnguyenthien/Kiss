@@ -18,7 +18,6 @@ public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
     init() {
         self.attr.userWidth = .fit
         self.attr.userHeight = .fit
-        self.attr.userMaxHeight = .fit
         
     }
     
@@ -38,4 +37,16 @@ extension UIViewLayout: NSCopying {
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return instance
     }
+}
+
+extension UIViewLayout: FlexLayoutItemCreator {
+    func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
+        guard let root = view else { return UIView() }
+        
+        
+        
+        return root
+    }
+    
+    
 }
