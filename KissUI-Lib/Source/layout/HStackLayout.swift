@@ -11,6 +11,13 @@ import UIKit
 import YogaKit
 
 public class HStackLayout: GroupLayout {
+    var root: UIView? = nil
+    func cacheView(forceWidth: Double?, forceHeight: Double?) -> UIView? {
+        if forceWidth == attr.width, forceHeight == attr.height {
+            return root
+        }
+        return nil
+    }
     override init() {
         super.init()
         self.attr.userWidth = .grow(.max)
@@ -31,31 +38,39 @@ extension HStackLayout {
 
 extension HStackLayout: FlexLayoutItemCreator {
     func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
+        if let cache = cacheView(forceWidth: forceWidth, forceHeight: forceHeight) {
+            return cache
+        }
+        
         attr.width = forceWidth
         attr.height = forceHeight
-        addSpacerForAlignment(group: self)                  // For horizontal alignment
+        
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
         
         makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho
         
-        
-        let root = UIView()
+        root = UIView()
+        guard let root = root else { return UIView() }
         
         root.configureLayout { (l) in
             l.isEnabled = true
-            l.justifyContent = .flexStart
             l.direction = .LTR
             l.flexDirection = .row
-            l.paddingLeft = YGValue(self.attr.userPaddingLeft)
-            l.paddingRight = YGValue(self.attr.userPaddingRight)
-            l.paddingTop = YGValue(self.attr.userPaddingTop)
-            l.paddingBottom = YGValue(self.attr.userPaddingBottom)
-            l.marginLeft = YGValue(self.attr.userLeading)
-            l.marginRight = YGValue(self.attr.userTrailing)
-            l.marginTop = YGValue(self.attr.userTop)
-            l.marginBottom = YGValue(self.attr.userBottom)
-            l.maxHeight = YGValue(self.attr.userMaxHeight)
+            
+            self.attr.mapPaddingMarginMaxHeight(to: l)
+            
+            switch self.attr.userHorizontalAlign {
+            case .left:     l.justifyContent = .flexStart
+            case .right:    l.justifyContent = .flexEnd
+            case .center:   l.justifyContent = .center
+            }
+            
+            switch self.attr.userVerticalAlign {
+            case .bottom:   l.alignItems = .flexEnd
+            case .top:      l.alignItems = .flexStart
+            case .center:   l.alignItems = .center
+            }
         }
         
         root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)

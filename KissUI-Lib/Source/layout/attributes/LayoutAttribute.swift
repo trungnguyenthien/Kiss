@@ -8,8 +8,7 @@
 
 import Foundation
 import UIKit
-
-
+import YogaKit
 class LayoutAttribute {
     var userPaddingLeft: Double = 0 // internal(set)
     var userPaddingRight: Double = 0
@@ -32,6 +31,18 @@ class LayoutAttribute {
     
     var userVerticalAlign: AlignVertical = .top
     var userHorizontalAlign: AlignHorizontal = .left
+    
+    func mapPaddingMarginMaxHeight(to l: YGLayout) {
+        l.paddingLeft = YGValue(self.userPaddingLeft)
+        l.paddingRight = YGValue(self.userPaddingRight)
+        l.paddingTop = YGValue(self.userPaddingTop)
+        l.paddingBottom = YGValue(self.userPaddingBottom)
+        l.marginLeft = YGValue(self.userLeading)
+        l.marginRight = YGValue(self.userTrailing)
+        l.marginTop = YGValue(self.userTop)
+        l.marginBottom = YGValue(self.userBottom)
+        l.maxHeight = YGValue(self.userMaxHeight)
+    }
 }
 
 extension LayoutAttribute: NSCopying {

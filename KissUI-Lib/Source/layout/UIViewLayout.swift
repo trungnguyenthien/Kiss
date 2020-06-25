@@ -14,11 +14,17 @@ protocol UIViewLayoutSetter: PaddingSetter, EdgeSetter, SizeSetter { }
 public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
     var attr = LayoutAttribute()
     var view: UIView? = nil
+    var root: UIView? = nil
+    func cacheView(forceWidth: Double?, forceHeight: Double?) -> UIView? {
+        if forceWidth == attr.width, forceHeight == attr.height {
+            return root
+        }
+        return nil
+    }
     
     init() {
         self.attr.userWidth = .fit
         self.attr.userHeight = .fit
-        
     }
     
     public var isVisible: Bool {
@@ -41,9 +47,26 @@ extension UIViewLayout: NSCopying {
 
 extension UIViewLayout: FlexLayoutItemCreator {
     func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
+        if let cache = cacheView(forceWidth: forceWidth, forceHeight: forceHeight) {
+            return cache
+        }
+        
+        attr.width = forceWidth
+        attr.height = forceHeight
+        
         guard let root = view else { return UIView() }
         
+        if let label = root as? UILabel {
+            label.frame.size = CGSize(width: .max, height: .max)
+            label.sizeToFit()
+        }
         
+        root.configureLayout { (l) in
+            l.isEnabled = true
+            self.attr.mapPaddingMarginMaxHeight(to: l)
+        }
+        
+        root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)
         
         return root
     }
