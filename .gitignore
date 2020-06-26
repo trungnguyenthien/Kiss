@@ -89,8 +89,5 @@ fastlane/test_output
 
 iOSInjectionProject/
 KissUI-Lib/Carthage/*
-Pods/*
-.DS_Store
 .DS_Store
 KissUI-Lib/.DS_Store
-*.lock

@@ -9,11 +9,20 @@
 import Foundation
 import UIKit
 import YogaKit
+
+func setGrow(grow: Double, to layout: YGLayout) {
+    let cgGrow = CGFloat(grow)
+    layout.flexGrow = cgGrow
+    layout.flexShrink = cgGrow
+    layout.flex = cgGrow
+}
+
 class LayoutAttribute {
     var userPaddingLeft: Double = 0 // internal(set)
     var userPaddingRight: Double = 0
     var userPaddingTop: Double = 0
     var userPaddingBottom: Double = 0
+    var userSelfAlign = SelfAlign.none
     
     var userLeading: Double = 0
     var userTrailing: Double = 0
@@ -42,6 +51,27 @@ class LayoutAttribute {
         l.marginTop = YGValue(self.userTop)
         l.marginBottom = YGValue(self.userBottom)
         l.maxHeight = YGValue(self.userMaxHeight)
+        
+        switch self.userHeight {
+        case .fit: l.alignSelf = .flexStart
+        case .value(let height):  l.height = YGValue(height)
+        case .aspectRatio(let ratio): l.aspectRatio = CGFloat(ratio)
+        case .grow(let grow): setGrow(grow: grow, to: l)
+        }
+        
+        switch self.userWidth {
+        case .value(let width): l.width = YGValue(width)
+        case .grow(let grow): setGrow(grow: grow, to: l)
+        case .fit: l.alignSelf = .flexStart
+        }
+        
+        switch self.userSelfAlign {
+        case .center: l.alignSelf = .center
+        case .start: l.alignSelf = .flexStart
+        case .end: l.alignSelf = .flexEnd
+        case .stretch: l.alignSelf = .stretch
+        case .none: l.alignSelf = .stretch
+        }
     }
 }
 

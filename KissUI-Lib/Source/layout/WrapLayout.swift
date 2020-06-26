@@ -11,13 +11,7 @@ import UIKit
 
 public class WrapLayout: GroupLayout {
     var lineSpacing = 0.0
-    var cacheView: UIView? = nil
-    func cacheView(forceWidth: Double?, forceHeight: Double?) -> UIView? {
-        if forceWidth == attr.width, forceHeight == attr.height {
-            return cacheView
-        }
-        return nil
-    }
+
     override init() {
         super.init()
         self.attr.userWidth = .grow(.max)
@@ -43,9 +37,6 @@ extension WrapLayout {
 
 extension WrapLayout: FlexLayoutItemCreator {
     func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
-        if let cache = cacheView(forceWidth: forceWidth, forceHeight: forceHeight) {
-            return cache
-        }
-        return UIView()
+        return root
     }
 }

@@ -10,13 +10,8 @@ import Foundation
 import UIKit
 
 public class VStackLayout: GroupLayout {
-    var root: UIView? = nil
-    func cacheView(forceWidth: Double?, forceHeight: Double?) -> UIView? {
-        if forceWidth == attr.width, forceHeight == attr.height {
-            return root
-        }
-        return nil
-    }
+    
+
     override init() {
         super.init()
         self.attr.userWidth = .grow(.max)
@@ -37,9 +32,6 @@ extension VStackLayout {
 
 extension VStackLayout: FlexLayoutItemCreator {
     func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
-        if let cache = cacheView(forceWidth: forceWidth, forceHeight: forceHeight) {
-            return cache
-        }
         
         attr.width = forceWidth
         attr.height = forceHeight
@@ -47,9 +39,6 @@ extension VStackLayout: FlexLayoutItemCreator {
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
         makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho
-        
-        root = UIView()
-        guard let root = root else { return UIView() }
         
         root.configureLayout { (l) in
             l.isEnabled = true

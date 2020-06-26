@@ -1,0 +1,6 @@
+framework module Pods_KissUI {
+  umbrella header "Pods-KissUI-umbrella.h"
+
+  export *
+  module * { export * }
+}

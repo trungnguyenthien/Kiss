@@ -11,7 +11,7 @@ enum DevWidthValue {
 enum DevHeightValue {
     case value(Double)
     case fit
-    case whRatio(Double)
+    case aspectRatio(Double)
     case grow(Double)
 }
 
@@ -97,7 +97,7 @@ extension SizeSetter where Self: LayoutItem {
         switch value {
         case .fit: attr.userHeight = .fit
         case .full: attr.userHeight = .grow(.max)
-        case .whRatio(let ew): attr.userHeight = .whRatio(ew)
+        case .whRatio(let ew): attr.userHeight = .aspectRatio(ew)
         }
         return self
     }

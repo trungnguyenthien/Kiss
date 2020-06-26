@@ -11,13 +11,6 @@ import UIKit
 import YogaKit
 
 public class HStackLayout: GroupLayout {
-    var root: UIView? = nil
-    func cacheView(forceWidth: Double?, forceHeight: Double?) -> UIView? {
-        if forceWidth == attr.width, forceHeight == attr.height {
-            return root
-        }
-        return nil
-    }
     override init() {
         super.init()
         self.attr.userWidth = .grow(.max)
@@ -38,9 +31,6 @@ extension HStackLayout {
 
 extension HStackLayout: FlexLayoutItemCreator {
     func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
-        if let cache = cacheView(forceWidth: forceWidth, forceHeight: forceHeight) {
-            return cache
-        }
         
         attr.width = forceWidth
         attr.height = forceHeight
@@ -50,15 +40,13 @@ extension HStackLayout: FlexLayoutItemCreator {
         
         makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho
         
-        root = UIView()
-        guard let root = root else { return UIView() }
-        
         root.configureLayout { (l) in
             l.isEnabled = true
             l.direction = .LTR
             l.flexDirection = .row
             
             self.attr.mapPaddingMarginMaxHeight(to: l)
+            
             
             switch self.attr.userHorizontalAlign {
             case .left:     l.justifyContent = .flexStart
@@ -67,14 +55,26 @@ extension HStackLayout: FlexLayoutItemCreator {
             }
             
             switch self.attr.userVerticalAlign {
-            case .bottom:   l.alignItems = .flexEnd
             case .top:      l.alignItems = .flexStart
+            case .bottom:   l.alignItems = .flexEnd
             case .center:   l.alignItems = .center
             }
         }
         
-        root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)
+        let defaultSelfAlign: SelfAlign = {
+            switch self.attr.userVerticalAlign {
+            case .bottom: return .end
+            case .top: return .start
+            case .center: return .center
+            }
+        }()
         
+        layoutItems.forEach { (layoutItem) in
+            guard layoutItem.attr.userSelfAlign == .none else { return }
+            layoutItem.attr.userSelfAlign = defaultSelfAlign
+        }
+        
+        root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)
         return root
     }
     

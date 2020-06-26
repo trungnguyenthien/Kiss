@@ -12,6 +12,7 @@ import UIKit
 protocol GroupLayoutSetter: PaddingSetter, EdgeSetter, SizeSetter, AlignmentSetter {}
 
 public class GroupLayout: LayoutItem, GroupLayoutSetter {
+    var root = UIView()
     var layoutItems = [LayoutItem]()
     var attr = LayoutAttribute()
     var overlayGroups = [GroupLayout]()
