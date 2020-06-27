@@ -17,10 +17,6 @@ public enum AlignVertical {
     case bottom, top, center
 }
 
-public enum AlignItem {
-    case start, end, center, stretch
-}
-
-public enum AlignContent {
-    case start, end, center, stretch
+public enum Alignment {
+    case start, end, center
 }

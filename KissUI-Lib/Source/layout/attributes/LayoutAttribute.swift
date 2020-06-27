@@ -10,13 +10,6 @@ import Foundation
 import UIKit
 import YogaKit
 
-func setGrow(grow: Double, to layout: YGLayout) {
-    let cgGrow = CGFloat(grow)
-    layout.flexGrow = cgGrow
-    layout.flexShrink = cgGrow
-    layout.flex = cgGrow
-}
-
 class LayoutAttribute {
     var userPaddingLeft: Double = 0 // internal(set)
     var userPaddingRight: Double = 0
@@ -41,36 +34,39 @@ class LayoutAttribute {
     var userVerticalAlign: AlignVertical = .top
     var userHorizontalAlign: AlignHorizontal = .left
     
+    var stackAlignment: Alignment = .start
+    var defaultItemAlignment: Alignment = .start
+    
     func mapPaddingMarginMaxHeight(to l: YGLayout) {
-        l.paddingLeft = YGValue(self.userPaddingLeft)
-        l.paddingRight = YGValue(self.userPaddingRight)
-        l.paddingTop = YGValue(self.userPaddingTop)
+        l.paddingLeft   = YGValue(self.userPaddingLeft)
+        l.paddingRight  = YGValue(self.userPaddingRight)
+        l.paddingTop    = YGValue(self.userPaddingTop)
         l.paddingBottom = YGValue(self.userPaddingBottom)
-        l.marginLeft = YGValue(self.userLeading)
-        l.marginRight = YGValue(self.userTrailing)
-        l.marginTop = YGValue(self.userTop)
-        l.marginBottom = YGValue(self.userBottom)
-        l.maxHeight = YGValue(self.userMaxHeight)
+        l.marginLeft    = YGValue(self.userLeading)
+        l.marginRight   = YGValue(self.userTrailing)
+        l.marginTop     = YGValue(self.userTop)
+        l.marginBottom  = YGValue(self.userBottom)
+        l.maxHeight     = YGValue(self.userMaxHeight)
         
         switch self.userHeight {
-        case .fit: l.alignSelf = .flexStart
-        case .value(let height):  l.height = YGValue(height)
+        case .fit:                    l.alignSelf = .flexStart
+        case .value(let height):      l.height = YGValue(height)
         case .aspectRatio(let ratio): l.aspectRatio = CGFloat(ratio)
-        case .grow(let grow): setGrow(grow: grow, to: l)
+        case .grow(let grow):         setGrow(grow: grow, to: l)
         }
         
         switch self.userWidth {
         case .value(let width): l.width = YGValue(width)
-        case .grow(let grow): setGrow(grow: grow, to: l)
-        case .fit: l.alignSelf = .flexStart
+        case .grow(let grow):   setGrow(grow: grow, to: l)
+        case .fit:              l.alignSelf = .flexStart
         }
         
         switch self.userSelfAlign {
-        case .center: l.alignSelf = .center
-        case .start: l.alignSelf = .flexStart
-        case .end: l.alignSelf = .flexEnd
-        case .stretch: l.alignSelf = .stretch
-        case .none: l.alignSelf = .stretch
+        case .center:   l.alignSelf = .center
+        case .start:    l.alignSelf = .flexStart
+        case .end:      l.alignSelf = .flexEnd
+        case .stretch:  l.alignSelf = .stretch
+        case .none:     l.alignSelf = .stretch
         }
     }
 }

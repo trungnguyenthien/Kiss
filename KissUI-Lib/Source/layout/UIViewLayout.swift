@@ -13,14 +13,7 @@ protocol UIViewLayoutSetter: PaddingSetter, EdgeSetter, SizeSetter { }
 
 public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
     var attr = LayoutAttribute()
-    var view: UIView? = nil
-    var root: UIView? = nil
-    func cacheView(forceWidth: Double?, forceHeight: Double?) -> UIView? {
-        if forceWidth == attr.width, forceHeight == attr.height {
-            return root
-        }
-        return nil
-    }
+    var root = UIView()
     
     init() {
         self.attr.userWidth = .fit
@@ -28,18 +21,18 @@ public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
     }
     
     public var isVisible: Bool {
-        return view?.isVisible == true
+        return root.isVisible == true
     }
     
     var labelContent: UILabel? {
-        return view as? UILabel
+        return root as? UILabel
     }
 }
 
 extension UIViewLayout: NSCopying {
     public func copy(with zone: NSZone? = nil) -> Any {
         let instance = UIViewLayout()
-        instance.view = self.view
+        instance.root = self.root
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return instance
     }
@@ -47,20 +40,9 @@ extension UIViewLayout: NSCopying {
 
 extension UIViewLayout: FlexLayoutItemCreator {
     func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
-        if let cache = cacheView(forceWidth: forceWidth, forceHeight: forceHeight) {
-            return cache
-        }
-        
         attr.width = forceWidth
         attr.height = forceHeight
-        
-        guard let root = view else { return UIView() }
-        
-        if let label = root as? UILabel {
-            label.frame.size = CGSize(width: .max, height: .max)
-            label.sizeToFit()
-        }
-        
+
         root.configureLayout { (l) in
             l.isEnabled = true
             self.attr.mapPaddingMarginMaxHeight(to: l)
@@ -70,6 +52,4 @@ extension UIViewLayout: FlexLayoutItemCreator {
         
         return root
     }
-    
-    
 }

@@ -53,7 +53,7 @@ public extension UIView {
     // MARK: - VIEWLAYOUT
     var layout: UIViewLayout {
         let vlayout = UIViewLayout()
-        vlayout.view = self
+        vlayout.root = self
         return vlayout
     }
 }

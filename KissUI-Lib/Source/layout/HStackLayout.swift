@@ -31,14 +31,11 @@ extension HStackLayout {
 
 extension HStackLayout: FlexLayoutItemCreator {
     func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
-        
         attr.width = forceWidth
         attr.height = forceHeight
         
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
-        
-        makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho
         
         root.configureLayout { (l) in
             l.isEnabled = true
@@ -49,22 +46,22 @@ extension HStackLayout: FlexLayoutItemCreator {
             
             
             switch self.attr.userHorizontalAlign {
-            case .left:     l.justifyContent = .flexStart
-            case .right:    l.justifyContent = .flexEnd
-            case .center:   l.justifyContent = .center
+            case .left:   l.justifyContent = .flexStart
+            case .right:  l.justifyContent = .flexEnd
+            case .center: l.justifyContent = .center
             }
             
             switch self.attr.userVerticalAlign {
-            case .top:      l.alignItems = .flexStart
-            case .bottom:   l.alignItems = .flexEnd
-            case .center:   l.alignItems = .center
+            case .top:    l.alignItems = .flexStart
+            case .bottom: l.alignItems = .flexEnd
+            case .center: l.alignItems = .center
             }
         }
         
         let defaultSelfAlign: SelfAlign = {
             switch self.attr.userVerticalAlign {
             case .bottom: return .end
-            case .top: return .start
+            case .top:    return .start
             case .center: return .center
             }
         }()
@@ -76,43 +73,6 @@ extension HStackLayout: FlexLayoutItemCreator {
         
         root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)
         return root
-    }
-    
-    private func makeItemsWidth() {
-        var sumPart = 0.0
-        var remainWidth = attr.width ?? 0
-        remainWidth -= attr.userPaddingLeft
-        remainWidth -= attr.userPaddingRight
-        
-        layoutItems.enumerated().forEach { (index, item) in
-            switch item.attr.userWidth {
-            case .value(let fix):
-                item.attr.width = fix
-                remainWidth -= fix
-                
-            case .grow(let part):
-                sumPart += part
-                
-            case .fit:
-                guard let group = item as? GroupLayout else { return }
-                guard group.attr.width == nil else { return }
-                let myFitWidth = group.arrangeAble?.flexLayoutItem(forceWidth: nil, forceHeight: nil).frame.width
-                item.attr.width = Double(myFitWidth ?? 0)
-                remainWidth -= (item.attr.width ?? 0)
-                
-            }
-            remainWidth -= item.attr.userLeading - item.attr.userTrailing
-        }
-        
-        layoutItems.forEach {
-            switch $0.attr.userWidth {
-            case .grow(let part):
-                let myWidth = remainWidth * part / sumPart
-                $0.attr.width = myWidth
-                
-            case .value, .fit: ()
-            }
-        }
     }
     
     private func removeStartLeadingEndTrailing() {

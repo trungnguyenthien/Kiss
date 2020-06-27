@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol GroupLayoutSetter: PaddingSetter, EdgeSetter, SizeSetter, AlignmentSetter {}
+protocol GroupLayoutSetter: PaddingSetter, EdgeSetter, SizeSetter, AlignmentSetter, SelfAlignSetter {}
 
 public class GroupLayout: LayoutItem, GroupLayoutSetter {
     var root = UIView()
@@ -81,16 +81,16 @@ extension GroupLayout: NSCopying {
 
 extension GroupLayout {
     var views: [UIView] {
-        var output = [UIView?]()
+        var output = [UIView]()
         layoutItems.forEach {
             if let group = $0 as? GroupLayout {
                 // Recursive to get all views
                 output.append(contentsOf: group.views)
-            } else if let viewLayout = $0 as? UIViewLayout {
-                output.append(viewLayout.view)
+            } else if let uiviewLayout = $0 as? UIViewLayout {
+                output.append(uiviewLayout.root)
             }
         }
-        return output.compactMap { $0 }
+        return output
     }
     
     var visibleViews: [UIView] {

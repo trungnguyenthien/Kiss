@@ -11,7 +11,7 @@ import UIKit
 
 public class VStackLayout: GroupLayout {
     
-
+    
     override init() {
         super.init()
         self.attr.userWidth = .grow(.max)
@@ -32,13 +32,11 @@ extension VStackLayout {
 
 extension VStackLayout: FlexLayoutItemCreator {
     func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
-        
         attr.width = forceWidth
         attr.height = forceHeight
         
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
-        makeItemsWidth()                                    // Xác định width(.value), width(.grow), xác định width(.autoFit) cho
         
         root.configureLayout { (l) in
             l.isEnabled = true
@@ -47,17 +45,31 @@ extension VStackLayout: FlexLayoutItemCreator {
             
             self.attr.mapPaddingMarginMaxHeight(to: l)
             
+            
             switch self.attr.userHorizontalAlign {
-            case .left:     l.justifyContent = .flexStart
-            case .right:    l.justifyContent = .flexEnd
-            case .center:   l.justifyContent = .center
+            case .left:   l.justifyContent = .flexStart
+            case .right:  l.justifyContent = .flexEnd
+            case .center: l.justifyContent = .center
             }
             
             switch self.attr.userVerticalAlign {
-            case .bottom:   l.alignItems = .flexEnd
-            case .top:      l.alignItems = .flexStart
-            case .center:   l.alignItems = .center
+            case .top:    l.alignItems = .flexStart
+            case .bottom: l.alignItems = .flexEnd
+            case .center: l.alignItems = .center
             }
+        }
+        
+        let defaultSelfAlign: SelfAlign = {
+            switch self.attr.userVerticalAlign {
+            case .bottom: return .end
+            case .top:    return .start
+            case .center: return .center
+            }
+        }()
+        
+        layoutItems.forEach { (layoutItem) in
+            guard layoutItem.attr.userSelfAlign == .none else { return }
+            layoutItem.attr.userSelfAlign = defaultSelfAlign
         }
         
         root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)
