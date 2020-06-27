@@ -17,6 +17,31 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
     var attr = LayoutAttribute()
     var overlayGroups = [GroupLayout]()
     
+    func insert(view: UIViewLayout, at index: Int) {
+        root.insertSubview(view.root, at: index)
+        root.yoga.markDirty()
+    }
+    
+    func autoMarkDirty() {
+        layoutItems.forEach {
+            if let group = $0 as? GroupLayout {
+                group.autoMarkDirty()
+            }
+            
+            if let uiviewLayout = $0 as? UIViewLayout {
+                let view = uiviewLayout.root
+                if view is UILabel ||
+                   view is UIButton ||
+                   view is UITextView ||
+                   view is UIImageView ||
+                   view is UITextField {
+                    view.yoga.markDirty()
+                }
+            }
+
+        }
+    }
+    
     func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
         overlayGroups.append(contentsOf: builder())
         return self
