@@ -25,3 +25,11 @@ func setGrow(grow: Double, to layout: YGLayout) {
     layout.flexShrink = cgGrow
     layout.flex = cgGrow
 }
+
+
+func makeBlankView() -> UIView {
+    let view = UIView()
+    view.backgroundColor = .clear
+    view.isUserInteractionEnabled = false
+    return view
+}

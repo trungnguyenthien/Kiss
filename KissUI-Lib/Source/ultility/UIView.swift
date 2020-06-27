@@ -14,12 +14,14 @@ public extension UIView {
     // MARK: - VSTACK LAYOUT
     func vstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> VStackLayout {
         let stack = VStackLayout()
+        stack.root = self
         stack.layoutItems.append(contentsOf: builder())
         return stack
     }
     
     func vstack(@LayoutItemBuilder builder: () -> LayoutItem) -> VStackLayout {
         let stack = VStackLayout()
+        stack.root = self
         stack.layoutItems.append(builder())
         return stack
     }
@@ -27,12 +29,14 @@ public extension UIView {
     // MARK: - HSTACK LAYOUT
     func hstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> HStackLayout {
         let stack = HStackLayout()
+        stack.root = self
         stack.layoutItems.append(contentsOf: builder())
         return stack
     }
     
     func hstack(@LayoutItemBuilder builder: () -> LayoutItem) -> HStackLayout {
         let stack = HStackLayout()
+        stack.root = self
         stack.layoutItems.append(builder())
         return stack
     }
@@ -40,12 +44,14 @@ public extension UIView {
     // MARK: - WRAP LAYOUT
     func wrap(@LayoutItemBuilder builder: () -> [LayoutItem]) -> WrapLayout {
         let stack = WrapLayout()
+        stack.root = self
         stack.layoutItems.append(contentsOf: builder())
         return stack
     }
     
     func wrap(@LayoutItemBuilder builder: () -> LayoutItem) -> WrapLayout {
         let stack = WrapLayout()
+        stack.root = self
         stack.layoutItems.append(builder())
         return stack
     }
@@ -88,15 +94,6 @@ extension UIView {
     func applyLayoutFlexibleAll(preservingOrigin: Bool) {
         yoga.applyLayout(preservingOrigin: preservingOrigin,
                          dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight, .flexibleWidth))
-    }
-    
-    func applyLayout(layoutItems: [LayoutItem], fixWidth: Double?, fixHeight: Double?) {
-        layoutItems.forEach { (layoutItem) in
-            guard let flexItem = layoutItem as? FlexLayoutItemCreator else { return }
-            self.addSubview(flexItem.flexLayoutItem(forceWidth: layoutItem.attr.width, forceHeight: layoutItem.attr.height))
-        }
-        
-        self.applyLayout(preservingOrigin: false, fixWidth: fixWidth, fixHeight: fixHeight)
     }
     
     func applyLayout(preservingOrigin: Bool, fixWidth: Double?, fixHeight: Double?) {

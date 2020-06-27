@@ -17,14 +17,19 @@ class LayoutAttribute {
     var userPaddingBottom: Double = 0
     var userSelfAlign = SelfAlign.none
     
-    var userLeading: Double = 0
-    var userTrailing: Double = 0
-    var userTop: Double = 0
-    var userBottom: Double = 0
+    var userMarginLeft: Double = 0
+    var userMarginRight: Double = 0
+    var userMarginTop: Double = 0
+    var userMarginBottom: Double = 0
     
     var userWidth = DevWidthValue.grow(1)
     var userHeight = DevHeightValue.fit
     var userMaxHeight: Double? = nil
+    
+    var mLeft: Double = 0
+    var mRight: Double = 0
+    var mTop: Double = 0
+    var mBottom: Double = 0
     
     var width: Double? = nil
     var height: Double? = nil
@@ -42,10 +47,12 @@ class LayoutAttribute {
         l.paddingRight  = YGValue(self.userPaddingRight)
         l.paddingTop    = YGValue(self.userPaddingTop)
         l.paddingBottom = YGValue(self.userPaddingBottom)
-        l.marginLeft    = YGValue(self.userLeading)
-        l.marginRight   = YGValue(self.userTrailing)
-        l.marginTop     = YGValue(self.userTop)
-        l.marginBottom  = YGValue(self.userBottom)
+        
+        l.marginLeft    = YGValue(self.mLeft)
+        l.marginRight   = YGValue(self.mRight)
+        l.marginTop     = YGValue(self.mTop)
+        l.marginBottom  = YGValue(self.mBottom)
+        
         l.maxHeight     = YGValue(self.userMaxHeight)
         
         switch self.userHeight {
@@ -79,10 +86,10 @@ extension LayoutAttribute: NSCopying {
         instance.userPaddingRight = self.userPaddingRight
         instance.userPaddingTop = self.userPaddingTop
         instance.userPaddingBottom = self.userPaddingBottom
-        instance.userLeading = self.userLeading
-        instance.userTrailing = self.userTrailing
-        instance.userTop = self.userTop
-        instance.userBottom = self.userBottom
+        instance.userMarginLeft = self.userMarginLeft
+        instance.userMarginRight = self.userMarginRight
+        instance.userMarginTop = self.userMarginTop
+        instance.userMarginBottom = self.userMarginBottom
         instance.userWidth = self.userWidth
         instance.userHeight = self.userHeight
         instance.userMaxHeight = self.userMaxHeight

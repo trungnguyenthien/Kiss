@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 import YogaKit
-protocol UIViewLayoutSetter: PaddingSetter, EdgeSetter, SizeSetter { }
+protocol UIViewLayoutSetter: PaddingSetter, MarginSetter, SizeSetter { }
 
 public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
     var attr = LayoutAttribute()
-    var root = UIView()
+    var root = makeBlankView()
     
     init() {
         self.attr.userWidth = .fit
@@ -39,17 +39,10 @@ extension UIViewLayout: NSCopying {
 }
 
 extension UIViewLayout: FlexLayoutItemCreator {
-    func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
-        attr.width = forceWidth
-        attr.height = forceHeight
-
+    func configureLayout() {
         root.configureLayout { (l) in
             l.isEnabled = true
             self.attr.mapPaddingMarginMaxHeight(to: l)
         }
-        
-        root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)
-        
-        return root
     }
 }

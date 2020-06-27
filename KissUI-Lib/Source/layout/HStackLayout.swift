@@ -30,10 +30,8 @@ extension HStackLayout {
 }
 
 extension HStackLayout: FlexLayoutItemCreator {
-    func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
-        attr.width = forceWidth
-        attr.height = forceHeight
-        
+    func configureLayout() {
+        resetMargin()
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
         
@@ -71,21 +69,25 @@ extension HStackLayout: FlexLayoutItemCreator {
             layoutItem.attr.userSelfAlign = defaultSelfAlign
         }
         
-        root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)
-        return root
+        layoutItems.forEach {
+            guard let flexLayoutItemCreator = $0 as? FlexLayoutItemCreator else { return }
+            flexLayoutItemCreator.configureLayout()
+            $0.root.removeFromSuperview()
+            root.addSubview($0.root)
+        }
     }
     
     private func removeStartLeadingEndTrailing() {
-        let noSpacerLayoutItems = layoutItems.filter { !$0.isSpacer }
-        noSpacerLayoutItems.first?.attr.userLeading = 0
-        noSpacerLayoutItems.last?.attr.userTrailing = 0
+        let noSpacerLayoutItems = layoutItems.filter { $0.isVisible }
+        noSpacerLayoutItems.first?.attr.mLeft = 0
+        noSpacerLayoutItems.last?.attr.mRight = 0
     }
     
     private func removeLeadingTrailingIfHasSpacer() {
         layoutItems.enumerated().forEach { (index, item) in
             guard item is Spacer else { return }
-            layoutItems.element(index - 1)?.attr.userTrailing = 0
-            layoutItems.element(index + 1)?.attr.userLeading = 0
+            layoutItems.element(index - 1)?.attr.mRight = 0
+            layoutItems.element(index + 1)?.attr.mLeft = 0
         }
     }
 }

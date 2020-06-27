@@ -9,17 +9,35 @@
 import Foundation
 import UIKit
 
-protocol GroupLayoutSetter: PaddingSetter, EdgeSetter, SizeSetter, AlignmentSetter, SelfAlignSetter {}
+protocol GroupLayoutSetter: PaddingSetter, MarginSetter, SizeSetter, AlignmentSetter, SelfAlignSetter {}
 
 public class GroupLayout: LayoutItem, GroupLayoutSetter {
-    var root = UIView()
+    var root = makeBlankView()
     var layoutItems = [LayoutItem]()
     var attr = LayoutAttribute()
     var overlayGroups = [GroupLayout]()
     
+    public func applyLayout(width: Double? = nil, height: Double? = nil) {
+        autoMarkDirty()
+        autoMarkIncludedInLayout()
+        
+//        root.applyLayout(layoutItems: layoutItems, fixWidth: width, fixHeight: height)
+    }
+    
     func insert(view: UIViewLayout, at index: Int) {
         root.insertSubview(view.root, at: index)
         root.yoga.markDirty()
+    }
+    
+    func autoMarkIncludedInLayout() {
+        layoutItems.forEach {
+            if let uiviewLayout = $0 as? UIViewLayout {
+                uiviewLayout.root.yoga.isIncludedInLayout = uiviewLayout.isVisible
+            }
+            if let group = $0 as? GroupLayout {
+                group.autoMarkIncludedInLayout()
+            }
+        }
     }
     
     func autoMarkDirty() {
@@ -39,6 +57,15 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
                 }
             }
 
+        }
+    }
+    
+    func resetMargin() {
+        layoutItems.forEach {
+            $0.attr.mLeft = $0.attr.userMarginLeft
+            $0.attr.mRight = $0.attr.userMarginRight
+            $0.attr.mTop = $0.attr.userMarginTop
+            $0.attr.mBottom = $0.attr.userMarginBottom
         }
     }
     

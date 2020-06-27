@@ -31,10 +31,7 @@ extension VStackLayout {
 }
 
 extension VStackLayout: FlexLayoutItemCreator {
-    func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
-        attr.width = forceWidth
-        attr.height = forceHeight
-        
+    func configureLayout() {
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
         
@@ -71,46 +68,20 @@ extension VStackLayout: FlexLayoutItemCreator {
             guard layoutItem.attr.userSelfAlign == .none else { return }
             layoutItem.attr.userSelfAlign = defaultSelfAlign
         }
-        
-        root.applyLayout(layoutItems: layoutItems, fixWidth: forceWidth, fixHeight: forceHeight)
-        return root
     }
     
     
     private func removeStartLeadingEndTrailing() {
         let noSpacerLayoutItems = layoutItems.filter { !$0.isSpacer }
-        noSpacerLayoutItems.first?.attr.userTop = 0
-        noSpacerLayoutItems.last?.attr.userBottom = 0
+        noSpacerLayoutItems.first?.attr.userMarginTop = 0
+        noSpacerLayoutItems.last?.attr.userMarginBottom = 0
     }
     
     private func removeLeadingTrailingIfHasSpacer() {
         layoutItems.enumerated().forEach { (index, item) in
             guard item is Spacer else { return }
-            layoutItems.element(index - 1)?.attr.userTrailing = 0
-            layoutItems.element(index + 1)?.attr.userLeading = 0
-        }
-    }
-    
-    private func makeItemsWidth() {
-        var remainWidth = attr.width ?? 0
-        remainWidth -= attr.userPaddingLeft
-        remainWidth -= attr.userPaddingRight
-        
-        layoutItems.enumerated().forEach { (index, item) in
-            switch item.attr.userWidth {
-            case .value(let fix):
-                item.attr.width = fix
-                
-            case .grow:
-                item.attr.width = remainWidth
-                
-            case .fit:
-                guard let group = item as? GroupLayout else { return }
-                guard group.attr.width == nil else { return }
-                let myFitWidth = group.arrangeAble?.flexLayoutItem(forceWidth: nil, forceHeight: nil).frame.width
-                item.attr.width = Double(myFitWidth ?? 0)
-                
-            }
+            layoutItems.element(index - 1)?.attr.userMarginRight = 0
+            layoutItems.element(index + 1)?.attr.userMarginLeft = 0
         }
     }
 }

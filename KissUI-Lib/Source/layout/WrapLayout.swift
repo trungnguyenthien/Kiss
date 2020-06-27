@@ -36,7 +36,7 @@ extension WrapLayout {
 }
 
 extension WrapLayout: FlexLayoutItemCreator {
-    func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView {
-        return root
+    func configureLayout() {
+        
     }
 }

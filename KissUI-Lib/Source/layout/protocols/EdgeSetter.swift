@@ -8,31 +8,35 @@
 
 import Foundation
 
-public protocol EdgeSetter {
+public protocol MarginSetter {
     @discardableResult func leading(_ value: Double) -> Self
     @discardableResult func trailing(_ value: Double) -> Self
     @discardableResult func top(_ value: Double) -> Self
     @discardableResult func bottom(_ value: Double) -> Self
 }
 
-public extension EdgeSetter where Self: LayoutItem {
+public extension MarginSetter where Self: LayoutItem {
     func leading(_ value: Double) -> Self {
         attr.userLeading = value
+        attr.mLeft = value
         return self
     }
     
     func trailing(_ value: Double) -> Self {
         attr.userTrailing = value
+        attr.mRight = value
         return self
     }
     
     func top(_ value: Double) -> Self {
         attr.userTop = value
+        attr.mTop = value
         return self
     }
     
     func bottom(_ value: Double) -> Self {
         attr.userBottom = value
+        attr.mBottom = value
         return self
     }
 }

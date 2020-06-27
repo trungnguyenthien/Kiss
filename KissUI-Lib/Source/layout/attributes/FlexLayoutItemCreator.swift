@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 protocol FlexLayoutItemCreator {
-    func flexLayoutItem(forceWidth: Double?, forceHeight: Double?) -> UIView
+    func configureLayout()
 }

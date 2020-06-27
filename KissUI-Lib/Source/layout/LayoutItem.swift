@@ -41,6 +41,18 @@ internal extension LayoutItem {
         }
     }
     
+    var root: UIView {
+        if let item = self as? UIViewLayout {
+            return item.root
+        } else if let group = self as? GroupLayout {
+            return group.root
+        } else if let spacer = self as? Spacer {
+            return spacer.root
+        } else {
+            return UIView()
+        }
+    }
+    
     var layoutItems: [LayoutItem] {
         guard let viewLayout = self as? GroupLayout else { return [] }
         return viewLayout.layoutItems

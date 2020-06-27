@@ -7,17 +7,22 @@
 //
 
 import Foundation
+import UIKit
 
-public class Spacer: LayoutItem {
-    public var isVisible: Bool {
-        return true
+public class Spacer: LayoutItem, FlexLayoutItemCreator {
+    var attr = LayoutAttribute()
+    var root = makeBlankView()
+    
+    func configureLayout() {
+        root.configureLayout { (l) in
+            l.isEnabled = true
+            self.attr.mapPaddingMarginMaxHeight(to: l)
+            setGrow(grow: -0.000000000001, to: l)
+        }
     }
     
-    var attr = LayoutAttribute()
-    
-    init() {
-        self.attr.userWidth = .grow(.sameZero)
-        self.attr.userHeight = .grow(.sameZero)
+    public var isVisible: Bool {
+        return true
     }
 }
 
