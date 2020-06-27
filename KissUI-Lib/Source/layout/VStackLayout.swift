@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 public class VStackLayout: GroupLayout {
-    
-    
     override init() {
         super.init()
         self.attr.userWidth = .grow(.max)
@@ -30,7 +28,22 @@ extension VStackLayout {
     }
 }
 
-extension VStackLayout: FlexLayoutItemCreator {
+extension VStackLayout: FlexLayoutItemProtocol {
+    func layoutRendering() {
+        resetMargin()
+        
+        removeStartLeadingEndTrailing()
+        removeLeadingTrailingIfHasSpacer()
+        
+        autoMarkDirty()
+        autoMarkIncludedInLayout()
+        
+        layoutItems.forEach {
+            guard let flex = $0 as? FlexLayoutItemProtocol else { return }
+            flex.layoutRendering()
+        }
+    }
+    
     func configureLayout() {
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
@@ -67,6 +80,13 @@ extension VStackLayout: FlexLayoutItemCreator {
         layoutItems.forEach { (layoutItem) in
             guard layoutItem.attr.userSelfAlign == .none else { return }
             layoutItem.attr.userSelfAlign = defaultSelfAlign
+        }
+        
+        layoutItems.forEach {
+            guard let flex = $0 as? FlexLayoutItemProtocol else { return }
+            flex.configureLayout()
+            $0.root.removeFromSuperview()
+            root.addSubview($0.root)
         }
     }
     

@@ -38,7 +38,11 @@ extension UIViewLayout: NSCopying {
     }
 }
 
-extension UIViewLayout: FlexLayoutItemCreator {
+extension UIViewLayout: FlexLayoutItemProtocol {
+    func layoutRendering() {
+        
+    }
+    
     func configureLayout() {
         root.configureLayout { (l) in
             l.isEnabled = true

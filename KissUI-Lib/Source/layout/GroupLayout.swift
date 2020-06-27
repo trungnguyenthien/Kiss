@@ -17,13 +17,6 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
     var attr = LayoutAttribute()
     var overlayGroups = [GroupLayout]()
     
-    public func applyLayout(width: Double? = nil, height: Double? = nil) {
-        autoMarkDirty()
-        autoMarkIncludedInLayout()
-        
-//        root.applyLayout(layoutItems: layoutItems, fixWidth: width, fixHeight: height)
-    }
-    
     func insert(view: UIViewLayout, at index: Int) {
         root.insertSubview(view.root, at: index)
         root.yoga.markDirty()
@@ -78,12 +71,12 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
         return hasVisibleView
     }
     
-    var arrangeAble: FlexLayoutItemCreator? {
-        return self as? FlexLayoutItemCreator
+    var arrangeAble: FlexLayoutItemProtocol? {
+        return self as? FlexLayoutItemProtocol
     }
     
-    var arrangeAbleItems: [FlexLayoutItemCreator] {
-        return layoutItems.compactMap { $0 as? FlexLayoutItemCreator }
+    var arrangeAbleItems: [FlexLayoutItemProtocol] {
+        return layoutItems.compactMap { $0 as? FlexLayoutItemProtocol }
     }
     
     func fullOptimize() {
@@ -151,5 +144,38 @@ extension GroupLayout {
     
     var hasVisibleView: Bool {
         return !visibleViews.isEmpty
+    }
+}
+
+extension GroupLayout {
+    /// Remove Subview hiện tại, construct lại hệ thống view mới
+    public func constructLayout() {
+        let flex = self as? FlexLayoutItemProtocol
+        flex?.configureLayout()
+    }
+    
+    /// Layout lại vị trí view mới, những view bị hidden sẽ remove khỏi hệ thống layout.
+    /// Nên gọi phương thức này sau khi set nội dung view và set hidden view hoàn tất.
+    /// - Parameters:
+    ///   - width: nil -> autoFit Width
+    ///   - height: nil -> autoFit Height
+    public func updateLayoutChange(width: CGFloat? = nil, height: CGFloat? = nil) {
+        let flex = self as? FlexLayoutItemProtocol
+        flex?.layoutRendering()
+        root.applyLayout(preservingOrigin: true, fixWidth: width, fixHeight: height)
+        constructLayout()
+    }
+    
+    /// Tính toán size cần thiết để render layout
+    /// - Parameters:
+    ///   - width: nil nếu muốn fit chiều dài
+    ///   - height: nil nếu muốn fit chiều cao
+    /// - Returns: size cần thiết để render layout
+    public func estimatedSize(width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize {
+        let flex = self as? FlexLayoutItemProtocol
+        flex?.layoutRendering()
+        let fixWidth = width ?? .nan
+        let fixHeight = height ?? .nan
+        return root.yoga.calculateLayout(with: CGSize(width: fixWidth, height: fixHeight))
     }
 }

@@ -96,16 +96,16 @@ extension UIView {
                          dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight, .flexibleWidth))
     }
     
-    func applyLayout(preservingOrigin: Bool, fixWidth: Double?, fixHeight: Double?) {
+    func applyLayout(preservingOrigin: Bool, fixWidth: CGFloat?, fixHeight: CGFloat?) {
         if let width = fixWidth, let height = fixHeight {
-            yoga.width = YGValue(CGFloat(width))
-            yoga.height = YGValue(CGFloat(height))
+            yoga.width = YGValue(width)
+            yoga.height = YGValue(height)
             yoga.applyLayout(preservingOrigin: preservingOrigin)
         } else if let width = fixWidth, fixHeight == nil {
-            yoga.width = YGValue(CGFloat(width))
+            yoga.width = YGValue(width)
             yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight))
         } else if let height = fixHeight, fixWidth == nil {
-            yoga.height = YGValue(CGFloat(height))
+            yoga.height = YGValue(height)
             yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleWidth))
         } else {
             yoga.width = YGValueUndefined

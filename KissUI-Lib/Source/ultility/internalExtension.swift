@@ -48,7 +48,7 @@ extension Array {
     }
 }
 
-func YGValue(_ value: Double?) -> YGValue {
+func YGValue(_ value: Double?) -> YogaKit.YGValue {
     guard let value = value else { return YGValueUndefined }
-    return YGValue(value)
+    return YogaKit.YGValue(CGFloat(value))
 }

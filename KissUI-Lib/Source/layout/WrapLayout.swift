@@ -35,7 +35,11 @@ extension WrapLayout {
     }
 }
 
-extension WrapLayout: FlexLayoutItemCreator {
+extension WrapLayout: FlexLayoutItemProtocol {
+    func layoutRendering() {
+        
+    }
+    
     func configureLayout() {
         
     }

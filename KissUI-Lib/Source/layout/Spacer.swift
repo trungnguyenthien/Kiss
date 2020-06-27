@@ -9,10 +9,16 @@
 import Foundation
 import UIKit
 
-public class Spacer: LayoutItem, FlexLayoutItemCreator {
+public class Spacer: LayoutItem {
     var attr = LayoutAttribute()
     var root = makeBlankView()
     
+    public var isVisible: Bool {
+        return true
+    }
+}
+
+extension Spacer: FlexLayoutItemProtocol {
     func configureLayout() {
         root.configureLayout { (l) in
             l.isEnabled = true
@@ -21,8 +27,8 @@ public class Spacer: LayoutItem, FlexLayoutItemCreator {
         }
     }
     
-    public var isVisible: Bool {
-        return true
+    func layoutRendering() {
+        
     }
 }
 

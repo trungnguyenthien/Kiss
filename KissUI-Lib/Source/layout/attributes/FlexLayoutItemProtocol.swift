@@ -1,5 +1,5 @@
 //
-//  LayoutArrangeAble.swift
+//  FlexLayoutItemProtocol.swift
 //  KissUI
 //
 //  Created by Trung on 6/9/20.
@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
-protocol FlexLayoutItemCreator {
+protocol FlexLayoutItemProtocol {
     func configureLayout()
+    func layoutRendering()
 }

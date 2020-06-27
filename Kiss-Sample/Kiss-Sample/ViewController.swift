@@ -15,21 +15,24 @@ class ViewController: UIViewController {
     let label2 = "002 Trung".label
     let redView = makeView(.red)
     
-    private var regularLayout: GroupLayout {
-        hstack {
-            blueView.layout.width(100).height(50)
-            label1.layout.leading(10)
-            label2.layout.width(.full)
+    private lazy var regularLayout = {
+        self.view.hstack {
+            blueView.layout.width(40).height(.whRatio(4/3))
+            label1.layout.width(.fit).marginRight(100)
+            label2.layout.width(.fit)
+            spacer
             redView.layout.width(50).height(100)
-        }.height(.fit)
-    }
+        }
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let view = label2
-        view.frame.size = CGSize(width: 99999999, height: 99999999)
-        view.sizeToFit()
-        print("SizeToFit = \(view.frame.size)")
+        regularLayout.constructLayout()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        regularLayout.updateLayoutChange(width: view.bounds.width, height: nil)
     }
 }
 

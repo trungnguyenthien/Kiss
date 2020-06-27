@@ -29,19 +29,29 @@ extension HStackLayout {
     }
 }
 
-extension HStackLayout: FlexLayoutItemCreator {
-    func configureLayout() {
+extension HStackLayout: FlexLayoutItemProtocol {
+    func layoutRendering() {
         resetMargin()
+        
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
         
+        autoMarkDirty()
+        autoMarkIncludedInLayout()
+        
+        layoutItems.forEach {
+            guard let flex = $0 as? FlexLayoutItemProtocol else { return }
+            flex.layoutRendering()
+        }
+    }
+    
+    func configureLayout() {
         root.configureLayout { (l) in
             l.isEnabled = true
             l.direction = .LTR
             l.flexDirection = .row
             
             self.attr.mapPaddingMarginMaxHeight(to: l)
-            
             
             switch self.attr.userHorizontalAlign {
             case .left:   l.justifyContent = .flexStart
@@ -70,8 +80,8 @@ extension HStackLayout: FlexLayoutItemCreator {
         }
         
         layoutItems.forEach {
-            guard let flexLayoutItemCreator = $0 as? FlexLayoutItemCreator else { return }
-            flexLayoutItemCreator.configureLayout()
+            guard let flex = $0 as? FlexLayoutItemProtocol else { return }
+            flex.configureLayout()
             $0.root.removeFromSuperview()
             root.addSubview($0.root)
         }
