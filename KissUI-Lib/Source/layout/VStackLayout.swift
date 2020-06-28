@@ -50,7 +50,7 @@ extension VStackLayout: FlexLayoutItemProtocol {
     }
     
     func configureLayout() {
-        root.configureLayout { (l) in
+        body.configureLayout { (l) in
             l.isEnabled = true
             l.direction = .LTR
             l.flexDirection = .column
@@ -67,7 +67,7 @@ extension VStackLayout: FlexLayoutItemProtocol {
             guard let flex = $0 as? FlexLayoutItemProtocol else { return }
             flex.configureLayout()
             $0.root.removeFromSuperview()
-            root.addSubview($0.root)
+            body.addSubview($0.root)
         }
     }
     

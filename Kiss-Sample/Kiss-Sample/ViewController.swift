@@ -11,9 +11,31 @@ import KissUI
 
 class ViewController: UIViewController {
     
-    
-    private lazy var regularLayout = {
+    private var regularLayout = {
         makeView(.purple).hstack {
+            makeView(.blue)
+                .layout.width(.grow(1)).height(.ratio(3/2)).marginLeft(100)
+            
+            makeView(.black).vstack {
+                "0001".label
+                    .layout.width(.full)
+                "002 Trung".label
+                    .layout.width(.fit)
+                makeView(.red)
+                    .layout.width(.grow(1)).height(100).marginLeft(20)
+                makeView(.green)
+                    .layout.width(.grow(2)).height(30)
+                makeView(.brown)
+                    .layout.width(100).height(10)
+                makeView(.systemPink)
+                    .layout.width(.full).height(.ratio(4/2)).marginHorizontal(30)
+                }.width(.grow(1)).height(.full).padding(10)
+            
+        }.padding(12)
+    }()
+    
+    private lazy var regularLayout2 = {
+        makeView(.purple).vstack {
             makeView(.blue)
                 .layout.width(.grow(1)).height(.ratio(3/2)).marginLeft(100)
             
@@ -38,12 +60,11 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(regularLayout.root)
-        regularLayout.constructLayout()
+        view.kiss.constructIfNeed(layout: regularLayout)
     }
     
     override func viewDidLayoutSubviews() {
-        regularLayout.updateLayoutChange(width: view.bounds.width - 10, height: nil)
+        view.kiss.updateChange(width: view.bounds.width - 10, height: nil)
     }
 }
 

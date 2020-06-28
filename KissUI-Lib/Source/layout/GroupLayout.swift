@@ -12,14 +12,22 @@ import UIKit
 protocol GroupLayoutSetter: PaddingSetter, MarginSetter, SizeSetter, AlignmentSetter, SelfAlignSetter {}
 
 public class GroupLayout: LayoutItem, GroupLayoutSetter {
-    public var root = makeBlankView()
+    var baseView: UIView? = nil
+    var body = makeBlankView()
     var layoutItems = [LayoutItem]()
     var attr = LayoutAttribute()
     var overlayGroups = [GroupLayout]()
     
+    public var layerViews: [UIView] {
+        var views: [UIView] = []
+        views.append(body)
+        views.append(contentsOf: overlayGroups.map { $0.body })
+        return views
+    }
+    
     func insert(view: UIViewLayout, at index: Int) {
-        root.insertSubview(view.root, at: index)
-        root.yoga.markDirty()
+        body.insertSubview(view.root, at: index)
+        body.yoga.markDirty()
     }
     
     func autoMarkIncludedInLayout() {
@@ -162,7 +170,7 @@ extension GroupLayout {
     public func updateLayoutChange(width: CGFloat? = nil, height: CGFloat? = nil) {
         let flex = self as? FlexLayoutItemProtocol
         flex?.layoutRendering()
-        root.applyLayout(preservingOrigin: true, fixWidth: width, fixHeight: height)
+        body.applyLayout(preservingOrigin: true, fixWidth: width, fixHeight: height)
         constructLayout()
     }
     
@@ -176,6 +184,6 @@ extension GroupLayout {
         flex?.layoutRendering()
         let fixWidth = width ?? .nan
         let fixHeight = height ?? .nan
-        return root.yoga.calculateLayout(with: CGSize(width: fixWidth, height: fixHeight))
+        return body.yoga.calculateLayout(with: CGSize(width: fixWidth, height: fixHeight))
     }
 }

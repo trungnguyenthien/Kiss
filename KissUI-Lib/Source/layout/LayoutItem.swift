@@ -45,7 +45,7 @@ internal extension LayoutItem {
         if let item = self as? UIViewLayout {
             return item.root
         } else if let group = self as? GroupLayout {
-            return group.root
+            return group.body
         } else if let spacer = self as? Spacer {
             return spacer.root
         } else {
