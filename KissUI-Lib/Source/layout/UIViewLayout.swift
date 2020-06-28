@@ -27,6 +27,11 @@ public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
     var labelContent: UILabel? {
         return root as? UILabel
     }
+    
+    public func alignSelf(_ value: ItemAlignment) -> Self {
+        attr.alignSelf = value
+        return self
+    }
 }
 
 extension UIViewLayout: NSCopying {

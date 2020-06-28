@@ -13,14 +13,14 @@ class ViewController: UIViewController {
     
     private lazy var regularLayout = {
         self.view.hstack {
-            makeView(.blue).layout.width(100).height(100)
+            makeView(.blue).layout.width(.grow(1)).height(100)
             
             makeView(.yellow).vstack {
                 "0001".label.layout.width(.fit).marginRight(100)
                 "002 Trung".label.layout.width(.fit)
-                makeView(.red).layout.width(.full).height(100).marginLeft(20)
-                makeView(.green).layout.width(200).height(30)
-            }.width(.full).height(.full)
+                makeView(.red).layout.width(.grow(1)).height(100).marginLeft(20)
+                makeView(.green).layout.width(.full).height(30)
+            }.width(.grow(1)).height(.full)
             
         }.padding(12)
     }()
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        regularLayout.updateLayoutChange(width: view.bounds.width - 100, height: nil)
+        regularLayout.updateLayoutChange(width: view.bounds.width - 10, height: nil)
     }
 }
 

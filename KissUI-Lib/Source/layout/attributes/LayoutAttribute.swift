@@ -51,26 +51,6 @@ class LayoutAttribute {
         l.marginBottom  = YGValue(self.mBottom)
         l.maxHeight     = YGValue(self.userMaxHeight)
         
-        switch self.userHeight {
-        case .fit:                    l.alignSelf = .flexStart
-        case .value(let height):      l.height = YGValue(height)
-        case .aspectRatio(let ratio): l.aspectRatio = CGFloat(ratio)
-        case .grow(let grow):         setGrow(grow: grow, to: l)
-        }
-        
-        switch self.userWidth {
-        case .value(let width): l.width = YGValue(width)
-        case .grow(let grow):   setGrow(grow: grow, to: l)
-        case .fit:              l.alignSelf = .flexStart
-        }
-        
-        switch self.alignSelf {
-        case .center:   l.alignSelf = .center
-        case .start:    l.alignSelf = .flexStart
-        case .end:      l.alignSelf = .flexEnd
-        case .stretch:  l.alignSelf = .stretch
-        }
-        
         switch self.alignStack {
         case .start: l.justifyContent = .flexStart
         case .end: l.justifyContent = .flexEnd
@@ -83,6 +63,31 @@ class LayoutAttribute {
         case .center: l.alignItems = .center
         case .stretch: l.alignItems = .stretch
         }
+        
+        switch self.alignSelf {
+        case .center:   l.alignSelf = .center
+        case .start:    l.alignSelf = .flexStart
+        case .end:      l.alignSelf = .flexEnd
+        case .stretch:  l.alignSelf = .stretch
+        }
+        
+        switch self.userHeight {
+        case .fit:                    l.alignSelf = .flexStart
+        case .value(let height):      l.height = YGValue(height)
+        case .aspectRatio(let ratio): l.aspectRatio = CGFloat(ratio)
+        case .grow(let grow):
+            l.alignSelf = .stretch
+            setGrow(grow: grow, to: l)
+        }
+        
+        switch self.userWidth {
+        case .value(let width): l.width = YGValue(width)
+        case .grow(let grow):
+            l.alignSelf = .stretch
+            setGrow(grow: grow, to: l)
+        case .fit:              l.alignSelf = .flexStart
+        }
+
     }
 }
 
