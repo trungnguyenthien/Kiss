@@ -10,38 +10,12 @@ import UIKit
 import KissUI
 
 class ViewController: UIViewController {
-    
-    private var tag1 = hstack {
-        "tag1".label.layout
-    }.align(.end)
-    
-    private var tag2 = hstack {
-        "tag2".label.layout
-        }.align(.end).alignItems(.end)
+
+    private let collectionView = makeCollection()
     
     private lazy var regularLayout = {
-        hstack {
-            makeView(.blue)
-                .layout.width(.grow(1)).height(.ratio(3/2)).marginLeft(100)
-                
-            
-            makeView(.quaternarySystemFill).wrap {
-                "0001".label
-                    .layout
-                spacer
-                "002 Trung".labelBigBold
-                    .layout
-                makeView(.red)
-                    .layout.width(50).height(10).alignSelf(.center).marginRight(5)
-                makeView(.green)
-                    .layout.width(40).height(30)
-                makeView(.brown)
-                    .layout.width(50).height(10)
-                makeView(.systemPink)
-                    .layout.width(55).height(.ratio(4/2)).marginHorizontal(30)
-                    
-            }.width(.grow(2)).height(.full).padding(10).alignItems(.center).align(.center)
-            
+        vstack {
+            collectionView.layout.width(.full)
         }.padding(12)
     }()
     
@@ -57,6 +31,11 @@ class ViewController: UIViewController {
 
 let small = 4.0
 let medium = 8.0
+
+func makeCollection() -> UICollectionView {
+    return UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+}
+
 
 func makeView(_ color: UIColor) -> UIView {
     let view = UIView()
