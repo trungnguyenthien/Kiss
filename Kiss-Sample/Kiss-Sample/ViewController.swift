@@ -13,11 +13,11 @@ class ViewController: UIViewController {
     
     private var tag1 = hstack {
         "tag1".label.layout
-    }.alignStack(.end)
+    }.align(.end)
     
     private var tag2 = hstack {
         "tag2".label.layout
-        }.alignStack(.end).alignItems(.end)
+        }.align(.end).alignItems(.end)
     
     private lazy var regularLayout = {
         hstack {
@@ -28,10 +28,11 @@ class ViewController: UIViewController {
             makeView(.quaternarySystemFill).wrap {
                 "0001".label
                     .layout
+                spacer
                 "002 Trung".labelBigBold
                     .layout
                 makeView(.red)
-                    .layout.width(50).height(10).marginLeft(20).alignSelf(.center)
+                    .layout.width(50).height(10).alignSelf(.center).marginRight(5)
                 makeView(.green)
                     .layout.width(40).height(30)
                 makeView(.brown)
@@ -39,7 +40,7 @@ class ViewController: UIViewController {
                 makeView(.systemPink)
                     .layout.width(55).height(.ratio(4/2)).marginHorizontal(30)
                     
-            }.width(.grow(2)).height(.full).padding(10).alignItems(.center).alignStack(.center)
+            }.width(.grow(2)).height(.full).padding(10).alignItems(.center).align(.center)
             
         }.padding(12)
     }()

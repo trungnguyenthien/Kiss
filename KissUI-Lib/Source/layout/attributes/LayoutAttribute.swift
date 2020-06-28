@@ -34,9 +34,9 @@ class LayoutAttribute {
     var mTop: Double = 0
     var mBottom: Double = 0
     
-    var alignStack = StackAlignment.start
-    var alignItems = ItemAlignment.start
-    var alignSelf: ItemAlignment? = nil
+    var alignStack = MainAxisAlignment.start
+    var alignItems = CrossAxisAlignment.start
+    var alignSelf: CrossAxisAlignment? = nil
     
     func map(to l: YGLayout) {
         l.paddingLeft   = YGValue(self.paddingLeft)

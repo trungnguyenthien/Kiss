@@ -17,10 +17,10 @@ public enum AlignVertical {
     case bottom, top, center
 }
 
-public enum ItemAlignment {
+public enum CrossAxisAlignment {
     case start, end, center, stretch
 }
 
-public enum StackAlignment {
+public enum MainAxisAlignment {
     case start, end, center
 }

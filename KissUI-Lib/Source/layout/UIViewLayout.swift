@@ -28,7 +28,7 @@ public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
         return body as? UILabel
     }
     
-    public func alignSelf(_ value: ItemAlignment) -> Self {
+    public func alignSelf(_ value: CrossAxisAlignment) -> Self {
         attr.alignSelf = value
         return self
     }
