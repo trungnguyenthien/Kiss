@@ -29,6 +29,24 @@ extension Array where Array.Element == GroupLayout {
 }
 
 internal extension LayoutItem {
+    private var overlayItems: [GroupLayout] {
+        if let item = self as? UIViewLayout {
+            return item.overlayGroups
+        } else if let group = self as? GroupLayout {
+            return group.overlayGroups
+        }
+        return []
+    }
+    
+    func allOverlayGroups() -> [GroupLayout] {
+        var groups = [GroupLayout]()
+        groups.append(contentsOf: overlayItems)
+        overlayItems.forEach {
+            groups.append(contentsOf: $0.overlayItems)
+        }
+        return groups
+    }
+    
     var attr: LayoutAttribute {
         if let item = self as? UIViewLayout {
             return item.attr
@@ -43,7 +61,7 @@ internal extension LayoutItem {
     
     var root: UIView {
         if let item = self as? UIViewLayout {
-            return item.root
+            return item.body
         } else if let group = self as? GroupLayout {
             return group.body
         } else if let spacer = self as? Spacer {

@@ -21,19 +21,21 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
     public var layerViews: [UIView] {
         var views: [UIView] = []
         views.append(body)
-        views.append(contentsOf: overlayGroups.map { $0.body })
+        allOverlayGroup.forEach {
+            views.append($0.body)
+        }
         return views
     }
     
     func insert(view: UIViewLayout, at index: Int) {
-        body.insertSubview(view.root, at: index)
+        body.insertSubview(view.body, at: index)
         body.yoga.markDirty()
     }
     
     func autoMarkIncludedInLayout() {
         layoutItems.forEach {
             if let uiviewLayout = $0 as? UIViewLayout {
-                uiviewLayout.root.yoga.isIncludedInLayout = uiviewLayout.isVisible
+                uiviewLayout.body.yoga.isIncludedInLayout = uiviewLayout.isVisible
             }
             if let group = $0 as? GroupLayout {
                 group.autoMarkIncludedInLayout()
@@ -48,16 +50,16 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
             }
             
             if let uiviewLayout = $0 as? UIViewLayout {
-                let view = uiviewLayout.root
+                let view = uiviewLayout.body
                 if view is UILabel ||
-                   view is UIButton ||
-                   view is UITextView ||
-                   view is UIImageView ||
-                   view is UITextField {
+                    view is UIButton ||
+                    view is UITextView ||
+                    view is UIImageView ||
+                    view is UITextField {
                     view.yoga.markDirty()
                 }
             }
-
+            
         }
     }
     
@@ -70,8 +72,17 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
         }
     }
     
-    func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
-        overlayGroups.append(contentsOf: builder())
+    public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
+        let groups = builder()
+        groups.forEach { $0.baseView = self.body }
+        overlayGroups.append(contentsOf: groups)
+        return self
+    }
+    
+    public func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
+        let group = builder()
+        group.baseView = self.body
+        overlayGroups.append(group)
         return self
     }
     
@@ -140,7 +151,7 @@ extension GroupLayout {
                 // Recursive to get all views
                 output.append(contentsOf: group.views)
             } else if let uiviewLayout = $0 as? UIViewLayout {
-                output.append(uiviewLayout.root)
+                output.append(uiviewLayout.body)
             }
         }
         return output
@@ -156,8 +167,24 @@ extension GroupLayout {
 }
 
 extension GroupLayout {
+    var allOverlayGroup: [GroupLayout] {
+        var groups = [GroupLayout]()
+        groups.append(contentsOf: overlayGroups)
+        
+        layoutItems.forEach { (layoutItem) in
+            if let viewLayout = layoutItem as? UIViewLayout {
+                groups.append(contentsOf: viewLayout.overlayGroups)
+            }
+            if let groupLayout = layoutItem as? GroupLayout {
+                groups.append(contentsOf: groupLayout.allOverlayGroup)
+            }
+        }
+        
+        return groups
+    }
+    
     /// Remove Subview hiện tại, construct lại hệ thống view mới
-    public func constructLayout() {
+    func constructLayout() {
         let flex = self as? FlexLayoutItemProtocol
         flex?.configureLayout()
     }
@@ -167,11 +194,20 @@ extension GroupLayout {
     /// - Parameters:
     ///   - width: nil -> autoFit Width
     ///   - height: nil -> autoFit Height
-    public func updateLayoutChange(width: CGFloat? = nil, height: CGFloat? = nil) {
+    func updateLayoutChange(width: CGFloat? = nil, height: CGFloat? = nil) {
         let flex = self as? FlexLayoutItemProtocol
         flex?.layoutRendering()
-        body.applyLayout(preservingOrigin: true, fixWidth: width, fixHeight: height)
         constructLayout()
+        
+        body.applyLayout(preservingOrigin: false, fixWidth: width, fixHeight: height)
+        
+        allOverlayGroup.forEach { (overlay) in
+            guard let base = overlay.baseView else { return }
+            overlay.updateLayoutChange(width: base.bounds.width, height: base.bounds.height)
+            guard let superView = overlay.root.superview else { return }
+            guard let newFrame = superView.getConvertedFrame(fromSubview: base) else {  return }
+            overlay.root.frame = newFrame
+        }
     }
     
     /// Tính toán size cần thiết để render layout
@@ -179,11 +215,40 @@ extension GroupLayout {
     ///   - width: nil nếu muốn fit chiều dài
     ///   - height: nil nếu muốn fit chiều cao
     /// - Returns: size cần thiết để render layout
-    public func estimatedSize(width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize {
+    func estimatedSize(width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize {
         let flex = self as? FlexLayoutItemProtocol
         flex?.layoutRendering()
         let fixWidth = width ?? .nan
         let fixHeight = height ?? .nan
         return body.yoga.calculateLayout(with: CGSize(width: fixWidth, height: fixHeight))
     }
+}
+
+extension UIView {
+
+    // there can be other views between `subview` and `self`
+    func getConvertedFrame(fromSubview subview: UIView) -> CGRect? {
+        // check if `subview` is a subview of self
+        guard subview.isDescendant(of: self) else {
+            return nil
+        }
+
+        var frame = subview.frame
+        if subview.superview == nil {
+            return frame
+        }
+
+        var superview = subview.superview
+        while superview != self {
+            frame = superview!.convert(frame, to: superview!.superview)
+            if superview!.superview == nil {
+                break
+            } else {
+                superview = superview!.superview
+            }
+        }
+
+        return superview!.convert(frame, to: self)
+    }
+
 }

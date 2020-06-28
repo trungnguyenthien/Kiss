@@ -13,23 +13,37 @@ protocol UIViewLayoutSetter: PaddingSetter, MarginSetter, SizeSetter { }
 
 public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
     var attr = LayoutAttribute()
-    var root = makeBlankView()
-    
+    var body = makeBlankView()
+    var overlayGroups = [GroupLayout]()
     init() {
         self.attr.userWidth = .fit
         self.attr.userHeight = .fit
     }
     
     public var isVisible: Bool {
-        return root.isVisible == true
+        return body.isVisible == true
     }
     
     var labelContent: UILabel? {
-        return root as? UILabel
+        return body as? UILabel
     }
     
     public func alignSelf(_ value: ItemAlignment) -> Self {
         attr.alignSelf = value
+        return self
+    }
+    
+    public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
+        let groups = builder()
+        groups.forEach { $0.baseView = self.body }
+        overlayGroups.append(contentsOf: groups)
+        return self
+    }
+    
+    public func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
+        let group = builder()
+        group.baseView = self.body
+        overlayGroups.append(group)
         return self
     }
 }
@@ -37,7 +51,7 @@ public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
 extension UIViewLayout: NSCopying {
     public func copy(with zone: NSZone? = nil) -> Any {
         let instance = UIViewLayout()
-        instance.root = self.root
+        instance.body = self.body
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         return instance
     }
@@ -49,7 +63,7 @@ extension UIViewLayout: FlexLayoutItemProtocol {
     }
     
     func configureLayout() {
-        root.configureLayout { (l) in
+        body.configureLayout { (l) in
             l.isEnabled = true
             self.attr.map(to: l)
         }

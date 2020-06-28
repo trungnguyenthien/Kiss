@@ -59,7 +59,7 @@ public extension UIView {
     // MARK: - VIEWLAYOUT
     var layout: UIViewLayout {
         let vlayout = UIViewLayout()
-        vlayout.root = self
+        vlayout.body = self
         return vlayout
     }
 }
@@ -150,6 +150,10 @@ extension UIView {
         
         public func updateChange(width: CGFloat? = nil, height: CGFloat? = nil) {
             currentGroupLayout?.updateLayoutChange(width: width, height: height)
+        }
+        
+        public func estimatedSize(width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize {
+            return currentGroupLayout?.estimatedSize(width: width, height: height) ?? .zero
         }
     }
 }

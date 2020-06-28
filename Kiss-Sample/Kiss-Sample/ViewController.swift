@@ -11,52 +11,38 @@ import KissUI
 
 class ViewController: UIViewController {
     
-    private var regularLayout = {
-        makeView(.purple).hstack {
+    private var tag1 = hstack {
+        "tag1".label.layout
+    }.alignStack(.end)
+    
+    private var tag2 = hstack {
+        "tag2".label.layout
+        }.alignStack(.end).alignItems(.end)
+    
+    private lazy var regularLayout = {
+        hstack {
             makeView(.blue)
                 .layout.width(.grow(1)).height(.ratio(3/2)).marginLeft(100)
+                
             
-            makeView(.black).vstack {
+            vstack {
                 "0001".label
                     .layout.width(.full)
-                "002 Trung".label
+                "002 Trung".labelBigBold
                     .layout.width(.fit)
                 makeView(.red)
                     .layout.width(.grow(1)).height(100).marginLeft(20)
                 makeView(.green)
-                    .layout.width(.grow(2)).height(30)
+                    .layout.width(.grow(2)).height(30).overlay { tag1 }
                 makeView(.brown)
-                    .layout.width(100).height(10)
+                    .layout.width(100).height(10).overlay { tag2 }
                 makeView(.systemPink)
                     .layout.width(.full).height(.ratio(4/2)).marginHorizontal(30)
-                }.width(.grow(1)).height(.full).padding(10)
+                    
+            }.width(.grow(2)).height(.full).padding(10)
             
         }.padding(12)
     }()
-    
-    private lazy var regularLayout2 = {
-        makeView(.purple).vstack {
-            makeView(.blue)
-                .layout.width(.grow(1)).height(.ratio(3/2)).marginLeft(100)
-            
-            makeView(.black).vstack {
-                "0001".label
-                    .layout.width(.full)
-                "002 Trung".label
-                    .layout.width(.fit)
-                makeView(.red)
-                    .layout.width(.grow(1)).height(100).marginLeft(20)
-                makeView(.green)
-                    .layout.width(.grow(2)).height(30)
-                makeView(.brown)
-                    .layout.width(100).height(10)
-                makeView(.systemPink)
-                    .layout.width(.full).height(.ratio(4/2)).marginHorizontal(30)
-                }.width(.grow(1)).height(.full).padding(10)
-            
-        }.padding(12)
-    }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
