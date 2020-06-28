@@ -15,7 +15,6 @@ class LayoutAttribute {
     var userPaddingRight: Double = 0
     var userPaddingTop: Double = 0
     var userPaddingBottom: Double = 0
-    var userSelfAlign = SelfAlign.none
     
     var userMarginLeft: Double = 0
     var userMarginRight: Double = 0
@@ -31,18 +30,16 @@ class LayoutAttribute {
     var mTop: Double = 0
     var mBottom: Double = 0
     
-    var width: Double? = nil
-    var height: Double? = nil
-    var x: Double? = nil
-    var y: Double? = nil
+    //    var width: Double? = nil
+    //    var height: Double? = nil
+    //    var x: Double? = nil
+    //    var y: Double? = nil
     
-    var userVerticalAlign: AlignVertical = .top
-    var userHorizontalAlign: AlignHorizontal = .left
+    var alignStack = StackAlignment.start
+    var alignItems = ItemAlignment.start
+    var alignSelf = ItemAlignment.start
     
-    var stackAlignment: Alignment = .start
-    var defaultItemAlignment: Alignment = .start
-    
-    func mapPaddingMarginMaxHeight(to l: YGLayout) {
+    func map(to l: YGLayout) {
         l.paddingLeft   = YGValue(self.userPaddingLeft)
         l.paddingRight  = YGValue(self.userPaddingRight)
         l.paddingTop    = YGValue(self.userPaddingTop)
@@ -52,7 +49,6 @@ class LayoutAttribute {
         l.marginRight   = YGValue(self.mRight)
         l.marginTop     = YGValue(self.mTop)
         l.marginBottom  = YGValue(self.mBottom)
-        
         l.maxHeight     = YGValue(self.userMaxHeight)
         
         switch self.userHeight {
@@ -68,12 +64,24 @@ class LayoutAttribute {
         case .fit:              l.alignSelf = .flexStart
         }
         
-        switch self.userSelfAlign {
+        switch self.alignSelf {
         case .center:   l.alignSelf = .center
         case .start:    l.alignSelf = .flexStart
         case .end:      l.alignSelf = .flexEnd
         case .stretch:  l.alignSelf = .stretch
-        case .none:     l.alignSelf = .stretch
+        }
+        
+        switch self.alignStack {
+        case .start: l.justifyContent = .flexStart
+        case .end: l.justifyContent = .flexEnd
+        case .center: l.justifyContent = .center
+        }
+        
+        switch self.alignItems {
+        case .start: l.alignItems = .flexStart
+        case .end: l.alignItems = .flexEnd
+        case .center: l.alignItems = .center
+        case .stretch: l.alignItems = .stretch
         }
     }
 }
@@ -93,8 +101,9 @@ extension LayoutAttribute: NSCopying {
         instance.userWidth = self.userWidth
         instance.userHeight = self.userHeight
         instance.userMaxHeight = self.userMaxHeight
-        instance.userVerticalAlign = self.userVerticalAlign
-        instance.userHorizontalAlign = self.userHorizontalAlign
+        instance.alignStack = self.alignStack
+        instance.alignItems = self.alignItems
+        instance.alignSelf = self.alignSelf
         return instance
     }  
 }

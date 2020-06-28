@@ -46,7 +46,7 @@ extension UIViewLayout: FlexLayoutItemProtocol {
     func configureLayout() {
         root.configureLayout { (l) in
             l.isEnabled = true
-            self.attr.mapPaddingMarginMaxHeight(to: l)
+            self.attr.map(to: l)
         }
     }
 }

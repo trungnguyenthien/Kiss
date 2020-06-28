@@ -13,12 +13,12 @@ public enum SelfAlign {
 }
 
 public protocol SelfAlignSetter {
-    @discardableResult func selfAlign(_ value: SelfAlign) -> Self
+    @discardableResult func selfAlign(_ value: ItemAlignment) -> Self
 }
 
 public extension SelfAlignSetter where Self: LayoutItem {
-    func selfAlign(_ value: SelfAlign) -> Self {
-        attr.userSelfAlign = value
+    func selfAlign(_ value: ItemAlignment) -> Self {
+        attr.alignSelf = value
         return self
     }
 }

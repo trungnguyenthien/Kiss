@@ -22,7 +22,7 @@ extension Spacer: FlexLayoutItemProtocol {
     func configureLayout() {
         root.configureLayout { (l) in
             l.isEnabled = true
-            self.attr.mapPaddingMarginMaxHeight(to: l)
+            self.attr.map(to: l)
             setGrow(grow: -0.000000000001, to: l)
         }
     }

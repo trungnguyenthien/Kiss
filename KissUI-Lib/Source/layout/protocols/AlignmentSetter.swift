@@ -10,18 +10,25 @@ import Foundation
 
 
 public protocol AlignmentSetter {
-    @discardableResult func align(vertical value: AlignVertical) -> Self
-    @discardableResult func align(horizontal value: AlignHorizontal) -> Self
+    @discardableResult func alignStack(_ value: StackAlignment) -> Self
+    @discardableResult func alignSelf(_ value: ItemAlignment) -> Self
+    @discardableResult func alignItems(_ value: ItemAlignment) -> Self
 }
 
 public extension AlignmentSetter where Self: LayoutItem {
-    func align(vertical value: AlignVertical) -> Self {
-        attr.userVerticalAlign = value
+    
+    func alignStack(_ value: StackAlignment) -> Self {
+        self.attr.alignStack = value
         return self
     }
     
-    func align(horizontal value: AlignHorizontal) -> Self {
-        attr.userHorizontalAlign = value
+    func alignSelf(_ value: ItemAlignment) -> Self {
+        self.attr.alignSelf = value
+        return self
+    }
+    
+    func alignItems(_ value: ItemAlignment) -> Self {
+        self.attr.alignItems = value
         return self
     }
 }

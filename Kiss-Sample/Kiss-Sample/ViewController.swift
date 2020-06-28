@@ -10,19 +10,19 @@ import UIKit
 import KissUI
 
 class ViewController: UIViewController {
-    let blueView = makeView(.blue)
-    let label1 = "0001".label
-    let label2 = "002 Trung".label
-    let redView = makeView(.red)
     
     private lazy var regularLayout = {
         self.view.hstack {
-            blueView.layout.width(40).height(.whRatio(4/3))
-            label1.layout.width(.fit).marginRight(100)
-            label2.layout.width(.fit)
-            spacer
-            redView.layout.width(50).height(100)
-        }
+            makeView(.blue).layout.width(100).height(100)
+            
+            makeView(.yellow).vstack {
+                "0001".label.layout.width(.fit).marginRight(100)
+                "002 Trung".label.layout.width(.fit)
+                makeView(.red).layout.width(.full).height(100).marginLeft(20)
+                makeView(.green).layout.width(200).height(30)
+            }.width(.full).height(.full)
+            
+        }.padding(12)
     }()
     
     
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        regularLayout.updateLayoutChange(width: view.bounds.width, height: nil)
+        regularLayout.updateLayoutChange(width: view.bounds.width - 100, height: nil)
     }
 }
 

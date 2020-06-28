@@ -15,6 +15,7 @@ public class VStackLayout: GroupLayout {
         self.attr.userWidth = .grow(.max)
         self.attr.userHeight = .fit
         self.attr.userMaxHeight = .none
+        self.attr.alignItems = .stretch
     }
 }
 
@@ -45,41 +46,17 @@ extension VStackLayout: FlexLayoutItemProtocol {
     }
     
     func configureLayout() {
-        removeStartLeadingEndTrailing()
-        removeLeadingTrailingIfHasSpacer()
-        
         root.configureLayout { (l) in
             l.isEnabled = true
             l.direction = .LTR
             l.flexDirection = .column
             
-            self.attr.mapPaddingMarginMaxHeight(to: l)
-            
-            
-            switch self.attr.userHorizontalAlign {
-            case .left:   l.justifyContent = .flexStart
-            case .right:  l.justifyContent = .flexEnd
-            case .center: l.justifyContent = .center
-            }
-            
-            switch self.attr.userVerticalAlign {
-            case .top:    l.alignItems = .flexStart
-            case .bottom: l.alignItems = .flexEnd
-            case .center: l.alignItems = .center
-            }
+            self.attr.map(to: l)
         }
         
-        let defaultSelfAlign: SelfAlign = {
-            switch self.attr.userVerticalAlign {
-            case .bottom: return .end
-            case .top:    return .start
-            case .center: return .center
-            }
-        }()
-        
         layoutItems.forEach { (layoutItem) in
-            guard layoutItem.attr.userSelfAlign == .none else { return }
-            layoutItem.attr.userSelfAlign = defaultSelfAlign
+            guard layoutItem.attr.alignSelf == .none else { return }
+            layoutItem.attr.alignSelf = self.attr.alignItems
         }
         
         layoutItems.forEach {
