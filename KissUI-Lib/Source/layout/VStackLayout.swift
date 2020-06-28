@@ -54,13 +54,9 @@ extension VStackLayout: FlexLayoutItemProtocol {
             l.isEnabled = true
             l.direction = .LTR
             l.flexDirection = .column
+            l.flexWrap = .noWrap
             
             self.attr.map(to: l)
-        }
-        
-        layoutItems.forEach { (layoutItem) in
-            guard layoutItem.attr.alignSelf == .none else { return }
-            layoutItem.attr.alignSelf = self.attr.alignItems
         }
         
         layoutItems.forEach {

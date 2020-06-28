@@ -89,31 +89,31 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
     public var isVisible: Bool {
         return hasVisibleView
     }
+//    
+//    var arrangeAble: FlexLayoutItemProtocol? {
+//        return self as? FlexLayoutItemProtocol
+//    }
     
-    var arrangeAble: FlexLayoutItemProtocol? {
-        return self as? FlexLayoutItemProtocol
-    }
+//    var arrangeAbleItems: [FlexLayoutItemProtocol] {
+//        return layoutItems.compactMap { $0 as? FlexLayoutItemProtocol }
+//    }
     
-    var arrangeAbleItems: [FlexLayoutItemProtocol] {
-        return layoutItems.compactMap { $0 as? FlexLayoutItemProtocol }
-    }
-    
-    func fullOptimize() {
-        selfOptimize()
-        layoutItems
-            .compactMap { $0 as? GroupLayout }
-            .forEach { $0.selfOptimize() }
-    }
-    
-    private func selfOptimize() {
-        removeInvisibleItem()
-        reduceSpacer()
-    }
-    
-    private func removeInvisibleItem() {
-        layoutItems.removeAll { !$0.isVisible }
-    }
-    
+//    func fullOptimize() {
+//        selfOptimize()
+//        layoutItems
+//            .compactMap { $0 as? GroupLayout }
+//            .forEach { $0.selfOptimize() }
+//    }
+//
+//    private func selfOptimize() {
+//        removeInvisibleItem()
+//        reduceSpacer()
+//    }
+//
+//    private func removeInvisibleItem() {
+//        layoutItems.removeAll { !$0.isVisible }
+//    }
+//
     /*
      Loại bỏ trường hợp 2 hay nhiều spacer liên tục nhau thành 1 spacer
      */
@@ -186,6 +186,7 @@ extension GroupLayout {
     /// Remove Subview hiện tại, construct lại hệ thống view mới
     func constructLayout() {
         let flex = self as? FlexLayoutItemProtocol
+        flex?.layoutRendering()
         flex?.configureLayout()
     }
     
@@ -195,17 +196,14 @@ extension GroupLayout {
     ///   - width: nil -> autoFit Width
     ///   - height: nil -> autoFit Height
     func updateLayoutChange(width: CGFloat? = nil, height: CGFloat? = nil) {
-        let flex = self as? FlexLayoutItemProtocol
-        flex?.layoutRendering()
         constructLayout()
-        
         body.applyLayout(preservingOrigin: false, fixWidth: width, fixHeight: height)
         
         allOverlayGroup.forEach { (overlay) in
             guard let base = overlay.baseView else { return }
             overlay.updateLayoutChange(width: base.bounds.width, height: base.bounds.height)
             guard let superView = overlay.root.superview else { return }
-            guard let newFrame = superView.getConvertedFrame(fromSubview: base) else {  return }
+            guard let newFrame = superView.convertedFrame(subview: base) else {  return }
             overlay.root.frame = newFrame
         }
     }
@@ -216,39 +214,9 @@ extension GroupLayout {
     ///   - height: nil nếu muốn fit chiều cao
     /// - Returns: size cần thiết để render layout
     func estimatedSize(width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize {
-        let flex = self as? FlexLayoutItemProtocol
-        flex?.layoutRendering()
+        constructLayout()
         let fixWidth = width ?? .nan
         let fixHeight = height ?? .nan
         return body.yoga.calculateLayout(with: CGSize(width: fixWidth, height: fixHeight))
     }
-}
-
-extension UIView {
-
-    // there can be other views between `subview` and `self`
-    func getConvertedFrame(fromSubview subview: UIView) -> CGRect? {
-        // check if `subview` is a subview of self
-        guard subview.isDescendant(of: self) else {
-            return nil
-        }
-
-        var frame = subview.frame
-        if subview.superview == nil {
-            return frame
-        }
-
-        var superview = subview.superview
-        while superview != self {
-            frame = superview!.convert(frame, to: superview!.superview)
-            if superview!.superview == nil {
-                break
-            } else {
-                superview = superview!.superview
-            }
-        }
-
-        return superview!.convert(frame, to: self)
-    }
-
 }

@@ -66,31 +66,6 @@ public extension UIView {
 
 
 extension UIView {
-    var x: Double {
-        get { Double(frame.origin.x) }
-        set { frame.origin.x = CGFloat(newValue) }
-    }
-    
-    var y: Double {
-        get { Double(frame.origin.y) }
-        set { frame.origin.y = CGFloat(newValue) }
-    }
-    
-    var height: Double {
-        get { Double(frame.height) }
-        set { frame.size = CGSize(width: width, height: newValue) }
-    }
-    
-    var width: Double {
-        get { Double(frame.width) }
-        set { frame.size = CGSize(width: newValue, height: height) }
-    }
-    
-    func shift(dx: Double = 0, dy: Double = 0) {
-        x += dx
-        y += dy
-    }
-    
     func applyLayoutFlexibleAll(preservingOrigin: Bool) {
         yoga.applyLayout(preservingOrigin: preservingOrigin,
                          dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight, .flexibleWidth))
@@ -113,11 +88,29 @@ extension UIView {
             yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleWidth, .flexibleHeight))
         }
     }
+    
+    
+    func convertedFrame(subview: UIView) -> CGRect? {
+        guard subview.isDescendant(of: self) else { return nil }
+
+        var frame = subview.frame
+        if subview.superview == nil {
+            return frame
+        }
+
+        var superview = subview.superview
+        while superview != self {
+            frame = superview!.convert(frame, to: superview!.superview)
+            guard let superSuper = superview?.superview else { break }
+            superview = superSuper
+        }
+
+        return superview!.convert(frame, to: self)
+    }
 }
 
 var kissKey = "UIView.kiss"
 extension UIView {
-    
     public var kiss: Kiss {
         get {
             guard let obj = objc_getAssociatedObject(self, &kissKey) as? Kiss else {

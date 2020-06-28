@@ -25,21 +25,21 @@ class ViewController: UIViewController {
                 .layout.width(.grow(1)).height(.ratio(3/2)).marginLeft(100)
                 
             
-            vstack {
+            makeView(.quaternarySystemFill).wrap {
                 "0001".label
-                    .layout.width(.full)
+                    .layout
                 "002 Trung".labelBigBold
-                    .layout.width(.fit)
+                    .layout
                 makeView(.red)
-                    .layout.width(.grow(1)).height(100).marginLeft(20)
+                    .layout.width(50).height(10).marginLeft(20).alignSelf(.center)
                 makeView(.green)
-                    .layout.width(.grow(2)).height(30).overlay { tag1 }
+                    .layout.width(40).height(30)
                 makeView(.brown)
-                    .layout.width(100).height(10).overlay { tag2 }
+                    .layout.width(50).height(10)
                 makeView(.systemPink)
-                    .layout.width(.full).height(.ratio(4/2)).marginHorizontal(30)
+                    .layout.width(55).height(.ratio(4/2)).marginHorizontal(30)
                     
-            }.width(.grow(2)).height(.full).padding(10)
+            }.width(.grow(2)).height(.full).padding(10).alignItems(.center).alignStack(.center)
             
         }.padding(12)
     }()

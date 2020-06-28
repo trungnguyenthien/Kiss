@@ -36,7 +36,7 @@ class LayoutAttribute {
     
     var alignStack = StackAlignment.start
     var alignItems = ItemAlignment.start
-    var alignSelf = ItemAlignment.start
+    var alignSelf: ItemAlignment? = nil
     
     func map(to l: YGLayout) {
         l.paddingLeft   = YGValue(self.paddingLeft)
@@ -56,40 +56,41 @@ class LayoutAttribute {
         l.maxWidth     = YGValue(self.maxWidth)
         
         switch self.alignStack {
-        case .start: l.justifyContent = .flexStart
-        case .end: l.justifyContent = .flexEnd
-        case .center: l.justifyContent = .center
+        case .start:    l.justifyContent = .flexStart
+        case .end:      l.justifyContent = .flexEnd
+        case .center:   l.justifyContent = .center
         }
         
         switch self.alignItems {
-        case .start: l.alignItems = .flexStart
-        case .end: l.alignItems = .flexEnd
-        case .center: l.alignItems = .center
-        case .stretch: l.alignItems = .stretch
+        case .start:    l.alignItems = .flexStart
+        case .end:      l.alignItems = .flexEnd
+        case .center:   l.alignItems = .center
+        case .stretch:  l.alignItems = .stretch
         }
         
         switch self.alignSelf {
-        case .center:   l.alignSelf = .center
-        case .start:    l.alignSelf = .flexStart
-        case .end:      l.alignSelf = .flexEnd
-        case .stretch:  l.alignSelf = .stretch
+        case .some(.center):   l.alignSelf = .center
+        case .some(.start):    l.alignSelf = .flexStart
+        case .some(.end):      l.alignSelf = .flexEnd
+        case .some(.stretch):  l.alignSelf = .stretch
+        case .none:            l.alignSelf = .auto
         }
         
         switch self.userHeight {
-        case .fit:                    l.alignSelf = .flexStart
-        case .value(let height):      l.height = YGValue(height)
-        case .ratio(let ratio): l.aspectRatio = CGFloat(ratio)
+        case .fit:                  l.alignSelf = .flexStart
+        case .value(let height):    l.height = YGValue(height)
+        case .ratio(let ratio):     l.aspectRatio = CGFloat(ratio)
         case .grow(let grow):
             l.alignSelf = .stretch
             setGrow(grow: grow, to: l)
         }
         
         switch self.userWidth {
-        case .value(let width): l.width = YGValue(width)
+        case .value(let width):     l.width = YGValue(width)
         case .grow(let grow):
             l.alignSelf = .stretch
             setGrow(grow: grow, to: l)
-        case .fit:              l.alignSelf = .flexStart
+        case .fit:                  l.alignSelf = .flexStart
         }
 
     }
