@@ -13,6 +13,10 @@ public protocol MarginSetter {
     @discardableResult func marginRight(_ value: Double) -> Self
     @discardableResult func marginTop(_ value: Double) -> Self
     @discardableResult func marginBottom(_ value: Double) -> Self
+    
+    @discardableResult func marginHorizontal(_ value: Double) -> Self
+    @discardableResult func marginVertical(_ value: Double) -> Self
+    @discardableResult func margin(_ value: Double) -> Self
 }
 
 public extension MarginSetter where Self: LayoutItem {
@@ -37,6 +41,23 @@ public extension MarginSetter where Self: LayoutItem {
     func marginBottom(_ value: Double) -> Self {
         attr.userMarginBottom = value
         attr.mBottom = value
+        return self
+    }
+    
+    func marginHorizontal(_ value: Double) -> Self {
+        marginLeft(value)
+        marginRight(value)
+        return self
+    }
+    func marginVertical(_ value: Double) -> Self {
+        marginTop(value)
+        marginBottom(value)
+        return self
+    }
+    
+    func margin(_ value: Double) -> Self {
+        marginVertical(value)
+        marginHorizontal(value)
         return self
     }
 }

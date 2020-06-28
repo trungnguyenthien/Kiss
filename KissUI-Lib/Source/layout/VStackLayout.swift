@@ -14,7 +14,7 @@ public class VStackLayout: GroupLayout {
         super.init()
         self.attr.userWidth = .grow(.max)
         self.attr.userHeight = .fit
-        self.attr.userMaxHeight = .none
+        self.attr.maxHeight = .none
         self.attr.alignItems = .stretch
     }
 }
@@ -39,8 +39,12 @@ extension VStackLayout: FlexLayoutItemProtocol {
         autoMarkDirty()
         autoMarkIncludedInLayout()
         
-        layoutItems.forEach {
-            guard let flex = $0 as? FlexLayoutItemProtocol else { return }
+        layoutItems.forEach { (layoutItem) in
+            layoutItem.root.configureLayout { (l) in
+                l.isEnabled = true
+                layoutItem.attr.map(to: l)
+            }
+            guard let flex = layoutItem as? FlexLayoutItemProtocol else { return }
             flex.layoutRendering()
         }
     }

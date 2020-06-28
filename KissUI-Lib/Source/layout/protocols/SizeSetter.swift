@@ -4,14 +4,14 @@ import UIKit
 
 enum DevWidthValue {
     case value(Double)
-    case grow(Double) // full = grow(9999999999999)
+    case grow(Double) 
     case fit
 }
 
 enum DevHeightValue {
     case value(Double)
     case fit
-    case aspectRatio(Double)
+    case ratio(Double)
     case grow(Double)
 }
 
@@ -34,7 +34,8 @@ public enum WidthValue {
 public enum HeightValue {
     case fit
     case full
-    case whRatio(Double) // height / width
+    case grow(Double)
+    case ratio(Double) // height / width
 }
 
 public enum MaxHeightValue {
@@ -42,7 +43,6 @@ public enum MaxHeightValue {
     case fit
     case full
 }
-
 
 public protocol SizeSetter {
     @discardableResult func width(_ value: Double) -> Self
@@ -55,6 +55,10 @@ public protocol SizeSetter {
     @discardableResult func size(_ width: Double, _ height: Double?) -> Self
     
     @discardableResult func maxHeight(_ value: Double) -> Self
+    @discardableResult func minHeight(_ value: Double) -> Self
+    
+    @discardableResult func maxWidth(_ value: Double) -> Self
+    @discardableResult func minWidth(_ value: Double) -> Self
 }
 
 extension SizeSetter where Self: LayoutItem {
@@ -97,13 +101,28 @@ extension SizeSetter where Self: LayoutItem {
         switch value {
         case .fit: attr.userHeight = .fit
         case .full: attr.userHeight = .grow(.max)
-        case .whRatio(let ew): attr.userHeight = .aspectRatio(ew)
+        case .ratio(let ew): attr.userHeight = .ratio(ew)
+        case .grow(let value): attr.userHeight = .grow(value)
         }
         return self
     }
 
     public func maxHeight(_ value: Double) -> Self {
-        attr.userMaxHeight = value
+        attr.maxHeight = value
+        return self
+    }
+    
+    public func minHeight(_ value: Double) -> Self {
+        attr.minHeight = value
+        return self
+    }
+    
+    public func maxWidth(_ value: Double) -> Self {
+        attr.maxWidth = value
+        return self
+    }
+    public func minWidth(_ value: Double) -> Self {
+        attr.minWidth = value
         return self
     }
 }

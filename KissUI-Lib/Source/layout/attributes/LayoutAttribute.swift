@@ -11,10 +11,10 @@ import UIKit
 import YogaKit
 
 class LayoutAttribute {
-    var userPaddingLeft: Double = 0 // internal(set)
-    var userPaddingRight: Double = 0
-    var userPaddingTop: Double = 0
-    var userPaddingBottom: Double = 0
+    var paddingLeft: Double = 0 // internal(set)
+    var paddingRight: Double = 0
+    var paddingTop: Double = 0
+    var paddingBottom: Double = 0
     
     var userMarginLeft: Double = 0
     var userMarginRight: Double = 0
@@ -23,33 +23,37 @@ class LayoutAttribute {
     
     var userWidth = DevWidthValue.grow(1)
     var userHeight = DevHeightValue.fit
-    var userMaxHeight: Double? = nil
+    var maxHeight: Double? = nil
+    var minHeight: Double? = nil
+    
+    var minWidth: Double? = nil
+    var maxWidth: Double? = nil
     
     var mLeft: Double = 0
     var mRight: Double = 0
     var mTop: Double = 0
     var mBottom: Double = 0
     
-    //    var width: Double? = nil
-    //    var height: Double? = nil
-    //    var x: Double? = nil
-    //    var y: Double? = nil
-    
     var alignStack = StackAlignment.start
     var alignItems = ItemAlignment.start
     var alignSelf = ItemAlignment.start
     
     func map(to l: YGLayout) {
-        l.paddingLeft   = YGValue(self.userPaddingLeft)
-        l.paddingRight  = YGValue(self.userPaddingRight)
-        l.paddingTop    = YGValue(self.userPaddingTop)
-        l.paddingBottom = YGValue(self.userPaddingBottom)
+        l.paddingLeft   = YGValue(self.paddingLeft)
+        l.paddingRight  = YGValue(self.paddingRight)
+        l.paddingTop    = YGValue(self.paddingTop)
+        l.paddingBottom = YGValue(self.paddingBottom)
         
         l.marginLeft    = YGValue(self.mLeft)
         l.marginRight   = YGValue(self.mRight)
         l.marginTop     = YGValue(self.mTop)
         l.marginBottom  = YGValue(self.mBottom)
-        l.maxHeight     = YGValue(self.userMaxHeight)
+        
+        l.maxHeight     = YGValue(self.maxHeight)
+        l.minHeight     = YGValue(self.minHeight)
+        
+        l.minWidth     = YGValue(self.minWidth)
+        l.maxWidth     = YGValue(self.maxWidth)
         
         switch self.alignStack {
         case .start: l.justifyContent = .flexStart
@@ -74,7 +78,7 @@ class LayoutAttribute {
         switch self.userHeight {
         case .fit:                    l.alignSelf = .flexStart
         case .value(let height):      l.height = YGValue(height)
-        case .aspectRatio(let ratio): l.aspectRatio = CGFloat(ratio)
+        case .ratio(let ratio): l.aspectRatio = CGFloat(ratio)
         case .grow(let grow):
             l.alignSelf = .stretch
             setGrow(grow: grow, to: l)
@@ -95,17 +99,17 @@ extension LayoutAttribute: NSCopying {
     public func copy(with zone: NSZone? = nil) -> Any {
         let instance = LayoutAttribute()
         
-        instance.userPaddingLeft = self.userPaddingLeft
-        instance.userPaddingRight = self.userPaddingRight
-        instance.userPaddingTop = self.userPaddingTop
-        instance.userPaddingBottom = self.userPaddingBottom
+        instance.paddingLeft = self.paddingLeft
+        instance.paddingRight = self.paddingRight
+        instance.paddingTop = self.paddingTop
+        instance.paddingBottom = self.paddingBottom
         instance.userMarginLeft = self.userMarginLeft
         instance.userMarginRight = self.userMarginRight
         instance.userMarginTop = self.userMarginTop
         instance.userMarginBottom = self.userMarginBottom
         instance.userWidth = self.userWidth
         instance.userHeight = self.userHeight
-        instance.userMaxHeight = self.userMaxHeight
+        instance.maxHeight = self.maxHeight
         instance.alignStack = self.alignStack
         instance.alignItems = self.alignItems
         instance.alignSelf = self.alignSelf

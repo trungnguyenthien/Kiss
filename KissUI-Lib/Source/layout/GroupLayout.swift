@@ -12,7 +12,7 @@ import UIKit
 protocol GroupLayoutSetter: PaddingSetter, MarginSetter, SizeSetter, AlignmentSetter, SelfAlignSetter {}
 
 public class GroupLayout: LayoutItem, GroupLayoutSetter {
-    var root = makeBlankView()
+    public var root = makeBlankView()
     var layoutItems = [LayoutItem]()
     var attr = LayoutAttribute()
     var overlayGroups = [GroupLayout]()
