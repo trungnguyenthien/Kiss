@@ -21,8 +21,11 @@ class LayoutAttribute {
     var userMarginTop: Double = 0
     var userMarginBottom: Double = 0
     
-    var userWidth = DevWidthValue.grow(1)
-    var userHeight = DevHeightValue.fit
+    var grow: Double? = nil
+    var ratio: Double? = nil
+    
+    var userWidth: Double? = nil
+    var userHeight: Double? = nil
     var maxHeight: Double? = nil
     var minHeight: Double? = nil
     
@@ -76,23 +79,25 @@ class LayoutAttribute {
         case .none:            l.alignSelf = .auto
         }
         
-        switch self.userHeight {
-        case .fit:                  l.alignSelf = .flexStart
-        case .value(let height):    l.height = YGValue(height)
-        case .ratio(let ratio):     l.aspectRatio = CGFloat(ratio)
-        case .grow(let grow):
-            l.alignSelf = .stretch
+        if let grow = self.grow {
             setGrow(grow: grow, to: l)
         }
         
-        switch self.userWidth {
-        case .value(let width):     l.width = YGValue(width)
-        case .grow(let grow):
-            l.alignSelf = .stretch
-            setGrow(grow: grow, to: l)
-        case .fit:                  l.alignSelf = .flexStart
+        if let userHeight = userHeight {
+            l.height = YGValue(userHeight)
+        } else {
+            l.height = YGValueAuto
         }
-
+        
+        if let userWidth = userWidth {
+            l.width = YGValue(userWidth)
+        } else {
+            l.width = YGValueAuto
+        }
+        
+        if let ratio = self.ratio {
+            l.aspectRatio = CGFloat(ratio)
+        }
     }
 }
 

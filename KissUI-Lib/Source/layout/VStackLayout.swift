@@ -12,8 +12,6 @@ import UIKit
 public class VStackLayout: GroupLayout {
     override init() {
         super.init()
-        self.attr.userWidth = .grow(.max)
-        self.attr.userHeight = .fit
         self.attr.maxHeight = .none
         self.attr.alignItems = .stretch
     }

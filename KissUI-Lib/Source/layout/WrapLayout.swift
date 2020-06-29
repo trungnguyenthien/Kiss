@@ -14,8 +14,6 @@ public class WrapLayout: GroupLayout {
 
     override init() {
         super.init()
-        self.attr.userWidth = .grow(.max)
-        self.attr.userHeight = .fit
         self.attr.maxHeight = .none
     }
     

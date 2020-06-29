@@ -12,13 +12,10 @@ import YogaKit
 protocol UIViewLayoutSetter: PaddingSetter, MarginSetter, SizeSetter { }
 
 public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
+    
     var attr = LayoutAttribute()
     var body = makeBlankView()
     var overlayGroups = [GroupLayout]()
-    init() {
-        self.attr.userWidth = .fit
-        self.attr.userHeight = .fit
-    }
     
     public var isVisible: Bool {
         return body.isVisible == true

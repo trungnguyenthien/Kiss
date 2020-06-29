@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     private lazy var regularLayout = {
         vstack {
-            collectionView.layout.width(.full)
+            makeView(.systemGray).layout.height(100)
         }.padding(12)
     }()
     
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        view.kiss.updateChange(width: view.bounds.width - 10, height: nil)
+        view.kiss.updateChange(width: view.bounds.width, height: nil)
     }
 }
 
