@@ -14,6 +14,7 @@ public class HStackLayout: GroupLayout {
     override init() {
         super.init()
         self.attr.maxHeight = .none
+        self.attr.alignItems = .stretch
     }
 }
 

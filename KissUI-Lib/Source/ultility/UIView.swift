@@ -11,51 +11,6 @@ import UIKit
 import YogaKit
 
 public extension UIView {
-    // MARK: - VSTACK LAYOUT
-    func vstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> VStackLayout {
-        let stack = VStackLayout()
-        stack.body = self
-        stack.layoutItems.append(contentsOf: builder())
-        return stack
-    }
-    
-    func vstack(@LayoutItemBuilder builder: () -> LayoutItem) -> VStackLayout {
-        let stack = VStackLayout()
-        stack.body = self
-        stack.layoutItems.append(builder())
-        return stack
-    }
-    
-    // MARK: - HSTACK LAYOUT
-    func hstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> HStackLayout {
-        let stack = HStackLayout()
-        stack.body = self
-        stack.layoutItems.append(contentsOf: builder())
-        return stack
-    }
-    
-    func hstack(@LayoutItemBuilder builder: () -> LayoutItem) -> HStackLayout {
-        let stack = HStackLayout()
-        stack.body = self
-        stack.layoutItems.append(builder())
-        return stack
-    }
-    
-    // MARK: - WRAP LAYOUT
-    func wrap(@LayoutItemBuilder builder: () -> [LayoutItem]) -> WrapLayout {
-        let stack = WrapLayout()
-        stack.body = self
-        stack.layoutItems.append(contentsOf: builder())
-        return stack
-    }
-    
-    func wrap(@LayoutItemBuilder builder: () -> LayoutItem) -> WrapLayout {
-        let stack = WrapLayout()
-        stack.body = self
-        stack.layoutItems.append(builder())
-        return stack
-    }
-    
     // MARK: - VIEWLAYOUT
     var layout: UIViewLayout {
         let vlayout = UIViewLayout()
@@ -92,19 +47,19 @@ extension UIView {
     
     func convertedFrame(subview: UIView) -> CGRect? {
         guard subview.isDescendant(of: self) else { return nil }
-
+        
         var frame = subview.frame
         if subview.superview == nil {
             return frame
         }
-
+        
         var superview = subview.superview
         while superview != self {
             frame = superview!.convert(frame, to: superview!.superview)
             guard let superSuper = superview?.superview else { break }
             superview = superSuper
         }
-
+        
         return superview!.convert(frame, to: self)
     }
 }
@@ -132,9 +87,10 @@ extension UIView {
         public func constructIfNeed(layout: GroupLayout) {
             if currentGroupLayout === layout { return }
             currentGroupLayout = layout
-
+            
             view.subviews.forEach { $0.removeFromSuperview() }
             layout.layerViews.forEach {
+                print("view--\(view)           $0--\($0)")
                 $0.removeFromSuperview()
                 view.addSubview($0)
             }
@@ -147,6 +103,51 @@ extension UIView {
         
         public func estimatedSize(width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize {
             return currentGroupLayout?.estimatedSize(width: width, height: height) ?? .zero
+        }
+        
+        // MARK: - VSTACK LAYOUT
+        public func vstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> VStackLayout {
+            let stack = VStackLayout()
+            stack.body = view
+            stack.layoutItems.append(contentsOf: builder())
+            return stack
+        }
+        
+        public func vstack(@LayoutItemBuilder builder: () -> LayoutItem) -> VStackLayout {
+            let stack = VStackLayout()
+            stack.body = view
+            stack.layoutItems.append(builder())
+            return stack
+        }
+        
+        // MARK: - HSTACK LAYOUT
+        public func hstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> HStackLayout {
+            let stack = HStackLayout()
+            stack.body = view
+            stack.layoutItems.append(contentsOf: builder())
+            return stack
+        }
+        
+        public func hstack(@LayoutItemBuilder builder: () -> LayoutItem) -> HStackLayout {
+            let stack = HStackLayout()
+            stack.body = view
+            stack.layoutItems.append(builder())
+            return stack
+        }
+        
+        // MARK: - WRAP LAYOUT
+        public func wrap(@LayoutItemBuilder builder: () -> [LayoutItem]) -> WrapLayout {
+            let stack = WrapLayout()
+            stack.body = view
+            stack.layoutItems.append(contentsOf: builder())
+            return stack
+        }
+        
+        public func wrap(@LayoutItemBuilder builder: () -> LayoutItem) -> WrapLayout {
+            let stack = WrapLayout()
+            stack.body = view
+            stack.layoutItems.append(builder())
+            return stack
         }
     }
 }

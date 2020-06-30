@@ -27,25 +27,25 @@ extension String {
     var label: UILabel {
         let view = UILabel()
         view.text = self
-        view.backgroundColor = .cyan
+        view.numberOfLines = 0
         return view;
     }
     
     var labelSmall: UILabel {
         let label = self.label
-        label.font = UIFont.systemFont(ofSize: 8, weight: .medium)
+        label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         return label
     }
     
     var labelMedium: UILabel {
         let label = self.label
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         return label
     }
     
     var labelBigBold: UILabel {
         let label = self.label
-        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         return label
     }
 }
