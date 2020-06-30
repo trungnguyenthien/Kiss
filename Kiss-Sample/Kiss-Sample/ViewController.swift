@@ -9,63 +9,113 @@
 import UIKit
 import KissUI
 
-class ViewController: UIViewController {
+enum CellKind: String {
+    case kisscell
+    case constraint
+}
 
+class ViewController: UIViewController {
+    let provider = RamdomUserProvider()
+    var datasource: [User] = []
     private let collectionView = makeCollection()
-    
+    private let cellKind = CellKind.kisscell
+    let sampleCell = UserKissCell()
     private lazy var regularLayout = {
         vstack {
-            makeView(.systemGray).layout.height(100)
-        }.padding(12)
+            collectionView.layout.grow(1).alignSelf(.stretch)
+        }
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(UserKissCell.self, forCellWithReuseIdentifier: CellKind.kisscell.rawValue)
+        collectionView.backgroundColor = .black
+        collectionView.isScrollEnabled = true
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.minimumInteritemSpacing = 1
+            layout.minimumLineSpacing = 1
+        }
+        
+        provider.request(page: 1) { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let listResult):
+                //                print(listResult)
+                self.datasource.append(contentsOf: listResult.results)
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+                
+            case .failure(_):
+                self.datasource.removeAll()
+                self.collectionView.reloadData()
+            }
+        }
         view.kiss.constructIfNeed(layout: regularLayout)
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     override func viewDidLayoutSubviews() {
-        view.kiss.updateChange(width: view.bounds.width, height: nil)
+        view.kiss.updateChange(width: view.bounds.width, height: view.bounds.height)
     }
 }
 
-let small = 4.0
-let medium = 8.0
-
-func makeCollection() -> UICollectionView {
-    return UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return datasource.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellKind.rawValue, for: indexPath)
+        if let cell = cell as? UserKissCell {
+            cell.config(user: datasource[indexPath.row])
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth = (UIScreen.main.bounds.width - 3) / 3
+        sampleCell.config(user: datasource[indexPath.row])
+        return sampleCell.kiss.estimatedSize(width: cellWidth, height: nil)
+    }
+    
 }
 
-
-func makeView(_ color: UIColor) -> UIView {
-    let view = UIView()
-    view.backgroundColor = color
-    return view
-}
-
-extension String {
-    var label: UILabel {
-        let view = UILabel()
-        view.text = self
-        view.backgroundColor = .cyan
-        return view;
+class UserKissCell: UICollectionViewCell {
+    let titleLable = "Title".labelMedium
+    let phoneNum = "PhoneNUm".labelMedium
+    let image = makeView(.systemGray2)
+    let background = makeView(.systemGroupedBackground)
+    
+    lazy var regularLayout = background.kiss.hstack {
+        image.layout.grow(1).ratio(3/2).minHeight(120)
+        vstack {
+            titleLable.layout
+            phoneNum.layout
+        }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
+    }.padding(5).minHeight(120).alignItems(.start)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        kiss.constructIfNeed(layout: regularLayout)
     }
     
-    var labelSmall: UILabel {
-        let label = self.label
-        label.font = UIFont.systemFont(ofSize: 8, weight: .medium)
-        return label
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
-    var labelMedium: UILabel {
-        let label = self.label
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        return label
+    func config(user: User) {
+        titleLable.text = "\(user.name.last): \(user.name.first)"
+        phoneNum.text = "Tel: \(user.phone)"
     }
     
-    var labelBigBold: UILabel {
-        let label = self.label
-        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        return label
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        kiss.updateChange(width: frame.width, height: frame.height)
     }
 }
