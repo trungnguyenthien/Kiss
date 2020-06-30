@@ -10,7 +10,7 @@ import Foundation
 
 struct RamdomUserProvider {
     private let notFoundError = NSError(domain: "Pokemon Not Found", code: 404, userInfo: nil)
-    private let baseURL = "https://randomuser.me/api/?results=100&page="
+    private let baseURL = "https://randomuser.me/api/?results=100&nat=us&page="
     private func makeUrl(page: Int) -> String {
         return baseURL + "\(page)"
     }
@@ -39,9 +39,10 @@ struct RamdomUserProvider {
     }
 }
 
-// MARK: - ListUserResult
+
+// MARK: - Response
 struct ListUserResult: Codable {
-    let results: [UserResult]
+    let results: [User]
     let info: Info
 }
 
@@ -53,8 +54,8 @@ struct Info: Codable {
 }
 
 // MARK: - Result
-struct UserResult: Codable {
-    let gender: String
+struct User: Codable {
+    let gender: Gender
     let name: Name
     let location: Location
     let email: String
@@ -72,6 +73,11 @@ struct Dob: Codable {
     let age: Int
 }
 
+enum Gender: String, Codable {
+    case female = "female"
+    case male = "male"
+}
+
 // MARK: - ID
 struct ID: Codable {
     let name: String
@@ -82,7 +88,7 @@ struct ID: Codable {
 struct Location: Codable {
     let street: Street
     let city, state, country: String
-    let postcode: Int
+    let postcode: Postcode
     let coordinates: Coordinates
     let timezone: Timezone
 }
@@ -90,6 +96,34 @@ struct Location: Codable {
 // MARK: - Coordinates
 struct Coordinates: Codable {
     let latitude, longitude: String
+}
+
+enum Postcode: Codable {
+    case integer(Int)
+    case string(String)
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let x = try? container.decode(Int.self) {
+            self = .integer(x)
+            return
+        }
+        if let x = try? container.decode(String.self) {
+            self = .string(x)
+            return
+        }
+        throw DecodingError.typeMismatch(Postcode.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for Postcode"))
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .integer(let x):
+            try container.encode(x)
+        case .string(let x):
+            try container.encode(x)
+        }
+    }
 }
 
 // MARK: - Street
@@ -100,7 +134,7 @@ struct Street: Codable {
 
 // MARK: - Timezone
 struct Timezone: Codable {
-    let offset, timezoneDescription: String
+    let offset, timezoneDescription: String?
 
     enum CodingKeys: String, CodingKey {
         case offset

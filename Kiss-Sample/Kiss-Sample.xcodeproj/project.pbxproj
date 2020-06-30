@@ -15,7 +15,8 @@
 		871E4488247EB47C005671D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871E4486247EB47C005671D1 /* LaunchScreen.storyboard */; };
 		871E4497247EB63D005671D1 /* KissUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871E4496247EB63D005671D1 /* KissUI.framework */; };
 		871E4498247EB63D005671D1 /* KissUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 871E4496247EB63D005671D1 /* KissUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		875403F424A8EB65004D04C2 /* PokeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875403F324A8EB65004D04C2 /* PokeProvider.swift */; };
+		875403F424A8EB65004D04C2 /* RamdomUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875403F324A8EB65004D04C2 /* RamdomUserProvider.swift */; };
+		87F136DF24AAA516006DFBEF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F136DE24AAA516006DFBEF /* Common.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,7 +44,8 @@
 		871E4489247EB47C005671D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		871E4490247EB4C0005671D1 /* KissUI_Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KissUI_Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		871E4496247EB63D005671D1 /* KissUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KissUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		875403F324A8EB65004D04C2 /* PokeProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokeProvider.swift; sourceTree = "<group>"; };
+		875403F324A8EB65004D04C2 /* RamdomUserProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RamdomUserProvider.swift; sourceTree = "<group>"; };
+		87F136DE24AAA516006DFBEF /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,11 +83,12 @@
 				871E447B247EB47B005671D1 /* AppDelegate.swift */,
 				871E447D247EB47B005671D1 /* SceneDelegate.swift */,
 				871E447F247EB47B005671D1 /* ViewController.swift */,
-				875403F324A8EB65004D04C2 /* PokeProvider.swift */,
+				875403F324A8EB65004D04C2 /* RamdomUserProvider.swift */,
 				871E4481247EB47B005671D1 /* Main.storyboard */,
 				871E4484247EB47C005671D1 /* Assets.xcassets */,
 				871E4486247EB47C005671D1 /* LaunchScreen.storyboard */,
 				871E4489247EB47C005671D1 /* Info.plist */,
+				87F136DE24AAA516006DFBEF /* Common.swift */,
 			);
 			path = "Kiss-Sample";
 			sourceTree = "<group>";
@@ -174,7 +177,8 @@
 				871E4480247EB47B005671D1 /* ViewController.swift in Sources */,
 				871E447C247EB47B005671D1 /* AppDelegate.swift in Sources */,
 				871E447E247EB47B005671D1 /* SceneDelegate.swift in Sources */,
-				875403F424A8EB65004D04C2 /* PokeProvider.swift in Sources */,
+				87F136DF24AAA516006DFBEF /* Common.swift in Sources */,
+				875403F424A8EB65004D04C2 /* RamdomUserProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

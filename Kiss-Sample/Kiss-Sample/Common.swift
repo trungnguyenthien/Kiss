@@ -1,0 +1,51 @@
+//
+//  Common.swift
+//  Kiss-Sample
+//
+//  Created by Trung on 6/30/20.
+//  Copyright © 2020 trungnguyenthien. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+let small = 4.0
+let medium = 8.0
+
+func makeCollection() -> UICollectionView {
+    return UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+}
+
+
+func makeView(_ color: UIColor) -> UIView {
+    let view = UIView()
+    view.backgroundColor = color
+    return view
+}
+
+extension String {
+    var label: UILabel {
+        let view = UILabel()
+        view.text = self
+        view.backgroundColor = .cyan
+        return view;
+    }
+    
+    var labelSmall: UILabel {
+        let label = self.label
+        label.font = UIFont.systemFont(ofSize: 8, weight: .medium)
+        return label
+    }
+    
+    var labelMedium: UILabel {
+        let label = self.label
+        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        return label
+    }
+    
+    var labelBigBold: UILabel {
+        let label = self.label
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        return label
+    }
+}
