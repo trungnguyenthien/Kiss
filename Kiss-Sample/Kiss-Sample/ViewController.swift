@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         collectionView.register(UserKissCell.self, forCellWithReuseIdentifier: CellKind.kisscell.rawValue)
         collectionView.backgroundColor = .black
         collectionView.isScrollEnabled = true
+
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumInteritemSpacing = 1
             layout.minimumLineSpacing = 1
@@ -73,45 +74,57 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellKind.rawValue, for: indexPath)
         if let cell = cell as? UserKissCell {
-            cell.config(user: datasource[indexPath.row])
+            let cellWidth = (UIScreen.main.bounds.width - 3) / 3
+            cell.config(width: cellWidth, user: datasource[indexPath.row])
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth = (UIScreen.main.bounds.width - 3) / 3
-        sampleCell.config(user: datasource[indexPath.row])
-        return sampleCell.kiss.estimatedSize(width: cellWidth, height: nil)
+        sampleCell.config(width: cellWidth, user: datasource[indexPath.row])
+        let size = sampleCell.kiss.estimatedSize(width: cellWidth, height: nil)
+        return size
     }
     
 }
 
 class UserKissCell: UICollectionViewCell {
-    let titleLable = "Title".labelMedium
+    let titleLable = "Title".labelMediumBold
     let phoneNum = "PhoneNUm".labelMedium
     let image = makeView(.systemGray2)
-    let background = makeView(.systemGroupedBackground)
+
+    lazy var hLayout = makeView(.green).kiss
+        .hstack {
+            image.layout.grow(1).ratio(3/2).minHeight(120)
+            vstack {
+                titleLable.layout
+                phoneNum.layout
+            }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
+        }.padding(5).minHeight(120).alignItems(.start)
     
-    lazy var regularLayout = background.kiss.hstack {
-        image.layout.grow(1).ratio(3/2).minHeight(120)
-        vstack {
-            titleLable.layout
-            phoneNum.layout
-        }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
-    }.padding(5).minHeight(120).alignItems(.start)
+    lazy var vLayout = makeView(.blue).kiss
+        .vstack {
+            image.layout.grow(1).ratio(3/2).minHeight(120)
+            vstack {
+                titleLable.layout
+                phoneNum.layout
+            }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
+        }.padding(5).minHeight(120).alignItems(.start)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        kiss.constructIfNeed(layout: regularLayout)
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func config(user: User) {
+    func config(width: CGFloat, user: User) {
         titleLable.text = "\(user.name.last): \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
+        kiss.constructIfNeed(layout: width > 300 ? hLayout : vLayout)
     }
     
     override func layoutSubviews() {

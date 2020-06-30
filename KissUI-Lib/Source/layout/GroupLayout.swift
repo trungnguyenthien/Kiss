@@ -89,31 +89,7 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
     public var isVisible: Bool {
         return hasVisibleView
     }
-//    
-//    var arrangeAble: FlexLayoutItemProtocol? {
-//        return self as? FlexLayoutItemProtocol
-//    }
     
-//    var arrangeAbleItems: [FlexLayoutItemProtocol] {
-//        return layoutItems.compactMap { $0 as? FlexLayoutItemProtocol }
-//    }
-    
-//    func fullOptimize() {
-//        selfOptimize()
-//        layoutItems
-//            .compactMap { $0 as? GroupLayout }
-//            .forEach { $0.selfOptimize() }
-//    }
-//
-//    private func selfOptimize() {
-//        removeInvisibleItem()
-//        reduceSpacer()
-//    }
-//
-//    private func removeInvisibleItem() {
-//        layoutItems.removeAll { !$0.isVisible }
-//    }
-//
     /*
      Loại bỏ trường hợp 2 hay nhiều spacer liên tục nhau thành 1 spacer
      */

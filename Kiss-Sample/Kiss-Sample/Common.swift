@@ -13,7 +13,11 @@ let small = 4.0
 let medium = 8.0
 
 func makeCollection() -> UICollectionView {
-    return UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout.init())
+    let clayout = UICollectionViewFlowLayout.init()
+    clayout.scrollDirection = .vertical
+    let collection = UICollectionView(frame: .zero, collectionViewLayout: clayout)
+    collection.isUserInteractionEnabled = true
+    return collection
 }
 
 
@@ -40,6 +44,12 @@ extension String {
     var labelMedium: UILabel {
         let label = self.label
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        return label
+    }
+    
+    var labelMediumBold: UILabel {
+        let label = self.label
+        label.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         return label
     }
     
