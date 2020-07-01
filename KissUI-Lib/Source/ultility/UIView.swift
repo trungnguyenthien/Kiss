@@ -77,10 +77,6 @@ extension UIView {
         }
     }
     
-    func setNilYoga() {
-        objc_setAssociatedObject(self, kYGYogaAssociatedKey, nil, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    
     public class Kiss {
         let view: UIView
         weak var currentGroupLayout: GroupLayout? = nil

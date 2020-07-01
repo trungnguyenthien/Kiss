@@ -164,12 +164,10 @@ extension GroupLayout {
     func removeAllViewHierachy() {
         layoutItems.forEach {
             $0.root.removeFromSuperview()
-            $0.root.setNilYoga()
             guard let group = $0 as? GroupLayout else { return }
             group.removeAllViewHierachy()
         }
         overlayGroups.forEach {
-            $0.root.setNilYoga()
             $0.body.removeFromSuperview()
         }
     }
