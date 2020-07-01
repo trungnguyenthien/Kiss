@@ -24,6 +24,8 @@ extension HStackLayout {
         instance.layoutItems = self.layoutItems.copy(with: zone)
         instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         instance.overlayGroups = self.overlayGroups.copy()
+        instance.body = self.body
+        instance.baseView = self.baseView
         return instance
     }
 }

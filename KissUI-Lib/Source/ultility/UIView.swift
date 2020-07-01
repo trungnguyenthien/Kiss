@@ -64,17 +64,21 @@ extension UIView {
     }
 }
 
-var kissKey = "UIView.kiss"
+var kissAssociatedKey = "UIView.KissAssociatedKey"
 extension UIView {
     public var kiss: Kiss {
         get {
-            guard let obj = objc_getAssociatedObject(self, &kissKey) as? Kiss else {
+            guard let obj = objc_getAssociatedObject(self, &kissAssociatedKey) as? Kiss else {
                 let newKiss = Kiss(view: self)
-                objc_setAssociatedObject(self, &kissKey, newKiss, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                objc_setAssociatedObject(self, &kissAssociatedKey, newKiss, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 return newKiss
             }
             return obj
         }
+    }
+    
+    func setNilYoga() {
+        objc_setAssociatedObject(self, kYGYogaAssociatedKey, nil, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     public class Kiss {
@@ -86,10 +90,9 @@ extension UIView {
         
         public func constructIfNeed(layout: GroupLayout) {
             if currentGroupLayout === layout { return }
-            
-            currentGroupLayout?.views.forEach {
-                $0.removeFromSuperview()
-            }
+            currentGroupLayout?.body.removeFromSuperview()
+            currentGroupLayout?.removeAllViewHierachy()
+            currentGroupLayout?.body.removeFromSuperview()
             
             currentGroupLayout = layout
             

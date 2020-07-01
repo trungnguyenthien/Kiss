@@ -115,6 +115,8 @@ extension GroupLayout: NSCopying {
         newInstance.layoutItems = self.layoutItems.copy(with: zone)
         newInstance.attr = self.attr.copy(with: zone) as! LayoutAttribute
         newInstance.overlayGroups = self.overlayGroups.copy()
+        newInstance.body = self.body
+        newInstance.baseView = self.baseView
         return newInstance
     }
 }
@@ -159,9 +161,23 @@ extension GroupLayout {
         return groups
     }
     
+    func removeAllViewHierachy() {
+        layoutItems.forEach {
+            $0.root.removeFromSuperview()
+            $0.root.setNilYoga()
+            guard let group = $0 as? GroupLayout else { return }
+            group.removeAllViewHierachy()
+        }
+        overlayGroups.forEach {
+            $0.root.setNilYoga()
+            $0.body.removeFromSuperview()
+        }
+    }
+    
     /// Remove Subview hiện tại, construct lại hệ thống view mới
     func constructLayout() {
         let flex = self as? FlexLayoutItemProtocol
+        removeAllViewHierachy()
         flex?.layoutRendering()
         flex?.configureLayout()
     }
