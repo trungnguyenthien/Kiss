@@ -43,7 +43,6 @@ class ViewController: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(let listResult):
-                //                print(listResult)
                 self.datasource.append(contentsOf: listResult.results)
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -105,10 +104,10 @@ class UserKissCell: UICollectionViewCell {
     
     lazy var vLayout = makeView(.blue).kiss
         .vstack {
-            image.layout.grow(1).ratio(3/2).minHeight(120)
+            image.layout.grow(1).ratio(2/2).minHeight(120)
             vstack {
-                titleLable.layout
                 phoneNum.layout
+                titleLable.layout
             }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
         }.padding(5).minHeight(120).alignItems(.start)
     

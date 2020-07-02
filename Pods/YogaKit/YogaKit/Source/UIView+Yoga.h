@@ -22,7 +22,7 @@ typedef void (^YGLayoutConfigurationBlock)(YGLayout *layout);
  Indicates whether or not Yoga is enabled
  */
 @property (nonatomic, readonly, assign) BOOL isYogaEnabled;
-
+- (void)resetYoga;
 /**
  In ObjC land, every time you access `view.yoga.*` you are adding another `objc_msgSend`
  to your code. If you plan on making multiple changes to YGLayout, it's more performant

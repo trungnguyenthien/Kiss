@@ -8,6 +8,7 @@
 #import "UIView+Yoga.h"
 #import "YGLayout+Private.h"
 #import <objc/runtime.h>
+#import <yoga/Yoga.h>
 
 static const void *kYGYogaAssociatedKey = &kYGYogaAssociatedKey;
 
@@ -22,6 +23,10 @@ static const void *kYGYogaAssociatedKey = &kYGYogaAssociatedKey;
   }
 
   return yoga;
+}
+- (void)resetYoga {
+    YGLayout *yoga = [[YGLayout alloc] initWithView:self];
+    objc_setAssociatedObject(self, kYGYogaAssociatedKey, yoga, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (BOOL)isYogaEnabled

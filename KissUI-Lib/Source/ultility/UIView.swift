@@ -86,13 +86,10 @@ extension UIView {
         
         public func constructIfNeed(layout: GroupLayout) {
             if currentGroupLayout === layout { return }
-            currentGroupLayout?.body.removeFromSuperview()
             currentGroupLayout?.removeAllViewHierachy()
-            currentGroupLayout?.body.removeFromSuperview()
-            
             currentGroupLayout = layout
+            currentGroupLayout?.removeAllViewHierachy()
             
-            view.subviews.forEach { $0.removeFromSuperview() }
             layout.layerViews.forEach {
                 $0.removeFromSuperview()
                 view.addSubview($0)

@@ -162,20 +162,22 @@ extension GroupLayout {
     }
     
     func removeAllViewHierachy() {
+        root.resetYoga()
+        body.removeFromSuperview()
         layoutItems.forEach {
+            $0.root.resetYoga()
             $0.root.removeFromSuperview()
             guard let group = $0 as? GroupLayout else { return }
             group.removeAllViewHierachy()
         }
         overlayGroups.forEach {
-            $0.body.removeFromSuperview()
+            $0.removeAllViewHierachy()
         }
     }
     
     /// Remove Subview hiện tại, construct lại hệ thống view mới
     func constructLayout() {
         let flex = self as? FlexLayoutItemProtocol
-        removeAllViewHierachy()
         flex?.layoutRendering()
         flex?.configureLayout()
     }
