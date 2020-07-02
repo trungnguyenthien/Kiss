@@ -161,17 +161,17 @@ extension GroupLayout {
         return groups
     }
     
-    func removeAllViewHierachy() {
-        root.resetYoga()
+    func resetViewHierachy() {
+        body.resetYoga()
         body.removeFromSuperview()
         layoutItems.forEach {
             $0.root.resetYoga()
             $0.root.removeFromSuperview()
             guard let group = $0 as? GroupLayout else { return }
-            group.removeAllViewHierachy()
+            group.resetViewHierachy()
         }
         overlayGroups.forEach {
-            $0.removeAllViewHierachy()
+            $0.resetViewHierachy()
         }
     }
     

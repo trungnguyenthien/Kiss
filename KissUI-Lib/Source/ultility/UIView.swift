@@ -85,16 +85,17 @@ extension UIView {
         }
         
         public func constructIfNeed(layout: GroupLayout) {
-            if currentGroupLayout === layout { return }
-            currentGroupLayout?.removeAllViewHierachy()
-            currentGroupLayout = layout
-            currentGroupLayout?.removeAllViewHierachy()
+            guard currentGroupLayout !== layout else { return }
             
-            layout.layerViews.forEach {
-                $0.removeFromSuperview()
-                view.addSubview($0)
-            }
+            view.resetYoga()
+            currentGroupLayout?.body.removeFromSuperview()
+            currentGroupLayout?.resetViewHierachy()
+            currentGroupLayout = layout
+            currentGroupLayout?.resetViewHierachy()
+            
+            view.addSubview(layout.body)
             layout.constructLayout()
+            layout.layerViews.forEach { view.addSubview($0) }
         }
         
         public func updateChange(width: CGFloat? = nil, height: CGFloat? = nil) {

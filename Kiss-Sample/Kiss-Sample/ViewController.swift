@@ -73,14 +73,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellKind.rawValue, for: indexPath)
         if let cell = cell as? UserKissCell {
-            let cellWidth = (UIScreen.main.bounds.width - 3) / 3
+            let cellWidth = (UIScreen.main.bounds.width - 4) / 4
             cell.config(width: cellWidth, user: datasource[indexPath.row])
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (UIScreen.main.bounds.width - 3) / 3
+        let cellWidth = (UIScreen.main.bounds.width - 4) / 4
         sampleCell.config(width: cellWidth, user: datasource[indexPath.row])
         let size = sampleCell.kiss.estimatedSize(width: cellWidth, height: nil)
         return size
@@ -95,7 +95,7 @@ class UserKissCell: UICollectionViewCell {
 
     lazy var hLayout = makeView(.green).kiss
         .hstack {
-            image.layout.grow(1).ratio(3/2).minHeight(120)
+            image.layout.grow(1).ratio(3/2)
             vstack {
                 titleLable.layout
                 phoneNum.layout
@@ -104,7 +104,7 @@ class UserKissCell: UICollectionViewCell {
     
     lazy var vLayout = makeView(.blue).kiss
         .vstack {
-            image.layout.grow(1).ratio(2/2).minHeight(120)
+            image.layout.grow(1).ratio(2/2)
             vstack {
                 phoneNum.layout
                 titleLable.layout
@@ -123,7 +123,9 @@ class UserKissCell: UICollectionViewCell {
     func config(width: CGFloat, user: User) {
         titleLable.text = "\(user.name.last): \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
-        kiss.constructIfNeed(layout: width > 300 ? hLayout : vLayout)
+        let isVertical = UIScreen.main.bounds.width < UIScreen.main.bounds.height
+        print("isVertical = \(isVertical)")
+        kiss.constructIfNeed(layout: isVertical ? vLayout : hLayout)
     }
     
     override func layoutSubviews() {
