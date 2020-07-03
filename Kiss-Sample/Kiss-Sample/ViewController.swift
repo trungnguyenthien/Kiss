@@ -52,7 +52,15 @@ class ViewController: UIViewController {
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        collectionView.collectionViewLayout.invalidateLayout()
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        let visibleIndex = self.collectionView.indexPathsForVisibleItems
+        self.collectionView.reloadItems(at: visibleIndex)
+        coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+            guard let self = self else { return }
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {

@@ -96,7 +96,9 @@ extension UIView {
             
             _selfView.addSubview(layout.body)
             layout.constructLayout()
+            
             layout.layerViews.forEach { _selfView.addSubview($0) }
+            
         }
         
         public func updateChange(width: CGFloat? = nil, height: CGFloat? = nil) {
