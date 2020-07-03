@@ -51,10 +51,12 @@ class ViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        let visibleIndex = self.collectionView.indexPathsForVisibleItems
-        self.collectionView.reloadItems(at: visibleIndex)
+        // Reload visible item for updating it's layout
+        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
+        
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in
             guard let self = self else { return }
+            // invalidateLayout for updating it's layout
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
         
@@ -85,6 +87,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
 }
 
 class UserKissCell: UICollectionViewCell {
+    let orderLabel = "Order".labelMediumBold
     let titleLable = "Title".labelMediumBold
     let phoneNum = "PhoneNUm".labelMedium
     let image = makeView(.systemGray2)
@@ -93,6 +96,7 @@ class UserKissCell: UICollectionViewCell {
         .hstack {
             image.layout.grow(1).ratio(3/2)
             vstack {
+                orderLabel.layout
                 titleLable.layout
                 phoneNum.layout
             }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
@@ -102,13 +106,15 @@ class UserKissCell: UICollectionViewCell {
         .vstack {
             image.layout.grow(1).ratio(2/2)
             vstack {
-                phoneNum.layout
-                titleLable.layout
+                orderLabel.layout.grow(1)
+                phoneNum.layout.grow(1)
+                titleLable.layout.grow(1)
             }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
         }.padding(5).minHeight(120).alignItems(.start)
     
     func config(width: CGFloat, user: User) {
-        titleLable.text = "\(user.name.last): \(user.name.first)"
+        orderLabel.text = user.email
+        titleLable.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
         let isVertical = width > 250
         kiss.constructIfNeed(layout: isVertical ? vLayout : hLayout)
