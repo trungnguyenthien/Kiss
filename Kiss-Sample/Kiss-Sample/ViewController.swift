@@ -97,7 +97,7 @@ class UserKissCell: UICollectionViewCell {
             }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
         }.padding(5).minHeight(120).alignItems(.start)
     
-    lazy var vLayout = makeView(.blue).kiss
+    lazy var vLayout = makeView(.yellow).kiss
         .vstack {
             image.layout.grow(1).ratio(2/2)
             vstack {
@@ -119,13 +119,11 @@ class UserKissCell: UICollectionViewCell {
         titleLable.text = "\(user.name.last): \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
         
-        print("isVertical = \(isVertical)")
         kiss.constructIfNeed(layout: isVertical ? vLayout : hLayout)
         kiss.updateChange(width: frame.width, height: frame.height)
     }
     
     override func layoutSubviews() {
-        super.layoutSubviews()
         kiss.updateChange(width: frame.width, height: frame.height)
     }
 }

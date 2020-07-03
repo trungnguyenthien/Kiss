@@ -189,7 +189,7 @@ extension GroupLayout {
     ///   - height: nil -> autoFit Height
     func updateLayoutChange(width: CGFloat? = nil, height: CGFloat? = nil) {
         constructLayout()
-        body.applyLayout(preservingOrigin: false, fixWidth: width, fixHeight: height)
+        body.applyLayout(preservingOrigin: true, fixWidth: width, fixHeight: height)
         
         allOverlayGroup.forEach { (overlay) in
             guard let base = overlay.baseView else { return }
