@@ -78,24 +78,25 @@ extension UIView {
     }
     
     public class Kiss {
-        let view: UIView
+        let _selfView: UIView
         weak var currentGroupLayout: GroupLayout? = nil
         init(view: UIView) {
-            self.view = view
+            self._selfView = view
         }
         
         public func constructIfNeed(layout: GroupLayout) {
             guard currentGroupLayout !== layout else { return }
             
-            view.resetYoga()
+            _selfView.resetYoga()
+            
             currentGroupLayout?.body.removeFromSuperview()
             currentGroupLayout?.resetViewHierachy()
             currentGroupLayout = layout
             currentGroupLayout?.resetViewHierachy()
             
-            view.addSubview(layout.body)
+            _selfView.addSubview(layout.body)
             layout.constructLayout()
-            layout.layerViews.forEach { view.addSubview($0) }
+            layout.layerViews.forEach { _selfView.addSubview($0) }
         }
         
         public func updateChange(width: CGFloat? = nil, height: CGFloat? = nil) {
@@ -109,14 +110,14 @@ extension UIView {
         // MARK: - VSTACK LAYOUT
         public func vstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> VStackLayout {
             let stack = VStackLayout()
-            stack.body = view
+            stack.body = _selfView
             stack.layoutItems.append(contentsOf: builder())
             return stack
         }
         
         public func vstack(@LayoutItemBuilder builder: () -> LayoutItem) -> VStackLayout {
             let stack = VStackLayout()
-            stack.body = view
+            stack.body = _selfView
             stack.layoutItems.append(builder())
             return stack
         }
@@ -124,14 +125,14 @@ extension UIView {
         // MARK: - HSTACK LAYOUT
         public func hstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> HStackLayout {
             let stack = HStackLayout()
-            stack.body = view
+            stack.body = _selfView
             stack.layoutItems.append(contentsOf: builder())
             return stack
         }
         
         public func hstack(@LayoutItemBuilder builder: () -> LayoutItem) -> HStackLayout {
             let stack = HStackLayout()
-            stack.body = view
+            stack.body = _selfView
             stack.layoutItems.append(builder())
             return stack
         }
@@ -139,14 +140,14 @@ extension UIView {
         // MARK: - WRAP LAYOUT
         public func wrap(@LayoutItemBuilder builder: () -> [LayoutItem]) -> WrapLayout {
             let stack = WrapLayout()
-            stack.body = view
+            stack.body = _selfView
             stack.layoutItems.append(contentsOf: builder())
             return stack
         }
         
         public func wrap(@LayoutItemBuilder builder: () -> LayoutItem) -> WrapLayout {
             let stack = WrapLayout()
-            stack.body = view
+            stack.body = _selfView
             stack.layoutItems.append(builder())
             return stack
         }

@@ -16,6 +16,7 @@ func makeCollection() -> UICollectionView {
     let clayout = UICollectionViewFlowLayout.init()
     clayout.scrollDirection = .vertical
     let collection = UICollectionView(frame: .zero, collectionViewLayout: clayout)
+    collection.alwaysBounceVertical = true
     collection.isUserInteractionEnabled = true
     return collection
 }

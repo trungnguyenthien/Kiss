@@ -17,14 +17,10 @@ enum CellKind: String {
 class ViewController: UIViewController {
     let provider = RamdomUserProvider()
     var datasource: [User] = []
-    private let collectionView = makeCollection()
+
+    @IBOutlet weak var collectionView: UICollectionView!
     private let cellKind = CellKind.kisscell
     let sampleCell = UserKissCell()
-    private lazy var regularLayout = {
-        vstack {
-            collectionView.layout.grow(1).alignSelf(.stretch)
-        }
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +49,6 @@ class ViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
-        view.kiss.constructIfNeed(layout: regularLayout)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -123,13 +118,18 @@ class UserKissCell: UICollectionViewCell {
     func config(width: CGFloat, user: User) {
         titleLable.text = "\(user.name.last): \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
-        let isVertical = UIScreen.main.bounds.width < UIScreen.main.bounds.height
+        
         print("isVertical = \(isVertical)")
         kiss.constructIfNeed(layout: isVertical ? vLayout : hLayout)
+        kiss.updateChange(width: frame.width, height: frame.height)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         kiss.updateChange(width: frame.width, height: frame.height)
     }
+}
+
+var isVertical: Bool {
+    return UIDevice.current.orientation.isPortrait
 }
