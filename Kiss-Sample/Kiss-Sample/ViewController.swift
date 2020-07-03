@@ -24,11 +24,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(UserKissCell.self, forCellWithReuseIdentifier: CellKind.kisscell.rawValue)
         collectionView.backgroundColor = .black
-        collectionView.isScrollEnabled = true
+        collectionView.register(UserKissCell.self, forCellWithReuseIdentifier: CellKind.kisscell.rawValue)
 
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumInteritemSpacing = 1
@@ -55,10 +52,9 @@ class ViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         
         let visibleIndex = self.collectionView.indexPathsForVisibleItems
-        
+        self.collectionView.reloadItems(at: visibleIndex)
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in
             guard let self = self else { return }
-            self.collectionView.reloadItems(at: visibleIndex)
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
         
@@ -73,14 +69,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellKind.rawValue, for: indexPath)
         if let cell = cell as? UserKissCell {
-            let cellWidth = (UIScreen.main.bounds.width - 4) / 4
+            let cellWidth = (UIScreen.main.bounds.width - 5) / 4
             cell.config(width: cellWidth, user: datasource[indexPath.row])
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (UIScreen.main.bounds.width - 4) / 4
+        let cellWidth = (UIScreen.main.bounds.width - 5) / 4
         sampleCell.config(width: cellWidth, user: datasource[indexPath.row])
         let size = sampleCell.kiss.estimatedSize(width: cellWidth, height: nil)
         return size
@@ -111,19 +107,10 @@ class UserKissCell: UICollectionViewCell {
             }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
         }.padding(5).minHeight(120).alignItems(.start)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func config(width: CGFloat, user: User) {
         titleLable.text = "\(user.name.last): \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
-        
+        let isVertical = width > 250
         kiss.constructIfNeed(layout: isVertical ? vLayout : hLayout)
         layoutIfNeeded()
     }
@@ -132,8 +119,4 @@ class UserKissCell: UICollectionViewCell {
         super.layoutSubviews()
         kiss.updateChange(width: frame.width, height: frame.height)
     }
-}
-
-var isVertical: Bool {
-    return UIDevice.current.orientation.isPortrait
 }
