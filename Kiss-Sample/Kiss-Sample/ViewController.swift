@@ -55,16 +55,13 @@ class ViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         
         let visibleIndex = self.collectionView.indexPathsForVisibleItems
-        self.collectionView.reloadItems(at: visibleIndex)
+        
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in
             guard let self = self else { return }
+            self.collectionView.reloadItems(at: visibleIndex)
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
         
-    }
-    
-    override func viewDidLayoutSubviews() {
-        view.kiss.updateChange(width: view.bounds.width, height: view.bounds.height)
     }
 }
 
@@ -128,10 +125,11 @@ class UserKissCell: UICollectionViewCell {
         phoneNum.text = "Tel: \(user.phone)"
         
         kiss.constructIfNeed(layout: isVertical ? vLayout : hLayout)
-        kiss.updateChange(width: frame.width, height: frame.height)
+        layoutIfNeeded()
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         kiss.updateChange(width: frame.width, height: frame.height)
     }
 }
