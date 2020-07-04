@@ -37,6 +37,7 @@
 		8775847124B01BEC0094976F /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8775846B24B01BCE0094976F /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8775847224B01BEC0094976F /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8775846D24B01BCE0094976F /* YogaKit.framework */; };
 		8775847324B01BEC0094976F /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8775846D24B01BCE0094976F /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8775848224B02FD50094976F /* OverlayLayoutAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775848124B02FD50094976F /* OverlayLayoutAble.swift */; };
 		CB8375AA91EE3B47C42CA1DD /* Pods_Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7478B4BF0DED2FCF873406 /* Pods_Kiss.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +118,7 @@
 		874D91F7248FCC6000D378AD /* FlexLayoutItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexLayoutItemProtocol.swift; sourceTree = "<group>"; };
 		8754A1992499916B000A6163 /* LayoutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
 		8775846224B01BCE0094976F /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
+		8775848124B02FD50094976F /* OverlayLayoutAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayLayoutAble.swift; sourceTree = "<group>"; };
 		88F13FD0758E0ED7A47FBEF5 /* Pods_KissUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KissUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFAB6F30BCD7455FE7B65189 /* Pods-Kiss.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiss.debug.xcconfig"; path = "Target Support Files/Pods-Kiss/Pods-Kiss.debug.xcconfig"; sourceTree = "<group>"; };
 		E4744FC8A9CAC6F054C4111B /* Pods-Kiss.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiss.release.xcconfig"; path = "Target Support Files/Pods-Kiss/Pods-Kiss.release.xcconfig"; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				8732133B24854A2B00BE2BEE /* AlignmentSetter.swift */,
 				8732133D2485513500BE2BEE /* MarginSetter.swift */,
 				8748C58624A6AB1D00E90FDE /* SelfAlignSetter.swift */,
+				8775848124B02FD50094976F /* OverlayLayoutAble.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				873213422487853900BE2BEE /* internalExtension.swift in Sources */,
 				8748C58724A6AB1D00E90FDE /* SelfAlignSetter.swift in Sources */,
 				873213402487826B00BE2BEE /* internalFunction.swift in Sources */,
+				8775848224B02FD50094976F /* OverlayLayoutAble.swift in Sources */,
 				874D91F8248FCC6000D378AD /* FlexLayoutItemProtocol.swift in Sources */,
 				8732134A248937E500BE2BEE /* VStackLayout.swift in Sources */,
 				874D91F6248D2D9B00D378AD /* layoutBuilder.swift in Sources */,
