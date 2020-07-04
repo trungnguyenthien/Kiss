@@ -103,7 +103,10 @@ extension UIView {
             currentGroupLayout = layout
             currentGroupLayout?.resetViewHierachy()
             
-            _selfView.addSubview(layout.body)
+            if _selfView !== layout.body {
+                _selfView.addSubview(layout.body)
+            }
+            
             layout.constructLayout()
             
             layout.layerViews.forEach { _selfView.addSubview($0) }

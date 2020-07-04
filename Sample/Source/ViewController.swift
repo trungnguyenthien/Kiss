@@ -71,19 +71,24 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellKind.rawValue, for: indexPath)
         if let cell = cell as? UserKissCell {
-            let cellWidth = (UIScreen.main.bounds.width - 5) / 4
-            cell.config(width: cellWidth, user: datasource[indexPath.row])
+            cell.config(width: cellWidth(), user: datasource[indexPath.row], isPortrait: isPortrait())
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (UIScreen.main.bounds.width - 5) / 4
-        sampleCell.config(width: cellWidth, user: datasource[indexPath.row])
-        let size = sampleCell.kiss.estimatedSize(width: cellWidth, height: nil)
+        sampleCell.config(width: cellWidth(), user: datasource[indexPath.row], isPortrait: isPortrait())
+        let size = sampleCell.kiss.estimatedSize(width: cellWidth(), height: nil)
         return size
     }
     
+    
+    func cellWidth() -> CGFloat {
+        if !isPortrait() {
+            return (UIScreen.main.bounds.width - 4) / 3
+        }
+        return (UIScreen.main.bounds.width - 5) / 4
+    }
 }
 
 class UserKissCell: UICollectionViewCell {
@@ -92,9 +97,8 @@ class UserKissCell: UICollectionViewCell {
     let phoneNum = "PhoneNUm".labelMedium
     let image = makeView(.systemGray2)
 
-    lazy var hLayout = makeView(.green).kiss
-        .hstack {
-            image.layout.grow(1).ratio(3/2)
+    lazy var hLayout = hstack {
+            image.layout.grow(1).ratio(1/1)
             vstack {
                 orderLabel.layout
                 titleLable.layout
@@ -102,22 +106,21 @@ class UserKissCell: UICollectionViewCell {
             }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
         }.padding(5).minHeight(120).alignItems(.start)
     
-    lazy var vLayout = makeView(.yellow).kiss
-        .vstack {
-            image.layout.grow(1).ratio(2/2)
+    lazy var vLayout = vstack {
+        image.layout.alignSelf(.stretch).ratio(2/2)
             vstack {
                 orderLabel.layout.grow(1)
                 phoneNum.layout.grow(1)
                 titleLable.layout.grow(1)
-            }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
-        }.padding(5).minHeight(120).alignItems(.start)
+            }.grow(1).alignItems(.stretch).marginTop(5).alignSelf(.stretch)
+        }.padding(10).minHeight(120).alignItems(.start)
     
-    func config(width: CGFloat, user: User) {
+    func config(width: CGFloat, user: User, isPortrait: Bool) {
+        self.backgroundColor = .white
         orderLabel.text = user.email
         titleLable.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
-        let isVertical = width > 250
-        kiss.constructIfNeed(layout: isVertical ? vLayout : hLayout)
+        kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)
         layoutIfNeeded()
     }
     

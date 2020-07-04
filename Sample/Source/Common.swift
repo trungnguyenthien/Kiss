@@ -12,6 +12,10 @@ import UIKit
 let small = 4.0
 let medium = 8.0
 
+func isPortrait() -> Bool {
+    return UIDevice.current.orientation.isPortrait
+}
+
 func makeCollection() -> UICollectionView {
     let clayout = UICollectionViewFlowLayout.init()
     clayout.scrollDirection = .vertical
@@ -31,6 +35,7 @@ func makeView(_ color: UIColor) -> UIView {
 extension String {
     var label: UILabel {
         let view = UILabel()
+        view.backgroundColor = .lightGray
         view.text = self
         view.numberOfLines = 0
         return view;
