@@ -64,7 +64,7 @@
 		871E446F247EB47B005671D1 = {
 			isa = PBXGroup;
 			children = (
-				871E447A247EB47B005671D1 /* Kiss-Sample */,
+				871E447A247EB47B005671D1 /* Source */,
 				871E4479247EB47B005671D1 /* Products */,
 				871E448F247EB4C0005671D1 /* Frameworks */,
 			);
@@ -78,7 +78,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		871E447A247EB47B005671D1 /* Kiss-Sample */ = {
+		871E447A247EB47B005671D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				871E447B247EB47B005671D1 /* AppDelegate.swift */,
@@ -91,7 +91,7 @@
 				871E4489247EB47C005671D1 /* Info.plist */,
 				87F136DE24AAA516006DFBEF /* Common.swift */,
 			);
-			path = "Kiss-Sample";
+			path = Source;
 			sourceTree = "<group>";
 		};
 		871E448F247EB4C0005671D1 /* Frameworks */ = {
