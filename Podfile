@@ -1,8 +1,8 @@
 platform :ios, '11'
 
 use_frameworks!
- project 'KissUI-Lib/KissUI.xcodeproj'
+ project 'Kiss.xcodeproj'
 
-target 'KissUI' do
+target 'Kiss' do
   pod 'YogaKit', '~> 1.7'
 end

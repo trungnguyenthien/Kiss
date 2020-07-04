@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "871E4477247EB47B005671D1"
-               BuildableName = "Kiss-Sample.app"
-               BlueprintName = "Kiss-Sample"
-               ReferencedContainer = "container:Kiss-Sample.xcodeproj">
+               BuildableName = "Sample.app"
+               BlueprintName = "Sample"
+               ReferencedContainer = "container:Sample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "871E4477247EB47B005671D1"
-            BuildableName = "Kiss-Sample.app"
-            BlueprintName = "Kiss-Sample"
-            ReferencedContainer = "container:Kiss-Sample.xcodeproj">
+            BuildableName = "Sample.app"
+            BlueprintName = "Sample"
+            ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "871E4477247EB47B005671D1"
-            BuildableName = "Kiss-Sample.app"
-            BlueprintName = "Kiss-Sample"
-            ReferencedContainer = "container:Kiss-Sample.xcodeproj">
+            BuildableName = "Sample.app"
+            BlueprintName = "Sample"
+            ReferencedContainer = "container:Sample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

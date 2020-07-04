@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_KissUIVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_KissUIVersionString[];
+FOUNDATION_EXPORT double Pods_KissVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_KissVersionString[];
 

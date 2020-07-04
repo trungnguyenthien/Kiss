@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import KissUI
+import Kiss
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

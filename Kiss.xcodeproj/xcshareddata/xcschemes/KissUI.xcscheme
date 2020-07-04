@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "871E442E247EB422005671D1"
-               BuildableName = "KissUI.framework"
-               BlueprintName = "KissUI"
-               ReferencedContainer = "container:KissUI.xcodeproj">
+               BuildableName = "Kiss.framework"
+               BlueprintName = "Kiss"
+               ReferencedContainer = "container:Kiss.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "871E4437247EB422005671D1"
-               BuildableName = "KissUITests.xctest"
-               BlueprintName = "KissUITests"
-               ReferencedContainer = "container:KissUI.xcodeproj">
+               BuildableName = "KissTests.xctest"
+               BlueprintName = "KissTests"
+               ReferencedContainer = "container:Kiss.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -61,9 +61,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "871E442E247EB422005671D1"
-            BuildableName = "KissUI.framework"
-            BlueprintName = "KissUI"
-            ReferencedContainer = "container:KissUI.xcodeproj">
+            BuildableName = "Kiss.framework"
+            BlueprintName = "Kiss"
+            ReferencedContainer = "container:Kiss.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

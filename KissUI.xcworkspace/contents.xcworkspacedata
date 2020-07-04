@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Kiss-Sample/Kiss-Sample.xcodeproj">
+      location = "group:/Users/trung/Documents/GitHub/Kiss/Kiss-Sample/Sample.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:KissUI-Lib/KissUI.xcodeproj">
+      location = "group:/Users/trung/Documents/GitHub/Kiss/Kiss.xcodeproj">
    </FileRef>
 </Workspace>
