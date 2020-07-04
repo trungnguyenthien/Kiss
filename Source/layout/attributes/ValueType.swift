@@ -8,15 +8,6 @@
 
 import Foundation
 
-
-public enum AlignHorizontal {
-    case left, right, center
-}
-
-public enum AlignVertical {
-    case bottom, top, center
-}
-
 public enum CrossAxisAlignment {
     case start, end, center, stretch
 }
