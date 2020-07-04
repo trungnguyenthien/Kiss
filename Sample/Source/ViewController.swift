@@ -17,7 +17,7 @@ enum CellKind: String {
 class ViewController: UIViewController {
     let provider = RamdomUserProvider()
     var datasource: [User] = []
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     private let cellKind = CellKind.kisscell
     let sampleCell = UserKissCell()
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         collectionView.backgroundColor = .black
         collectionView.register(UserKissCell.self, forCellWithReuseIdentifier: CellKind.kisscell.rawValue)
-
+        
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumInteritemSpacing = 1
             layout.minimumLineSpacing = 1
@@ -97,24 +97,22 @@ class UserKissCell: UICollectionViewCell {
     let titleLable = "Title".labelMediumBold
     let phoneNum = "PhoneNUm".labelMedium
     let image = makeView(.systemGray2)
-
+    
+    lazy var stackInfoLayout = vstack {
+        mailLabel.layout.marginTop(5).alignSelf(.center)
+        titleLable.layout.marginTop(5)
+        phoneNum.layout.marginTop(5)
+    }.grow(1).alignItems(.stretch).margin(5).alignSelf(.center)
+    
     lazy var hLayout = hstack {
-            image.layout.grow(1).ratio(1/1)
-            vstack {
-                mailLabel.layout.marginTop(5)
-                titleLable.layout.marginTop(5)
-                phoneNum.layout.marginTop(5)
-            }.grow(1).alignItems(.stretch).marginLeft(5).alignSelf(.center)
-        }.padding(5).minHeight(120).alignItems(.start)
+        image.layout.grow(1).ratio(1/1)
+        stackInfoLayout
+    }.padding(5).minHeight(120).alignItems(.start)
     
     lazy var vLayout = vstack {
         image.layout.alignSelf(.stretch).ratio(2/2)
-            vstack {
-                mailLabel.layout.grow(1).marginTop(5)
-                phoneNum.layout.grow(1).marginTop(5)
-                titleLable.layout.grow(1).marginTop(5)
-            }.grow(1).alignItems(.stretch).marginTop(5).alignSelf(.stretch)
-        }.padding(10).minHeight(120).alignItems(.start)
+        stackInfoLayout
+    }.padding(10).minHeight(120).alignItems(.start)
     
     func config(width: CGFloat, user: User, isPortrait: Bool) {
         self.backgroundColor = .white
