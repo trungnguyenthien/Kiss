@@ -12,7 +12,7 @@
 		871E4440247EB422005671D1 /* KissUI_Lib.h in Headers */ = {isa = PBXBuildFile; fileRef = 871E4432247EB422005671D1 /* KissUI_Lib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E4494247EB4E4005671D1 /* LayoutAttribute.swift */; };
 		8732133024800C9E00BE2BEE /* GroupLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732132F24800C9E00BE2BEE /* GroupLayout.swift */; };
-		8732133224800CD800BE2BEE /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133124800CD800BE2BEE /* UIView.swift */; };
+		8732133224800CD800BE2BEE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133124800CD800BE2BEE /* UIView+Extension.swift */; };
 		8732133424853FC000BE2BEE /* ValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732133324853FC000BE2BEE /* ValueType.swift */; };
 		873213382485493B00BE2BEE /* SizeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213372485493B00BE2BEE /* SizeSetter.swift */; };
 		8732133A2485498E00BE2BEE /* PaddingSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213392485498E00BE2BEE /* PaddingSetter.swift */; };
@@ -97,7 +97,7 @@
 		871E4494247EB4E4005671D1 /* LayoutAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAttribute.swift; sourceTree = "<group>"; };
 		871E449B247EB90B005671D1 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		8732132F24800C9E00BE2BEE /* GroupLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupLayout.swift; sourceTree = "<group>"; };
-		8732133124800CD800BE2BEE /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		8732133124800CD800BE2BEE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8732133324853FC000BE2BEE /* ValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueType.swift; sourceTree = "<group>"; };
 		873213372485493B00BE2BEE /* SizeSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeSetter.swift; sourceTree = "<group>"; };
 		873213392485498E00BE2BEE /* PaddingSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingSetter.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 				87321344248785D100BE2BEE /* publicExtension.swift */,
 				873213462487932C00BE2BEE /* publicFunction.swift */,
 				874D91F5248D2D9B00D378AD /* layoutBuilder.swift */,
-				8732133124800CD800BE2BEE /* UIView.swift */,
+				8732133124800CD800BE2BEE /* UIView+Extension.swift */,
 			);
 			path = ultility;
 			sourceTree = "<group>";
@@ -435,7 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87321345248785D100BE2BEE /* publicExtension.swift in Sources */,
-				8732133224800CD800BE2BEE /* UIView.swift in Sources */,
+				8732133224800CD800BE2BEE /* UIView+Extension.swift in Sources */,
 				873213382485493B00BE2BEE /* SizeSetter.swift in Sources */,
 				8732134C248937F000BE2BEE /* HStackLayout.swift in Sources */,
 				873213502489381C00BE2BEE /* UIViewLayout.swift in Sources */,

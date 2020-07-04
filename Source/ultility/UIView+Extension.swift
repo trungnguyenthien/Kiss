@@ -17,13 +17,19 @@ public extension UIView {
         vlayout.body = self
         return vlayout
     }
+    
+    /// Ẩn hiện view, ngược lại với isHidden
+    var isVisible: Bool {
+        get { return !isHidden }
+        set { isHidden = !newValue }
+    }
 }
 
 
 extension UIView {
     func applyLayoutFlexibleAll(preservingOrigin: Bool) {
-        yoga.applyLayout(preservingOrigin: preservingOrigin,
-                         dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight, .flexibleWidth))
+        let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleHeight, .flexibleWidth)
+        yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
     }
     
     func applyLayout(preservingOrigin: Bool, fixWidth: CGFloat?, fixHeight: CGFloat?) {
@@ -33,14 +39,17 @@ extension UIView {
             yoga.applyLayout(preservingOrigin: preservingOrigin)
         } else if let width = fixWidth, fixHeight == nil {
             yoga.width = YGValue(width)
-            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight))
+            let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleHeight)
+            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         } else if let height = fixHeight, fixWidth == nil {
             yoga.height = YGValue(height)
-            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleWidth))
+            let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleWidth)
+            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         } else {
             yoga.width = YGValueUndefined
             yoga.height = YGValueUndefined
-            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleWidth, .flexibleHeight))
+            let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleWidth, .flexibleHeight)
+            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         }
     }
     
