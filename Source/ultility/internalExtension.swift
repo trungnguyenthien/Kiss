@@ -23,15 +23,6 @@ extension Double {
     static public var sameZero: Double = 0.0000000000000000001
 }
 
-extension Optional {
-    var isNil: Bool {
-        return self == nil
-    }
-    
-    var notNil: Bool {
-        return self != nil
-    }
-}
 
 extension Array {
     func element(_ index: Int) -> Element? {
@@ -48,7 +39,12 @@ extension Array {
     }
 }
 
-func YGValue(_ value: Double?) -> YogaKit.YGValue {
+func YGValueOrUndefined(_ value: Double?) -> YogaKit.YGValue {
     guard let value = value else { return YGValueUndefined }
+    return YogaKit.YGValue(CGFloat(value))
+}
+
+func YGValueOrAuto(_ value: Double?) -> YogaKit.YGValue {
+    guard let value = value else { return YGValueAuto }
     return YogaKit.YGValue(CGFloat(value))
 }

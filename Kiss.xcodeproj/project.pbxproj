@@ -27,8 +27,6 @@
 		8732134E248937FB00BE2BEE /* WrapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134D248937FB00BE2BEE /* WrapLayout.swift */; };
 		873213502489381C00BE2BEE /* UIViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732134F2489381C00BE2BEE /* UIViewLayout.swift */; };
 		873213522489385A00BE2BEE /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873213512489385A00BE2BEE /* Spacer.swift */; };
-		8732135C24893A0200BE2BEE /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135B24893A0200BE2BEE /* UILabel.swift */; };
-		8732135E24893A0C00BE2BEE /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8732135D24893A0C00BE2BEE /* UIButton.swift */; };
 		8748C58724A6AB1D00E90FDE /* SelfAlignSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8748C58624A6AB1D00E90FDE /* SelfAlignSetter.swift */; };
 		874D91F6248D2D9B00D378AD /* layoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D91F5248D2D9B00D378AD /* layoutBuilder.swift */; };
 		874D91F8248FCC6000D378AD /* FlexLayoutItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D91F7248FCC6000D378AD /* FlexLayoutItemProtocol.swift */; };
@@ -114,8 +112,6 @@
 		8732134D248937FB00BE2BEE /* WrapLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapLayout.swift; sourceTree = "<group>"; };
 		8732134F2489381C00BE2BEE /* UIViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewLayout.swift; sourceTree = "<group>"; };
 		873213512489385A00BE2BEE /* Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
-		8732135B24893A0200BE2BEE /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
-		8732135D24893A0C00BE2BEE /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		8748C58624A6AB1D00E90FDE /* SelfAlignSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfAlignSetter.swift; sourceTree = "<group>"; };
 		874D91F5248D2D9B00D378AD /* layoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layoutBuilder.swift; sourceTree = "<group>"; };
 		874D91F7248FCC6000D378AD /* FlexLayoutItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexLayoutItemProtocol.swift; sourceTree = "<group>"; };
@@ -209,9 +205,7 @@
 				87321344248785D100BE2BEE /* publicExtension.swift */,
 				873213462487932C00BE2BEE /* publicFunction.swift */,
 				874D91F5248D2D9B00D378AD /* layoutBuilder.swift */,
-				8732135B24893A0200BE2BEE /* UILabel.swift */,
 				8732133124800CD800BE2BEE /* UIView.swift */,
-				8732135D24893A0C00BE2BEE /* UIButton.swift */,
 			);
 			path = ultility;
 			sourceTree = "<group>";
@@ -453,8 +447,6 @@
 				874D91F6248D2D9B00D378AD /* layoutBuilder.swift in Sources */,
 				8732134E248937FB00BE2BEE /* WrapLayout.swift in Sources */,
 				8754A19A2499916B000A6163 /* LayoutItem.swift in Sources */,
-				8732135C24893A0200BE2BEE /* UILabel.swift in Sources */,
-				8732135E24893A0C00BE2BEE /* UIButton.swift in Sources */,
 				871E4495247EB4E4005671D1 /* LayoutAttribute.swift in Sources */,
 				8732133424853FC000BE2BEE /* ValueType.swift in Sources */,
 				8732133A2485498E00BE2BEE /* PaddingSetter.swift in Sources */,

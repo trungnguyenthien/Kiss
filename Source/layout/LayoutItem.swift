@@ -35,6 +35,8 @@ internal extension LayoutItem {
         } else if let group = self as? GroupLayout {
             return group.overlayGroups
         }
+        
+        /// Spacer không thể add overlay nên không xét
         return []
     }
     

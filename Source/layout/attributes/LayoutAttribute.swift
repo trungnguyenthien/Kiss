@@ -42,21 +42,21 @@ class LayoutAttribute {
     var alignSelf: CrossAxisAlignment? = nil
     
     func map(to l: YGLayout) {
-        l.paddingLeft   = YGValue(self.paddingLeft)
-        l.paddingRight  = YGValue(self.paddingRight)
-        l.paddingTop    = YGValue(self.paddingTop)
-        l.paddingBottom = YGValue(self.paddingBottom)
+        l.paddingLeft   = YGValueOrUndefined(self.paddingLeft)
+        l.paddingRight  = YGValueOrUndefined(self.paddingRight)
+        l.paddingTop    = YGValueOrUndefined(self.paddingTop)
+        l.paddingBottom = YGValueOrUndefined(self.paddingBottom)
         
-        l.marginLeft    = YGValue(self.mLeft)
-        l.marginRight   = YGValue(self.mRight)
-        l.marginTop     = YGValue(self.mTop)
-        l.marginBottom  = YGValue(self.mBottom)
+        l.marginLeft    = YGValueOrUndefined(self.mLeft)
+        l.marginRight   = YGValueOrUndefined(self.mRight)
+        l.marginTop     = YGValueOrUndefined(self.mTop)
+        l.marginBottom  = YGValueOrUndefined(self.mBottom)
         
-        l.maxHeight     = YGValue(self.maxHeight)
-        l.minHeight     = YGValue(self.minHeight)
+        l.maxHeight     = YGValueOrUndefined(self.maxHeight)
+        l.minHeight     = YGValueOrUndefined(self.minHeight)
         
-        l.minWidth     = YGValue(self.minWidth)
-        l.maxWidth     = YGValue(self.maxWidth)
+        l.minWidth     = YGValueOrUndefined(self.minWidth)
+        l.maxWidth     = YGValueOrUndefined(self.maxWidth)
         
         switch self.alignStack {
         case .start:    l.justifyContent = .flexStart
@@ -84,13 +84,13 @@ class LayoutAttribute {
         }
         
         if let userHeight = userHeight {
-            l.height = YGValue(userHeight)
+            l.height = YGValueOrUndefined(userHeight)
         } else {
             l.height = YGValueAuto
         }
         
         if let userWidth = userWidth {
-            l.width = YGValue(userWidth)
+            l.width = YGValueOrUndefined(userWidth)
         } else {
             l.width = YGValueAuto
         }

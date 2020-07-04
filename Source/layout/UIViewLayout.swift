@@ -9,27 +9,33 @@
 import Foundation
 import UIKit
 import YogaKit
+
 protocol UIViewLayoutSetter: PaddingSetter, MarginSetter, SizeSetter { }
 
-public class UIViewLayout: LayoutItem, UIViewLayoutSetter {
-    
+public class UIViewLayout: UIViewLayoutSetter {
     var attr = LayoutAttribute()
     var body = makeBlankView()
     var overlayGroups = [GroupLayout]()
     
-    public var isVisible: Bool {
-        return body.isVisible == true
-    }
-    
-    var labelContent: UILabel? {
-        return body as? UILabel
+    init() {
+        self.attr.maxHeight = .none
+        self.attr.alignSelf = .stretch
     }
     
     public func alignSelf(_ value: CrossAxisAlignment) -> Self {
         attr.alignSelf = value
         return self
     }
-    
+}
+
+extension UIViewLayout: LayoutItem {
+    public var isVisible: Bool {
+        return body.isVisible == true
+    }
+}
+
+//MARK: - layout builder function
+extension UIViewLayout {
     public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
         let groups = builder()
         groups.forEach { $0.baseView = self.body }

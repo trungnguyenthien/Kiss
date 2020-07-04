@@ -12,6 +12,15 @@ import UIKit
 public class Spacer: LayoutItem {
     var attr = LayoutAttribute()
     var body = makeBlankView()
+    private let grow: Double
+    
+    init() {
+        grow = -.sameZero
+    }
+    
+    init(_ grow: Double) {
+        self.grow = grow
+    }
     
     public var isVisible: Bool {
         return true
@@ -23,7 +32,7 @@ extension Spacer: FlexLayoutItemProtocol {
         body.configureLayout { (l) in
             l.isEnabled = true
             self.attr.map(to: l)
-            setGrow(grow: -0.000000000001, to: l)
+            setGrow(grow: self.grow, to: l)
         }
     }
     

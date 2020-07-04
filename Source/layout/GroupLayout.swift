@@ -40,6 +40,8 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
             if let group = $0 as? GroupLayout {
                 group.autoMarkIncludedInLayout()
             }
+            
+            /// Spacer luôn được include vào layout nên không cần `autoMarkIncludedInLayout`
         }
     }
     
@@ -59,6 +61,7 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
                     view.yoga.markDirty()
                 }
             }
+            /// Không cần markDirty cho Spacer
             
         }
     }
@@ -122,12 +125,13 @@ extension GroupLayout: NSCopying {
 }
 
 extension GroupLayout {
-    var views: [UIView] {
+    /// Chỉ xét những view đóng vai trò là content, như uilabel, uibutton, image,...
+    var uiContentViews: [UIView] {
         var output = [UIView]()
         layoutItems.forEach {
             if let group = $0 as? GroupLayout {
                 // Recursive to get all views
-                output.append(contentsOf: group.views)
+                output.append(contentsOf: group.uiContentViews)
             } else if let uiviewLayout = $0 as? UIViewLayout {
                 output.append(uiviewLayout.body)
             }
@@ -135,8 +139,9 @@ extension GroupLayout {
         return output
     }
     
+    /// GroupLayout gọi là visible khi tồn tại content visibile
     var visibleViews: [UIView] {
-        return views.filter { $0.isVisible }
+        return uiContentViews.filter { $0.isVisible }
     }
     
     var hasVisibleView: Bool {
