@@ -13,7 +13,7 @@ let small = 4.0
 let medium = 8.0
 
 func isPortrait() -> Bool {
-    return UIDevice.current.orientation.isPortrait
+    return UIScreen.main.bounds.width < UIScreen.main.bounds.height
 }
 
 func makeCollection() -> UICollectionView {
@@ -35,7 +35,7 @@ func makeView(_ color: UIColor) -> UIView {
 extension String {
     var label: UILabel {
         let view = UILabel()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .quaternarySystemFill
         view.text = self
         view.numberOfLines = 0
         return view;

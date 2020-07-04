@@ -84,15 +84,16 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     
     func cellWidth() -> CGFloat {
-        if !isPortrait() {
+        if isPortrait() {
+            return (UIScreen.main.bounds.width - 5) / 4
+        } else {
             return (UIScreen.main.bounds.width - 4) / 3
         }
-        return (UIScreen.main.bounds.width - 5) / 4
     }
 }
 
 class UserKissCell: UICollectionViewCell {
-    let orderLabel = "Order".labelMediumBold
+    let mailLabel = "Email".labelMediumBold
     let titleLable = "Title".labelMediumBold
     let phoneNum = "PhoneNUm".labelMedium
     let image = makeView(.systemGray2)
@@ -100,24 +101,24 @@ class UserKissCell: UICollectionViewCell {
     lazy var hLayout = hstack {
             image.layout.grow(1).ratio(1/1)
             vstack {
-                orderLabel.layout
-                titleLable.layout
-                phoneNum.layout
-            }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
+                mailLabel.layout.marginTop(5)
+                titleLable.layout.marginTop(5)
+                phoneNum.layout.marginTop(5)
+            }.grow(1).alignItems(.stretch).marginLeft(5).alignSelf(.center)
         }.padding(5).minHeight(120).alignItems(.start)
     
     lazy var vLayout = vstack {
         image.layout.alignSelf(.stretch).ratio(2/2)
             vstack {
-                orderLabel.layout.grow(1)
-                phoneNum.layout.grow(1)
-                titleLable.layout.grow(1)
+                mailLabel.layout.grow(1).marginTop(5)
+                phoneNum.layout.grow(1).marginTop(5)
+                titleLable.layout.grow(1).marginTop(5)
             }.grow(1).alignItems(.stretch).marginTop(5).alignSelf(.stretch)
         }.padding(10).minHeight(120).alignItems(.start)
     
     func config(width: CGFloat, user: User, isPortrait: Bool) {
         self.backgroundColor = .white
-        orderLabel.text = user.email
+        mailLabel.text = user.email
         titleLable.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
         kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)
