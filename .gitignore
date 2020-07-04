@@ -90,5 +90,4 @@ fastlane/test_output
 iOSInjectionProject/
 KissUI-Lib/Carthage/*
 .DS_Store
-.DS_Store
 KissUI-Lib/.DS_Store
