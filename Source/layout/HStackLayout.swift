@@ -31,9 +31,6 @@ public class HStackLayout: GroupLayout {
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
         
-        autoMarkDirty()
-        autoMarkIncludedInLayout()
-        
         layoutItems
             .compactMap { $0 as? FlexLayoutItemProtocol }
             .forEach { (flex) in
@@ -47,6 +44,7 @@ public class HStackLayout: GroupLayout {
             l.direction = .LTR
             l.flexDirection = .row
             l.flexWrap = .noWrap
+            l.isIncludedInLayout = self.isVisibleLayout
             
             self.attr.map(to: l)
         }

@@ -36,6 +36,8 @@ public class UIViewLayout: UIViewLayoutSetter {
     func configureLayout() {
         body.configureLayout { (l) in
             l.isEnabled = true
+            l.isIncludedInLayout = self.isVisibleLayout
+            l.markDirty()
             self.attr.map(to: l)
         }
     }

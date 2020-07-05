@@ -124,8 +124,6 @@ extension UIView {
         }
         
         public func updateChange(width: CGFloat? = nil, height: CGFloat? = nil) {
-//            currentGroupLayout?.autoMarkDirty()
-            
             currentGroupLayout?.updateLayoutChange(width: width, height: height)
         }
         

@@ -11,7 +11,7 @@ import UIKit
 
 public class WrapLayout: GroupLayout {
     var lineSpacing = 0.0
-
+    
     override init() {
         super.init()
         self.attr.maxHeight = .none
@@ -32,35 +32,34 @@ public class WrapLayout: GroupLayout {
     }
     
     override func prepareForRenderingLayout() {
-         resetMargin()
-         removeLeadingTrailingIfHasSpacer()
-         autoMarkDirty()
-         autoMarkIncludedInLayout()
-         
-         layoutItems
+        resetMargin()
+        removeLeadingTrailingIfHasSpacer()
+        
+        layoutItems
             .compactMap { $0 as? FlexLayoutItemProtocol }
             .forEach { (flex) in
-             flex.prepareForRenderingLayout()
-         }
-     }
-     
+                flex.prepareForRenderingLayout()
+        }
+    }
+    
     override func configureLayout() {
-         body.configureLayout { (l) in
-             l.isEnabled = true
-             l.direction = .LTR
-             l.flexDirection = .row
-             l.flexWrap = .wrap
-             
-             self.attr.map(to: l)
-         }
-         
-         layoutItems.forEach {
-             guard let flex = $0 as? FlexLayoutItemProtocol else { return }
-             flex.configureLayout()
-             $0.root.removeFromSuperview()
-             body.addSubview($0.root)
-         }
-     }
+        body.configureLayout { (l) in
+            l.isEnabled = true
+            l.direction = .LTR
+            l.flexDirection = .row
+            l.flexWrap = .wrap
+            l.isIncludedInLayout = self.isVisibleLayout
+            
+            self.attr.map(to: l)
+        }
+        
+        layoutItems.forEach {
+            guard let flex = $0 as? FlexLayoutItemProtocol else { return }
+            flex.configureLayout()
+            $0.root.removeFromSuperview()
+            body.addSubview($0.root)
+        }
+    }
     
     private func removeLeadingTrailingIfHasSpacer() {
         layoutItems.enumerated().forEach { (index, item) in

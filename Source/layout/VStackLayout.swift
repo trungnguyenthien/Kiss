@@ -30,9 +30,6 @@ public class VStackLayout: GroupLayout {
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
         
-        autoMarkDirty()
-        autoMarkIncludedInLayout()
-        
         layoutItems
             .compactMap { $0 as? FlexLayoutItemProtocol }
             .forEach { (flex) in
@@ -46,6 +43,7 @@ public class VStackLayout: GroupLayout {
             l.direction = .LTR
             l.flexDirection = .column
             l.flexWrap = .noWrap
+            l.isIncludedInLayout = self.isVisibleLayout
             
             self.attr.map(to: l)
         }

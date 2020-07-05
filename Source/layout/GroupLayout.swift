@@ -40,37 +40,26 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         body.yoga.markDirty()
     }
     
-    func autoMarkIncludedInLayout() {
-        layoutItems.forEach {
-            $0.root.yoga.isIncludedInLayout = $0.isVisibleLayout
-            if let group = $0 as? GroupLayout {
-                group.autoMarkIncludedInLayout()
-            }
-            
-            /// Spacer luôn được include vào layout nên không cần `autoMarkIncludedInLayout`
-        }
-    }
-    
-    func autoMarkDirty() {
-        layoutItems.forEach {
-            if let group = $0 as? GroupLayout {
-                group.autoMarkDirty()
-            }
-            
-            if let uiviewLayout = $0 as? UIViewLayout {
-                let view = uiviewLayout.body
-                if view is UILabel ||
-                    view is UIButton ||
-                    view is UITextView ||
-                    view is UIImageView ||
-                    view is UITextField {
-                    view.yoga.markDirty()
-                }
-            }
-            /// Không cần markDirty cho Spacer
-            
-        }
-    }
+//    func autoMarkDirty() {
+//        layoutItems.forEach {
+//            if let group = $0 as? GroupLayout {
+//                group.autoMarkDirty()
+//            }
+//            
+//            if let uiviewLayout = $0 as? UIViewLayout {
+//                let view = uiviewLayout.body
+//                if view is UILabel ||
+//                    view is UIButton ||
+//                    view is UITextView ||
+//                    view is UIImageView ||
+//                    view is UITextField {
+//                    view.yoga.markDirty()
+//                }
+//            }
+//            /// Không cần markDirty cho Spacer
+//            
+//        }
+//    }
     
     func resetMargin() {
         layoutItems.forEach {
