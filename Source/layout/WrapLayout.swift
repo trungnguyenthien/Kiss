@@ -23,13 +23,8 @@ public class WrapLayout: GroupLayout {
     }
     
     public override func copy(with zone: NSZone? = nil) -> Any {
-        let instance = WrapLayout()
-        instance.layoutItems = self.layoutItems.copy(with: zone)
-        instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
+        guard let instance = super.copy() as? WrapLayout else { return self }
         instance.lineSpacing = self.lineSpacing
-        instance.overlayGroups = self.overlayGroups.copy()
-        instance.body = self.body
-        instance.baseView = self.baseView
         return instance
     }
     

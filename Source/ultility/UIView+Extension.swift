@@ -13,6 +13,13 @@ import YogaKit
 public extension UIView {
     // MARK: - VIEWLAYOUT
     var layout: UIViewLayout {
+        // Nếu là custom view đã có sẵn layout rồi thì sử dụng bản copy của custom view đó
+        if let current = kiss.currentGroupLayout {
+            let newCopy = current.copy() as! UIViewLayout
+            newCopy.body = self
+            return newCopy
+        }
+        
         let vlayout = UIViewLayout()
         vlayout.body = self
         return vlayout

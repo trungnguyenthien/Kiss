@@ -99,7 +99,7 @@ class UserKissCell: UICollectionViewCell {
     let imageView = makeThumbnail()
     let ratingView = RatingView()
     
-    lazy var stackInfoLayout = makeView(.systemBlue).kiss.vstack {
+    lazy var stackInfoLayout = vstack {
         mailLabel.layout.marginTop(5).alignSelf(.center)
         titleLable.layout.marginTop(5)
         ratingView.layout.marginTop(5)

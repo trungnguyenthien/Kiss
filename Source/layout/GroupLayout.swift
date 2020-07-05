@@ -13,10 +13,7 @@ protocol GroupLayoutSetter: PaddingSetter, MarginSetter, SizeSetter, AlignmentSe
 
 public class GroupLayout: UIViewLayout, GroupLayoutSetter {
     var baseView: UIView? = nil
-//    var body = makeBlankView()
     var layoutItems = [LayoutItem]()
-//    var attr = LayoutAttribute()
-//    var overlayGroups = [GroupLayout]()
     
     public var layerViews: [UIView] {
         var views: [UIView] = []
@@ -96,19 +93,17 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
             return secondarySpacer.contains { spacer === $0 }
         }
     }
+    
+    
+    
+    public override func copy(with zone: NSZone? = nil) -> Any {
+        guard let newInstance = super.copy() as? GroupLayout else { return self }
+        newInstance.layoutItems = self.layoutItems.copy(with: zone)
+        newInstance.baseView = self.baseView
+        return newInstance
+    }
+    
 }
-//
-//extension GroupLayout: NSCopying {
-//    public func copy(with zone: NSZone? = nil) -> Any {
-//        let newInstance = GroupLayout()
-//        newInstance.layoutItems = self.layoutItems.copy(with: zone)
-//        newInstance.attr = self.attr.copy(with: zone) as! LayoutAttribute
-//        newInstance.overlayGroups = self.overlayGroups.copy()
-//        newInstance.body = self.body
-//        newInstance.baseView = self.baseView
-//        return newInstance
-//    }
-//}
 
 extension GroupLayout {
     /// Chỉ xét những view đóng vai trò là content, như uilabel, uibutton, image,...
@@ -168,9 +163,9 @@ extension GroupLayout {
     
     /// Remove Subview hiện tại, construct lại hệ thống view mới
     func constructLayout() {
-        let flex = self as? FlexLayoutItemProtocol
-        flex?.layoutRendering()
-        flex?.configureLayout()
+        let flex = self
+        flex.layoutRendering()
+        flex.configureLayout()
     }
     
     /// Layout lại vị trí view mới, những view bị hidden sẽ remove khỏi hệ thống layout.
