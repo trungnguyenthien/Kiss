@@ -75,20 +75,6 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         }
     }
     
-//    public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
-//        let groups = builder()
-//        groups.forEach { $0.baseView = self.body }
-//        overlayGroups.append(contentsOf: groups)
-//        return self
-//    }
-//
-//    public func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
-//        let group = builder()
-//        group.baseView = self.body
-//        overlayGroups.append(group)
-//        return self
-//    }
-    
     public override var isVisible: Bool {
         return hasVisibleView
     }
