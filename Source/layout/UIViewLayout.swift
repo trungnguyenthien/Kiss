@@ -27,8 +27,10 @@ public class UIViewLayout: UIViewLayoutSetter {
         return self
     }
     
-    func layoutRendering() {
-        
+    func prepareForRenderingLayout() {
+        if let customViewLayout = body.kiss.currentGroupLayout {
+            body.frame.size = customViewLayout.estimatedSize()
+        }
     }
     
     func configureLayout() {

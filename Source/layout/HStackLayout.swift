@@ -25,7 +25,7 @@ public class HStackLayout: GroupLayout {
         return newInstance
     }
     
-    override func layoutRendering() {
+    override func prepareForRenderingLayout() {
         resetMargin()
         
         removeStartLeadingEndTrailing()
@@ -37,7 +37,7 @@ public class HStackLayout: GroupLayout {
         layoutItems
             .compactMap { $0 as? FlexLayoutItemProtocol }
             .forEach { (flex) in
-            flex.layoutRendering()
+            flex.prepareForRenderingLayout()
         }
     }
     

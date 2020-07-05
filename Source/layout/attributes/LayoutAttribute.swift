@@ -82,61 +82,51 @@ extension LayoutAttribute: NSCopying {
 // MARK:- Mapping LayoutAttribute to YGLayout
 extension LayoutAttribute {
     func map(to l: YGLayout) {
-         l.paddingLeft   = YGValueOrUndefined(self.paddingLeft)
-         l.paddingRight  = YGValueOrUndefined(self.paddingRight)
-         l.paddingTop    = YGValueOrUndefined(self.paddingTop)
-         l.paddingBottom = YGValueOrUndefined(self.paddingBottom)
-         
-         l.marginLeft    = YGValueOrUndefined(self.mLeft)
-         l.marginRight   = YGValueOrUndefined(self.mRight)
-         l.marginTop     = YGValueOrUndefined(self.mTop)
-         l.marginBottom  = YGValueOrUndefined(self.mBottom)
-         
-         l.maxHeight     = YGValueOrUndefined(self.maxHeight)
-         l.minHeight     = YGValueOrUndefined(self.minHeight)
-         
-         l.minWidth     = YGValueOrUndefined(self.minWidth)
-         l.maxWidth     = YGValueOrUndefined(self.maxWidth)
-         
-         switch self.alignStack {
-         case .start:    l.justifyContent = .flexStart
-         case .end:      l.justifyContent = .flexEnd
-         case .center:   l.justifyContent = .center
-         }
-         
-         switch self.alignItems {
-         case .start:    l.alignItems = .flexStart
-         case .end:      l.alignItems = .flexEnd
-         case .center:   l.alignItems = .center
-         case .stretch:  l.alignItems = .stretch
-         }
-         
-         switch self.alignSelf {
-         case .some(.center):   l.alignSelf = .center
-         case .some(.start):    l.alignSelf = .flexStart
-         case .some(.end):      l.alignSelf = .flexEnd
-         case .some(.stretch):  l.alignSelf = .stretch
-         case .none:            l.alignSelf = .auto
-         }
-         
-         if let grow = self.grow {
-             setGrow(grow: grow, to: l)
-         }
-         
-         if let userHeight = userHeight {
-             l.height = YGValueOrUndefined(userHeight)
-         } else {
-             l.height = YGValueAuto
-         }
-         
-         if let userWidth = userWidth {
-             l.width = YGValueOrUndefined(userWidth)
-         } else {
-             l.width = YGValueAuto
-         }
-         
-         if let ratio = self.ratio {
-             l.aspectRatio = CGFloat(ratio)
-         }
-     }
+        l.paddingLeft   = YGValueOrUndefined(self.paddingLeft)
+        l.paddingRight  = YGValueOrUndefined(self.paddingRight)
+        l.paddingTop    = YGValueOrUndefined(self.paddingTop)
+        l.paddingBottom = YGValueOrUndefined(self.paddingBottom)
+        
+        l.marginLeft    = YGValueOrUndefined(self.mLeft)
+        l.marginRight   = YGValueOrUndefined(self.mRight)
+        l.marginTop     = YGValueOrUndefined(self.mTop)
+        l.marginBottom  = YGValueOrUndefined(self.mBottom)
+        
+        l.maxHeight     = YGValueOrUndefined(self.maxHeight)
+        l.minHeight     = YGValueOrUndefined(self.minHeight)
+        
+        l.minWidth     = YGValueOrUndefined(self.minWidth)
+        l.maxWidth     = YGValueOrUndefined(self.maxWidth)
+        
+        switch self.alignStack {
+        case .start:    l.justifyContent = .flexStart
+        case .end:      l.justifyContent = .flexEnd
+        case .center:   l.justifyContent = .center
+        }
+        
+        switch self.alignItems {
+        case .start:    l.alignItems = .flexStart
+        case .end:      l.alignItems = .flexEnd
+        case .center:   l.alignItems = .center
+        case .stretch:  l.alignItems = .stretch
+        }
+        
+        switch self.alignSelf {
+        case .some(.center):   l.alignSelf = .center
+        case .some(.start):    l.alignSelf = .flexStart
+        case .some(.end):      l.alignSelf = .flexEnd
+        case .some(.stretch):  l.alignSelf = .stretch
+        case .none:            l.alignSelf = .auto
+        }
+        
+        if let grow = self.grow {
+            setGrow(grow: grow, to: l)
+        }
+        l.height = YGValueOrAuto(userHeight)
+        l.width = YGValueOrAuto(userWidth)
+        
+        if let ratio = self.ratio {
+            l.aspectRatio = CGFloat(ratio)
+        }
+    }
 }

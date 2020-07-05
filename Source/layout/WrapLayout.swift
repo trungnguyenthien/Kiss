@@ -31,7 +31,7 @@ public class WrapLayout: GroupLayout {
         return newInstance
     }
     
-    override func layoutRendering() {
+    override func prepareForRenderingLayout() {
          resetMargin()
          removeLeadingTrailingIfHasSpacer()
          autoMarkDirty()
@@ -40,7 +40,7 @@ public class WrapLayout: GroupLayout {
          layoutItems
             .compactMap { $0 as? FlexLayoutItemProtocol }
             .forEach { (flex) in
-             flex.layoutRendering()
+             flex.prepareForRenderingLayout()
          }
      }
      

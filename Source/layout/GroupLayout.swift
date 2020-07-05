@@ -164,7 +164,7 @@ extension GroupLayout {
     /// Remove Subview hiện tại, construct lại hệ thống view mới
     func constructLayout() {
         let flex = self
-        flex.layoutRendering()
+        flex.prepareForRenderingLayout()
         flex.configureLayout()
     }
     

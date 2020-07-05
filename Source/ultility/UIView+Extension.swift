@@ -15,9 +15,11 @@ public extension UIView {
     var layout: UIViewLayout {
         // Nếu là custom view đã có sẵn layout rồi thì sử dụng bản copy của custom view đó
 
-        if let current = kiss.currentGroupLayout {
-            return current
-        }
+//        if let current = kiss.currentGroupLayout {
+//            let newCopy = current.copy() as! GroupLayout
+//            newCopy.body = self
+//            return newCopy
+//        }
         
         let vlayout = UIViewLayout()
         vlayout.body = self
@@ -52,8 +54,8 @@ extension UIView {
             let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleWidth)
             yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         } else {
-            yoga.width = YGValueUndefined
-            yoga.height = YGValueUndefined
+            yoga.width = YGValueAuto
+            yoga.height = YGValueAuto
             let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleWidth, .flexibleHeight)
             yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         }

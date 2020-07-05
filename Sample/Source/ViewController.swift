@@ -104,7 +104,7 @@ class UserKissCell: UICollectionViewCell {
     lazy var stackInfoLayout = vstack {
         mailLabel.layout.marginTop(0)
         titleLable.layout.marginTop(5)
-        ratingView.layout.marginTop(10)
+        ratingView.layout.marginTop(10).alignSelf(.stretch)
         phoneNum.layout.marginTop(15)
         genderLabel.layout.marginTop(20)
     }.grow(1).alignItems(.start).alignSelf(.center).align(.start)
