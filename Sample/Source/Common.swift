@@ -36,6 +36,13 @@ func isPortrait() -> Bool {
     return UIScreen.main.bounds.width < UIScreen.main.bounds.height
 }
 
+func makeButton() -> UIButton {
+    let button = UIButton()
+    button.backgroundColor = .systemOrange
+    button.layer.cornerRadius = 10
+    return button
+}
+
 func makeThumbnail() -> UIImageView {
     let imageView = UIImageView()
     imageView.backgroundColor = .gray
@@ -68,6 +75,13 @@ func makeView(_ color: UIColor) -> UIView {
 }
 
 extension String {
+    var button: UIButton {
+        let btn = makeButton()
+        btn.setTitle(self, for: .normal)
+        return btn
+    }
+    
+    
     var label: UILabel {
         let view = UILabel()
         view.backgroundColor = .quaternarySystemFill

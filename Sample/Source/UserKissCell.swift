@@ -16,25 +16,27 @@ class UserKissCell: UICollectionViewCell {
     let genderLabel = "GENDER: MALE".labelSmall
     let imageView = makeThumbnail()
     let ratingView = RatingView()
+    let button = "Detail info".button
     
-    lazy var stackInfoLayout = makeView(.systemOrange).kiss.vstack {
+    lazy var stackInfoLayout = vstack {
         mailLabel.layout.marginTop(5)
         titleLable.layout.marginTop(5)
         ratingView.layout.marginTop(5).height(30)
         stretchSpacer()
         phoneNum.layout.marginTop(5)
+        button.layout.margin(5)
     }
     
     lazy var hLayout = hstack {
         imageView.layout.grow(1).ratio(1/1)
         spacer(10)
-        stackInfoLayout.cloned.grow(1).alignSelf(.stretch)
+        stackInfoLayout.cloned.grow(1)
     }.padding(5).alignItems(.start)
     
     lazy var vLayout = vstack {
         imageView.layout.alignSelf(.stretch).ratio(2/2)
         spacer(10)
-        stackInfoLayout.cloned.alignSelf(.stretch)
+        stackInfoLayout.cloned.growFull()
     }.padding(10).alignItems(.start)
     
     func config(user: User, isPortrait: Bool) {
