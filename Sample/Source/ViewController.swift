@@ -96,7 +96,7 @@ class UserKissCell: UICollectionViewCell {
     let mailLabel = "Email".labelMediumBold
     let titleLable = "Title".labelMediumBold
     let phoneNum = "PhoneNUm".labelMedium
-    let image = makeView(.lightGray)
+    let imageView = makeThumbnail()
     let ratingView = RatingView()
     
     lazy var stackInfoLayout = makeView(.systemBlue).kiss.vstack {
@@ -104,16 +104,17 @@ class UserKissCell: UICollectionViewCell {
         titleLable.layout.marginTop(5)
         ratingView.layout.marginTop(5)
         phoneNum.layout.marginTop(5)
-    }.grow(1).alignItems(.stretch).margin(5).alignSelf(.center)
+    }.grow(1).alignItems(.start).alignSelf(.center).align(.start)
     
     lazy var hLayout = hstack {
-        image.layout.grow(1).ratio(1/1)
+        imageView.layout.grow(1).ratio(1/1)
         stackInfoLayout
     }.padding(5).alignItems(.start)
     
     lazy var vLayout = vstack {
         stackInfoLayout
-        image.layout.alignSelf(.stretch).ratio(2/2)
+        imageView.layout.alignSelf(.stretch).ratio(2/2)
+//        "Test".label.layout
     }.padding(10).alignItems(.start)
     
     func config(width: CGFloat, user: User, isPortrait: Bool) {
@@ -121,6 +122,7 @@ class UserKissCell: UICollectionViewCell {
         mailLabel.text = user.email
         titleLable.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
+//        imageView.download(url: user.picture.medium)
         kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)
         layoutIfNeeded()
     }

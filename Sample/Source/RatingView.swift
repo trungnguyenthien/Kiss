@@ -43,21 +43,3 @@ class RatingView: KissView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-public class KissView: UIView {
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        kiss.updateChange(width: frame.width, height: frame.height)
-    }
-    
-    public override var intrinsicContentSize: CGSize {
-        return kiss.estimatedSize()
-    }
-}
-
-func makeIconImage(name: String, size: Double) -> UIImageView {
-    let imageView = UIImageView()
-    imageView.image = UIImage(named: name)
-    imageView.frame = CGRect(x: 0, y: 0, width: size, height: size)
-    return imageView
-}

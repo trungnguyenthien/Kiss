@@ -88,6 +88,8 @@ extension UIView {
     
     public class Kiss {
         let _selfView: UIView
+        var hasSubLayout = false
+        
         weak var currentGroupLayout: GroupLayout? = nil
         init(view: UIView) {
             self._selfView = view
@@ -114,6 +116,8 @@ extension UIView {
         }
         
         public func updateChange(width: CGFloat? = nil, height: CGFloat? = nil) {
+//            currentGroupLayout?.autoMarkDirty()
+            
             currentGroupLayout?.updateLayoutChange(width: width, height: height)
         }
         
