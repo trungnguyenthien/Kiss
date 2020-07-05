@@ -122,7 +122,9 @@ class UserKissCell: UICollectionViewCell {
         mailLabel.text = user.email
         titleLable.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
-//        imageView.download(url: user.picture.medium)
+        
+        ratingView.isVisible = user.gender == .female
+        
         kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)
         layoutIfNeeded()
     }
