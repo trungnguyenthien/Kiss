@@ -52,11 +52,12 @@ class ViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         
         // Reload visible item for updating it's layout
-        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
         
+        collectionView.reloadData()
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in
             guard let self = self else { return }
             // invalidateLayout for updating it's layout
+            
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
         
@@ -112,9 +113,8 @@ class UserKissCell: UICollectionViewCell {
     }.padding(5).alignItems(.start)
     
     lazy var vLayout = vstack {
-        stackInfoLayout
         imageView.layout.alignSelf(.stretch).ratio(2/2)
-//        "Test".label.layout
+        stackInfoLayout
     }.padding(10).alignItems(.start)
     
     func config(width: CGFloat, user: User, isPortrait: Bool) {

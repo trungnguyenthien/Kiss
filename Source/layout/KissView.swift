@@ -19,7 +19,11 @@ open class KissView: UIView {
         return kiss.estimatedSize()
     }
     
-    public var kissLayout: GroupLayout {
-        return kiss.currentGroupLayout!
+    open override func sizeToFit() {
+        kiss.updateChange()
+    }
+    
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return kiss.estimatedSize(width: size.width, height: size.height)
     }
 }
