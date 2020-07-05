@@ -63,7 +63,7 @@ class ViewController: UIViewController {
         lastRowIndex = min(lastRowIndex, datasource.count - 1)
         let rowHeights = (firstRowIndex...lastRowIndex).map { cache.get(at: $0) }
         let max = rowHeights.max() ?? 0
-        print("row = \(row), \tfirstRowIndex = \(firstRowIndex), lastRowIndex = \(lastRowIndex), rowHeights = \(rowHeights), max = \(max)")
+//        print("row = \(row), \tfirstRowIndex = \(firstRowIndex), lastRowIndex = \(lastRowIndex), rowHeights = \(rowHeights), max = \(max)")
         return max
     }
     

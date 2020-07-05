@@ -75,13 +75,7 @@ public func wrap(@LayoutItemBuilder builder: () -> LayoutItem) -> WrapLayout {
 /// - Parameter size: <#size description#>
 /// - Returns: <#description#>
 public func spacer(_ size: Double) -> Spacer {
-    let spacer = Spacer()
-    spacer.attr.maxWidth = size
-    spacer.attr.minWidth = size
-    spacer.attr.maxHeight = size
-    spacer.attr.maxWidth = size
-    spacer.attr.userWidth = size
-    spacer.attr.userHeight = size
+    let spacer = Spacer(size: size)
     return spacer
 }
 
@@ -89,7 +83,7 @@ public func spacer(_ size: Double) -> Spacer {
 /// - Parameter grow: <#grow description#>
 /// - Returns: <#description#>
 public func growSpacer(_ grow: Double) -> Spacer {
-    return Spacer(grow)
+    return Spacer(grow: grow)
 }
 
 /// <#Description#>
