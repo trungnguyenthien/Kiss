@@ -9,11 +9,17 @@
 import Foundation
 import UIKit
 
+public enum AutoInvisibility {
+    case never
+    case allInvisible
+}
+
 protocol GroupLayoutSetter: PaddingSetter, MarginSetter, SizeSetter, AlignmentSetter, SelfAlignSetter {}
 
 public class GroupLayout: UIViewLayout, GroupLayoutSetter {
     var baseView: UIView? = nil
     var layoutItems = [LayoutItem]()
+    var autoInvisibility = AutoInvisibility.allInvisible
     
     public var layerViews: [UIView] {
         var views: [UIView] = []
@@ -24,6 +30,11 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         return views
     }
     
+    public func autoInvisible(_ type: AutoInvisibility) -> Self {
+        self.autoInvisibility = type
+        return self
+    }
+    
     func insert(view: UIViewLayout, at index: Int) {
         body.insertSubview(view.body, at: index)
         body.yoga.markDirty()
@@ -31,9 +42,7 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
     
     func autoMarkIncludedInLayout() {
         layoutItems.forEach {
-            if let uiviewLayout = $0 as? UIViewLayout {
-                uiviewLayout.body.yoga.isIncludedInLayout = uiviewLayout.isVisible
-            }
+            $0.root.yoga.isIncludedInLayout = $0.isVisible
             if let group = $0 as? GroupLayout {
                 group.autoMarkIncludedInLayout()
             }
@@ -73,7 +82,13 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
     }
     
     public override var isVisible: Bool {
-        return hasVisibleView
+        if body.isHidden {
+            return false
+        }
+        switch autoInvisibility {
+        case .never: return true
+        case .allInvisible: return hasVisibleView
+        }
     }
     
     /*
@@ -94,12 +109,11 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         }
     }
     
-    
-    
     public override func copy(with zone: NSZone? = nil) -> Any {
         guard let newInstance = super.copy() as? GroupLayout else { return self }
         newInstance.layoutItems = self.layoutItems.copy(with: zone)
         newInstance.baseView = self.baseView
+        newInstance.autoInvisibility = self.autoInvisibility
         return newInstance
     }
     
@@ -120,13 +134,14 @@ extension GroupLayout {
         return output
     }
     
-    /// GroupLayout gọi là visible khi tồn tại content visibile
-    var visibleViews: [UIView] {
-        return uiContentViews.filter { $0.isVisible }
-    }
+//    /// GroupLayout gọi là visible khi tồn tại content visibile
+//    var visibleViews: [UIView] {
+//        return uiContentViews.filter { $0.isVisible }
+//    }
     
     var hasVisibleView: Bool {
-        return !visibleViews.isEmpty
+        return !layoutItems.filter { $0.isVisible }.isEmpty
+//        return !visibleViews.isEmpty
     }
 }
 
@@ -164,6 +179,7 @@ extension GroupLayout {
     /// Remove Subview hiện tại, construct lại hệ thống view mới
     func constructLayout() {
         let flex = self
+        print("Self Type = \(self.body.classForCoder)")
         flex.layoutRendering()
         flex.configureLayout()
     }

@@ -73,16 +73,16 @@ internal extension LayoutItem {
         }
     }
     
-    var layoutItems: [LayoutItem] {
-        guard let viewLayout = self as? GroupLayout else { return [] }
-        return viewLayout.layoutItems
-    }
+//    var layoutItems: [LayoutItem] {
+//        guard let viewLayout = self as? GroupLayout else { return [] }
+//        return viewLayout.layoutItems
+//    }
     
     var isSpacer: Bool {
         return self is Spacer
     }
     
-    var isGroup: Bool {
-        return self is GroupLayout
-    }
+//    var isGroup: Bool {
+//        return self is GroupLayout
+//    }
 }

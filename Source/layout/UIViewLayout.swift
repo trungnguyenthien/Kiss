@@ -33,17 +33,9 @@ public class UIViewLayout: UIViewLayoutSetter {
     
     func configureLayout() {
         print("Self Type = \(self.body.classForCoder)")
-        if let selfGroupLayout = body.kiss.currentGroupLayout {
-            body.configureLayout { (l) in
-                l.isEnabled = true
-                self.attr.map(to: l)
-                selfGroupLayout.attr.map(to: l)
-            }
-        } else {
-            body.configureLayout { (l) in
-                l.isEnabled = true
-                self.attr.map(to: l)
-            }
+        body.configureLayout { (l) in
+            l.isEnabled = true
+            self.attr.map(to: l)
         }
     }
     
