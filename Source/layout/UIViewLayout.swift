@@ -32,14 +32,20 @@ public class UIViewLayout: UIViewLayoutSetter {
     }
     
     func configureLayout() {
-        body.configureLayout { (l) in
-            l.isEnabled = true
-            self.attr.map(to: l)
+        if let selfGroupLayout = body.kiss.currentGroupLayout {
+            body.configureLayout { (l) in
+                l.isEnabled = true
+                selfGroupLayout.attr.map(to: l)
+            }
+        } else {
+            body.configureLayout { (l) in
+                l.isEnabled = true
+                self.attr.map(to: l)
+            }
         }
     }
-    
     public var isVisibleLayout: Bool {
-        return body.isVisible == true
+        return body.isVisible
     }
     
     public func copy(with zone: NSZone? = nil) -> Any {

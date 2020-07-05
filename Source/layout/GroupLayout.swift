@@ -82,9 +82,8 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
     }
     
     public override var isVisibleLayout: Bool {
-        if body.isHidden {
-            return false
-        }
+        if body.isHidden { return false }
+        
         switch autoInvisibility {
         case .never: return true
         case .allInvisible: return hasVisibleView

@@ -97,6 +97,7 @@ class UserKissCell: UICollectionViewCell {
     let mailLabel = "Email".labelMediumBold
     let titleLable = "Title".labelMediumBold
     let phoneNum = "PhoneNUm".labelMedium
+    let genderLabel = "GENDER".labelSmall
     let imageView = makeThumbnail()
     let ratingView = RatingView()
     
@@ -105,6 +106,7 @@ class UserKissCell: UICollectionViewCell {
         titleLable.layout.marginTop(5)
         ratingView.layout.marginTop(5)
         phoneNum.layout.marginTop(5)
+        genderLabel.layout.marginTop(5)
     }.grow(1).alignItems(.start).alignSelf(.center).align(.start)
     
     lazy var hLayout = hstack {
@@ -122,7 +124,7 @@ class UserKissCell: UICollectionViewCell {
         mailLabel.text = user.email
         titleLable.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
-        
+        genderLabel.text = user.gender.rawValue
         ratingView.isVisible = user.gender == .female
         
         kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)

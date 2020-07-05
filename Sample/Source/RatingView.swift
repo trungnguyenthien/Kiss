@@ -36,6 +36,7 @@ class RatingView: KissView {
     
     init() {
         super.init(frame: .zero)
+        backgroundColor = .green
         kiss.constructIfNeed(layout: bodyLayout)
     }
     
