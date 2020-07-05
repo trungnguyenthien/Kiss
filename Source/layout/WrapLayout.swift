@@ -21,9 +21,7 @@ public class WrapLayout: GroupLayout {
         lineSpacing = spacing
         return self
     }
-}
-
-extension WrapLayout {
+    
     public override func copy(with zone: NSZone? = nil) -> Any {
         let instance = WrapLayout()
         instance.layoutItems = self.layoutItems.copy(with: zone)
@@ -34,42 +32,40 @@ extension WrapLayout {
         instance.baseView = self.baseView
         return instance
     }
-}
-
-extension WrapLayout: FlexLayoutItemProtocol {
-    func layoutRendering() {
-        resetMargin()
-        removeLeadingTrailingIfHasSpacer()
-        autoMarkDirty()
-        autoMarkIncludedInLayout()
-        
-        layoutItems.forEach { (layoutItem) in
-            layoutItem.root.configureLayout { (l) in
-                l.isEnabled = true
-                layoutItem.attr.map(to: l)
-            }
-            guard let flex = layoutItem as? FlexLayoutItemProtocol else { return }
-            flex.layoutRendering()
-        }
-    }
     
-    func configureLayout() {
-        body.configureLayout { (l) in
-            l.isEnabled = true
-            l.direction = .LTR
-            l.flexDirection = .row
-            l.flexWrap = .wrap
-            
-            self.attr.map(to: l)
-        }
-        
-        layoutItems.forEach {
-            guard let flex = $0 as? FlexLayoutItemProtocol else { return }
-            flex.configureLayout()
-            $0.root.removeFromSuperview()
-            body.addSubview($0.root)
-        }
-    }
+    override func layoutRendering() {
+         resetMargin()
+         removeLeadingTrailingIfHasSpacer()
+         autoMarkDirty()
+         autoMarkIncludedInLayout()
+         
+         layoutItems.forEach { (layoutItem) in
+             layoutItem.root.configureLayout { (l) in
+                 l.isEnabled = true
+                 layoutItem.attr.map(to: l)
+             }
+             guard let flex = layoutItem as? FlexLayoutItemProtocol else { return }
+             flex.layoutRendering()
+         }
+     }
+     
+    override func configureLayout() {
+         body.configureLayout { (l) in
+             l.isEnabled = true
+             l.direction = .LTR
+             l.flexDirection = .row
+             l.flexWrap = .wrap
+             
+             self.attr.map(to: l)
+         }
+         
+         layoutItems.forEach {
+             guard let flex = $0 as? FlexLayoutItemProtocol else { return }
+             flex.configureLayout()
+             $0.root.removeFromSuperview()
+             body.addSubview($0.root)
+         }
+     }
     
     private func removeLeadingTrailingIfHasSpacer() {
         layoutItems.enumerated().forEach { (index, item) in

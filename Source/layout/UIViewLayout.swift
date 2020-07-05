@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import YogaKit
 
-protocol UIViewLayoutSetter: PaddingSetter, MarginSetter, SizeSetter { }
+protocol UIViewLayoutSetter: LayoutItem, PaddingSetter, MarginSetter, SizeSetter, FlexLayoutItemProtocol, NSCopying { }
 
 public class UIViewLayout: UIViewLayoutSetter {
     var attr = LayoutAttribute()
@@ -26,41 +26,7 @@ public class UIViewLayout: UIViewLayoutSetter {
         attr.alignSelf = value
         return self
     }
-}
-
-extension UIViewLayout: LayoutItem {
-    public var isVisible: Bool {
-        return body.isVisible == true
-    }
-}
-
-//MARK: - layout builder function
-extension UIViewLayout {
-    public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
-        let groups = builder()
-        groups.forEach { $0.baseView = self.body }
-        overlayGroups.append(contentsOf: groups)
-        return self
-    }
     
-    public func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
-        let group = builder()
-        group.baseView = self.body
-        overlayGroups.append(group)
-        return self
-    }
-}
-
-extension UIViewLayout: NSCopying {
-    public func copy(with zone: NSZone? = nil) -> Any {
-        let instance = UIViewLayout()
-        instance.body = self.body
-        instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
-        return instance
-    }
-}
-
-extension UIViewLayout: FlexLayoutItemProtocol {
     func layoutRendering() {
         
     }
@@ -79,5 +45,33 @@ extension UIViewLayout: FlexLayoutItemProtocol {
                 self.attr.map(to: l)
             }
         }
+    }
+    
+    public var isVisible: Bool {
+        return body.isVisible == true
+    }
+    
+    public func copy(with zone: NSZone? = nil) -> Any {
+        let instance = UIViewLayout()
+        instance.body = self.body
+        instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
+        return instance
+    }
+}
+
+//MARK: - layout builder function
+extension UIViewLayout {
+    public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
+        let groups = builder()
+        groups.forEach { $0.baseView = self.body }
+        overlayGroups.append(contentsOf: groups)
+        return self
+    }
+    
+    public func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
+        let group = builder()
+        group.baseView = self.body
+        overlayGroups.append(group)
+        return self
     }
 }

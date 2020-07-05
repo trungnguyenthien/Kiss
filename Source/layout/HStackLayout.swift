@@ -16,9 +16,7 @@ public class HStackLayout: GroupLayout {
         self.attr.maxHeight = .none
         self.attr.alignItems = .stretch
     }
-}
-
-extension HStackLayout {
+    
     public override func copy(with zone: NSZone? = nil) -> Any {
         let instance = HStackLayout()
         instance.layoutItems = self.layoutItems.copy(with: zone)
@@ -28,10 +26,8 @@ extension HStackLayout {
         instance.baseView = self.baseView
         return instance
     }
-}
-
-extension HStackLayout: FlexLayoutItemProtocol {
-    func layoutRendering() {
+    
+    override func layoutRendering() {
         resetMargin()
         
         removeStartLeadingEndTrailing()
@@ -50,7 +46,7 @@ extension HStackLayout: FlexLayoutItemProtocol {
         }
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         body.configureLayout { (l) in
             l.isEnabled = true
             l.direction = .LTR

@@ -11,12 +11,12 @@ import UIKit
 
 protocol GroupLayoutSetter: PaddingSetter, MarginSetter, SizeSetter, AlignmentSetter, SelfAlignSetter {}
 
-public class GroupLayout: LayoutItem, GroupLayoutSetter {
+public class GroupLayout: UIViewLayout, GroupLayoutSetter {
     var baseView: UIView? = nil
-    var body = makeBlankView()
+//    var body = makeBlankView()
     var layoutItems = [LayoutItem]()
-    var attr = LayoutAttribute()
-    var overlayGroups = [GroupLayout]()
+//    var attr = LayoutAttribute()
+//    var overlayGroups = [GroupLayout]()
     
     public var layerViews: [UIView] {
         var views: [UIView] = []
@@ -75,21 +75,21 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
         }
     }
     
-    public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
-        let groups = builder()
-        groups.forEach { $0.baseView = self.body }
-        overlayGroups.append(contentsOf: groups)
-        return self
-    }
+//    public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
+//        let groups = builder()
+//        groups.forEach { $0.baseView = self.body }
+//        overlayGroups.append(contentsOf: groups)
+//        return self
+//    }
+//
+//    public func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
+//        let group = builder()
+//        group.baseView = self.body
+//        overlayGroups.append(group)
+//        return self
+//    }
     
-    public func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
-        let group = builder()
-        group.baseView = self.body
-        overlayGroups.append(group)
-        return self
-    }
-    
-    public var isVisible: Bool {
+    public override var isVisible: Bool {
         return hasVisibleView
     }
     
@@ -111,18 +111,18 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
         }
     }
 }
-
-extension GroupLayout: NSCopying {
-    public func copy(with zone: NSZone? = nil) -> Any {
-        let newInstance = GroupLayout()
-        newInstance.layoutItems = self.layoutItems.copy(with: zone)
-        newInstance.attr = self.attr.copy(with: zone) as! LayoutAttribute
-        newInstance.overlayGroups = self.overlayGroups.copy()
-        newInstance.body = self.body
-        newInstance.baseView = self.baseView
-        return newInstance
-    }
-}
+//
+//extension GroupLayout: NSCopying {
+//    public func copy(with zone: NSZone? = nil) -> Any {
+//        let newInstance = GroupLayout()
+//        newInstance.layoutItems = self.layoutItems.copy(with: zone)
+//        newInstance.attr = self.attr.copy(with: zone) as! LayoutAttribute
+//        newInstance.overlayGroups = self.overlayGroups.copy()
+//        newInstance.body = self.body
+//        newInstance.baseView = self.baseView
+//        return newInstance
+//    }
+//}
 
 extension GroupLayout {
     /// Chỉ xét những view đóng vai trò là content, như uilabel, uibutton, image,...
