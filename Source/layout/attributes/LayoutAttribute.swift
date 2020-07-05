@@ -109,16 +109,31 @@ extension LayoutAttribute: NSCopying {
         instance.paddingRight = self.paddingRight
         instance.paddingTop = self.paddingTop
         instance.paddingBottom = self.paddingBottom
+        
         instance.userMarginLeft = self.userMarginLeft
         instance.userMarginRight = self.userMarginRight
         instance.userMarginTop = self.userMarginTop
         instance.userMarginBottom = self.userMarginBottom
+        
+        instance.grow = self.grow
+        instance.ratio = self.ratio
+        
         instance.userWidth = self.userWidth
         instance.userHeight = self.userHeight
         instance.maxHeight = self.maxHeight
+        instance.minHeight = self.minHeight
+        instance.maxWidth = self.maxWidth
+        instance.minWidth = self.minWidth
+        
+        instance.mLeft = self.mLeft
+        instance.mRight = self.mRight
+        instance.mTop = self.mTop
+        instance.mBottom = self.mBottom
+        
         instance.alignStack = self.alignStack
         instance.alignItems = self.alignItems
         instance.alignSelf = self.alignSelf
+        
         return instance
     }  
 }
