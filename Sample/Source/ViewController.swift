@@ -96,23 +96,25 @@ class UserKissCell: UICollectionViewCell {
     let mailLabel = "Email".labelMediumBold
     let titleLable = "Title".labelMediumBold
     let phoneNum = "PhoneNUm".labelMedium
-    let image = makeView(.systemGray2)
+    let image = makeView(.lightGray)
+    let ratingView = RatingView()
     
-    lazy var stackInfoLayout = vstack {
+    lazy var stackInfoLayout = makeView(.lightText).kiss.vstack {
         mailLabel.layout.marginTop(5).alignSelf(.center)
         titleLable.layout.marginTop(5)
         phoneNum.layout.marginTop(5)
+        ratingView.layout.marginTop(5)
     }.grow(1).alignItems(.stretch).margin(5).alignSelf(.center)
     
     lazy var hLayout = hstack {
         image.layout.grow(1).ratio(1/1)
         stackInfoLayout
-    }.padding(5).minHeight(120).alignItems(.start)
+    }.padding(5).alignItems(.start)
     
     lazy var vLayout = vstack {
         image.layout.alignSelf(.stretch).ratio(2/2)
         stackInfoLayout
-    }.padding(10).minHeight(120).alignItems(.start)
+    }.padding(10).alignItems(.start)
     
     func config(width: CGFloat, user: User, isPortrait: Bool) {
         self.backgroundColor = .white
