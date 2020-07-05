@@ -39,13 +39,16 @@ func isPortrait() -> Bool {
 func makeButton() -> UIButton {
     let button = UIButton()
     button.backgroundColor = .systemOrange
-    button.layer.cornerRadius = 10
+    button.layer.cornerRadius = 15
     return button
 }
 
 func makeThumbnail() -> UIImageView {
     let imageView = UIImageView()
-    imageView.backgroundColor = .gray
+    imageView.backgroundColor = .lightGray
+    imageView.layer.cornerRadius = 5
+    imageView.layer.borderWidth = 1
+    imageView.layer.borderColor = UIColor.gray.cgColor
     return imageView
 }
 

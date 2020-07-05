@@ -41,6 +41,7 @@ class UserKissCell: UICollectionViewCell {
     
     func config(user: User, isPortrait: Bool) {
         self.backgroundColor = .white
+        
         mailLabel.text = user.email
         titleLable.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"

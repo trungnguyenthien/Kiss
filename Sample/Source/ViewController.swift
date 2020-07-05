@@ -24,8 +24,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .black
         collectionView.register(UserKissCell.self, forCellWithReuseIdentifier: CellKind.kisscell.rawValue)
+        updateBackgroundColor()
         
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumInteritemSpacing = 1
@@ -39,6 +39,7 @@ class ViewController: UIViewController {
                 self.datasource.append(contentsOf: listResult.results)
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                    self.updateBackgroundColor()
                     self.cache.clearAll()
                 }
                 
@@ -79,7 +80,10 @@ class ViewController: UIViewController {
             
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
-        
+    }
+    
+    private func updateBackgroundColor() {
+        collectionView.backgroundColor = datasource.isEmpty ? .white : .gray
     }
 }
 
@@ -102,7 +106,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     
     func cellWidth() -> CGFloat {
-        return (UIScreen.main.bounds.width - numberColumns() - 1.0) / numberColumns()
+        return (UIScreen.main.bounds.width - numberColumns() - 1) / numberColumns()
     }
     
     func numberColumns() -> CGFloat {
