@@ -32,14 +32,13 @@ public class UIViewLayout: UIViewLayoutSetter {
     }
     
     func configureLayout() {
-        print("Self Type = \(self.body.classForCoder)")
         body.configureLayout { (l) in
             l.isEnabled = true
             self.attr.map(to: l)
         }
     }
     
-    public var isVisible: Bool {
+    public var isVisibleLayout: Bool {
         return body.isVisible == true
     }
     

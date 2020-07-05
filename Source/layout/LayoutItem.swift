@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public protocol LayoutItem {
-    var isVisible: Bool { get }
+    var isVisibleLayout: Bool { get }
 }
 
 extension Array where Array.Element == LayoutItem {

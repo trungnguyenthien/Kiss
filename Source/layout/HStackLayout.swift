@@ -55,7 +55,7 @@ public class HStackLayout: GroupLayout {
     }
     
     private func removeStartLeadingEndTrailing() {
-        let noSpacerLayoutItems = layoutItems.filter { $0.isVisible }
+        let noSpacerLayoutItems = layoutItems.filter { $0.isVisibleLayout }
         noSpacerLayoutItems.first?.attr.mLeft = 0
         noSpacerLayoutItems.last?.attr.mRight = 0
     }

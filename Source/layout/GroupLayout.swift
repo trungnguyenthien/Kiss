@@ -42,7 +42,7 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
     
     func autoMarkIncludedInLayout() {
         layoutItems.forEach {
-            $0.root.yoga.isIncludedInLayout = $0.isVisible
+            $0.root.yoga.isIncludedInLayout = $0.isVisibleLayout
             if let group = $0 as? GroupLayout {
                 group.autoMarkIncludedInLayout()
             }
@@ -81,7 +81,7 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         }
     }
     
-    public override var isVisible: Bool {
+    public override var isVisibleLayout: Bool {
         if body.isHidden {
             return false
         }
@@ -140,7 +140,7 @@ extension GroupLayout {
 //    }
     
     var hasVisibleView: Bool {
-        return !layoutItems.filter { $0.isVisible }.isEmpty
+        return !layoutItems.filter { $0.isVisibleLayout }.isEmpty
 //        return !visibleViews.isEmpty
     }
 }
@@ -179,7 +179,6 @@ extension GroupLayout {
     /// Remove Subview hiện tại, construct lại hệ thống view mới
     func constructLayout() {
         let flex = self
-        print("Self Type = \(self.body.classForCoder)")
         flex.layoutRendering()
         flex.configureLayout()
     }

@@ -22,7 +22,7 @@ public class Spacer: LayoutItem {
         self.grow = grow
     }
     
-    public var isVisible: Bool {
+    public var isVisibleLayout: Bool {
         return true
     }
 }
