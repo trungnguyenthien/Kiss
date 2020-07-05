@@ -72,13 +72,13 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellKind.rawValue, for: indexPath)
         if let cell = cell as? UserKissCell {
-            cell.config(width: cellWidth(), user: datasource[indexPath.row], isPortrait: isPortrait())
+            cell.config(user: datasource[indexPath.row], isPortrait: isPortrait())
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        sampleCell.config(width: cellWidth(), user: datasource[indexPath.row], isPortrait: isPortrait())
+        sampleCell.config(user: datasource[indexPath.row], isPortrait: isPortrait())
         let size = sampleCell.kiss.estimatedSize(width: cellWidth(), height: nil)
         return size
     }
@@ -104,30 +104,32 @@ class UserKissCell: UICollectionViewCell {
     lazy var stackInfoLayout = vstack {
         mailLabel.layout.marginTop(5)
         titleLable.layout.marginTop(5)
-        ratingView.layout.marginTop(5)
+        ratingView.layout.marginTop(5).height(30)
         phoneNum.layout.marginTop(5)
         genderLabel.layout.marginTop(5)
-    }.grow(1).alignItems(.start).alignSelf(.center).align(.start)
+    }
     
     lazy var hLayout = hstack {
         imageView.layout.grow(1).ratio(1/1)
-        stackInfoLayout
+        spacer(10)
+        stackInfoLayout.cloned.grow(1)
     }.padding(5).alignItems(.start)
     
     lazy var vLayout = vstack {
         imageView.layout.alignSelf(.stretch).ratio(2/2)
-        stackInfoLayout
+        spacer(10)
+        stackInfoLayout.cloned
     }.padding(10).alignItems(.start)
     
-    func config(width: CGFloat, user: User, isPortrait: Bool) {
+    func config(user: User, isPortrait: Bool) {
         self.backgroundColor = .white
         mailLabel.text = user.email
         titleLable.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
         genderLabel.text = user.gender.rawValue
         ratingView.isVisible = user.gender == .female
-        
         kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)
+        kiss.updateChange(width: frame.size.width, height: frame.size.height)
     }
     
     func preview() {

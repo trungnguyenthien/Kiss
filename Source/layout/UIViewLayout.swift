@@ -28,9 +28,14 @@ public class UIViewLayout: UIViewLayoutSetter {
     }
     
     func prepareForRenderingLayout() {
-        if let customViewLayout = body.kiss.currentGroupLayout {
-            body.frame.size = customViewLayout.estimatedSize()
-        }
+        /// Hiện tại library đang có issue: nếu chèn 1 custom view vào thì không tự tính size được
+        /// Có 2 cách fix:
+        /// 1 - mở đoạn code đc comment dưới đây, nhưng performance thấp --> Không sử dụng
+        /// 2 - custom view layout phải được cố định main-size
+        
+//        if let customViewLayout = body.kiss.currentGroupLayout {
+//            body.frame.size = customViewLayout.estimatedSize()
+//        }
     }
     
     func configureLayout() {
@@ -43,6 +48,10 @@ public class UIViewLayout: UIViewLayoutSetter {
     }
     public var isVisibleLayout: Bool {
         return body.isVisible
+    }
+    
+    public var cloned: Self {
+        return copy() as! Self
     }
     
     public func copy(with zone: NSZone? = nil) -> Any {
