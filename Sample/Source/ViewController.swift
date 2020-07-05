@@ -17,7 +17,7 @@ enum CellKind: String {
 class ViewController: UIViewController {
     let provider = RamdomUserProvider()
     var datasource: [User] = []
-    
+    private let cache = CacheCellHeight()
     @IBOutlet weak var collectionView: UICollectionView!
     private let cellKind = CellKind.kisscell
     let sampleCell = UserKissCell()
@@ -39,6 +39,7 @@ class ViewController: UIViewController {
                 self.datasource.append(contentsOf: listResult.results)
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                    self.cache.clearAll()
                 }
                 
             case .failure(_):
@@ -46,13 +47,31 @@ class ViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
+        
+        cache.calculation = calculationHeight
+    }
+    
+    private func calculationHeight(_ row: Int) -> CGFloat {
+        sampleCell.config(user: datasource[row], isPortrait: isPortrait())
+        let size = sampleCell.kiss.estimatedSize(width: cellWidth(), height: nil)
+        return size.height
+    }
+    
+    private func rowHeight(_ row: Int) -> CGFloat {
+        let firstRowIndex = Int(CGFloat(row) / numberColumns()) * Int(numberColumns())
+        var lastRowIndex = firstRowIndex + Int(numberColumns())
+        lastRowIndex = min(lastRowIndex, datasource.count - 1)
+        let rowHeights = (firstRowIndex...lastRowIndex).map { cache.get(at: $0) }
+        let max = rowHeights.max() ?? 0
+        print("row = \(row), \tfirstRowIndex = \(firstRowIndex), lastRowIndex = \(lastRowIndex), rowHeights = \(rowHeights), max = \(max)")
+        return max
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
         // Reload visible item for updating it's layout
-        
+        cache.clearAll()
         collectionView.reloadData()
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in
             guard let self = self else { return }
@@ -78,85 +97,33 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        sampleCell.config(user: datasource[indexPath.row], isPortrait: isPortrait())
-        let size = sampleCell.kiss.estimatedSize(width: cellWidth(), height: nil)
-        return size
+        return CGSize(width: cellWidth(), height: rowHeight(indexPath.row))
     }
     
     
     func cellWidth() -> CGFloat {
-        if isPortrait() {
-            return (UIScreen.main.bounds.width - 5) / 4
-        } else {
-            return (UIScreen.main.bounds.width - 4) / 3
-        }
+        return (UIScreen.main.bounds.width - numberColumns() - 1.0) / numberColumns()
+    }
+    
+    func numberColumns() -> CGFloat {
+        return isPortrait() ? 4 : 3
     }
 }
 
-class UserKissCell: UICollectionViewCell {
-    let mailLabel = "Email".labelMediumBold
-    let titleLable = "Title".labelMediumBold
-    let phoneNum = "PhoneNUm".labelMedium
-    let genderLabel = "GENDER".labelSmall
-    let imageView = makeThumbnail()
-    let ratingView = RatingView()
-    
-    lazy var stackInfoLayout = vstack {
-        mailLabel.layout.marginTop(5)
-        titleLable.layout.marginTop(5)
-        ratingView.layout.marginTop(5).height(30)
-        phoneNum.layout.marginTop(5)
-        genderLabel.layout.marginTop(5)
+class CacheCellHeight {
+    private var heightDict = [Int: CGFloat]()
+    var calculation: ((Int) -> CGFloat)? = nil
+    func clearAll() {
+        heightDict.removeAll()
     }
     
-    lazy var hLayout = hstack {
-        imageView.layout.grow(1).ratio(1/1)
-        spacer(10)
-        stackInfoLayout.cloned.grow(1)
-    }.padding(5).alignItems(.start)
-    
-    lazy var vLayout = vstack {
-        imageView.layout.alignSelf(.stretch).ratio(2/2)
-        spacer(10)
-        stackInfoLayout.cloned
-    }.padding(10).alignItems(.start)
-    
-    func config(user: User, isPortrait: Bool) {
-        self.backgroundColor = .white
-        mailLabel.text = user.email
-        titleLable.text = "\(user.name.last) \(user.name.first)"
-        phoneNum.text = "Tel: \(user.phone)"
-        genderLabel.text = user.gender.rawValue
-        ratingView.isVisible = user.gender == .female
-        kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)
-        kiss.updateChange(width: frame.size.width, height: frame.size.height)
-    }
-    
-    func preview() {
-        kiss.constructIfNeed(layout: vLayout)
-        kiss.updateChange()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        kiss.updateChange(width: frame.width, height: frame.height)
+    func get(at row: Int) -> CGFloat {
+        if let value = heightDict[row] {
+            return value
+        }
+        guard let calculation = calculation else { return 0 }
+        let newValue = calculation(row)
+        heightDict[row] = newValue
+        return newValue
     }
 }
-#if DEBUG
-import SwiftUI
-struct UIKissCellPreview: PreviewProvider, UIViewRepresentable {
-    typealias UIViewType = UserKissCell
-    static let previewSize = CGSize(width: 300, height: 200)
-    static var previews: some View {
-        UIKissCellPreview().previewLayout(.fixed(width: previewSize.width, height: previewSize.height))
-    }
-    func makeUIView(context: UIViewRepresentableContext<UIKissCellPreview>) -> UIViewType {
-        let frame = CGRect(x: 0, y: 0, width: UIKissCellPreview.previewSize.width, height: UIKissCellPreview.previewSize.height)
-        let view = UserKissCell(frame: frame)
-        view.preview()
-        return view
-    }
-    func updateUIView(_ uiView: UIViewType, context: UIViewRepresentableContext<UIKissCellPreview>) {
-    }
-}
-#endif

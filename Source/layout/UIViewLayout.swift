@@ -51,7 +51,11 @@ public class UIViewLayout: UIViewLayoutSetter {
     }
     
     public var cloned: Self {
-        return copy() as! Self
+        let newInstance = copy()
+        if let newInstance = newInstance as? UIViewLayout {
+            newInstance.body = body
+        }
+        return newInstance  as! Self
     }
     
     public func copy(with zone: NSZone? = nil) -> Any {
