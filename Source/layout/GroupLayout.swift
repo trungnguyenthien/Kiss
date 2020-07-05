@@ -107,15 +107,6 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
             return secondarySpacer.contains { spacer === $0 }
         }
     }
-    
-    public override func copy(with zone: NSZone? = nil) -> Any {
-        guard let newInstance = super.copy() as? GroupLayout else { return self }
-        newInstance.layoutItems = self.layoutItems.copy(with: zone)
-        newInstance.baseView = self.baseView
-        newInstance.autoInvisibility = self.autoInvisibility
-        return newInstance
-    }
-    
 }
 
 extension GroupLayout {

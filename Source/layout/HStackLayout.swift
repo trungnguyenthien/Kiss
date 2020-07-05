@@ -17,6 +17,14 @@ public class HStackLayout: GroupLayout {
         self.attr.alignItems = .stretch
     }
     
+    public override func copy(with zone: NSZone? = nil) -> Any {
+        let newInstance = HStackLayout()
+        newInstance.layoutItems = self.layoutItems.copy(with: zone)
+        newInstance.baseView = self.baseView
+        newInstance.autoInvisibility = self.autoInvisibility
+        return newInstance
+    }
+    
     override func layoutRendering() {
         resetMargin()
         

@@ -102,11 +102,11 @@ class UserKissCell: UICollectionViewCell {
     let ratingView = RatingView()
     
     lazy var stackInfoLayout = vstack {
-        mailLabel.layout.marginTop(5).alignSelf(.center)
+        mailLabel.layout.marginTop(0)
         titleLable.layout.marginTop(5)
-        ratingView.layout.marginTop(5)
-        phoneNum.layout.marginTop(5)
-        genderLabel.layout.marginTop(5)
+        ratingView.layout.marginTop(10)
+        phoneNum.layout.marginTop(15)
+        genderLabel.layout.marginTop(20)
     }.grow(1).alignItems(.start).alignSelf(.center).align(.start)
     
     lazy var hLayout = hstack {
@@ -125,10 +125,15 @@ class UserKissCell: UICollectionViewCell {
         titleLable.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
         genderLabel.text = user.gender.rawValue
-        ratingView.isVisible = user.gender == .female
+//        ratingView.isVisible = user.gender == .female
         
         kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)
         layoutIfNeeded()
+    }
+    
+    func preview() {
+        kiss.constructIfNeed(layout: vLayout)
+        kiss.updateChange()
     }
     
     override func layoutSubviews() {
@@ -136,3 +141,21 @@ class UserKissCell: UICollectionViewCell {
         kiss.updateChange(width: frame.width, height: frame.height)
     }
 }
+#if DEBUG
+import SwiftUI
+struct UIKissCellPreview: PreviewProvider, UIViewRepresentable {
+    typealias UIViewType = UserKissCell
+    static let previewSize = CGSize(width: 300, height: 200)
+    static var previews: some View {
+        UIKissCellPreview().previewLayout(.fixed(width: previewSize.width, height: previewSize.height))
+    }
+    func makeUIView(context: UIViewRepresentableContext<UIKissCellPreview>) -> UIViewType {
+        let frame = CGRect(x: 0, y: 0, width: UIKissCellPreview.previewSize.width, height: UIKissCellPreview.previewSize.height)
+        let view = UserKissCell(frame: frame)
+        view.preview()
+        return view
+    }
+    func updateUIView(_ uiView: UIViewType, context: UIViewRepresentableContext<UIKissCellPreview>) {
+    }
+}
+#endif
