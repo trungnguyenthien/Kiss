@@ -27,7 +27,7 @@ class RatingView: KissView {
         star3.layout.marginRight(5).size(iconSize, iconSize)
         star4.layout.marginRight(5).size(iconSize, iconSize)
         star5.layout.marginRight(5).size(iconSize, iconSize)
-    }.alignItems(.start)
+    }.align(.start).alignItems(.start)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

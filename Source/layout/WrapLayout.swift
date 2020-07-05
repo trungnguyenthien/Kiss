@@ -34,12 +34,9 @@ public class WrapLayout: GroupLayout {
          autoMarkDirty()
          autoMarkIncludedInLayout()
          
-         layoutItems.forEach { (layoutItem) in
-             layoutItem.root.configureLayout { (l) in
-                 l.isEnabled = true
-                 layoutItem.attr.map(to: l)
-             }
-             guard let flex = layoutItem as? FlexLayoutItemProtocol else { return }
+         layoutItems
+            .compactMap { $0 as? FlexLayoutItemProtocol }
+            .forEach { (flex) in
              flex.layoutRendering()
          }
      }

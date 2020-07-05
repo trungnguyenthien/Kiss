@@ -133,14 +133,9 @@ extension GroupLayout {
         return output
     }
     
-//    /// GroupLayout gọi là visible khi tồn tại content visibile
-//    var visibleViews: [UIView] {
-//        return uiContentViews.filter { $0.isVisible }
-//    }
-    
     var hasVisibleView: Bool {
-        return !layoutItems.filter { $0.isVisibleLayout }.isEmpty
-//        return !visibleViews.isEmpty
+        let visibleViews = layoutItems.filter { $0.isVisibleLayout }
+        return visibleViews.count > 0
     }
 }
 
@@ -189,6 +184,7 @@ extension GroupLayout {
     ///   - height: nil -> autoFit Height
     func updateLayoutChange(width: CGFloat? = nil, height: CGFloat? = nil) {
         constructLayout()
+        
         body.applyLayout(preservingOrigin: true, fixWidth: width, fixHeight: height)
         
         allOverlayGroup.forEach { (overlay) in

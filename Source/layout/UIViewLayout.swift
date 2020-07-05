@@ -32,16 +32,9 @@ public class UIViewLayout: UIViewLayoutSetter {
     }
     
     func configureLayout() {
-        if let selfGroupLayout = body.kiss.currentGroupLayout {
-            body.configureLayout { (l) in
-                l.isEnabled = true
-                selfGroupLayout.attr.map(to: l)
-            }
-        } else {
-            body.configureLayout { (l) in
-                l.isEnabled = true
-                self.attr.map(to: l)
-            }
+        body.configureLayout { (l) in
+            l.isEnabled = true
+            self.attr.map(to: l)
         }
     }
     public var isVisibleLayout: Bool {
