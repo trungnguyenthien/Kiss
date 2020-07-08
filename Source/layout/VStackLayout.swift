@@ -21,6 +21,7 @@ public class VStackLayout: GroupLayout {
         newInstance.layoutItems = self.layoutItems.copy(with: zone)
         newInstance.baseView = self.baseView
         newInstance.autoInvisibility = self.autoInvisibility
+        newInstance.overlayGroups = self.overlayGroups
         return newInstance
     }
     

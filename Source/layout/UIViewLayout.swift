@@ -22,7 +22,7 @@ public class UIViewLayout: UIViewLayoutSetter {
         self.attr.alignSelf = .stretch
     }
     
-    public func alignSelf(_ value: CrossAxisAlignment) -> Self {
+    public func crossAlign(self value: CrossAxisAlignment) -> Self {
         attr.alignSelf = value
         return self
     }

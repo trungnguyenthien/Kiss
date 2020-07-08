@@ -17,11 +17,17 @@ class UserKissCell: UICollectionViewCell {
     let imageView = makeThumbnail()
     let ratingView = RatingView()
     let button = "Detail info".button
+    let view1 = makeView(.clear)
+    let view2 = makeView(.clear)
+    
+    lazy var tagLayer = makeView(.green).kiss.hstack {
+        "❤️".labelMedium.layout.crossAlign(self: .end)
+    }
     
     lazy var stackInfoLayout = vstack {
         mailLabel.layout.marginTop(5)
-        titleLable.layout.marginTop(5)
         ratingView.layout.marginTop(5).height(30)
+        titleLable.layout.marginTop(5)
         stretchSpacer()
         phoneNum.layout.marginTop(5)
         button.layout.margin(5)
@@ -31,13 +37,16 @@ class UserKissCell: UICollectionViewCell {
         imageView.layout.grow(1).ratio(1/1)
         spacer(10)
         stackInfoLayout.cloned.grow(1)
-    }.padding(5).alignItems(.start)
+    }.padding(10).crossAlign(items: .start)
     
     lazy var vLayout = vstack {
-        imageView.layout.alignSelf(.stretch).ratio(2/2)
+        imageView.layout.crossAlign(self: .stretch).ratio(2/2)
+            .overlay {
+                tagLayer.mainAlign(.center).crossAlign(items: .center).crossAlign(self: .stretch)
+            }
         spacer(10)
         stackInfoLayout.cloned.growFull()
-    }.padding(10).alignItems(.start)
+    }.padding(10).crossAlign(items: .start)
     
     func config(user: User, isPortrait: Bool) {
         self.backgroundColor = .white

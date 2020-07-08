@@ -22,6 +22,7 @@ public class HStackLayout: GroupLayout {
         newInstance.layoutItems = self.layoutItems.copy(with: zone)
         newInstance.baseView = self.baseView
         newInstance.autoInvisibility = self.autoInvisibility
+        newInstance.overlayGroups = self.overlayGroups
         return newInstance
     }
     
@@ -30,6 +31,8 @@ public class HStackLayout: GroupLayout {
         
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
+        
+//        autoMarkDirty()
         
         layoutItems
             .compactMap { $0 as? FlexLayoutItemProtocol }

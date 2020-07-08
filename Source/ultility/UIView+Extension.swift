@@ -119,8 +119,10 @@ extension UIView {
             
             layout.constructLayout()
             
-            layout.layerViews.forEach { _selfView.addSubview($0) }
-            
+            layout.allOverlayGroup.forEach {
+                $0.body.removeFromSuperview()
+                _selfView.addSubview($0.body)
+            }
         }
         
         public func updateChange(width: CGFloat? = nil, height: CGFloat? = nil) {

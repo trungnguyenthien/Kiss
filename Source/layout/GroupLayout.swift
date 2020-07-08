@@ -145,7 +145,8 @@ extension GroupLayout {
             guard let group = $0 as? GroupLayout else { return }
             group.resetViewHierachy()
         }
-        overlayGroups.forEach {
+        allOverlayGroup.forEach {
+            $0.body.removeFromSuperview()
             $0.resetViewHierachy()
         }
     }
@@ -169,10 +170,13 @@ extension GroupLayout {
         
         allOverlayGroup.forEach { (overlay) in
             guard let base = overlay.baseView else { return }
+            
+            
             overlay.updateLayoutChange(width: base.bounds.width, height: base.bounds.height)
             guard let superView = overlay.root.superview else { return }
             guard let newFrame = superView.convertedFrame(subview: base) else {  return }
             overlay.root.frame = newFrame
+            base.addSubview(overlay.root)
         }
     }
     

@@ -28,6 +28,7 @@ public class WrapLayout: GroupLayout {
         newInstance.baseView = self.baseView
         newInstance.autoInvisibility = self.autoInvisibility
         newInstance.lineSpacing = self.lineSpacing
+        newInstance.overlayGroups = self.overlayGroups
         return newInstance
     }
     
