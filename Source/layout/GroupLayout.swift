@@ -145,15 +145,24 @@ extension GroupLayout {
     func updateLayoutChange(width: CGFloat? = nil, height: CGFloat? = nil) {
         constructLayout()
         
-        body.applyLayout(preservingOrigin: true, fixWidth: width, fixHeight: height)
+        body.applyLayout(preservingOrigin: false, fixWidth: width, fixHeight: height)
         
         allOverlayGroup.forEach { (overlay) in
             guard let base = overlay.baseView else { return }
-            overlay.updateLayoutChange(width: base.bounds.width, height: base.bounds.height)
-            guard let superView = overlay.root.superview else { return }
-            guard let newFrame = superView.convertedFrame(subview: base) else {  return }
-            overlay.root.frame = newFrame
+            overlay.overlayUpdateLayout(width: base.bounds.width, height: base.bounds.height)
+//            guard let superView = overlay.root.superview else { return }
+//            guard let newFrame = superView.convertedFrame(subview: base) else {  return }
+//            overlay.root.frame = newFrame
         }
+    }
+    
+    private func overlayUpdateLayout(width: CGFloat, height: CGFloat) {
+        constructLayout()
+        body.applyLayout(preservingOrigin: false, fixWidth: width, fixHeight: height)
+        guard let superView = root.superview else { return }
+        guard let base = baseView else { return }
+        guard let newFrame = superView.convertedFrame(subview: base) else {  return }
+        root.frame = newFrame
     }
     
     /// Tính toán size cần thiết để render layout

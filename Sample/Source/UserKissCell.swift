@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import Kiss
 
 class UserKissCell: UICollectionViewCell {
@@ -22,7 +23,7 @@ class UserKissCell: UICollectionViewCell {
     
     lazy var tagLayer = makeView(.green).kiss.hstack {
         "❤️".labelMedium.layout
-        }.mainAlign(.end).crossAlign(items: .end).margin(10)
+    }.mainAlign(.start).padding(10).crossAlign(items: .end)
     
     lazy var stackInfoLayout = vstack {
         mailLabel.layout.marginTop(5)
@@ -67,23 +68,3 @@ class UserKissCell: UICollectionViewCell {
         kiss.updateChange(width: frame.width, height: frame.height)
     }
 }
-#if DEBUG
-import SwiftUI
-struct UIKissCellPreview: PreviewProvider, UIViewRepresentable {
-    typealias UIViewType = UserKissCell
-    static let previewSize = CGSize(width: 300, height: 500)
-    static var previews: some View {
-        UIKissCellPreview().previewLayout(.fixed(width: previewSize.width, height: previewSize.height))
-    }
-    let view = UserKissCell()
-    func makeUIView(context: UIViewRepresentableContext<UIKissCellPreview>) -> UIViewType {
-        let frame = CGRect(x: 0, y: 0, width: UIKissCellPreview.previewSize.width, height: UIKissCellPreview.previewSize.height)
-        view.frame = frame
-        view.preview()
-        return view
-    }
-    func updateUIView(_ uiView: UIViewType, context: UIViewRepresentableContext<UIKissCellPreview>) {
-        view.preview()
-    }
-}
-#endif
