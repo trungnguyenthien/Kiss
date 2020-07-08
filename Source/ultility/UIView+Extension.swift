@@ -14,12 +14,6 @@ public extension UIView {
     // MARK: - VIEWLAYOUT
     var layout: UIViewLayout {
         // Nếu là custom view đã có sẵn layout rồi thì sử dụng bản copy của custom view đó
-
-//        if let current = kiss.currentGroupLayout {
-//            let newCopy = current.copy() as! GroupLayout
-//            newCopy.body = self
-//            return newCopy
-//        }
         
         let vlayout = UIViewLayout()
         vlayout.body = self
@@ -42,20 +36,31 @@ extension UIView {
     
     func applyLayout(preservingOrigin: Bool, fixWidth: CGFloat?, fixHeight: CGFloat?) {
         if let width = fixWidth, let height = fixHeight {
-            yoga.width = YGValue(width)
-            yoga.height = YGValue(height)
+            configureLayout { (l) in
+                l.width = YGValue(width)
+                l.height = YGValue(height)
+            }
             yoga.applyLayout(preservingOrigin: preservingOrigin)
         } else if let width = fixWidth, fixHeight == nil {
-            yoga.width = YGValue(width)
+            configureLayout { (l) in
+                l.width = YGValue(width)
+                l.height = YGValueAuto
+            }
             let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleHeight)
             yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         } else if let height = fixHeight, fixWidth == nil {
-            yoga.height = YGValue(height)
+            
+            configureLayout { (l) in
+                l.width = YGValueAuto
+                l.height = YGValue(height)
+            }
             let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleWidth)
             yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         } else {
-            yoga.width = YGValueAuto
-            yoga.height = YGValueAuto
+            configureLayout { (l) in
+                l.width = YGValueAuto
+                l.height = YGValueAuto
+            }
             let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleWidth, .flexibleHeight)
             yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         }

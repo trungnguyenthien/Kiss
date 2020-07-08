@@ -21,8 +21,8 @@ class UserKissCell: UICollectionViewCell {
     let view2 = makeView(.clear)
     
     lazy var tagLayer = makeView(.green).kiss.hstack {
-        "❤️".labelMedium.layout.crossAlign(self: .end)
-    }
+        "❤️".labelMedium.layout
+        }.mainAlign(.end).crossAlign(items: .end).margin(10)
     
     lazy var stackInfoLayout = vstack {
         mailLabel.layout.marginTop(5)
@@ -40,10 +40,7 @@ class UserKissCell: UICollectionViewCell {
     }.padding(10).crossAlign(items: .start)
     
     lazy var vLayout = vstack {
-        imageView.layout.crossAlign(self: .stretch).ratio(2/2)
-            .overlay {
-                tagLayer.mainAlign(.center).crossAlign(items: .center).crossAlign(self: .stretch)
-            }
+        imageView.layout.crossAlign(self: .stretch).ratio(2/2).overlay { tagLayer }
         spacer(10)
         stackInfoLayout.cloned.growFull()
     }.padding(10).crossAlign(items: .start)

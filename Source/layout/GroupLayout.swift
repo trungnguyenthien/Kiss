@@ -39,28 +39,7 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         body.insertSubview(view.body, at: index)
         body.yoga.markDirty()
     }
-    
-//    func autoMarkDirty() {
-//        layoutItems.forEach {
-//            if let group = $0 as? GroupLayout {
-//                group.autoMarkDirty()
-//            }
-//            
-//            if let uiviewLayout = $0 as? UIViewLayout {
-//                let view = uiviewLayout.body
-//                if view is UILabel ||
-//                    view is UIButton ||
-//                    view is UITextView ||
-//                    view is UIImageView ||
-//                    view is UITextField {
-//                    view.yoga.markDirty()
-//                }
-//            }
-//            /// Không cần markDirty cho Spacer
-//            
-//        }
-//    }
-    
+   
     func resetMargin() {
         layoutItems.forEach {
             $0.attr.mLeft = $0.attr.userMarginLeft
@@ -170,13 +149,10 @@ extension GroupLayout {
         
         allOverlayGroup.forEach { (overlay) in
             guard let base = overlay.baseView else { return }
-            
-            
             overlay.updateLayoutChange(width: base.bounds.width, height: base.bounds.height)
             guard let superView = overlay.root.superview else { return }
             guard let newFrame = superView.convertedFrame(subview: base) else {  return }
             overlay.root.frame = newFrame
-            base.addSubview(overlay.root)
         }
     }
     

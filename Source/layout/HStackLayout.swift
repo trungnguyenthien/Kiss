@@ -31,9 +31,6 @@ public class HStackLayout: GroupLayout {
         
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
-        
-//        autoMarkDirty()
-        
         layoutItems
             .compactMap { $0 as? FlexLayoutItemProtocol }
             .forEach { (flex) in
