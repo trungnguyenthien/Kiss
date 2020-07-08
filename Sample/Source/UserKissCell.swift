@@ -21,7 +21,7 @@ class UserKissCell: UICollectionViewCell {
     let view1 = makeView(.clear)
     let view2 = makeView(.clear)
     
-    lazy var tagLayer = makeView(.green).kiss.hstack {
+    lazy var tagLayer = hstack {
         "❤️".labelMedium.layout
     }.mainAlign(.start).padding(10).crossAlign(items: .end)
     

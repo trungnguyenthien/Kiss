@@ -42,8 +42,6 @@
 		871E4482247EB47B005671D1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		871E4484247EB47C005671D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		871E4489247EB47C005671D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		871E4490247EB4C0005671D1 /* KissUI_Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KissUI_Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		871E4496247EB63D005671D1 /* KissUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KissUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		875403F324A8EB65004D04C2 /* RamdomUserProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RamdomUserProvider.swift; sourceTree = "<group>"; };
 		8775847524B01CA80094976F /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8775848324B162FF0094976F /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
@@ -101,8 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				8775847524B01CA80094976F /* Kiss.framework */,
-				871E4496247EB63D005671D1 /* KissUI.framework */,
-				871E4490247EB4C0005671D1 /* KissUI_Lib.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -323,7 +319,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TT62CQ796U;
 				INFOPLIST_FILE = Source/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -342,7 +338,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TT62CQ796U;
 				INFOPLIST_FILE = Source/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
