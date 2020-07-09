@@ -32,7 +32,7 @@
 		621A8080F1D46A64F6645AB00C13E7D6 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 283B9753ACA60B3DF81B21D93E285FFB /* YGLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6A8F7540FA2765C6D58078D9C3E54CCD /* YGStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 21607BBF340540E1217E3C4953144B09 /* YGStyle.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		79C453275DD13B513978C3C725ABF21C /* UIView+Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = B2833413FF73C50F880FEE1080A9B44D /* UIView+Yoga.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		870B557D24B679A40030BB6E /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB62BB488A0F7921D5EE3A49209AB794 /* yoga.framework */; };
+		870B558524B684370030BB6E /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB62BB488A0F7921D5EE3A49209AB794 /* yoga.framework */; };
 		999654CBBDF9638A3F2B1F4247BBC945 /* Yoga-internal.h in Headers */ = {isa = PBXBuildFile; fileRef = FA7CC90A6686606C1C67BEFDCC88F3DB /* Yoga-internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		9A3AD231D36AB22CE59C08A21B11BBC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378F6D7E82604DA63C79ED45ED7CA99D /* Foundation.framework */; };
 		9DF570DD8DC95D68197BC30B8A730DB6 /* Yoga-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 153D7E635F4D99E1B7163924078E3B1E /* Yoga-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -165,7 +165,7 @@
 			files = (
 				A0574C382A1BB11A2A9C132EABE719A1 /* Foundation.framework in Frameworks */,
 				0DB1E6680E515D2D69C17025EF664173 /* UIKit.framework in Frameworks */,
-				870B557D24B679A40030BB6E /* yoga.framework in Frameworks */,
+				870B558524B684370030BB6E /* yoga.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
