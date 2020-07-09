@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import YogaKit
 
 protocol UIViewLayoutSetter: LayoutItem, PaddingSetter, MarginSetter, SizeSetter, FlexLayoutItemProtocol, NSCopying { }
 

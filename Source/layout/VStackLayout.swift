@@ -41,9 +41,9 @@ public class VStackLayout: GroupLayout {
     override func configureLayout() {
         body.configureLayout { (l) in
             l.isEnabled = true
-            l.direction = .LTR
-            l.flexDirection = .column
-            l.flexWrap = .noWrap
+            l.direction = YGDirectionLTR
+            l.flexDirection = YGFlexDirectionColumn
+            l.flexWrap = YGWrapNoWrap
             l.isIncludedInLayout = self.isVisibleLayout
             
             self.attr.map(to: l)

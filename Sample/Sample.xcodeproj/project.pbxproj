@@ -13,8 +13,6 @@
 		871E4483247EB47B005671D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871E4481247EB47B005671D1 /* LaunchScreen.storyboard */; };
 		871E4485247EB47C005671D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 871E4484247EB47C005671D1 /* Assets.xcassets */; };
 		875403F424A8EB65004D04C2 /* RamdomUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875403F324A8EB65004D04C2 /* RamdomUserProvider.swift */; };
-		8775847624B01CA80094976F /* Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8775847524B01CA80094976F /* Kiss.framework */; };
-		8775847724B01CA80094976F /* Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8775847524B01CA80094976F /* Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8775848424B162FF0094976F /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775848324B162FF0094976F /* RatingView.swift */; };
 		8775848824B21FB40094976F /* UserKissCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775848724B21FB40094976F /* UserKissCell.swift */; };
 		87F136DF24AAA516006DFBEF /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F136DE24AAA516006DFBEF /* Common.swift */; };
@@ -27,7 +25,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8775847724B01CA80094976F /* Kiss.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,7 +40,6 @@
 		871E4484247EB47C005671D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		871E4489247EB47C005671D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		875403F324A8EB65004D04C2 /* RamdomUserProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RamdomUserProvider.swift; sourceTree = "<group>"; };
-		8775847524B01CA80094976F /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8775848324B162FF0094976F /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		8775848724B21FB40094976F /* UserKissCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKissCell.swift; sourceTree = "<group>"; };
 		87F136DE24AAA516006DFBEF /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -54,7 +50,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8775847624B01CA80094976F /* Kiss.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +93,6 @@
 		871E448F247EB4C0005671D1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8775847524B01CA80094976F /* Kiss.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import YogaKit
 
 public class HStackLayout: GroupLayout {
     override init() {
@@ -41,9 +40,9 @@ public class HStackLayout: GroupLayout {
     override func configureLayout() {
         body.configureLayout { (l) in
             l.isEnabled = true
-            l.direction = .LTR
-            l.flexDirection = .row
-            l.flexWrap = .noWrap
+            l.direction = YGDirectionLTR
+            l.flexDirection = YGFlexDirectionRow
+            l.flexWrap = YGWrapNoWrap
             l.isIncludedInLayout = self.isVisibleLayout
             
             self.attr.map(to: l)

@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import YogaKit
 
 extension Double {
     static public var max: Double = 99999999999999999.0
@@ -32,12 +31,12 @@ extension Array {
     }
 }
 
-func YGValueOrUndefined(_ value: Double?) -> YogaKit.YGValue {
+func YGValueOrUndefined(_ value: Double?) -> YGValue {
     guard let value = value else { return YGValueUndefined }
-    return YogaKit.YGValue(CGFloat(value))
+    return YGValue(CGFloat(value))
 }
 
-func YGValueOrAuto(_ value: Double?) -> YogaKit.YGValue {
+func YGValueOrAuto(_ value: Double?) -> YGValue {
     guard let value = value else { return YGValueAuto }
-    return YogaKit.YGValue(CGFloat(value))
+    return YGValue(CGFloat(value))
 }

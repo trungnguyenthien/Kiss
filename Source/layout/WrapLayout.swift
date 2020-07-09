@@ -46,9 +46,9 @@ public class WrapLayout: GroupLayout {
     override func configureLayout() {
         body.configureLayout { (l) in
             l.isEnabled = true
-            l.direction = .LTR
-            l.flexDirection = .row
-            l.flexWrap = .wrap
+            l.direction = YGDirectionLTR
+            l.flexDirection = YGFlexDirectionRow
+            l.flexWrap = YGWrapWrap
             l.isIncludedInLayout = self.isVisibleLayout
             
             self.attr.map(to: l)

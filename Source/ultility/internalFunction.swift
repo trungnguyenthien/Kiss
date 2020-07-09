@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-import YogaKit
 
 func trace(_ message: String) {
     print("💋💋 KissLog: " + message)

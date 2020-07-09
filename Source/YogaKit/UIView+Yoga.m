@@ -8,7 +8,7 @@
 #import "UIView+Yoga.h"
 #import "YGLayout+Private.h"
 #import <objc/runtime.h>
-#import <yoga/Yoga.h>
+#import <Yoga.h>
 
 static const void *kYGYogaAssociatedKey = &kYGYogaAssociatedKey;
 

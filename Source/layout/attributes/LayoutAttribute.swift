@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import YogaKit
 
 class LayoutAttribute {
     var paddingLeft: Double = 0 // internal(set)
@@ -99,24 +98,24 @@ extension LayoutAttribute {
         l.maxWidth     = YGValueOrUndefined(self.maxWidth)
         
         switch self.alignStack {
-        case .start:    l.justifyContent = .flexStart
-        case .end:      l.justifyContent = .flexEnd
-        case .center:   l.justifyContent = .center
+        case .start:    l.justifyContent = YGJustifyFlexStart
+        case .end:      l.justifyContent = YGJustifyFlexEnd
+        case .center:   l.justifyContent = YGJustifyCenter
         }
         
         switch self.alignItems {
-        case .start:    l.alignItems = .flexStart
-        case .end:      l.alignItems = .flexEnd
-        case .center:   l.alignItems = .center
-        case .stretch:  l.alignItems = .stretch
+        case .start:    l.alignItems = YGAlignFlexStart
+        case .end:      l.alignItems = YGAlignFlexEnd
+        case .center:   l.alignItems = YGAlignCenter
+        case .stretch:  l.alignItems = YGAlignStretch
         }
         
         switch self.alignSelf {
-        case .some(.center):   l.alignSelf = .center
-        case .some(.start):    l.alignSelf = .flexStart
-        case .some(.end):      l.alignSelf = .flexEnd
-        case .some(.stretch):  l.alignSelf = .stretch
-        case .none:            l.alignSelf = .auto
+        case .some(.center):   l.alignSelf = YGAlignCenter
+        case .some(.start):    l.alignSelf = YGAlignFlexStart
+        case .some(.end):      l.alignSelf = YGAlignFlexEnd
+        case .some(.stretch):  l.alignSelf = YGAlignStretch
+        case .none:            l.alignSelf = YGAlignAuto
         }
         
         if let grow = self.grow {
