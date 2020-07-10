@@ -31,12 +31,6 @@
 		874D91F6248D2D9B00D378AD /* layoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D91F5248D2D9B00D378AD /* layoutBuilder.swift */; };
 		874D91F8248FCC6000D378AD /* FlexLayoutItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D91F7248FCC6000D378AD /* FlexLayoutItemProtocol.swift */; };
 		8754A19A2499916B000A6163 /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754A1992499916B000A6163 /* LayoutItem.swift */; };
-		8775846E24B01BEC0094976F /* Pods_Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8775846924B01BCE0094976F /* Pods_Kiss.framework */; };
-		8775846F24B01BEC0094976F /* Pods_Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8775846924B01BCE0094976F /* Pods_Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8775847024B01BEC0094976F /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8775846B24B01BCE0094976F /* yoga.framework */; };
-		8775847124B01BEC0094976F /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8775846B24B01BCE0094976F /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8775847224B01BEC0094976F /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8775846D24B01BCE0094976F /* YogaKit.framework */; };
-		8775847324B01BEC0094976F /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8775846D24B01BCE0094976F /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8775848224B02FD50094976F /* OverlayLayoutAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775848124B02FD50094976F /* OverlayLayoutAble.swift */; };
 		8775848624B180CD0094976F /* KissView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775848524B180CD0094976F /* KissView.swift */; };
 		CB8375AA91EE3B47C42CA1DD /* Pods_Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7478B4BF0DED2FCF873406 /* Pods_Kiss.framework */; };
@@ -50,27 +44,6 @@
 			remoteGlobalIDString = 871E442E247EB422005671D1;
 			remoteInfo = "KissUI-Lib";
 		};
-		8775846824B01BCE0094976F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8775846224B01BCE0094976F /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = CD61D1F1007A7D8C743186891782E41C;
-			remoteInfo = "Pods-Kiss";
-		};
-		8775846A24B01BCE0094976F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8775846224B01BCE0094976F /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 65D0A19C165FA1126B1360680FE6DB12;
-			remoteInfo = Yoga;
-		};
-		8775846C24B01BCE0094976F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8775846224B01BCE0094976F /* Pods.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5B3357A1CE67C0BF4AE31936A1BE6888;
-			remoteInfo = YogaKit;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,9 +53,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8775847124B01BEC0094976F /* yoga.framework in Embed Frameworks */,
-				8775846F24B01BEC0094976F /* Pods_Kiss.framework in Embed Frameworks */,
-				8775847324B01BEC0094976F /* YogaKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +68,53 @@
 		871E443F247EB422005671D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		871E4494247EB4E4005671D1 /* LayoutAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutAttribute.swift; sourceTree = "<group>"; };
 		871E449B247EB90B005671D1 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		871F646224B8B26C00BFAA30 /* CompactValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CompactValue.h; path = yoga/CompactValue.h; sourceTree = "<group>"; };
+		871F646324B8B26C00BFAA30 /* instrumentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = instrumentation.h; path = yoga/instrumentation.h; sourceTree = "<group>"; };
+		871F646424B8B26C00BFAA30 /* log.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = log.cpp; path = yoga/log.cpp; sourceTree = "<group>"; };
+		871F646524B8B26C00BFAA30 /* log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = log.h; path = yoga/log.h; sourceTree = "<group>"; };
+		871F646624B8B26C00BFAA30 /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Utils.cpp; path = yoga/Utils.cpp; sourceTree = "<group>"; };
+		871F646724B8B26C00BFAA30 /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = yoga/Utils.h; sourceTree = "<group>"; };
+		871F646824B8B26C00BFAA30 /* YGConfig.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = YGConfig.cpp; path = yoga/YGConfig.cpp; sourceTree = "<group>"; };
+		871F646924B8B26C00BFAA30 /* YGConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGConfig.h; path = yoga/YGConfig.h; sourceTree = "<group>"; };
+		871F646A24B8B26C00BFAA30 /* YGEnums.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = YGEnums.cpp; path = yoga/YGEnums.cpp; sourceTree = "<group>"; };
+		871F646B24B8B26C00BFAA30 /* YGEnums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGEnums.h; path = yoga/YGEnums.h; sourceTree = "<group>"; };
+		871F646C24B8B26C00BFAA30 /* YGFloatOptional.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGFloatOptional.h; path = yoga/YGFloatOptional.h; sourceTree = "<group>"; };
+		871F646D24B8B26C00BFAA30 /* YGLayout.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = YGLayout.cpp; path = yoga/YGLayout.cpp; sourceTree = "<group>"; };
+		871F646E24B8B26C00BFAA30 /* YGLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGLayout.h; path = yoga/YGLayout.h; sourceTree = "<group>"; };
+		871F646F24B8B26C00BFAA30 /* YGMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGMacros.h; path = yoga/YGMacros.h; sourceTree = "<group>"; };
+		871F647024B8B26C00BFAA30 /* YGMarker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = YGMarker.cpp; path = yoga/YGMarker.cpp; sourceTree = "<group>"; };
+		871F647124B8B26C00BFAA30 /* YGMarker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGMarker.h; path = yoga/YGMarker.h; sourceTree = "<group>"; };
+		871F647224B8B26C00BFAA30 /* YGNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = YGNode.cpp; path = yoga/YGNode.cpp; sourceTree = "<group>"; };
+		871F647324B8B26C00BFAA30 /* YGNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGNode.h; path = yoga/YGNode.h; sourceTree = "<group>"; };
+		871F647424B8B26C00BFAA30 /* YGNodePrint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = YGNodePrint.cpp; path = yoga/YGNodePrint.cpp; sourceTree = "<group>"; };
+		871F647524B8B26C00BFAA30 /* YGNodePrint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGNodePrint.h; path = yoga/YGNodePrint.h; sourceTree = "<group>"; };
+		871F647624B8B26C00BFAA30 /* YGStyle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = YGStyle.cpp; path = yoga/YGStyle.cpp; sourceTree = "<group>"; };
+		871F647724B8B26C00BFAA30 /* YGStyle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGStyle.h; path = yoga/YGStyle.h; sourceTree = "<group>"; };
+		871F647824B8B26C00BFAA30 /* YGValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = YGValue.cpp; path = yoga/YGValue.cpp; sourceTree = "<group>"; };
+		871F647924B8B26C00BFAA30 /* YGValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGValue.h; path = yoga/YGValue.h; sourceTree = "<group>"; };
+		871F647A24B8B26C00BFAA30 /* Yoga.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Yoga.cpp; path = yoga/Yoga.cpp; sourceTree = "<group>"; };
+		871F647B24B8B26C00BFAA30 /* Yoga.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Yoga.h; path = yoga/Yoga.h; sourceTree = "<group>"; };
+		871F647C24B8B26C00BFAA30 /* Yoga-internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Yoga-internal.h"; path = "yoga/Yoga-internal.h"; sourceTree = "<group>"; };
+		871F647D24B8B26C00BFAA30 /* Yoga.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = Yoga.modulemap; path = "Source/Target Support Files/Yoga/Yoga.modulemap"; sourceTree = "<group>"; };
+		871F647E24B8B26C00BFAA30 /* Yoga-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Yoga-dummy.m"; path = "Source/Target Support Files/Yoga/Yoga-dummy.m"; sourceTree = "<group>"; };
+		871F647F24B8B26C00BFAA30 /* Yoga-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Yoga-Info.plist"; path = "Source/Target Support Files/Yoga/Yoga-Info.plist"; sourceTree = "<group>"; };
+		871F648024B8B26C00BFAA30 /* Yoga-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Yoga-prefix.pch"; path = "Source/Target Support Files/Yoga/Yoga-prefix.pch"; sourceTree = "<group>"; };
+		871F648124B8B26C00BFAA30 /* Yoga-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Yoga-umbrella.h"; path = "Source/Target Support Files/Yoga/Yoga-umbrella.h"; sourceTree = "<group>"; };
+		871F648224B8B26C00BFAA30 /* Yoga.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Yoga.debug.xcconfig; path = "Source/Target Support Files/Yoga/Yoga.debug.xcconfig"; sourceTree = "<group>"; };
+		871F648324B8B26C00BFAA30 /* Yoga.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Yoga.release.xcconfig; path = "Source/Target Support Files/Yoga/Yoga.release.xcconfig"; sourceTree = "<group>"; };
+		871F648924B8B28300BFAA30 /* UIView+Yoga.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+Yoga.h"; path = "YogaKit/Source/UIView+Yoga.h"; sourceTree = "<group>"; };
+		871F648A24B8B28300BFAA30 /* UIView+Yoga.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIView+Yoga.m"; path = "YogaKit/Source/UIView+Yoga.m"; sourceTree = "<group>"; };
+		871F648B24B8B28300BFAA30 /* YGLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = YGLayout.h; path = YogaKit/Source/YGLayout.h; sourceTree = "<group>"; };
+		871F648C24B8B28300BFAA30 /* YGLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = YGLayout.m; path = YogaKit/Source/YGLayout.m; sourceTree = "<group>"; };
+		871F648D24B8B28300BFAA30 /* YGLayout+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "YGLayout+Private.h"; path = "YogaKit/Source/YGLayout+Private.h"; sourceTree = "<group>"; };
+		871F648E24B8B28300BFAA30 /* YGLayoutExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = YGLayoutExtensions.swift; path = YogaKit/Source/YGLayoutExtensions.swift; sourceTree = "<group>"; };
+		871F648F24B8B28300BFAA30 /* YogaKit.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; name = YogaKit.modulemap; path = "Source/Target Support Files/YogaKit/YogaKit.modulemap"; sourceTree = "<group>"; };
+		871F649024B8B28300BFAA30 /* YogaKit-dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "YogaKit-dummy.m"; path = "Source/Target Support Files/YogaKit/YogaKit-dummy.m"; sourceTree = "<group>"; };
+		871F649124B8B28300BFAA30 /* YogaKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "YogaKit-Info.plist"; path = "Source/Target Support Files/YogaKit/YogaKit-Info.plist"; sourceTree = "<group>"; };
+		871F649224B8B28300BFAA30 /* YogaKit-prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "YogaKit-prefix.pch"; path = "Source/Target Support Files/YogaKit/YogaKit-prefix.pch"; sourceTree = "<group>"; };
+		871F649324B8B28300BFAA30 /* YogaKit-umbrella.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "YogaKit-umbrella.h"; path = "Source/Target Support Files/YogaKit/YogaKit-umbrella.h"; sourceTree = "<group>"; };
+		871F649424B8B28300BFAA30 /* YogaKit.debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = YogaKit.debug.xcconfig; path = "Source/Target Support Files/YogaKit/YogaKit.debug.xcconfig"; sourceTree = "<group>"; };
+		871F649524B8B28300BFAA30 /* YogaKit.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = YogaKit.release.xcconfig; path = "Source/Target Support Files/YogaKit/YogaKit.release.xcconfig"; sourceTree = "<group>"; };
 		8732132F24800C9E00BE2BEE /* GroupLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupLayout.swift; sourceTree = "<group>"; };
 		8732133124800CD800BE2BEE /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8732133324853FC000BE2BEE /* ValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueType.swift; sourceTree = "<group>"; };
@@ -118,7 +135,6 @@
 		874D91F5248D2D9B00D378AD /* layoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layoutBuilder.swift; sourceTree = "<group>"; };
 		874D91F7248FCC6000D378AD /* FlexLayoutItemProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexLayoutItemProtocol.swift; sourceTree = "<group>"; };
 		8754A1992499916B000A6163 /* LayoutItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
-		8775846224B01BCE0094976F /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		8775848124B02FD50094976F /* OverlayLayoutAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayLayoutAble.swift; sourceTree = "<group>"; };
 		8775848524B180CD0094976F /* KissView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KissView.swift; sourceTree = "<group>"; };
 		88F13FD0758E0ED7A47FBEF5 /* Pods_KissUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KissUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,9 +148,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8775847024B01BEC0094976F /* yoga.framework in Frameworks */,
-				8775846E24B01BEC0094976F /* Pods_Kiss.framework in Frameworks */,
-				8775847224B01BEC0094976F /* YogaKit.framework in Frameworks */,
 				CB8375AA91EE3B47C42CA1DD /* Pods_Kiss.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,7 +166,6 @@
 		871E4425247EB422005671D1 = {
 			isa = PBXGroup;
 			children = (
-				8775846224B01BCE0094976F /* Pods.xcodeproj */,
 				871E4431247EB422005671D1 /* Source */,
 				871E443C247EB422005671D1 /* Tests */,
 				871E4430247EB422005671D1 /* Products */,
@@ -174,6 +186,8 @@
 		871E4431247EB422005671D1 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				871F649724B8B28300BFAA30 /* YogaKit */,
+				871F648524B8B26C00BFAA30 /* Yoga */,
 				87321348248937D400BE2BEE /* layout */,
 				87321343248785B900BE2BEE /* ultility */,
 				871E4432247EB422005671D1 /* KissUI_Lib.h */,
@@ -199,6 +213,85 @@
 				FD7478B4BF0DED2FCF873406 /* Pods_Kiss.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		871F648424B8B26C00BFAA30 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				871F647D24B8B26C00BFAA30 /* Yoga.modulemap */,
+				871F647E24B8B26C00BFAA30 /* Yoga-dummy.m */,
+				871F647F24B8B26C00BFAA30 /* Yoga-Info.plist */,
+				871F648024B8B26C00BFAA30 /* Yoga-prefix.pch */,
+				871F648124B8B26C00BFAA30 /* Yoga-umbrella.h */,
+				871F648224B8B26C00BFAA30 /* Yoga.debug.xcconfig */,
+				871F648324B8B26C00BFAA30 /* Yoga.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Yoga";
+			sourceTree = "<group>";
+		};
+		871F648524B8B26C00BFAA30 /* Yoga */ = {
+			isa = PBXGroup;
+			children = (
+				871F646224B8B26C00BFAA30 /* CompactValue.h */,
+				871F646324B8B26C00BFAA30 /* instrumentation.h */,
+				871F646424B8B26C00BFAA30 /* log.cpp */,
+				871F646524B8B26C00BFAA30 /* log.h */,
+				871F646624B8B26C00BFAA30 /* Utils.cpp */,
+				871F646724B8B26C00BFAA30 /* Utils.h */,
+				871F646824B8B26C00BFAA30 /* YGConfig.cpp */,
+				871F646924B8B26C00BFAA30 /* YGConfig.h */,
+				871F646A24B8B26C00BFAA30 /* YGEnums.cpp */,
+				871F646B24B8B26C00BFAA30 /* YGEnums.h */,
+				871F646C24B8B26C00BFAA30 /* YGFloatOptional.h */,
+				871F646D24B8B26C00BFAA30 /* YGLayout.cpp */,
+				871F646E24B8B26C00BFAA30 /* YGLayout.h */,
+				871F646F24B8B26C00BFAA30 /* YGMacros.h */,
+				871F647024B8B26C00BFAA30 /* YGMarker.cpp */,
+				871F647124B8B26C00BFAA30 /* YGMarker.h */,
+				871F647224B8B26C00BFAA30 /* YGNode.cpp */,
+				871F647324B8B26C00BFAA30 /* YGNode.h */,
+				871F647424B8B26C00BFAA30 /* YGNodePrint.cpp */,
+				871F647524B8B26C00BFAA30 /* YGNodePrint.h */,
+				871F647624B8B26C00BFAA30 /* YGStyle.cpp */,
+				871F647724B8B26C00BFAA30 /* YGStyle.h */,
+				871F647824B8B26C00BFAA30 /* YGValue.cpp */,
+				871F647924B8B26C00BFAA30 /* YGValue.h */,
+				871F647A24B8B26C00BFAA30 /* Yoga.cpp */,
+				871F647B24B8B26C00BFAA30 /* Yoga.h */,
+				871F647C24B8B26C00BFAA30 /* Yoga-internal.h */,
+				871F648424B8B26C00BFAA30 /* Support Files */,
+			);
+			path = Yoga;
+			sourceTree = "<group>";
+		};
+		871F649624B8B28300BFAA30 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				871F648F24B8B28300BFAA30 /* YogaKit.modulemap */,
+				871F649024B8B28300BFAA30 /* YogaKit-dummy.m */,
+				871F649124B8B28300BFAA30 /* YogaKit-Info.plist */,
+				871F649224B8B28300BFAA30 /* YogaKit-prefix.pch */,
+				871F649324B8B28300BFAA30 /* YogaKit-umbrella.h */,
+				871F649424B8B28300BFAA30 /* YogaKit.debug.xcconfig */,
+				871F649524B8B28300BFAA30 /* YogaKit.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/YogaKit";
+			sourceTree = "<group>";
+		};
+		871F649724B8B28300BFAA30 /* YogaKit */ = {
+			isa = PBXGroup;
+			children = (
+				871F648924B8B28300BFAA30 /* UIView+Yoga.h */,
+				871F648A24B8B28300BFAA30 /* UIView+Yoga.m */,
+				871F648B24B8B28300BFAA30 /* YGLayout.h */,
+				871F648C24B8B28300BFAA30 /* YGLayout.m */,
+				871F648D24B8B28300BFAA30 /* YGLayout+Private.h */,
+				871F648E24B8B28300BFAA30 /* YGLayoutExtensions.swift */,
+				871F649624B8B28300BFAA30 /* Support Files */,
+			);
+			path = YogaKit;
 			sourceTree = "<group>";
 		};
 		87321343248785B900BE2BEE /* ultility */ = {
@@ -252,16 +345,6 @@
 				8775848124B02FD50094976F /* OverlayLayoutAble.swift */,
 			);
 			path = protocols;
-			sourceTree = "<group>";
-		};
-		8775846324B01BCE0094976F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8775846924B01BCE0094976F /* Pods_Kiss.framework */,
-				8775846B24B01BCE0094976F /* yoga.framework */,
-				8775846D24B01BCE0094976F /* YogaKit.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		8C5B3217B5190108CD2EE7B1 /* Pods */ = {
@@ -355,12 +438,6 @@
 			mainGroup = 871E4425247EB422005671D1;
 			productRefGroup = 871E4430247EB422005671D1 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 8775846324B01BCE0094976F /* Products */;
-					ProjectRef = 8775846224B01BCE0094976F /* Pods.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				871E442E247EB422005671D1 /* Kiss */,
@@ -368,30 +445,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		8775846924B01BCE0094976F /* Pods_Kiss.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Pods_Kiss.framework;
-			remoteRef = 8775846824B01BCE0094976F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8775846B24B01BCE0094976F /* yoga.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = yoga.framework;
-			remoteRef = 8775846A24B01BCE0094976F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		8775846D24B01BCE0094976F /* YogaKit.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = YogaKit.framework;
-			remoteRef = 8775846C24B01BCE0094976F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		871E442D247EB422005671D1 /* Resources */ = {
