@@ -28,14 +28,16 @@ class LayoutAttribute {
     var userHeight: Double? = nil
     var maxHeight: Double? = nil
     var minHeight: Double? = nil
+    var forcedWidth: Double? = nil
+    var forcedHeight: Double? = nil
     
     var minWidth: Double? = nil
     var maxWidth: Double? = nil
     
-    var mLeft: Double = 0
-    var mRight: Double = 0
-    var mTop: Double = 0
-    var mBottom: Double = 0
+    var forcedLeft: Double = 0
+    var forcedRight: Double = 0
+    var forcedTop: Double = 0
+    var forcedBottom: Double = 0
     
     var alignStack = MainAxisAlignment.start
     var alignItems = CrossAxisAlignment.start
@@ -66,10 +68,10 @@ extension LayoutAttribute: NSCopying {
         instance.maxWidth = self.maxWidth
         instance.minWidth = self.minWidth
         
-        instance.mLeft = self.mLeft
-        instance.mRight = self.mRight
-        instance.mTop = self.mTop
-        instance.mBottom = self.mBottom
+        instance.forcedLeft = self.forcedLeft
+        instance.forcedRight = self.forcedRight
+        instance.forcedTop = self.forcedTop
+        instance.forcedBottom = self.forcedBottom
         
         instance.alignStack = self.alignStack
         instance.alignItems = self.alignItems
@@ -87,10 +89,10 @@ extension LayoutAttribute {
         l.paddingTop    = YGValueOrUndefined(self.paddingTop)
         l.paddingBottom = YGValueOrUndefined(self.paddingBottom)
         
-        l.marginLeft    = YGValueOrUndefined(self.mLeft)
-        l.marginRight   = YGValueOrUndefined(self.mRight)
-        l.marginTop     = YGValueOrUndefined(self.mTop)
-        l.marginBottom  = YGValueOrUndefined(self.mBottom)
+        l.marginLeft    = YGValueOrUndefined(self.forcedLeft)
+        l.marginRight   = YGValueOrUndefined(self.forcedRight)
+        l.marginTop     = YGValueOrUndefined(self.forcedTop)
+        l.marginBottom  = YGValueOrUndefined(self.forcedBottom)
         
         l.maxHeight     = YGValueOrUndefined(self.maxHeight)
         l.minHeight     = YGValueOrUndefined(self.minHeight)
@@ -122,8 +124,17 @@ extension LayoutAttribute {
         if let grow = self.grow {
             setGrow(grow: grow, to: l)
         }
-        l.height = YGValueOrAuto(userHeight)
-        l.width = YGValueOrAuto(userWidth)
+        if let fWidth = forcedWidth {
+            l.width = YGValueOrAuto(fWidth)
+        } else {
+            l.width = YGValueOrAuto(userWidth)
+        }
+        
+        if let fHeight = forcedHeight {
+            l.height = YGValueOrAuto(fHeight)
+        } else {
+            l.height = YGValueOrAuto(userHeight)
+        }
         
         if let ratio = self.ratio {
             l.aspectRatio = CGFloat(ratio)

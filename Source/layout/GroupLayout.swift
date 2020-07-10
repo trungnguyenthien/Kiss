@@ -40,12 +40,14 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         body.yoga.markDirty()
     }
    
-    func resetMargin() {
+    func resetForcedValue() {
         layoutItems.forEach {
-            $0.attr.mLeft = $0.attr.userMarginLeft
-            $0.attr.mRight = $0.attr.userMarginRight
-            $0.attr.mTop = $0.attr.userMarginTop
-            $0.attr.mBottom = $0.attr.userMarginBottom
+            $0.attr.forcedLeft = $0.attr.userMarginLeft
+            $0.attr.forcedRight = $0.attr.userMarginRight
+            $0.attr.forcedTop = $0.attr.userMarginTop
+            $0.attr.forcedBottom = $0.attr.userMarginBottom
+            $0.attr.forcedWidth = nil
+            $0.attr.forcedHeight = nil
         }
     }
     

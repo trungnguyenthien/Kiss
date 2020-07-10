@@ -26,7 +26,7 @@ public class VStackLayout: GroupLayout {
     }
     
     override func prepareForRenderingLayout() {
-        resetMargin()
+        resetForcedValue()
         
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()

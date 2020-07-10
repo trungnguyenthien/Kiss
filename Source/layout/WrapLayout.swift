@@ -33,7 +33,7 @@ public class WrapLayout: GroupLayout {
     }
     
     override func prepareForRenderingLayout() {
-        resetMargin()
+        resetForcedValue()
         removeLeadingTrailingIfHasSpacer()
         
         layoutItems
@@ -65,8 +65,8 @@ public class WrapLayout: GroupLayout {
     private func removeLeadingTrailingIfHasSpacer() {
         layoutItems.enumerated().forEach { (index, item) in
             guard item is Spacer else { return }
-            layoutItems.element(index - 1)?.attr.mRight = 0
-            layoutItems.element(index + 1)?.attr.mLeft = 0
+            layoutItems.element(index - 1)?.attr.forcedRight = 0
+            layoutItems.element(index + 1)?.attr.forcedLeft = 0
         }
     }
 }

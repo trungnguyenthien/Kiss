@@ -27,7 +27,7 @@ public class HStackLayout: GroupLayout {
     }
     
     override func prepareForRenderingLayout() {
-        resetMargin()
+        resetForcedValue()
         
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
@@ -59,15 +59,15 @@ public class HStackLayout: GroupLayout {
     
     private func removeStartLeadingEndTrailing() {
         let noSpacerLayoutItems = layoutItems.filter { $0.isVisibleLayout }
-        noSpacerLayoutItems.first?.attr.mLeft = 0
-        noSpacerLayoutItems.last?.attr.mRight = 0
+        noSpacerLayoutItems.first?.attr.forcedLeft = 0
+        noSpacerLayoutItems.last?.attr.forcedRight = 0
     }
     
     private func removeLeadingTrailingIfHasSpacer() {
         layoutItems.enumerated().forEach { (index, item) in
             guard item is Spacer else { return }
-            layoutItems.element(index - 1)?.attr.mRight = 0
-            layoutItems.element(index + 1)?.attr.mLeft = 0
+            layoutItems.element(index - 1)?.attr.forcedRight = 0
+            layoutItems.element(index + 1)?.attr.forcedLeft = 0
         }
     }
 }
