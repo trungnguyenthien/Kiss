@@ -5,6 +5,6 @@
       location = "group:/Users/trung/Desktop/Kiss2/Kiss/Sample.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/trung/Documents/GitHub/Kiss/Pods/Kiss.xcodeproj">
+      location = "group:KissSource/Kiss.xcodeproj">
    </FileRef>
 </Workspace>
