@@ -164,7 +164,7 @@
 		73645643E28D2CBF208C738B36E0EE2E /* CompactValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CompactValue.h; path = yoga/CompactValue.h; sourceTree = "<group>"; };
 		7404995EBF0A4D0D577FF3E139951AB6 /* Yoga.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Yoga.debug.xcconfig; sourceTree = "<group>"; };
 		793FFB85613DF272B670AC316C83742E /* YGMarker.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = YGMarker.cpp; path = yoga/YGMarker.cpp; sourceTree = "<group>"; };
-		7C95F9B185466154A18CF289A3FD1142 /* Pods-Kiss-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Kiss-Info.plist"; sourceTree = "<group>"; };
+		7C95F9B185466154A18CF289A3FD1142 /* Kiss-Kiss-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Kiss-Kiss-Info.plist"; sourceTree = "<group>"; };
 		84868618A2B3E3E9A7B78F217CDC8757 /* Yoga-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Yoga-dummy.m"; sourceTree = "<group>"; };
 		871D4E2124B9B35300DC3531 /* GroupLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLayout.swift; sourceTree = "<group>"; };
 		871D4E2224B9B35300DC3531 /* HStackLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HStackLayout.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 		9A71D4B850FA375C0CD74229B45D6EE4 /* Pods-Kiss.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Kiss.modulemap"; sourceTree = "<group>"; };
 		9AD0FB1AA526040057708CBB7EA0F35D /* YGLayoutExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YGLayoutExtensions.swift; path = YogaKit/Source/YGLayoutExtensions.swift; sourceTree = "<group>"; };
 		9CB73C1CD4B6FF8C30F5E3FADA0641E3 /* YGLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YGLayout.m; path = YogaKit/Source/YGLayout.m; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* ___Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = "___Podfile"; path = "../___Podfile"; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9ECB67C98534E4F89A156F44BE0D4A74 /* YGLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGLayout.h; path = yoga/YGLayout.h; sourceTree = "<group>"; };
 		A01023652B2536ABF979A425907ABB45 /* YGLayout.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = YGLayout.cpp; path = yoga/YGLayout.cpp; sourceTree = "<group>"; };
 		A31CDA2D5B90F99215F90E0590B04B80 /* YGValue.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = YGValue.cpp; path = yoga/YGValue.cpp; sourceTree = "<group>"; };
@@ -308,7 +308,7 @@
 				9944A84953D234642E7E55135E7514B4 /* Pods-Kiss-acknowledgements.plist */,
 				9806EC333591D3A9DC256B0F6472A36A /* Pods-Kiss-dummy.m */,
 				CE40748E60099C839DC1DC113CE64062 /* Pods-Kiss-frameworks.sh */,
-				7C95F9B185466154A18CF289A3FD1142 /* Pods-Kiss-Info.plist */,
+				7C95F9B185466154A18CF289A3FD1142 /* Kiss-Kiss-Info.plist */,
 				253372780BCDC1660B7A4296CED9984C /* Pods-Kiss-umbrella.h */,
 				22DB8D32E30873C83A52361DF03682B7 /* Pods-Kiss.debug.xcconfig */,
 				589E198BCE4B0FECABAF441607F59D8C /* Pods-Kiss.release.xcconfig */,
@@ -435,7 +435,7 @@
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
-				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				9D940727FF8FB9C785EB98E56350EF41 /* ___Podfile */,
 				A1B20EF2AD0CFF948CFF0F74882819FA /* Frameworks */,
 				871D4E1F24B9B30C00DC3531 /* Source */,
 				F0422C2F2E4643CCDE21644CF4C0CB30 /* Pods */,
@@ -590,7 +590,7 @@
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
 			};
-			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Kiss" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -916,7 +916,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Kiss/Pods-Kiss-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-Kiss/Kiss-Kiss-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1049,7 +1049,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Kiss/Pods-Kiss-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-Kiss/Kiss-Kiss-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1093,7 +1093,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Kiss" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66505DDFE04176165BB293C54DA9D0AD /* Debug */,
