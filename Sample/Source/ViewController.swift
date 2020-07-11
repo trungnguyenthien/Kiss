@@ -17,16 +17,16 @@ enum CellKind: String {
 class ViewController: UIViewController {
     let provider = RamdomUserProvider()
     var datasource: [User] = []
-
+    private let cache = CacheCellHeight()
     @IBOutlet weak var collectionView: UICollectionView!
     private let cellKind = CellKind.kisscell
     let sampleCell = UserKissCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .black
         collectionView.register(UserKissCell.self, forCellWithReuseIdentifier: CellKind.kisscell.rawValue)
-
+        updateBackgroundColor()
+        
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumInteritemSpacing = 1
             layout.minimumLineSpacing = 1
@@ -39,6 +39,8 @@ class ViewController: UIViewController {
                 self.datasource.append(contentsOf: listResult.results)
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                    self.updateBackgroundColor()
+                    self.cache.clearAll()
                 }
                 
             case .failure(_):
@@ -46,20 +48,42 @@ class ViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
+        
+        cache.calculation = calculationHeight
+    }
+    
+    private func calculationHeight(_ row: Int) -> CGFloat {
+        sampleCell.config(user: datasource[row], isPortrait: isPortrait())
+        let size = sampleCell.kiss.estimatedSize(width: cellWidth(), height: nil)
+        return size.height
+    }
+    
+    private func rowHeight(_ row: Int) -> CGFloat {
+        let firstRowIndex = Int(CGFloat(row) / numberColumns()) * Int(numberColumns())
+        var lastRowIndex = firstRowIndex + Int(numberColumns())
+        lastRowIndex = min(lastRowIndex, datasource.count - 1)
+        let rowHeights = (firstRowIndex...lastRowIndex).map { cache.get(at: $0) }
+        let max = rowHeights.max() ?? 0
+//        print("row = \(row), \tfirstRowIndex = \(firstRowIndex), lastRowIndex = \(lastRowIndex), rowHeights = \(rowHeights), max = \(max)")
+        return max
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
         // Reload visible item for updating it's layout
-        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems)
-        
+        cache.clearAll()
+        collectionView.reloadData()
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in
             guard let self = self else { return }
             // invalidateLayout for updating it's layout
+            
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
-        
+    }
+    
+    private func updateBackgroundColor() {
+        collectionView.backgroundColor = datasource.isEmpty ? .white : .gray
     }
 }
 
@@ -71,58 +95,39 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellKind.rawValue, for: indexPath)
         if let cell = cell as? UserKissCell {
-            let cellWidth = (UIScreen.main.bounds.width - 5) / 4
-            cell.config(width: cellWidth, user: datasource[indexPath.row])
+            cell.config(user: datasource[indexPath.row], isPortrait: isPortrait())
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (UIScreen.main.bounds.width - 5) / 4
-        sampleCell.config(width: cellWidth, user: datasource[indexPath.row])
-        let size = sampleCell.kiss.estimatedSize(width: cellWidth, height: nil)
-        return size
+        return CGSize(width: cellWidth(), height: rowHeight(indexPath.row))
     }
     
+    
+    func cellWidth() -> CGFloat {
+        return (UIScreen.main.bounds.width - numberColumns() - 1) / numberColumns()
+    }
+    
+    func numberColumns() -> CGFloat {
+        return isPortrait() ? 4 : 3
+    }
 }
 
-class UserKissCell: UICollectionViewCell {
-    let orderLabel = "Order".labelMediumBold
-    let titleLable = "Title".labelMediumBold
-    let phoneNum = "PhoneNUm".labelMedium
-    let image = makeView(.systemGray2)
-
-    lazy var hLayout = makeView(.green).kiss
-        .hstack {
-            image.layout.grow(1).ratio(3/2)
-            vstack {
-                orderLabel.layout
-                titleLable.layout
-                phoneNum.layout
-            }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
-        }.padding(5).minHeight(120).alignItems(.start)
-    
-    lazy var vLayout = makeView(.yellow).kiss
-        .vstack {
-            image.layout.grow(1).ratio(2/2)
-            vstack {
-                orderLabel.layout.grow(1)
-                phoneNum.layout.grow(1)
-                titleLable.layout.grow(1)
-            }.grow(1).alignItems(.start).marginLeft(5).alignSelf(.center)
-        }.padding(5).minHeight(120).alignItems(.start)
-    
-    func config(width: CGFloat, user: User) {
-        orderLabel.text = user.email
-        titleLable.text = "\(user.name.last) \(user.name.first)"
-        phoneNum.text = "Tel: \(user.phone)"
-        let isVertical = width > 250
-        kiss.constructIfNeed(layout: isVertical ? vLayout : hLayout)
-        layoutIfNeeded()
+class CacheCellHeight {
+    private var heightDict = [Int: CGFloat]()
+    var calculation: ((Int) -> CGFloat)? = nil
+    func clearAll() {
+        heightDict.removeAll()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        kiss.updateChange(width: frame.width, height: frame.height)
+    func get(at row: Int) -> CGFloat {
+        if let value = heightDict[row] {
+            return value
+        }
+        guard let calculation = calculation else { return 0 }
+        let newValue = calculation(row)
+        heightDict[row] = newValue
+        return newValue
     }
 }

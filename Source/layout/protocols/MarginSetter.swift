@@ -22,25 +22,25 @@ public protocol MarginSetter {
 public extension MarginSetter where Self: LayoutItem {
     func marginLeft(_ value: Double) -> Self {
         attr.userMarginLeft = value
-        attr.mLeft = value
+        attr.forcedLeft = value
         return self
     }
     
     func marginRight(_ value: Double) -> Self {
         attr.userMarginRight = value
-        attr.mRight = value
+        attr.forcedRight = value
         return self
     }
     
     func marginTop(_ value: Double) -> Self {
         attr.userMarginTop = value
-        attr.mTop = value
+        attr.forcedTop = value
         return self
     }
     
     func marginBottom(_ value: Double) -> Self {
         attr.userMarginBottom = value
-        attr.mBottom = value
+        attr.forcedBottom = value
         return self
     }
     

@@ -9,14 +9,17 @@
 import Foundation
 import UIKit
 
+public enum AutoInvisibility {
+    case never
+    case allInvisible
+}
+
 protocol GroupLayoutSetter: PaddingSetter, MarginSetter, SizeSetter, AlignmentSetter, SelfAlignSetter {}
 
-public class GroupLayout: LayoutItem, GroupLayoutSetter {
+public class GroupLayout: UIViewLayout, GroupLayoutSetter {
     var baseView: UIView? = nil
-    var body = makeBlankView()
     var layoutItems = [LayoutItem]()
-    var attr = LayoutAttribute()
-    var overlayGroups = [GroupLayout]()
+    var autoInvisibility = AutoInvisibility.allInvisible
     
     public var layerViews: [UIView] {
         var views: [UIView] = []
@@ -27,67 +30,34 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
         return views
     }
     
+    public func autoInvisible(_ type: AutoInvisibility) -> Self {
+        self.autoInvisibility = type
+        return self
+    }
+    
     func insert(view: UIViewLayout, at index: Int) {
         body.insertSubview(view.body, at: index)
         body.yoga.markDirty()
     }
-    
-    func autoMarkIncludedInLayout() {
+   
+    func resetForcedValue() {
         layoutItems.forEach {
-            if let uiviewLayout = $0 as? UIViewLayout {
-                uiviewLayout.body.yoga.isIncludedInLayout = uiviewLayout.isVisible
-            }
-            if let group = $0 as? GroupLayout {
-                group.autoMarkIncludedInLayout()
-            }
+            $0.attr.forcedLeft = $0.attr.userMarginLeft
+            $0.attr.forcedRight = $0.attr.userMarginRight
+            $0.attr.forcedTop = $0.attr.userMarginTop
+            $0.attr.forcedBottom = $0.attr.userMarginBottom
+            $0.attr.forcedWidth = nil
+            $0.attr.forcedHeight = nil
         }
     }
     
-    func autoMarkDirty() {
-        layoutItems.forEach {
-            if let group = $0 as? GroupLayout {
-                group.autoMarkDirty()
-            }
-            
-            if let uiviewLayout = $0 as? UIViewLayout {
-                let view = uiviewLayout.body
-                if view is UILabel ||
-                    view is UIButton ||
-                    view is UITextView ||
-                    view is UIImageView ||
-                    view is UITextField {
-                    view.yoga.markDirty()
-                }
-            }
-            
+    public override var isVisibleLayout: Bool {
+        if body.isHidden { return false }
+        
+        switch autoInvisibility {
+        case .never: return true
+        case .allInvisible: return hasVisibleView
         }
-    }
-    
-    func resetMargin() {
-        layoutItems.forEach {
-            $0.attr.mLeft = $0.attr.userMarginLeft
-            $0.attr.mRight = $0.attr.userMarginRight
-            $0.attr.mTop = $0.attr.userMarginTop
-            $0.attr.mBottom = $0.attr.userMarginBottom
-        }
-    }
-    
-    public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
-        let groups = builder()
-        groups.forEach { $0.baseView = self.body }
-        overlayGroups.append(contentsOf: groups)
-        return self
-    }
-    
-    public func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
-        let group = builder()
-        group.baseView = self.body
-        overlayGroups.append(group)
-        return self
-    }
-    
-    public var isVisible: Bool {
-        return hasVisibleView
     }
     
     /*
@@ -109,25 +79,14 @@ public class GroupLayout: LayoutItem, GroupLayoutSetter {
     }
 }
 
-extension GroupLayout: NSCopying {
-    public func copy(with zone: NSZone? = nil) -> Any {
-        let newInstance = GroupLayout()
-        newInstance.layoutItems = self.layoutItems.copy(with: zone)
-        newInstance.attr = self.attr.copy(with: zone) as! LayoutAttribute
-        newInstance.overlayGroups = self.overlayGroups.copy()
-        newInstance.body = self.body
-        newInstance.baseView = self.baseView
-        return newInstance
-    }
-}
-
 extension GroupLayout {
-    var views: [UIView] {
+    /// Chỉ xét những view đóng vai trò là content, như uilabel, uibutton, image,...
+    var uiContentViews: [UIView] {
         var output = [UIView]()
         layoutItems.forEach {
             if let group = $0 as? GroupLayout {
                 // Recursive to get all views
-                output.append(contentsOf: group.views)
+                output.append(contentsOf: group.uiContentViews)
             } else if let uiviewLayout = $0 as? UIViewLayout {
                 output.append(uiviewLayout.body)
             }
@@ -135,12 +94,9 @@ extension GroupLayout {
         return output
     }
     
-    var visibleViews: [UIView] {
-        return views.filter { $0.isVisible }
-    }
-    
     var hasVisibleView: Bool {
-        return !visibleViews.isEmpty
+        let visibleViews = layoutItems.filter { $0.isVisibleLayout }
+        return visibleViews.count > 0
     }
 }
 
@@ -170,16 +126,17 @@ extension GroupLayout {
             guard let group = $0 as? GroupLayout else { return }
             group.resetViewHierachy()
         }
-        overlayGroups.forEach {
+        allOverlayGroup.forEach {
+            $0.body.removeFromSuperview()
             $0.resetViewHierachy()
         }
     }
     
     /// Remove Subview hiện tại, construct lại hệ thống view mới
     func constructLayout() {
-        let flex = self as? FlexLayoutItemProtocol
-        flex?.layoutRendering()
-        flex?.configureLayout()
+        let flex = self
+        flex.prepareForRenderingLayout()
+        flex.configureLayout()
     }
     
     /// Layout lại vị trí view mới, những view bị hidden sẽ remove khỏi hệ thống layout.
@@ -189,15 +146,25 @@ extension GroupLayout {
     ///   - height: nil -> autoFit Height
     func updateLayoutChange(width: CGFloat? = nil, height: CGFloat? = nil) {
         constructLayout()
-        body.applyLayout(preservingOrigin: true, fixWidth: width, fixHeight: height)
+        
+        body.applyLayout(preservingOrigin: false, fixWidth: width, fixHeight: height)
         
         allOverlayGroup.forEach { (overlay) in
             guard let base = overlay.baseView else { return }
-            overlay.updateLayoutChange(width: base.bounds.width, height: base.bounds.height)
-            guard let superView = overlay.root.superview else { return }
-            guard let newFrame = superView.convertedFrame(subview: base) else {  return }
-            overlay.root.frame = newFrame
+            overlay.overlayUpdateLayout(width: base.bounds.width, height: base.bounds.height)
+//            guard let superView = overlay.root.superview else { return }
+//            guard let newFrame = superView.convertedFrame(subview: base) else {  return }
+//            overlay.root.frame = newFrame
         }
+    }
+    
+    private func overlayUpdateLayout(width: CGFloat, height: CGFloat) {
+        constructLayout()
+        body.applyLayout(preservingOrigin: false, fixWidth: width, fixHeight: height)
+        guard let superView = root.superview else { return }
+        guard let base = baseView else { return }
+        guard let newFrame = superView.convertedFrame(subview: base) else {  return }
+        root.frame = newFrame
     }
     
     /// Tính toán size cần thiết để render layout

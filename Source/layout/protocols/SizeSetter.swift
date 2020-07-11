@@ -9,6 +9,7 @@ public protocol SizeSetter {
     @discardableResult func height(_ value: Double) -> Self
     
     @discardableResult func grow(_ value: Double) -> Self
+    @discardableResult func growFull() -> Self
     @discardableResult func ratio(_ value: Double) -> Self
     
     @discardableResult func size(_ value: CGSize) -> Self
@@ -31,6 +32,12 @@ extension SizeSetter where Self: LayoutItem {
         attr.grow = value
         return self
     }
+    
+    public func growFull() -> Self {
+        attr.grow = -.sameZero
+        return self
+    }
+    
     public func size(_ value: CGSize) -> Self {
         attr.userWidth = Double(value.width)
         attr.userHeight = Double(value.height)

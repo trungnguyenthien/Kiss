@@ -13,34 +13,56 @@ import YogaKit
 public extension UIView {
     // MARK: - VIEWLAYOUT
     var layout: UIViewLayout {
+        // Nếu là custom view đã có sẵn layout rồi thì sử dụng bản copy của custom view đó
+        
         let vlayout = UIViewLayout()
         vlayout.body = self
         return vlayout
+    }
+    
+    /// Ẩn hiện view, ngược lại với isHidden
+    var isVisible: Bool {
+        get { return !isHidden }
+        set { isHidden = !newValue }
     }
 }
 
 
 extension UIView {
     func applyLayoutFlexibleAll(preservingOrigin: Bool) {
-        yoga.applyLayout(preservingOrigin: preservingOrigin,
-                         dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight, .flexibleWidth))
+        let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleHeight, .flexibleWidth)
+        yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
     }
     
     func applyLayout(preservingOrigin: Bool, fixWidth: CGFloat?, fixHeight: CGFloat?) {
         if let width = fixWidth, let height = fixHeight {
-            yoga.width = YGValue(width)
-            yoga.height = YGValue(height)
+            configureLayout { (l) in
+                l.width = YGValue(width)
+                l.height = YGValue(height)
+            }
             yoga.applyLayout(preservingOrigin: preservingOrigin)
         } else if let width = fixWidth, fixHeight == nil {
-            yoga.width = YGValue(width)
-            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleHeight))
+            configureLayout { (l) in
+                l.width = YGValue(width)
+                l.height = YGValueAuto
+            }
+            let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleHeight)
+            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         } else if let height = fixHeight, fixWidth == nil {
-            yoga.height = YGValue(height)
-            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleWidth))
+            
+            configureLayout { (l) in
+                l.width = YGValueAuto
+                l.height = YGValue(height)
+            }
+            let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleWidth)
+            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         } else {
-            yoga.width = YGValueUndefined
-            yoga.height = YGValueUndefined
-            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: YGDimensionFlexibility(arrayLiteral: .flexibleWidth, .flexibleHeight))
+            configureLayout { (l) in
+                l.width = YGValueAuto
+                l.height = YGValueAuto
+            }
+            let dimensionFlexibility = YGDimensionFlexibility(arrayLiteral: .flexibleWidth, .flexibleHeight)
+            yoga.applyLayout(preservingOrigin: preservingOrigin, dimensionFlexibility: dimensionFlexibility)
         }
     }
     
@@ -79,6 +101,8 @@ extension UIView {
     
     public class Kiss {
         let _selfView: UIView
+        var hasSubLayout = false
+        
         weak var currentGroupLayout: GroupLayout? = nil
         init(view: UIView) {
             self._selfView = view
@@ -94,11 +118,16 @@ extension UIView {
             currentGroupLayout = layout
             currentGroupLayout?.resetViewHierachy()
             
-            _selfView.addSubview(layout.body)
+            if _selfView !== layout.body {
+                _selfView.addSubview(layout.body)
+            }
+            
             layout.constructLayout()
             
-            layout.layerViews.forEach { _selfView.addSubview($0) }
-            
+            layout.allOverlayGroup.forEach {
+                $0.body.removeFromSuperview()
+                _selfView.addSubview($0.body)
+            }
         }
         
         public func updateChange(width: CGFloat? = nil, height: CGFloat? = nil) {

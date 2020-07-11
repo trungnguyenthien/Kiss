@@ -3,20 +3,7 @@ import UIKit
 import YogaKit
 
 func trace(_ message: String) {
-    print(message)
-}
-
-func className(_ obj: Any) -> String {
-    return String(describing: type(of: obj))
-}
-
-func printWarning(_ message: String) {
-    trace("⚠️ KISSUI: " + message)
-}
-
-func throwError(_ message: String) {
-    trace("🔴 KISSUI: " + message)
-    fatalError("🔴 KISSUI: " + message)
+    print("💋💋 KissLog: " + message)
 }
 
 func setGrow(grow: Double, to layout: YGLayout) {
@@ -25,7 +12,6 @@ func setGrow(grow: Double, to layout: YGLayout) {
     layout.flexShrink = cgGrow
     layout.flex = cgGrow
 }
-
 
 func makeBlankView() -> UIView {
     let view = UIView()

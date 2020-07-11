@@ -11,7 +11,7 @@ import UIKit
 
 public class WrapLayout: GroupLayout {
     var lineSpacing = 0.0
-
+    
     override init() {
         super.init()
         self.attr.maxHeight = .none
@@ -21,44 +21,35 @@ public class WrapLayout: GroupLayout {
         lineSpacing = spacing
         return self
     }
-}
-
-extension WrapLayout {
+    
     public override func copy(with zone: NSZone? = nil) -> Any {
-        let instance = WrapLayout()
-        instance.layoutItems = self.layoutItems.copy(with: zone)
-        instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
-        instance.lineSpacing = self.lineSpacing
-        instance.overlayGroups = self.overlayGroups.copy()
-        instance.body = self.body
-        instance.baseView = self.baseView
-        return instance
+        let newInstance = WrapLayout()
+        newInstance.layoutItems = self.layoutItems.copy(with: zone)
+        newInstance.baseView = self.baseView
+        newInstance.autoInvisibility = self.autoInvisibility
+        newInstance.lineSpacing = self.lineSpacing
+        newInstance.overlayGroups = self.overlayGroups
+        return newInstance
     }
-}
-
-extension WrapLayout: FlexLayoutItemProtocol {
-    func layoutRendering() {
-        resetMargin()
+    
+    override func prepareForRenderingLayout() {
+        resetForcedValue()
         removeLeadingTrailingIfHasSpacer()
-        autoMarkDirty()
-        autoMarkIncludedInLayout()
         
-        layoutItems.forEach { (layoutItem) in
-            layoutItem.root.configureLayout { (l) in
-                l.isEnabled = true
-                layoutItem.attr.map(to: l)
-            }
-            guard let flex = layoutItem as? FlexLayoutItemProtocol else { return }
-            flex.layoutRendering()
+        layoutItems
+            .compactMap { $0 as? FlexLayoutItemProtocol }
+            .forEach { (flex) in
+                flex.prepareForRenderingLayout()
         }
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         body.configureLayout { (l) in
             l.isEnabled = true
             l.direction = .LTR
             l.flexDirection = .row
             l.flexWrap = .wrap
+            l.isIncludedInLayout = self.isVisibleLayout
             
             self.attr.map(to: l)
         }
@@ -74,8 +65,8 @@ extension WrapLayout: FlexLayoutItemProtocol {
     private func removeLeadingTrailingIfHasSpacer() {
         layoutItems.enumerated().forEach { (index, item) in
             guard item is Spacer else { return }
-            layoutItems.element(index - 1)?.attr.mRight = 0
-            layoutItems.element(index + 1)?.attr.mLeft = 0
+            layoutItems.element(index - 1)?.attr.forcedRight = 0
+            layoutItems.element(index + 1)?.attr.forcedLeft = 0
         }
     }
 }

@@ -13,12 +13,18 @@ public struct GroupLayoutBuilder {
 }
 
 // MARK: - VSTACK LAYOUT
+/// <#Description#>
+/// - Parameter builder: <#builder description#>
+/// - Returns: <#description#>
 public func vstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> VStackLayout {
     let stack = VStackLayout()
     stack.layoutItems.append(contentsOf: builder())
     return stack
 }
 
+/// <#Description#>
+/// - Parameter builder: <#builder description#>
+/// - Returns: <#description#>
 public func vstack(@LayoutItemBuilder builder: () -> LayoutItem) -> VStackLayout {
     let stack = VStackLayout()
     stack.layoutItems.append(builder())
@@ -26,12 +32,19 @@ public func vstack(@LayoutItemBuilder builder: () -> LayoutItem) -> VStackLayout
 }
 
 // MARK: - HSTACK LAYOUT
+
+/// <#Description#>
+/// - Parameter builder: <#builder description#>
+/// - Returns: <#description#>
 public func hstack(@LayoutItemBuilder builder: () -> [LayoutItem]) -> HStackLayout {
     let stack = HStackLayout()
     stack.layoutItems.append(contentsOf: builder())
     return stack
 }
 
+/// <#Description#>
+/// - Parameter builder: <#builder description#>
+/// - Returns: <#description#>
 public func hstack(@LayoutItemBuilder builder: () -> LayoutItem) -> HStackLayout {
     let stack = HStackLayout()
     stack.layoutItems.append(builder())
@@ -39,12 +52,18 @@ public func hstack(@LayoutItemBuilder builder: () -> LayoutItem) -> HStackLayout
 }
 
 // MARK: - WRAP LAYOUT
+/// <#Description#>
+/// - Parameter builder: <#builder description#>
+/// - Returns: <#description#>
 public func wrap(@LayoutItemBuilder builder: () -> [LayoutItem]) -> WrapLayout {
     let stack = WrapLayout()
     stack.layoutItems.append(contentsOf: builder())
     return stack
 }
 
+/// <#Description#>
+/// - Parameter builder: <#builder description#>
+/// - Returns: <#description#>
 public func wrap(@LayoutItemBuilder builder: () -> LayoutItem) -> WrapLayout {
     let stack = WrapLayout()
     stack.layoutItems.append(builder())
@@ -52,6 +71,23 @@ public func wrap(@LayoutItemBuilder builder: () -> LayoutItem) -> WrapLayout {
 }
 
 // MARK: - SPACER
-public var spacer: Spacer {
+/// <#Description#>
+/// - Parameter size: <#size description#>
+/// - Returns: <#description#>
+public func spacer(_ size: Double) -> Spacer {
+    let spacer = Spacer(size: size)
+    return spacer
+}
+
+/// <#Description#>
+/// - Parameter grow: <#grow description#>
+/// - Returns: <#description#>
+public func growSpacer(_ grow: Double) -> Spacer {
+    return Spacer(grow: grow)
+}
+
+/// <#Description#>
+/// - Returns: <#description#>
+public func stretchSpacer() -> Spacer {
     return Spacer()
 }

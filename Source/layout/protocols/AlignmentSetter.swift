@@ -10,23 +10,23 @@ import Foundation
 
 
 public protocol AlignmentSetter {
-    @discardableResult func align(_ value: MainAxisAlignment) -> Self
-    @discardableResult func alignSelf(_ value: CrossAxisAlignment) -> Self
-    @discardableResult func alignItems(_ value: CrossAxisAlignment) -> Self
+    @discardableResult func mainAlign(_ value: MainAxisAlignment) -> Self
+    @discardableResult func crossAlign(self value: CrossAxisAlignment) -> Self
+    @discardableResult func crossAlign(items value: CrossAxisAlignment) -> Self
 }
 
 public extension AlignmentSetter where Self: LayoutItem {
-    func align(_ value: MainAxisAlignment) -> Self {
+    func mainAlign(_ value: MainAxisAlignment) -> Self {
         self.attr.alignStack = value
         return self
     }
     
-    func alignSelf(_ value: CrossAxisAlignment) -> Self {
+    func crossAlign(self value: CrossAxisAlignment) -> Self {
         self.attr.alignSelf = value
         return self
     }
     
-    func alignItems(_ value: CrossAxisAlignment) -> Self {
+    func crossAlign(items value: CrossAxisAlignment) -> Self {
         self.attr.alignItems = value
         return self
     }

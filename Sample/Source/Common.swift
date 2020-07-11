@@ -12,6 +12,55 @@ import UIKit
 let small = 4.0
 let medium = 8.0
 
+extension UIImageView {
+    func download(url: String) {
+        guard let url = URL(string: url) else { return }
+        download(url: url)
+    }
+    
+    func download(url: URL) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async {
+                self.image = image
+            }
+        }.resume()
+    }
+}
+func isPortrait() -> Bool {
+    return UIScreen.main.bounds.width < UIScreen.main.bounds.height
+}
+
+func makeButton() -> UIButton {
+    let button = UIButton()
+    button.backgroundColor = .systemOrange
+    button.layer.cornerRadius = 15
+    return button
+}
+
+func makeThumbnail() -> UIImageView {
+    let imageView = UIImageView()
+    imageView.backgroundColor = .lightGray
+    imageView.layer.cornerRadius = 5
+    imageView.layer.borderWidth = 1
+    imageView.layer.borderColor = UIColor.gray.cgColor
+    return imageView
+}
+
+
+func makeIconImage(name: String, size: Double) -> UIImageView {
+    let imageView = UIImageView()
+    imageView.image = UIImage(named: name)
+    imageView.frame = CGRect(x: 0, y: 0, width: size, height: size)
+    return imageView
+}
+
+
 func makeCollection() -> UICollectionView {
     let clayout = UICollectionViewFlowLayout.init()
     clayout.scrollDirection = .vertical
@@ -29,8 +78,16 @@ func makeView(_ color: UIColor) -> UIView {
 }
 
 extension String {
+    var button: UIButton {
+        let btn = makeButton()
+        btn.setTitle(self, for: .normal)
+        return btn
+    }
+    
+    
     var label: UILabel {
         let view = UILabel()
+//        view.backgroundColor = .brown
         view.text = self
         view.numberOfLines = 0
         return view;

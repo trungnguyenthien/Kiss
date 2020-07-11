@@ -15,46 +15,36 @@ public class VStackLayout: GroupLayout {
         self.attr.maxHeight = .none
         self.attr.alignItems = .stretch
     }
-}
-
-extension VStackLayout {
+    
     public override func copy(with zone: NSZone? = nil) -> Any {
-        let instance = VStackLayout()
-        instance.layoutItems = self.layoutItems.copy(with: zone)
-        instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
-        instance.overlayGroups = self.overlayGroups.copy()
-        instance.body = self.body
-        instance.baseView = self.baseView
-        return instance
+        let newInstance = VStackLayout()
+        newInstance.layoutItems = self.layoutItems.copy(with: zone)
+        newInstance.baseView = self.baseView
+        newInstance.autoInvisibility = self.autoInvisibility
+        newInstance.overlayGroups = self.overlayGroups
+        return newInstance
     }
-}
-
-extension VStackLayout: FlexLayoutItemProtocol {
-    func layoutRendering() {
-        resetMargin()
+    
+    override func prepareForRenderingLayout() {
+        resetForcedValue()
         
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
         
-        autoMarkDirty()
-        autoMarkIncludedInLayout()
-        
-        layoutItems.forEach { (layoutItem) in
-            layoutItem.root.configureLayout { (l) in
-                l.isEnabled = true
-                layoutItem.attr.map(to: l)
-            }
-            guard let flex = layoutItem as? FlexLayoutItemProtocol else { return }
-            flex.layoutRendering()
+        layoutItems
+            .compactMap { $0 as? FlexLayoutItemProtocol }
+            .forEach { (flex) in
+            flex.prepareForRenderingLayout()
         }
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         body.configureLayout { (l) in
             l.isEnabled = true
             l.direction = .LTR
             l.flexDirection = .column
             l.flexWrap = .noWrap
+            l.isIncludedInLayout = self.isVisibleLayout
             
             self.attr.map(to: l)
         }

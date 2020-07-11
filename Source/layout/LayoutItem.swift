@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public protocol LayoutItem {
-    var isVisible: Bool { get }
+    var isVisibleLayout: Bool { get }
 }
 
 extension Array where Array.Element == LayoutItem {
@@ -35,6 +35,8 @@ internal extension LayoutItem {
         } else if let group = self as? GroupLayout {
             return group.overlayGroups
         }
+        
+        /// Spacer không thể add overlay nên không xét
         return []
     }
     
@@ -71,16 +73,16 @@ internal extension LayoutItem {
         }
     }
     
-    var layoutItems: [LayoutItem] {
-        guard let viewLayout = self as? GroupLayout else { return [] }
-        return viewLayout.layoutItems
-    }
+//    var layoutItems: [LayoutItem] {
+//        guard let viewLayout = self as? GroupLayout else { return [] }
+//        return viewLayout.layoutItems
+//    }
     
     var isSpacer: Bool {
         return self is Spacer
     }
     
-    var isGroup: Bool {
-        return self is GroupLayout
-    }
+//    var isGroup: Bool {
+//        return self is GroupLayout
+//    }
 }

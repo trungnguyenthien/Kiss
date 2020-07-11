@@ -11,5 +11,5 @@ import UIKit
 
 protocol FlexLayoutItemProtocol {
     func configureLayout()
-    func layoutRendering()
+    func prepareForRenderingLayout()
 }

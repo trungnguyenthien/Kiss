@@ -13,7 +13,20 @@ public class Spacer: LayoutItem {
     var attr = LayoutAttribute()
     var body = makeBlankView()
     
-    public var isVisible: Bool {
+    init() {
+        attr.grow = -.sameZero
+    }
+    
+    init(grow: Double) {
+        attr.grow = grow
+    }
+    
+    init(size: Double) {
+        attr.userWidth = size
+        attr.userHeight = size
+    }
+    
+    public var isVisibleLayout: Bool {
         return true
     }
 }
@@ -23,11 +36,13 @@ extension Spacer: FlexLayoutItemProtocol {
         body.configureLayout { (l) in
             l.isEnabled = true
             self.attr.map(to: l)
-            setGrow(grow: -0.000000000001, to: l)
+            if let grow = self.attr.grow {
+                setGrow(grow: grow, to: l)
+            }
         }
     }
     
-    func layoutRendering() {
+    func prepareForRenderingLayout() {
         
     }
 }

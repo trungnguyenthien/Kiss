@@ -16,46 +16,35 @@ public class HStackLayout: GroupLayout {
         self.attr.maxHeight = .none
         self.attr.alignItems = .stretch
     }
-}
-
-extension HStackLayout {
+    
     public override func copy(with zone: NSZone? = nil) -> Any {
-        let instance = HStackLayout()
-        instance.layoutItems = self.layoutItems.copy(with: zone)
-        instance.attr = self.attr.copy(with: zone) as! LayoutAttribute
-        instance.overlayGroups = self.overlayGroups.copy()
-        instance.body = self.body
-        instance.baseView = self.baseView
-        return instance
+        let newInstance = HStackLayout()
+        newInstance.layoutItems = self.layoutItems.copy(with: zone)
+        newInstance.baseView = self.baseView
+        newInstance.autoInvisibility = self.autoInvisibility
+        newInstance.overlayGroups = self.overlayGroups
+        return newInstance
     }
-}
-
-extension HStackLayout: FlexLayoutItemProtocol {
-    func layoutRendering() {
-        resetMargin()
+    
+    override func prepareForRenderingLayout() {
+        resetForcedValue()
         
         removeStartLeadingEndTrailing()
         removeLeadingTrailingIfHasSpacer()
-        
-        autoMarkDirty()
-        autoMarkIncludedInLayout()
-        
-        layoutItems.forEach { (layoutItem) in
-            layoutItem.root.configureLayout { (l) in
-                l.isEnabled = true
-                layoutItem.attr.map(to: l)
-            }
-            guard let flex = layoutItem as? FlexLayoutItemProtocol else { return }
-            flex.layoutRendering()
+        layoutItems
+            .compactMap { $0 as? FlexLayoutItemProtocol }
+            .forEach { (flex) in
+            flex.prepareForRenderingLayout()
         }
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         body.configureLayout { (l) in
             l.isEnabled = true
             l.direction = .LTR
             l.flexDirection = .row
             l.flexWrap = .noWrap
+            l.isIncludedInLayout = self.isVisibleLayout
             
             self.attr.map(to: l)
         }
@@ -69,16 +58,16 @@ extension HStackLayout: FlexLayoutItemProtocol {
     }
     
     private func removeStartLeadingEndTrailing() {
-        let noSpacerLayoutItems = layoutItems.filter { $0.isVisible }
-        noSpacerLayoutItems.first?.attr.mLeft = 0
-        noSpacerLayoutItems.last?.attr.mRight = 0
+        let noSpacerLayoutItems = layoutItems.filter { $0.isVisibleLayout }
+        noSpacerLayoutItems.first?.attr.forcedLeft = 0
+        noSpacerLayoutItems.last?.attr.forcedRight = 0
     }
     
     private func removeLeadingTrailingIfHasSpacer() {
         layoutItems.enumerated().forEach { (index, item) in
             guard item is Spacer else { return }
-            layoutItems.element(index - 1)?.attr.mRight = 0
-            layoutItems.element(index + 1)?.attr.mLeft = 0
+            layoutItems.element(index - 1)?.attr.forcedRight = 0
+            layoutItems.element(index + 1)?.attr.forcedLeft = 0
         }
     }
 }
