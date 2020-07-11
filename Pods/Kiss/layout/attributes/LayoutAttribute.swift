@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import YogaKit
+import yoga
 
 class LayoutAttribute {
     var paddingLeft: Double = 0 // internal(set)
