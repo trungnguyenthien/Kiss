@@ -1,4 +1,4 @@
-framework module Pods_Kiss {
+framework module Kiss {
   umbrella header "Pods-Kiss-umbrella.h"
 
   export *
