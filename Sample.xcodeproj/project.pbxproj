@@ -15,19 +15,19 @@
 		871D4E6624B9B42F00DC3531 /* RamdomUserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D4E6124B9B42F00DC3531 /* RamdomUserProvider.swift */; };
 		871D4E6724B9B42F00DC3531 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D4E6224B9B42F00DC3531 /* RatingView.swift */; };
 		871D4E6824B9B42F00DC3531 /* UserKissCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D4E6324B9B42F00DC3531 /* UserKissCell.swift */; };
-		871D4E6A24B9B49400DC3531 /* Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 871D4E6924B9B49400DC3531 /* Kiss.framework */; };
-		871D4E6B24B9B49400DC3531 /* Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 871D4E6924B9B49400DC3531 /* Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		871D4E6F24B9B6BA00DC3531 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871D4E6D24B9B6B900DC3531 /* Main.storyboard */; };
+		87496B7E24BA9442000B3D60 /* KissLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B7D24BA9442000B3D60 /* KissLib.framework */; };
+		87496B7F24BA9442000B3D60 /* KissLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B7D24BA9442000B3D60 /* KissLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		871D4E6C24B9B49400DC3531 /* Embed Frameworks */ = {
+		87496B8024BA9442000B3D60 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				871D4E6B24B9B49400DC3531 /* Kiss.framework in Embed Frameworks */,
+				87496B7F24BA9442000B3D60 /* KissLib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,6 +48,7 @@
 		871D4E6324B9B42F00DC3531 /* UserKissCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKissCell.swift; sourceTree = "<group>"; };
 		871D4E6924B9B49400DC3531 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		871D4E6E24B9B6B900DC3531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		87496B7D24BA9442000B3D60 /* KissLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KissLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		908E68CF4130CEE941585F66 /* Pods-Kiss.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiss.release.xcconfig"; path = "Target Support Files/Pods-Kiss/Pods-Kiss.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				871D4E6A24B9B49400DC3531 /* Kiss.framework in Frameworks */,
+				87496B7E24BA9442000B3D60 /* KissLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +67,7 @@
 		457BECC3F3EC70539AC63738 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87496B7D24BA9442000B3D60 /* KissLib.framework */,
 				871D4E6924B9B49400DC3531 /* Kiss.framework */,
 			);
 			name = Frameworks;
@@ -126,7 +128,7 @@
 				871D4E0524B9B1A400DC3531 /* Frameworks */,
 				871D4E0624B9B1A400DC3531 /* Resources */,
 				413068B28D7B54FAB751484D /* [CP] Embed Pods Frameworks */,
-				871D4E6C24B9B49400DC3531 /* Embed Frameworks */,
+				87496B8024BA9442000B3D60 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

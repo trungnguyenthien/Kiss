@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Sample.xcodeproj">
+      location = "group:KissLib/KissLib.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Kiss.xcodeproj">
+      location = "group:Sample.xcodeproj">
    </FileRef>
 </Workspace>

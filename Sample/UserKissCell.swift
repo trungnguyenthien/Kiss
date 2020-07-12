@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import Kiss
+import KissLib
 
 class UserKissCell: UICollectionViewCell {
     let mailLabel = "ngthientrung@gmail.com".labelMediumBold
