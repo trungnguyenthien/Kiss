@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		870C461A24BAA6EF006F6235 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B6624BA8B1B000B3D60 /* yoga.framework */; };
+		870C461B24BAA6EF006F6235 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B6624BA8B1B000B3D60 /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87496AA624BA1B0A000B3D60 /* KissLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496AA424BA1B0A000B3D60 /* KissLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		87496ADB24BA1BBF000B3D60 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC024BA1BBF000B3D60 /* UIView+Extension.swift */; };
 		87496ADC24BA1BBF000B3D60 /* layoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC124BA1BBF000B3D60 /* layoutBuilder.swift */; };
@@ -34,8 +36,6 @@
 		87496AF224BA1BBF000B3D60 /* SizeSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496ADA24BA1BBF000B3D60 /* SizeSetter.swift */; };
 		87496B5524BA1CA1000B3D60 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B3B24BA1C37000B3D60 /* YogaKit.framework */; };
 		87496B5624BA1CA1000B3D60 /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B3B24BA1C37000B3D60 /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		87496B6224BA8AE2000B3D60 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; };
-		87496B6324BA8AE2000B3D60 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87496B6A24BA8B26000B3D60 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; platformFilter = ios; };
 		87496B6B24BA8B26000B3D60 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87496B7024BA8C43000B3D60 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B6F24BA8C43000B3D60 /* Foundation.framework */; platformFilter = ios; };
@@ -90,13 +90,6 @@
 			remoteGlobalIDString = 87496B3A24BA1C37000B3D60;
 			remoteInfo = YogaKit;
 		};
-		87496B6424BA8AE2000B3D60 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 87496A9824BA1B0A000B3D60 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 87496AF724BA1BF6000B3D60;
-			remoteInfo = yoga;
-		};
 		87496B6C24BA8B27000B3D60 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 87496A9824BA1B0A000B3D60 /* Project object */;
@@ -113,7 +106,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				87496B6324BA8AE2000B3D60 /* yoga.framework in Embed Frameworks */,
+				870C461B24BAA6EF006F6235 /* yoga.framework in Embed Frameworks */,
 				87496B5624BA1CA1000B3D60 /* YogaKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -218,7 +211,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87496B6224BA8AE2000B3D60 /* yoga.framework in Frameworks */,
+				870C461A24BAA6EF006F6235 /* yoga.framework in Frameworks */,
 				87496B5524BA1CA1000B3D60 /* YogaKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,7 +474,6 @@
 			);
 			dependencies = (
 				87496B5824BA1CA1000B3D60 /* PBXTargetDependency */,
-				87496B6524BA8AE2000B3D60 /* PBXTargetDependency */,
 			);
 			name = KissLib;
 			productName = KissLib;
@@ -661,11 +653,6 @@
 			target = 87496B3A24BA1C37000B3D60 /* YogaKit */;
 			targetProxy = 87496B5724BA1CA1000B3D60 /* PBXContainerItemProxy */;
 		};
-		87496B6524BA8AE2000B3D60 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 87496AF724BA1BF6000B3D60 /* yoga */;
-			targetProxy = 87496B6424BA8AE2000B3D60 /* PBXContainerItemProxy */;
-		};
 		87496B6D24BA8B27000B3D60 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -707,6 +694,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -770,6 +759,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -814,6 +805,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.KissLib;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -822,6 +814,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Debug;
 		};
@@ -844,6 +838,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.KissLib;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -852,6 +847,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;
 		};
@@ -868,7 +865,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_HARDENED_RUNTIME = NO;
 				GCC_PREFIX_HEADER = yoga/yoga.pch;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = "$(SRCROOT)/yoga/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -876,6 +873,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "";
 				MODULEMAP_FILE = yoga/yoga.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.yoga;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -885,6 +883,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Debug;
 		};
@@ -901,7 +901,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_HARDENED_RUNTIME = NO;
 				GCC_PREFIX_HEADER = yoga/yoga.pch;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = "$(SRCROOT)/yoga/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -909,6 +909,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "";
 				MODULEMAP_FILE = yoga/yoga.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.yoga;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -918,6 +919,8 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;
 		};
@@ -934,7 +937,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_HARDENED_RUNTIME = NO;
 				GCC_PREFIX_HEADER = YogaKit/YogaKit.pch;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = "$(SRCROOT)/YogaKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -942,6 +945,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "";
 				MODULEMAP_FILE = YogaKit/YogaKit.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.YogaKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -952,7 +956,9 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Debug;
 		};
@@ -969,7 +975,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_HARDENED_RUNTIME = NO;
 				GCC_PREFIX_HEADER = YogaKit/YogaKit.pch;
-				INFOPLIST_FILE = "";
+				INFOPLIST_FILE = "$(SRCROOT)/YogaKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -977,6 +983,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "";
 				MODULEMAP_FILE = YogaKit/YogaKit.modulemap;
 				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.YogaKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -986,7 +993,9 @@
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = "";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;
 		};
