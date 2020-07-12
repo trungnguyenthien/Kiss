@@ -136,8 +136,6 @@
 		87496AA124BA1B0A000B3D60 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87496AA424BA1B0A000B3D60 /* KissLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KissLib.h; sourceTree = "<group>"; };
 		87496AA524BA1B0A000B3D60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		87496AB824BA1B57000B3D60 /* KissSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KissSwift.h; sourceTree = "<group>"; };
-		87496AB924BA1B57000B3D60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87496AC024BA1BBF000B3D60 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		87496AC124BA1BBF000B3D60 /* layoutBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = layoutBuilder.swift; sourceTree = "<group>"; };
 		87496AC224BA1BBF000B3D60 /* publicExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = publicExtension.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 			children = (
 				87496ABE24BA1BBF000B3D60 /* Swift */,
 				87496AA324BA1B0A000B3D60 /* KissLib */,
-				87496AB724BA1B57000B3D60 /* KissSwift */,
 				87496AF924BA1BF6000B3D60 /* yoga */,
 				87496B3C24BA1C37000B3D60 /* YogaKit */,
 				87496AA224BA1B0A000B3D60 /* Products */,
@@ -270,15 +267,6 @@
 				87496AA524BA1B0A000B3D60 /* Info.plist */,
 			);
 			path = KissLib;
-			sourceTree = "<group>";
-		};
-		87496AB724BA1B57000B3D60 /* KissSwift */ = {
-			isa = PBXGroup;
-			children = (
-				87496AB824BA1B57000B3D60 /* KissSwift.h */,
-				87496AB924BA1B57000B3D60 /* Info.plist */,
-			);
-			path = KissSwift;
 			sourceTree = "<group>";
 		};
 		87496ABE24BA1BBF000B3D60 /* Swift */ = {
@@ -838,7 +826,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.KissLib;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.Kiss;
 				PRODUCT_NAME = Kiss;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -875,7 +863,7 @@
 				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.KissLib;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.Kiss;
 				PRODUCT_NAME = Kiss;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
