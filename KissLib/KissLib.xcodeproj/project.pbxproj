@@ -811,6 +811,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -852,7 +853,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = "";
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386 x86_64";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Debug;
@@ -889,7 +890,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = "";
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386 x86_64";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;
