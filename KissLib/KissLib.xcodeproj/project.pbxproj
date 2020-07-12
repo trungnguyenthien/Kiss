@@ -682,6 +682,8 @@
 					armv7,
 					arm64e,
 					armv7s,
+					x86_64,
+					i386,
 				);
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -759,6 +761,8 @@
 					armv7,
 					arm64e,
 					armv7s,
+					x86_64,
+					i386,
 				);
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -848,6 +852,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = "";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386 x86_64";
 				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Debug;
@@ -873,6 +878,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.KissLib;
 				PRODUCT_NAME = Kiss;
@@ -883,6 +889,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = "";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386 x86_64";
 				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;
