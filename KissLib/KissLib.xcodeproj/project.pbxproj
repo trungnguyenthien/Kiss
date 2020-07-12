@@ -126,7 +126,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		87496AA124BA1B0A000B3D60 /* KissLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KissLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87496AA124BA1B0A000B3D60 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87496AA424BA1B0A000B3D60 /* KissLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KissLib.h; sourceTree = "<group>"; };
 		87496AA524BA1B0A000B3D60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87496AB824BA1B57000B3D60 /* KissSwift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KissSwift.h; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 		87496AA224BA1B0A000B3D60 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				87496AA124BA1B0A000B3D60 /* KissLib.framework */,
+				87496AA124BA1B0A000B3D60 /* Kiss.framework */,
 				87496AF824BA1BF6000B3D60 /* yoga.framework */,
 				87496B3B24BA1C37000B3D60 /* YogaKit.framework */,
 			);
@@ -460,9 +460,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		87496AA024BA1B0A000B3D60 /* KissLib */ = {
+		87496AA024BA1B0A000B3D60 /* Kiss */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 87496AA924BA1B0A000B3D60 /* Build configuration list for PBXNativeTarget "KissLib" */;
+			buildConfigurationList = 87496AA924BA1B0A000B3D60 /* Build configuration list for PBXNativeTarget "Kiss" */;
 			buildPhases = (
 				87496A9C24BA1B0A000B3D60 /* Headers */,
 				87496A9D24BA1B0A000B3D60 /* Sources */,
@@ -475,9 +475,9 @@
 			dependencies = (
 				87496B5824BA1CA1000B3D60 /* PBXTargetDependency */,
 			);
-			name = KissLib;
+			name = Kiss;
 			productName = KissLib;
-			productReference = 87496AA124BA1B0A000B3D60 /* KissLib.framework */;
+			productReference = 87496AA124BA1B0A000B3D60 /* Kiss.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		87496AF724BA1BF6000B3D60 /* yoga */ = {
@@ -552,7 +552,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				87496AA024BA1B0A000B3D60 /* KissLib */,
+				87496AA024BA1B0A000B3D60 /* Kiss */,
 				87496AF724BA1BF6000B3D60 /* yoga */,
 				87496B3A24BA1C37000B3D60 /* YogaKit */,
 			);
@@ -813,7 +813,7 @@
 				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.KissLib;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Kiss;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
@@ -848,7 +848,7 @@
 				MACOSX_DEPLOYMENT_TARGET = "";
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.KissLib;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = Kiss;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
@@ -1017,7 +1017,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		87496AA924BA1B0A000B3D60 /* Build configuration list for PBXNativeTarget "KissLib" */ = {
+		87496AA924BA1B0A000B3D60 /* Build configuration list for PBXNativeTarget "Kiss" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				87496AAA24BA1B0A000B3D60 /* Debug */,

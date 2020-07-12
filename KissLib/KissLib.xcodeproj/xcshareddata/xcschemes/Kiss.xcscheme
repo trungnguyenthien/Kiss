@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "87496B3A24BA1C37000B3D60"
-               BuildableName = "YogaKit.framework"
-               BlueprintName = "YogaKit"
+               BlueprintIdentifier = "87496AA024BA1B0A000B3D60"
+               BuildableName = "Kiss.framework"
+               BlueprintName = "Kiss"
                ReferencedContainer = "container:KissLib.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "87496B3A24BA1C37000B3D60"
-            BuildableName = "YogaKit.framework"
-            BlueprintName = "YogaKit"
+            BlueprintIdentifier = "87496AA024BA1B0A000B3D60"
+            BuildableName = "Kiss.framework"
+            BlueprintName = "Kiss"
             ReferencedContainer = "container:KissLib.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
