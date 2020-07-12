@@ -674,8 +674,14 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
-				"ARCHS[sdk=*]" = (
+				"ARCHS[sdk=iphoneos*]" = (
 					"$(ARCHS_STANDARD)",
+					x86_64,
+					i386,
+				);
+				"ARCHS[sdk=iphonesimulator*]" = (
+					"$(ARCHS_STANDARD)",
+					x86_64,
 					i386,
 				);
 				CLANG_ANALYZER_NONNULL = YES;
@@ -884,6 +890,7 @@
 		87496AFE24BA1BF6000B3D60 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = YES;
 				CODE_SIGN_STYLE = Automatic;
