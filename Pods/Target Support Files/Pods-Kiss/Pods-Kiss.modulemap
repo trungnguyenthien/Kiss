@@ -1,6 +1,0 @@
-framework module Kiss {
-  umbrella header "Pods-Kiss-umbrella.h"
-
-  export *
-  module * { export * }
-}
