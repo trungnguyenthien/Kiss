@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		870C462624BAB39E006F6235 /* Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 870C462524BAB39E006F6235 /* Kiss.framework */; };
-		870C462724BAB39E006F6235 /* Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 870C462524BAB39E006F6235 /* Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		871D4E0C24B9B1A400DC3531 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D4E0B24B9B1A400DC3531 /* AppDelegate.swift */; };
 		871D4E1524B9B1A600DC3531 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 871D4E1424B9B1A600DC3531 /* Assets.xcassets */; };
 		871D4E1824B9B1A600DC3531 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871D4E1624B9B1A600DC3531 /* LaunchScreen.storyboard */; };
@@ -18,16 +16,18 @@
 		871D4E6724B9B42F00DC3531 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D4E6224B9B42F00DC3531 /* RatingView.swift */; };
 		871D4E6824B9B42F00DC3531 /* UserKissCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D4E6324B9B42F00DC3531 /* UserKissCell.swift */; };
 		871D4E6F24B9B6BA00DC3531 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871D4E6D24B9B6B900DC3531 /* Main.storyboard */; };
+		87E556DA24BB61760088BAD3 /* Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E556D924BB61760088BAD3 /* Kiss.framework */; };
+		87E556DB24BB61760088BAD3 /* Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87E556D924BB61760088BAD3 /* Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		870C462824BAB39E006F6235 /* Embed Frameworks */ = {
+		87E556D824BB61550088BAD3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				870C462724BAB39E006F6235 /* Kiss.framework in Embed Frameworks */,
+				87E556DB24BB61760088BAD3 /* Kiss.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -35,7 +35,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		870C462524BAB39E006F6235 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		871D4E0824B9B1A400DC3531 /* Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		871D4E0B24B9B1A400DC3531 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		871D4E1424B9B1A600DC3531 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,7 +46,7 @@
 		871D4E6224B9B42F00DC3531 /* RatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		871D4E6324B9B42F00DC3531 /* UserKissCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKissCell.swift; sourceTree = "<group>"; };
 		871D4E6E24B9B6B900DC3531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		87496B7D24BA9442000B3D60 /* KissLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = KissLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87E556D924BB61760088BAD3 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				870C462624BAB39E006F6235 /* Kiss.framework in Frameworks */,
+				87E556DA24BB61760088BAD3 /* Kiss.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,8 +64,7 @@
 		457BECC3F3EC70539AC63738 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				870C462524BAB39E006F6235 /* Kiss.framework */,
-				87496B7D24BA9442000B3D60 /* KissLib.framework */,
+				87E556D924BB61760088BAD3 /* Kiss.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,7 +114,7 @@
 				871D4E0524B9B1A400DC3531 /* Frameworks */,
 				871D4E0624B9B1A400DC3531 /* Resources */,
 				870C462424BAAC63006F6235 /* ShellScript */,
-				870C462824BAB39E006F6235 /* Embed Frameworks */,
+				87E556D824BB61550088BAD3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -355,7 +353,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.Kiss;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.KissSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -374,7 +372,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.Kiss;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.trungnguyenthien.KissSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
