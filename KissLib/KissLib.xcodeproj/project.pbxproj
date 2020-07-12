@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		870C461C24BAAAB4006F6235 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B6624BA8B1B000B3D60 /* yoga.framework */; };
-		870C461D24BAAAB4006F6235 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B6624BA8B1B000B3D60 /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		870C461F24BAAAB6006F6235 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B3B24BA1C37000B3D60 /* YogaKit.framework */; };
 		870C462024BAAAB6006F6235 /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B3B24BA1C37000B3D60 /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		870C462124BAAABC006F6235 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; platformFilter = ios; };
@@ -80,6 +78,8 @@
 		87496BD324BA9879000B3D60 /* YogaKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496BC924BA9878000B3D60 /* YogaKit-umbrella.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		87496BD424BA9879000B3D60 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496BCA24BA9878000B3D60 /* YGLayout.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		87496BD524BA9879000B3D60 /* YogaKit.pch in Headers */ = {isa = PBXBuildFile; fileRef = 87496BCB24BA9878000B3D60 /* YogaKit.pch */; platformFilter = ios; };
+		87E556C424BB0BD00088BAD3 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; };
+		87E556C524BB0BD00088BAD3 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +97,13 @@
 			remoteGlobalIDString = 87496AF724BA1BF6000B3D60;
 			remoteInfo = yoga;
 		};
+		87E556C624BB0BD00088BAD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87496A9824BA1B0A000B3D60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87496AF724BA1BF6000B3D60;
+			remoteInfo = yoga;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -106,7 +113,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				870C461D24BAAAB4006F6235 /* yoga.framework in Embed Frameworks */,
+				87E556C524BB0BD00088BAD3 /* yoga.framework in Embed Frameworks */,
 				870C462024BAAAB6006F6235 /* YogaKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -157,9 +164,6 @@
 		87496ADA24BA1BBF000B3D60 /* SizeSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeSetter.swift; sourceTree = "<group>"; };
 		87496AF824BA1BF6000B3D60 /* yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87496B3B24BA1C37000B3D60 /* YogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		87496B5E24BA8AB7000B3D60 /* yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		87496B5F24BA8AC8000B3D60 /* yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		87496B6624BA8B1B000B3D60 /* yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87496B6F24BA8C43000B3D60 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		87496B7124BA8C49000B3D60 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		87496B8424BA9856000B3D60 /* YGNodePrint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGNodePrint.h; sourceTree = "<group>"; };
@@ -211,7 +215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				870C461C24BAAAB4006F6235 /* yoga.framework in Frameworks */,
+				87E556C424BB0BD00088BAD3 /* yoga.framework in Frameworks */,
 				870C461F24BAAAB6006F6235 /* YogaKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,9 +405,6 @@
 			children = (
 				87496B7124BA8C49000B3D60 /* UIKit.framework */,
 				87496B6F24BA8C43000B3D60 /* Foundation.framework */,
-				87496B6624BA8B1B000B3D60 /* yoga.framework */,
-				87496B5F24BA8AC8000B3D60 /* yoga.framework */,
-				87496B5E24BA8AB7000B3D60 /* yoga.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -474,6 +475,7 @@
 			);
 			dependencies = (
 				87496B5824BA1CA1000B3D60 /* PBXTargetDependency */,
+				87E556C724BB0BD00088BAD3 /* PBXTargetDependency */,
 			);
 			name = Kiss;
 			productName = KissLib;
@@ -658,6 +660,11 @@
 			platformFilter = ios;
 			target = 87496AF724BA1BF6000B3D60 /* yoga */;
 			targetProxy = 87496B6C24BA8B27000B3D60 /* PBXContainerItemProxy */;
+		};
+		87E556C724BB0BD00088BAD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87496AF724BA1BF6000B3D60 /* yoga */;
+			targetProxy = 87E556C624BB0BD00088BAD3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

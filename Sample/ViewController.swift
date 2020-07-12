@@ -73,11 +73,10 @@ class ViewController: UIViewController {
         
         // Reload visible item for updating it's layout
         cache.clearAll()
-        collectionView.reloadItems(at: collectionView.indexPathsForVisibleItems ?? [])
+        self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in
             guard let self = self else { return }
             // invalidateLayout for updating it's layout
-            
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
     }
