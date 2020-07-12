@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import KissLib
+import Kiss
 
 private let imageName = "ic_star"
 private let iconSize: Double = 24

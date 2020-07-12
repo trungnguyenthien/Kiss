@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import KissLib
+import Kiss
 
 enum CellKind: String {
     case kisscell
