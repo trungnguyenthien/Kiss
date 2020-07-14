@@ -22,7 +22,7 @@ github "trungnguyenthien/kiss"
 
 Then, run `carthage update` to build the framework and drag the built `Kiss.framework`, `yoga.framework`, `YOgaKit.framework` into your Xcode project.
 
-![image1](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggr8if2eu5j30vi08ymy2.jpg)
+![007S8ZIlgy1ggr8if2eu5j30vi08ymy2](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggr8rxmjj4j30m20693yx.jpg)
 
 ##### Sign-in Embed framework
 
