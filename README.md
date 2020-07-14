@@ -1,6 +1,13 @@
-# KissUI-iOS
+![Screen Shot 2020-07-15 at 05.23.30](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggr94iculmj30y207aq4m.jpg)
+
+<p align="center">
+  <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" /></a> <a href="https://raw.githubusercontent.com/layoutBox/PinLayout/master/LICENSE"><img src="https://img.shields.io/cocoapods/l/PinLayout.svg" /></a>
 
 
+
+Kiss is based on `facebook/yoga` (ReactNative's layout engine) for layout of **UIKit**-**Control** with much more **SIMPLE** code style than Apple's LayoutContraint. 
+
+Kiss has group layout container `vstack / hstack / wrap` similiar to **SwiftUI**.
 
 ### Requirements
 
@@ -8,11 +15,13 @@
 
 * Xcode 11.4.0+ 
 
-- Swift 5.0+
+- Swift 5.1+
 
 ### Installation
 
-##### Carthage
+##### CocoaPods (not yet 🙏 )
+
+##### Carthage 
 
 To integrate Kiss into your Xcode project using Carthage, specify it in your `Cartfile`:
 
@@ -20,7 +29,7 @@ To integrate Kiss into your Xcode project using Carthage, specify it in your `Ca
 github "trungnguyenthien/kiss"
 ```
 
-Then, run `carthage update` to build the framework and drag the built `Kiss.framework`, `yoga.framework`, `YOgaKit.framework` into your Xcode project.
+Then, run `carthage update` to build the framework and drag the built `Kiss.framework`  and nested frameworked   `yoga.framework`, `YOgaKit.framework` into your Xcode project.
 
 ![007S8ZIlgy1ggr8if2eu5j30vi08ymy2](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggr8rxmjj4j30m20693yx.jpg)
 
