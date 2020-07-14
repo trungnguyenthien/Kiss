@@ -12,7 +12,7 @@ import YogaKit
 
 public extension UIView {
     // MARK: - VIEWLAYOUT
-    var layout: UIViewLayout {
+    internal var layout: UIViewLayout {
         // Nếu là custom view đã có sẵn layout rồi thì sử dụng bản copy của custom view đó
         
         let vlayout = UIViewLayout()
@@ -128,6 +128,10 @@ extension UIView {
                 $0.body.removeFromSuperview()
                 _selfView.addSubview($0.body)
             }
+        }
+        
+        public var layout: UIViewLayout {
+            return _selfView.layout
         }
         
         public func updateChange(width: CGFloat? = nil, height: CGFloat? = nil) {

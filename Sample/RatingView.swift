@@ -22,11 +22,11 @@ class RatingView: KissView {
     private let star5 = makeIconImage(name: imageName, size: iconSize)
     
     private lazy var bodyLayout = hstack {
-        star1.layout.marginRight(5).size(iconSize, iconSize)
-        star2.layout.marginRight(5).size(iconSize, iconSize)
-        star3.layout.marginRight(5).size(iconSize, iconSize)
-        star4.layout.marginRight(5).size(iconSize, iconSize)
-        star5.layout.marginRight(5).size(iconSize, iconSize)
+        star1.kiss.layout.marginRight(5).size(iconSize, iconSize)
+        star2.kiss.layout.marginRight(5).size(iconSize, iconSize)
+        star3.kiss.layout.marginRight(5).size(iconSize, iconSize)
+        star4.kiss.layout.marginRight(5).size(iconSize, iconSize)
+        star5.kiss.layout.marginRight(5).size(iconSize, iconSize)
     }.mainAlign(.start).crossAlign(items: .start)
     
     override init(frame: CGRect) {

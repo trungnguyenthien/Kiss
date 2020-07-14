@@ -22,26 +22,26 @@ class UserKissCell: UICollectionViewCell {
     let view2 = makeView(.clear)
     
     lazy var tagLayer = hstack {
-        "❤️".labelMedium.layout
+        "❤️".labelMedium.kiss.layout
     }.mainAlign(.start).padding(10).crossAlign(items: .end)
     
     lazy var stackInfoLayout = vstack {
-        mailLabel.layout.marginTop(5)
-        ratingView.layout.marginTop(5).height(30)
-        titleLable.layout.marginTop(5)
+        mailLabel.kiss.layout.marginTop(5)
+        ratingView.kiss.layout.marginTop(5).height(30)
+        titleLable.kiss.layout.marginTop(5)
         stretchSpacer()
-        phoneNum.layout.marginTop(5)
-        button.layout.margin(5)
+        phoneNum.kiss.layout.marginTop(5)
+        button.kiss.layout.margin(5)
     }
     
     lazy var hLayout = hstack {
-        imageView.layout.grow(1).ratio(1/1)
+        imageView.kiss.layout.grow(1).ratio(1/1)
         spacer(10)
         stackInfoLayout.cloned.grow(1)
     }.padding(10).crossAlign(items: .start)
     
     lazy var vLayout = vstack {
-        imageView.layout.crossAlign(self: .stretch).ratio(2/2).overlay { tagLayer }
+        imageView.kiss.layout.crossAlign(self: .stretch).ratio(2/2).overlay { tagLayer }
         spacer(10)
         stackInfoLayout.cloned.growFull()
     }.padding(10).crossAlign(items: .start)
