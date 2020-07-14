@@ -16,6 +16,10 @@
 		871D4E6724B9B42F00DC3531 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D4E6224B9B42F00DC3531 /* RatingView.swift */; };
 		871D4E6824B9B42F00DC3531 /* UserKissCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871D4E6324B9B42F00DC3531 /* UserKissCell.swift */; };
 		871D4E6F24B9B6BA00DC3531 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871D4E6D24B9B6B900DC3531 /* Main.storyboard */; };
+		87BB37BF24BE5DCA002DF909 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BD24BE5DCA002DF909 /* yoga.framework */; };
+		87BB37C024BE5DCA002DF909 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BD24BE5DCA002DF909 /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		87BB37C124BE5DCA002DF909 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BE24BE5DCA002DF909 /* YogaKit.framework */; };
+		87BB37C224BE5DCA002DF909 /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BE24BE5DCA002DF909 /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87E556DA24BB61760088BAD3 /* Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E556D924BB61760088BAD3 /* Kiss.framework */; };
 		87E556DB24BB61760088BAD3 /* Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87E556D924BB61760088BAD3 /* Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -27,7 +31,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				87BB37C024BE5DCA002DF909 /* yoga.framework in Embed Frameworks */,
 				87E556DB24BB61760088BAD3 /* Kiss.framework in Embed Frameworks */,
+				87BB37C224BE5DCA002DF909 /* YogaKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -46,6 +52,8 @@
 		871D4E6224B9B42F00DC3531 /* RatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		871D4E6324B9B42F00DC3531 /* UserKissCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKissCell.swift; sourceTree = "<group>"; };
 		871D4E6E24B9B6B900DC3531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		87BB37BD24BE5DCA002DF909 /* yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87BB37BE24BE5DCA002DF909 /* YogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E556D924BB61760088BAD3 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -54,7 +62,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87BB37BF24BE5DCA002DF909 /* yoga.framework in Frameworks */,
 				87E556DA24BB61760088BAD3 /* Kiss.framework in Frameworks */,
+				87BB37C124BE5DCA002DF909 /* YogaKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,6 +74,8 @@
 		457BECC3F3EC70539AC63738 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87BB37BD24BE5DCA002DF909 /* yoga.framework */,
+				87BB37BE24BE5DCA002DF909 /* YogaKit.framework */,
 				87E556D924BB61760088BAD3 /* Kiss.framework */,
 			);
 			name = Frameworks;
