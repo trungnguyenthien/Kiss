@@ -199,7 +199,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nfor f in $(find $CODESIGNING_FOLDER_PATH -name '*.framework')\ndo\n    codesign --force --sign \"${CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements --timestamp=none \"$f\"\ndone\n";
+			shellScript = "for f in $(find $CODESIGNING_FOLDER_PATH -name '*.framework')\ndo\n    codesign --force --sign \"${CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements --timestamp=none \"$f\"\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
