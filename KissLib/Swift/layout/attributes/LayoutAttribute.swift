@@ -1,6 +1,5 @@
 //
-//  Test.swift
-//  KissUI-Lib
+//  LayoutAttribute.swift
 //
 //  Created by Trung on 5/27/20.
 //  Copyright © 2020 trungnguyenthien. All rights reserved.

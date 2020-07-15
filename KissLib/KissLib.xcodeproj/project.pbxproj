@@ -290,13 +290,13 @@
 			children = (
 				87496AC724BA1BBF000B3D60 /* GroupLayout.swift */,
 				87496AC824BA1BBF000B3D60 /* HStackLayout.swift */,
-				87496AC924BA1BBF000B3D60 /* KissView.swift */,
-				87496ACA24BA1BBF000B3D60 /* UIViewLayout.swift */,
-				87496ACB24BA1BBF000B3D60 /* Spacer.swift */,
 				87496ACC24BA1BBF000B3D60 /* VStackLayout.swift */,
+				87496AD324BA1BBF000B3D60 /* WrapLayout.swift */,
+				87496ACA24BA1BBF000B3D60 /* UIViewLayout.swift */,
+				87496AC924BA1BBF000B3D60 /* KissView.swift */,
+				87496ACB24BA1BBF000B3D60 /* Spacer.swift */,
 				87496ACD24BA1BBF000B3D60 /* attributes */,
 				87496AD224BA1BBF000B3D60 /* LayoutItem.swift */,
-				87496AD324BA1BBF000B3D60 /* WrapLayout.swift */,
 				87496AD424BA1BBF000B3D60 /* protocols */,
 			);
 			path = layout;

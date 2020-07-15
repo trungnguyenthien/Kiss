@@ -1,6 +1,5 @@
 //
-//  AnchorSetter.swift
-//  KissUI
+//  MarginSetter.swift
 //
 //  Created by Trung on 6/1/20.
 //  Copyright © 2020 trungnguyenthien. All rights reserved.

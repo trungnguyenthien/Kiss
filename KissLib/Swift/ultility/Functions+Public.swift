@@ -1,3 +1,10 @@
+//
+//  Functions+Public.swift
+//
+//  Created by Trung on 5/28/20.
+//  Copyright © 2020 trungnguyenthien. All rights reserved.
+//
+
 @_functionBuilder
 public struct LayoutItemBuilder {
     public static func buildBlock(_ lItems: LayoutItem...) -> [LayoutItem] {

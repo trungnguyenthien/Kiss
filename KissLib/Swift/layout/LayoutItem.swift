@@ -1,6 +1,5 @@
 //
 //  LayoutItem.swift
-//  KissUI
 //
 //  Created by Trung on 6/17/20.
 //  Copyright © 2020 trungnguyenthien. All rights reserved.
@@ -36,7 +35,7 @@ internal extension LayoutItem {
             return group.overlayGroups
         }
 
-        // Spacer không thể add overlay nên không xét
+        // Spacer has no Overlay so it's case shouldn't be considerd
         return []
     }
 
