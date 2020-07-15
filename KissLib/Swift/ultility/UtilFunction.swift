@@ -2,10 +2,6 @@ import Foundation
 import UIKit
 import YogaKit
 
-func trace(_ message: String) {
-    print("💋💋 KissLog: " + message)
-}
-
 func setGrow(grow: Double, to layout: YGLayout) {
     let cgGrow = CGFloat(grow)
     layout.flexGrow = cgGrow

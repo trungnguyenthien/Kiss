@@ -14,9 +14,7 @@
 		87496ADB24BA1BBF000B3D60 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC024BA1BBF000B3D60 /* UIView+Extension.swift */; };
 		87496ADC24BA1BBF000B3D60 /* layoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC124BA1BBF000B3D60 /* layoutBuilder.swift */; };
 		87496ADD24BA1BBF000B3D60 /* publicExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC224BA1BBF000B3D60 /* publicExtension.swift */; };
-		87496ADE24BA1BBF000B3D60 /* internalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC324BA1BBF000B3D60 /* internalFunction.swift */; };
-		87496ADF24BA1BBF000B3D60 /* internalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC424BA1BBF000B3D60 /* internalExtension.swift */; };
-		87496AE024BA1BBF000B3D60 /* publicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC524BA1BBF000B3D60 /* publicFunction.swift */; };
+		87496ADE24BA1BBF000B3D60 /* UtilFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC324BA1BBF000B3D60 /* UtilFunction.swift */; };
 		87496AE124BA1BBF000B3D60 /* GroupLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC724BA1BBF000B3D60 /* GroupLayout.swift */; };
 		87496AE224BA1BBF000B3D60 /* HStackLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC824BA1BBF000B3D60 /* HStackLayout.swift */; };
 		87496AE324BA1BBF000B3D60 /* KissView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC924BA1BBF000B3D60 /* KissView.swift */; };
@@ -77,6 +75,10 @@
 		87496BD324BA9879000B3D60 /* YogaKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496BC924BA9878000B3D60 /* YogaKit-umbrella.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		87496BD424BA9879000B3D60 /* YGLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496BCA24BA9878000B3D60 /* YGLayout.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		87496BD524BA9879000B3D60 /* YogaKit.pch in Headers */ = {isa = PBXBuildFile; fileRef = 87496BCB24BA9878000B3D60 /* YogaKit.pch */; platformFilter = ios; };
+		87D0F47E24BF4083007210C0 /* PrimitiveType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F47D24BF4083007210C0 /* PrimitiveType+Extension.swift */; };
+		87D0F48024BF40A5007210C0 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F47F24BF40A5007210C0 /* Array+Extension.swift */; };
+		87D0F48224BF40C5007210C0 /* YogaUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F48124BF40C5007210C0 /* YogaUtility.swift */; };
+		87D0F48424BF417E007210C0 /* UIView+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F48324BF417E007210C0 /* UIView+Private.swift */; };
 		87E556C424BB0BD00088BAD3 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; };
 		87E556C524BB0BD00088BAD3 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		87E556E324BD4D9E0088BAD3 /* kiss-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87496AA524BA1B0A000B3D60 /* kiss-Info.plist */; };
@@ -138,9 +140,7 @@
 		87496AC024BA1BBF000B3D60 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		87496AC124BA1BBF000B3D60 /* layoutBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = layoutBuilder.swift; sourceTree = "<group>"; };
 		87496AC224BA1BBF000B3D60 /* publicExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = publicExtension.swift; sourceTree = "<group>"; };
-		87496AC324BA1BBF000B3D60 /* internalFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = internalFunction.swift; sourceTree = "<group>"; };
-		87496AC424BA1BBF000B3D60 /* internalExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = internalExtension.swift; sourceTree = "<group>"; };
-		87496AC524BA1BBF000B3D60 /* publicFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = publicFunction.swift; sourceTree = "<group>"; };
+		87496AC324BA1BBF000B3D60 /* UtilFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilFunction.swift; sourceTree = "<group>"; };
 		87496AC724BA1BBF000B3D60 /* GroupLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupLayout.swift; sourceTree = "<group>"; };
 		87496AC824BA1BBF000B3D60 /* HStackLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HStackLayout.swift; sourceTree = "<group>"; };
 		87496AC924BA1BBF000B3D60 /* KissView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KissView.swift; sourceTree = "<group>"; };
@@ -205,6 +205,10 @@
 		87496BC924BA9878000B3D60 /* YogaKit-umbrella.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YogaKit-umbrella.h"; sourceTree = "<group>"; };
 		87496BCA24BA9878000B3D60 /* YGLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGLayout.h; sourceTree = "<group>"; };
 		87496BCB24BA9878000B3D60 /* YogaKit.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YogaKit.pch; sourceTree = "<group>"; };
+		87D0F47D24BF4083007210C0 /* PrimitiveType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrimitiveType+Extension.swift"; sourceTree = "<group>"; };
+		87D0F47F24BF40A5007210C0 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		87D0F48124BF40C5007210C0 /* YogaUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogaUtility.swift; sourceTree = "<group>"; };
+		87D0F48324BF417E007210C0 /* UIView+Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Private.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,11 +276,13 @@
 			isa = PBXGroup;
 			children = (
 				87496AC024BA1BBF000B3D60 /* UIView+Extension.swift */,
+				87D0F48324BF417E007210C0 /* UIView+Private.swift */,
 				87496AC124BA1BBF000B3D60 /* layoutBuilder.swift */,
 				87496AC224BA1BBF000B3D60 /* publicExtension.swift */,
-				87496AC324BA1BBF000B3D60 /* internalFunction.swift */,
-				87496AC424BA1BBF000B3D60 /* internalExtension.swift */,
-				87496AC524BA1BBF000B3D60 /* publicFunction.swift */,
+				87496AC324BA1BBF000B3D60 /* UtilFunction.swift */,
+				87D0F47D24BF4083007210C0 /* PrimitiveType+Extension.swift */,
+				87D0F47F24BF40A5007210C0 /* Array+Extension.swift */,
+				87D0F48124BF40C5007210C0 /* YogaUtility.swift */,
 			);
 			path = ultility;
 			sourceTree = "<group>";
@@ -570,14 +576,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87496ADE24BA1BBF000B3D60 /* internalFunction.swift in Sources */,
+				87496ADE24BA1BBF000B3D60 /* UtilFunction.swift in Sources */,
 				87496AE824BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift in Sources */,
 				87496AE224BA1BBF000B3D60 /* HStackLayout.swift in Sources */,
+				87D0F47E24BF4083007210C0 /* PrimitiveType+Extension.swift in Sources */,
 				87496AE424BA1BBF000B3D60 /* UIViewLayout.swift in Sources */,
 				87496AEA24BA1BBF000B3D60 /* LayoutArrangeAble.swift in Sources */,
+				87D0F48024BF40A5007210C0 /* Array+Extension.swift in Sources */,
 				87496AF124BA1BBF000B3D60 /* PaddingSetter.swift in Sources */,
 				87496ADD24BA1BBF000B3D60 /* publicExtension.swift in Sources */,
 				87496AE724BA1BBF000B3D60 /* LayoutAttribute.swift in Sources */,
+				87D0F48424BF417E007210C0 /* UIView+Private.swift in Sources */,
+				87D0F48224BF40C5007210C0 /* YogaUtility.swift in Sources */,
 				87496AEB24BA1BBF000B3D60 /* LayoutItem.swift in Sources */,
 				87496AF024BA1BBF000B3D60 /* AlignmentSetter.swift in Sources */,
 				87496ADB24BA1BBF000B3D60 /* UIView+Extension.swift in Sources */,
@@ -587,13 +597,11 @@
 				87496ADC24BA1BBF000B3D60 /* layoutBuilder.swift in Sources */,
 				87496AEC24BA1BBF000B3D60 /* WrapLayout.swift in Sources */,
 				87496AED24BA1BBF000B3D60 /* SelfAlignSetter.swift in Sources */,
-				87496AE024BA1BBF000B3D60 /* publicFunction.swift in Sources */,
 				87496AE924BA1BBF000B3D60 /* ValueType.swift in Sources */,
 				87496AE324BA1BBF000B3D60 /* KissView.swift in Sources */,
 				87496AEE24BA1BBF000B3D60 /* OverlayLayoutAble.swift in Sources */,
 				87496AF224BA1BBF000B3D60 /* SizeSetter.swift in Sources */,
 				87496AEF24BA1BBF000B3D60 /* MarginSetter.swift in Sources */,
-				87496ADF24BA1BBF000B3D60 /* internalExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
