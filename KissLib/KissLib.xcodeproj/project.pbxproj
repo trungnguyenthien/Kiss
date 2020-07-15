@@ -47,7 +47,6 @@
 		87496BAE24BA9859000B3D60 /* YGValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87496B8F24BA9856000B3D60 /* YGValue.cpp */; platformFilter = ios; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		87496BAF24BA9859000B3D60 /* YGStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496B9024BA9856000B3D60 /* YGStyle.h */; platformFilter = ios; };
 		87496BB024BA9859000B3D60 /* YGFloatOptional.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496B9124BA9856000B3D60 /* YGFloatOptional.h */; platformFilter = ios; };
-		87496BB124BA9859000B3D60 /* yoga-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87496B9224BA9856000B3D60 /* yoga-Info.plist */; };
 		87496BB224BA9859000B3D60 /* YGConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496B9324BA9857000B3D60 /* YGConfig.h */; platformFilter = ios; };
 		87496BB324BA9859000B3D60 /* Yoga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87496B9424BA9857000B3D60 /* Yoga.cpp */; platformFilter = ios; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		87496BB424BA9859000B3D60 /* YGNodePrint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87496B9624BA9857000B3D60 /* YGNodePrint.cpp */; platformFilter = ios; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
@@ -65,7 +64,6 @@
 		87496BC024BA985A000B3D60 /* YGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496BA224BA9858000B3D60 /* YGMacros.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		87496BCC24BA9878000B3D60 /* YGLayoutExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496BC124BA9878000B3D60 /* YGLayoutExtensions.swift */; platformFilter = ios; };
 		87496BCD24BA9878000B3D60 /* UIView+Yoga.m in Sources */ = {isa = PBXBuildFile; fileRef = 87496BC224BA9878000B3D60 /* UIView+Yoga.m */; platformFilter = ios; };
-		87496BCE24BA9878000B3D60 /* yogakit-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87496BC324BA9878000B3D60 /* yogakit-Info.plist */; };
 		87496BCF24BA9878000B3D60 /* YogaKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496BC424BA9878000B3D60 /* YogaKit.h */; platformFilter = ios; };
 		87496BD024BA9878000B3D60 /* UIView+Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496BC524BA9878000B3D60 /* UIView+Yoga.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		87496BD124BA9878000B3D60 /* YGLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 87496BC624BA9878000B3D60 /* YGLayout.m */; platformFilter = ios; };
@@ -81,7 +79,6 @@
 		87D0F48A24BFB6B3007210C0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 87D0F48924BFB6B3007210C0 /* .swiftlint.yml */; };
 		87E556C424BB0BD00088BAD3 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; };
 		87E556C524BB0BD00088BAD3 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		87E556E324BD4D9E0088BAD3 /* kiss-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87496AA524BA1B0A000B3D60 /* kiss-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -553,7 +550,6 @@
 			files = (
 				87D0F48A24BFB6B3007210C0 /* .swiftlint.yml in Resources */,
 				87D0F48824BFB2FC007210C0 /* .swiftformat in Resources */,
-				87E556E324BD4D9E0088BAD3 /* kiss-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,7 +557,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87496BB124BA9859000B3D60 /* yoga-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,7 +564,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87496BCE24BA9878000B3D60 /* yogakit-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
