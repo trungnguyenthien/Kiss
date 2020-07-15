@@ -1,6 +1,5 @@
 //
 //  Array+Extension.swift
-//  Kiss
 //
 //  Created by Trung on 7/15/20.
 //  Copyright © 2020 trungnguyenthien. All rights reserved.
@@ -15,10 +14,10 @@ extension Array {
     }
 
     var firstIndex: Int {
-        return 0
+        0
     }
 
     var lastIndex: Int {
-        return count - 1
+        count - 1
     }
 }

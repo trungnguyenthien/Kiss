@@ -1,6 +1,5 @@
 //
 //  ViewLayout.swift
-//  KissUI
 //
 //  Created by Trung on 6/4/20.
 //  Copyright © 2020 trungnguyenthien. All rights reserved.
@@ -27,16 +26,7 @@ public class UIViewLayout: UIViewLayoutSetter {
         return self
     }
 
-    func prepareForRenderingLayout() {
-        /// Hiện tại library đang có issue: nếu chèn 1 custom view vào thì không tự tính size được
-        /// Có 2 cách fix:
-        /// 1 - mở đoạn code đc comment dưới đây, nhưng performance thấp --> Không sử dụng
-        /// 2 - custom view layout phải được cố định main-size
-
-//        if let customViewLayout = body.kiss.currentGroupLayout {
-//            body.frame.size = customViewLayout.estimatedSize()
-//        }
-    }
+    func prepareForRenderingLayout() {}
 
     func configureLayout() {
         body.configureLayout { yLayout in
@@ -48,7 +38,7 @@ public class UIViewLayout: UIViewLayoutSetter {
     }
 
     public var isVisibleLayout: Bool {
-        return body.isVisible
+        body.isVisible
     }
 
     public var cloned: Self {
@@ -70,15 +60,15 @@ public class UIViewLayout: UIViewLayoutSetter {
 
 // MARK: - layout builder function
 
-extension UIViewLayout {
-    public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
+public extension UIViewLayout {
+    func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
         let groups = builder()
         groups.forEach { $0.baseView = self.body }
         overlayGroups.append(contentsOf: groups)
         return self
     }
 
-    public func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
+    func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
         let group = builder()
         group.baseView = body
         overlayGroups.append(group)

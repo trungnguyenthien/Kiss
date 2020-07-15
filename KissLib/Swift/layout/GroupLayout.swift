@@ -1,6 +1,5 @@
 //
 //  GroupLayout.swift
-//  KissUI
 //
 //  Created by Trung on 5/28/20.
 //  Copyright © 2020 trungnguyenthien. All rights reserved.
@@ -51,7 +50,7 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         }
     }
 
-    override public var isVisibleLayout: Bool {
+    public override var isVisibleLayout: Bool {
         if body.isHidden { return false }
 
         switch autoInvisibility {
@@ -72,7 +71,7 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
             secondarySpacer.append(spacer)
         }
 
-        layoutItems.removeAll { (layoutItem) -> Bool in
+        layoutItems.removeAll { layoutItem -> Bool in
             let spacer = layoutItem as? Spacer
             return secondarySpacer.contains { spacer === $0 }
         }
@@ -96,7 +95,7 @@ extension GroupLayout {
 
     var hasVisibleView: Bool {
         let visibleViews = layoutItems.filter { $0.isVisibleLayout }
-        return visibleViews.count > 0
+        return !visibleViews.isEmpty
     }
 }
 

@@ -1,6 +1,5 @@
 //
 //  LayoutItem.swift
-//  KissUI
 //
 //  Created by Trung on 6/17/20.
 //  Copyright © 2020 trungnguyenthien. All rights reserved.
@@ -15,7 +14,7 @@ public protocol LayoutItem {
 
 extension Array where Array.Element == LayoutItem {
     func copy(with zone: NSZone? = nil) -> [Array.Element] {
-        return map {
+        map {
             guard let objectCopyAble = $0 as? NSCopying else { return $0 }
             return objectCopyAble.copy(with: zone) as! LayoutItem // swiftlint:disable:this force_cast
         }
@@ -24,7 +23,7 @@ extension Array where Array.Element == LayoutItem {
 
 extension Array where Array.Element == GroupLayout {
     func copy(with zone: NSZone? = nil) -> [Array.Element] {
-        return map { $0.copy(with: zone) as! GroupLayout } // swiftlint:disable:this force_cast
+        map { $0.copy(with: zone) as! GroupLayout } // swiftlint:disable:this force_cast
     }
 }
 
@@ -36,7 +35,7 @@ internal extension LayoutItem {
             return group.overlayGroups
         }
 
-        /// Spacer không thể add overlay nên không xét
+        // Spacer has no Overlay so it's case shouldn't be considerd
         return []
     }
 
@@ -74,6 +73,6 @@ internal extension LayoutItem {
     }
 
     var isSpacer: Bool {
-        return self is Spacer
+        self is Spacer
     }
 }

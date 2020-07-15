@@ -23,7 +23,6 @@
 		87496AE724BA1BBF000B3D60 /* LayoutAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496ACE24BA1BBF000B3D60 /* LayoutAttribute.swift */; };
 		87496AE824BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496ACF24BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift */; };
 		87496AE924BA1BBF000B3D60 /* ValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AD024BA1BBF000B3D60 /* ValueType.swift */; };
-		87496AEA24BA1BBF000B3D60 /* LayoutArrangeAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AD124BA1BBF000B3D60 /* LayoutArrangeAble.swift */; };
 		87496AEB24BA1BBF000B3D60 /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AD224BA1BBF000B3D60 /* LayoutItem.swift */; };
 		87496AEC24BA1BBF000B3D60 /* WrapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AD324BA1BBF000B3D60 /* WrapLayout.swift */; };
 		87496AED24BA1BBF000B3D60 /* SelfAlignSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AD524BA1BBF000B3D60 /* SelfAlignSetter.swift */; };
@@ -48,7 +47,6 @@
 		87496BAE24BA9859000B3D60 /* YGValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87496B8F24BA9856000B3D60 /* YGValue.cpp */; platformFilter = ios; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		87496BAF24BA9859000B3D60 /* YGStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496B9024BA9856000B3D60 /* YGStyle.h */; platformFilter = ios; };
 		87496BB024BA9859000B3D60 /* YGFloatOptional.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496B9124BA9856000B3D60 /* YGFloatOptional.h */; platformFilter = ios; };
-		87496BB124BA9859000B3D60 /* yoga-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87496B9224BA9856000B3D60 /* yoga-Info.plist */; };
 		87496BB224BA9859000B3D60 /* YGConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496B9324BA9857000B3D60 /* YGConfig.h */; platformFilter = ios; };
 		87496BB324BA9859000B3D60 /* Yoga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87496B9424BA9857000B3D60 /* Yoga.cpp */; platformFilter = ios; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		87496BB424BA9859000B3D60 /* YGNodePrint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 87496B9624BA9857000B3D60 /* YGNodePrint.cpp */; platformFilter = ios; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
@@ -66,7 +64,6 @@
 		87496BC024BA985A000B3D60 /* YGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496BA224BA9858000B3D60 /* YGMacros.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		87496BCC24BA9878000B3D60 /* YGLayoutExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496BC124BA9878000B3D60 /* YGLayoutExtensions.swift */; platformFilter = ios; };
 		87496BCD24BA9878000B3D60 /* UIView+Yoga.m in Sources */ = {isa = PBXBuildFile; fileRef = 87496BC224BA9878000B3D60 /* UIView+Yoga.m */; platformFilter = ios; };
-		87496BCE24BA9878000B3D60 /* yogakit-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87496BC324BA9878000B3D60 /* yogakit-Info.plist */; };
 		87496BCF24BA9878000B3D60 /* YogaKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496BC424BA9878000B3D60 /* YogaKit.h */; platformFilter = ios; };
 		87496BD024BA9878000B3D60 /* UIView+Yoga.h in Headers */ = {isa = PBXBuildFile; fileRef = 87496BC524BA9878000B3D60 /* UIView+Yoga.h */; platformFilter = ios; settings = {ATTRIBUTES = (Public, ); }; };
 		87496BD124BA9878000B3D60 /* YGLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 87496BC624BA9878000B3D60 /* YGLayout.m */; platformFilter = ios; };
@@ -78,9 +75,10 @@
 		87D0F48024BF40A5007210C0 /* Array+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F47F24BF40A5007210C0 /* Array+Private.swift */; };
 		87D0F48224BF40C5007210C0 /* YogaUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F48124BF40C5007210C0 /* YogaUtility.swift */; };
 		87D0F48424BF417E007210C0 /* UIView+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F48324BF417E007210C0 /* UIView+Private.swift */; };
+		87D0F48824BFB2FC007210C0 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = 87D0F48724BFB2FC007210C0 /* .swiftformat */; };
+		87D0F48A24BFB6B3007210C0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 87D0F48924BFB6B3007210C0 /* .swiftlint.yml */; };
 		87E556C424BB0BD00088BAD3 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; };
 		87E556C524BB0BD00088BAD3 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		87E556E324BD4D9E0088BAD3 /* kiss-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87496AA524BA1B0A000B3D60 /* kiss-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,7 +146,6 @@
 		87496ACE24BA1BBF000B3D60 /* LayoutAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttribute.swift; sourceTree = "<group>"; };
 		87496ACF24BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexLayoutItemProtocol.swift; sourceTree = "<group>"; };
 		87496AD024BA1BBF000B3D60 /* ValueType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueType.swift; sourceTree = "<group>"; };
-		87496AD124BA1BBF000B3D60 /* LayoutArrangeAble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutArrangeAble.swift; sourceTree = "<group>"; };
 		87496AD224BA1BBF000B3D60 /* LayoutItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
 		87496AD324BA1BBF000B3D60 /* WrapLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrapLayout.swift; sourceTree = "<group>"; };
 		87496AD524BA1BBF000B3D60 /* SelfAlignSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfAlignSetter.swift; sourceTree = "<group>"; };
@@ -207,6 +204,8 @@
 		87D0F47F24BF40A5007210C0 /* Array+Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Private.swift"; sourceTree = "<group>"; };
 		87D0F48124BF40C5007210C0 /* YogaUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogaUtility.swift; sourceTree = "<group>"; };
 		87D0F48324BF417E007210C0 /* UIView+Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Private.swift"; sourceTree = "<group>"; };
+		87D0F48724BFB2FC007210C0 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
+		87D0F48924BFB6B3007210C0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +241,8 @@
 		87496A9724BA1B0A000B3D60 = {
 			isa = PBXGroup;
 			children = (
+				87D0F48924BFB6B3007210C0 /* .swiftlint.yml */,
+				87D0F48724BFB2FC007210C0 /* .swiftformat */,
 				87496ABE24BA1BBF000B3D60 /* Swift */,
 				87496AF924BA1BF6000B3D60 /* yoga */,
 				87496B3C24BA1C37000B3D60 /* YogaKit */,
@@ -289,13 +290,13 @@
 			children = (
 				87496AC724BA1BBF000B3D60 /* GroupLayout.swift */,
 				87496AC824BA1BBF000B3D60 /* HStackLayout.swift */,
-				87496AC924BA1BBF000B3D60 /* KissView.swift */,
-				87496ACA24BA1BBF000B3D60 /* UIViewLayout.swift */,
-				87496ACB24BA1BBF000B3D60 /* Spacer.swift */,
 				87496ACC24BA1BBF000B3D60 /* VStackLayout.swift */,
+				87496AD324BA1BBF000B3D60 /* WrapLayout.swift */,
+				87496ACA24BA1BBF000B3D60 /* UIViewLayout.swift */,
+				87496AC924BA1BBF000B3D60 /* KissView.swift */,
+				87496ACB24BA1BBF000B3D60 /* Spacer.swift */,
 				87496ACD24BA1BBF000B3D60 /* attributes */,
 				87496AD224BA1BBF000B3D60 /* LayoutItem.swift */,
-				87496AD324BA1BBF000B3D60 /* WrapLayout.swift */,
 				87496AD424BA1BBF000B3D60 /* protocols */,
 			);
 			path = layout;
@@ -307,7 +308,6 @@
 				87496ACE24BA1BBF000B3D60 /* LayoutAttribute.swift */,
 				87496ACF24BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift */,
 				87496AD024BA1BBF000B3D60 /* ValueType.swift */,
-				87496AD124BA1BBF000B3D60 /* LayoutArrangeAble.swift */,
 			);
 			path = attributes;
 			sourceTree = "<group>";
@@ -548,7 +548,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87E556E324BD4D9E0088BAD3 /* kiss-Info.plist in Resources */,
+				87D0F48A24BFB6B3007210C0 /* .swiftlint.yml in Resources */,
+				87D0F48824BFB2FC007210C0 /* .swiftformat in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,7 +557,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87496BB124BA9859000B3D60 /* yoga-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,7 +564,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87496BCE24BA9878000B3D60 /* yogakit-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,7 +586,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed.\"\n  echo \"-- Please download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		87D0F48624BF5127007210C0 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -605,7 +604,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftformat >/dev/null; then\n  swiftformat .\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+			shellScript = "if which swiftformat >/dev/null; then\n  swiftformat .\nelse\n  echo \"warning: SwiftFormat not installed.\"\n  echo \"-- Please, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -619,7 +618,6 @@
 				87496AE224BA1BBF000B3D60 /* HStackLayout.swift in Sources */,
 				87D0F47E24BF4083007210C0 /* PrimitiveType+Private.swift in Sources */,
 				87496AE424BA1BBF000B3D60 /* UIViewLayout.swift in Sources */,
-				87496AEA24BA1BBF000B3D60 /* LayoutArrangeAble.swift in Sources */,
 				87D0F48024BF40A5007210C0 /* Array+Private.swift in Sources */,
 				87496AF124BA1BBF000B3D60 /* PaddingSetter.swift in Sources */,
 				87496AE724BA1BBF000B3D60 /* LayoutAttribute.swift in Sources */,
@@ -696,11 +694,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					"$(ARCHS_STANDARD_64_BIT)",
-					"$(ARCHS_STANDARD_32_BIT)",
-					"$(ARCHS_STANDARD)",
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -762,7 +756,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64 i386 armv";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -772,11 +766,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					"$(ARCHS_STANDARD_64_BIT)",
-					"$(ARCHS_STANDARD_32_BIT)",
-					"$(ARCHS_STANDARD)",
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -833,7 +823,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s x86_64 i386 armv";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -870,7 +860,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = "";
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386 x86_64 armv";
 				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Debug;
@@ -907,7 +896,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = "";
-				VALID_ARCHS = "arm64 arm64e armv7 armv7s i386 x86_64 armv";
 				WATCHOS_DEPLOYMENT_TARGET = "";
 			};
 			name = Release;

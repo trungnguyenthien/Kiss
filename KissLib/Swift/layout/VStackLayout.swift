@@ -1,6 +1,5 @@
 //
 //  VStackLayout.swift
-//  KissUI
 //
 //  Created by Trung on 6/4/20.
 //  Copyright © 2020 trungnguyenthien. All rights reserved.
@@ -16,7 +15,7 @@ public class VStackLayout: GroupLayout {
         attr.alignItems = .stretch
     }
 
-    override public func copy(with zone: NSZone? = nil) -> Any {
+    public override func copy(with zone: NSZone? = nil) -> Any {
         let newInstance = VStackLayout()
         newInstance.layoutItems = layoutItems.copy(with: zone)
         newInstance.baseView = baseView

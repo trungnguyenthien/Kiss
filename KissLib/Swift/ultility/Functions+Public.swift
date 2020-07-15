@@ -1,3 +1,10 @@
+//
+//  Functions+Public.swift
+//
+//  Created by Trung on 5/28/20.
+//  Copyright © 2020 trungnguyenthien. All rights reserved.
+//
+
 @_functionBuilder
 public struct LayoutItemBuilder {
     public static func buildBlock(_ lItems: LayoutItem...) -> [LayoutItem] {
@@ -86,11 +93,11 @@ public func spacer(_ size: Double) -> Spacer {
 /// - Parameter grow: <#grow description#>
 /// - Returns: <#description#>
 public func growSpacer(_ grow: Double) -> Spacer {
-    return Spacer(grow: grow)
+    Spacer(grow: grow)
 }
 
 /// <#Description#>
 /// - Returns: <#description#>
 public func stretchSpacer() -> Spacer {
-    return Spacer()
+    Spacer()
 }

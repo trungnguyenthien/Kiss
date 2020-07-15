@@ -1,6 +1,5 @@
 //
-//  Test.swift
-//  KissUI-Lib
+//  LayoutAttribute.swift
 //
 //  Created by Trung on 5/27/20.
 //  Copyright © 2020 trungnguyenthien. All rights reserved.
@@ -84,7 +83,7 @@ extension LayoutAttribute: NSCopying {
 // MARK: - Mapping LayoutAttribute to YGLayout
 
 extension LayoutAttribute {
-    func map(to yLayout: YGLayout) {
+    func map(to yLayout: YGLayout) { // swiftlint:disable:this cyclomatic_complexity
         yLayout.paddingLeft = YGValueOrUndefined(paddingLeft)
         yLayout.paddingRight = YGValueOrUndefined(paddingRight)
         yLayout.paddingTop = YGValueOrUndefined(paddingTop)

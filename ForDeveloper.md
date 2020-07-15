@@ -8,6 +8,12 @@ Refer: https://github.com/realm/SwiftLint
 brew install swiftlint
 ```
 
+Or, you can add extension to XCode
+
+```
+brew cask install swiftformat-for-xcode
+```
+
 #### 2. SwiftFormat
 
 Refer: https://github.com/nicklockwood/SwiftFormat
