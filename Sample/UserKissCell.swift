@@ -31,6 +31,7 @@ class UserKissCell: UICollectionViewCell {
         titleLable.kiss.layout.marginTop(5)
         stretchSpacer()
         phoneNum.kiss.layout.marginTop(5)
+        genderLabel.kiss.layout
         button.kiss.layout.margin(5)
     }
     
@@ -53,6 +54,7 @@ class UserKissCell: UICollectionViewCell {
         titleLable.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
         genderLabel.text = user.gender.rawValue
+        genderLabel.isVisible = user.gender == .male
         ratingView.isVisible = user.gender == .female
         kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)
         kiss.updateChange(width: frame.size.width, height: frame.size.height)
