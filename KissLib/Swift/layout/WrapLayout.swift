@@ -11,49 +11,49 @@ import UIKit
 
 public class WrapLayout: GroupLayout {
     var lineSpacing = 0.0
-    
+
     override init() {
         super.init()
-        self.attr.maxHeight = .none
+        attr.maxHeight = .none
     }
-    
+
     public func line(spacing: Double) -> Self {
         lineSpacing = spacing
         return self
     }
-    
-    public override func copy(with zone: NSZone? = nil) -> Any {
+
+    override public func copy(with zone: NSZone? = nil) -> Any {
         let newInstance = WrapLayout()
-        newInstance.layoutItems = self.layoutItems.copy(with: zone)
-        newInstance.baseView = self.baseView
-        newInstance.autoInvisibility = self.autoInvisibility
-        newInstance.lineSpacing = self.lineSpacing
-        newInstance.overlayGroups = self.overlayGroups
+        newInstance.layoutItems = layoutItems.copy(with: zone)
+        newInstance.baseView = baseView
+        newInstance.autoInvisibility = autoInvisibility
+        newInstance.lineSpacing = lineSpacing
+        newInstance.overlayGroups = overlayGroups
         return newInstance
     }
-    
+
     override func prepareForRenderingLayout() {
         resetForcedValue()
         removeLeadingTrailingIfHasSpacer()
-        
+
         layoutItems
             .compactMap { $0 as? FlexLayoutItemProtocol }
-            .forEach { (flex) in
+            .forEach { flex in
                 flex.prepareForRenderingLayout()
-        }
+            }
     }
-    
+
     override func configureLayout() {
-        body.configureLayout { (l) in
-            l.isEnabled = true
-            l.direction = .LTR
-            l.flexDirection = .row
-            l.flexWrap = .wrap
-            l.isIncludedInLayout = self.isVisibleLayout
-            
-            self.attr.map(to: l)
+        body.configureLayout { yLayout in
+            yLayout.isEnabled = true
+            yLayout.direction = .LTR
+            yLayout.flexDirection = .row
+            yLayout.flexWrap = .wrap
+            yLayout.isIncludedInLayout = self.isVisibleLayout
+
+            self.attr.map(to: yLayout)
         }
-        
+
         layoutItems.forEach {
             guard let flex = $0 as? FlexLayoutItemProtocol else { return }
             flex.configureLayout()
@@ -61,9 +61,9 @@ public class WrapLayout: GroupLayout {
             body.addSubview($0.root)
         }
     }
-    
+
     private func removeLeadingTrailingIfHasSpacer() {
-        layoutItems.enumerated().forEach { (index, item) in
+        layoutItems.enumerated().forEach { index, item in
             guard item is Spacer else { return }
             layoutItems.element(index - 1)?.attr.forcedRight = 0
             layoutItems.element(index + 1)?.attr.forcedLeft = 0

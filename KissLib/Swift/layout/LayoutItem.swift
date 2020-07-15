@@ -15,16 +15,16 @@ public protocol LayoutItem {
 
 extension Array where Array.Element == LayoutItem {
     func copy(with zone: NSZone? = nil) -> [Array.Element] {
-        return self.map {
+        return map {
             guard let objectCopyAble = $0 as? NSCopying else { return $0 }
-            return objectCopyAble.copy(with: zone) as! LayoutItem
+            return objectCopyAble.copy(with: zone) as! LayoutItem // swiftlint:disable:this force_cast
         }
     }
 }
 
 extension Array where Array.Element == GroupLayout {
     func copy(with zone: NSZone? = nil) -> [Array.Element] {
-        return self.map { $0.copy(with: zone) as! GroupLayout }
+        return map { $0.copy(with: zone) as! GroupLayout } // swiftlint:disable:this force_cast
     }
 }
 
@@ -35,11 +35,11 @@ internal extension LayoutItem {
         } else if let group = self as? GroupLayout {
             return group.overlayGroups
         }
-        
+
         /// Spacer không thể add overlay nên không xét
         return []
     }
-    
+
     func allOverlayGroups() -> [GroupLayout] {
         var groups = [GroupLayout]()
         groups.append(contentsOf: overlayItems)
@@ -48,7 +48,7 @@ internal extension LayoutItem {
         }
         return groups
     }
-    
+
     var attr: LayoutAttribute {
         if let item = self as? UIViewLayout {
             return item.attr
@@ -57,10 +57,10 @@ internal extension LayoutItem {
         } else if let spacer = self as? Spacer {
             return spacer.attr
         } else {
-            return (self as! LayoutAttribute)
+            return (self as! LayoutAttribute) // swiftlint:disable:this force_cast
         }
     }
-    
+
     var root: UIView {
         if let item = self as? UIViewLayout {
             return item.body
@@ -72,17 +72,8 @@ internal extension LayoutItem {
             return UIView()
         }
     }
-    
-//    var layoutItems: [LayoutItem] {
-//        guard let viewLayout = self as? GroupLayout else { return [] }
-//        return viewLayout.layoutItems
-//    }
-    
+
     var isSpacer: Bool {
         return self is Spacer
     }
-    
-//    var isGroup: Bool {
-//        return self is GroupLayout
-//    }
 }

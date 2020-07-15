@@ -17,10 +17,10 @@ public enum AutoInvisibility {
 protocol GroupLayoutSetter: PaddingSetter, MarginSetter, SizeSetter, AlignmentSetter, SelfAlignSetter {}
 
 public class GroupLayout: UIViewLayout, GroupLayoutSetter {
-    var baseView: UIView? = nil
+    var baseView: UIView?
     var layoutItems = [LayoutItem]()
     var autoInvisibility = AutoInvisibility.allInvisible
-    
+
     public var layerViews: [UIView] {
         var views: [UIView] = []
         views.append(body)
@@ -29,17 +29,17 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         }
         return views
     }
-    
+
     public func autoInvisible(_ type: AutoInvisibility) -> Self {
-        self.autoInvisibility = type
+        autoInvisibility = type
         return self
     }
-    
+
     func insert(view: UIViewLayout, at index: Int) {
         body.insertSubview(view.body, at: index)
         body.yoga.markDirty()
     }
-   
+
     func resetForcedValue() {
         layoutItems.forEach {
             $0.attr.forcedLeft = $0.attr.userMarginLeft
@@ -50,28 +50,28 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
             $0.attr.forcedHeight = nil
         }
     }
-    
-    public override var isVisibleLayout: Bool {
+
+    override public var isVisibleLayout: Bool {
         if body.isHidden { return false }
-        
+
         switch autoInvisibility {
         case .never: return true
         case .allInvisible: return hasVisibleView
         }
     }
-    
+
     /*
      Loại bỏ trường hợp 2 hay nhiều spacer liên tục nhau thành 1 spacer
      */
     private func reduceSpacer() {
         var secondarySpacer = [Spacer]()
-        layoutItems.enumerated().forEach { (index, item) in
+        layoutItems.enumerated().forEach { index, _ in
             if index == 0 { return }
             let previousItem = layoutItems[index - 1]
             guard let spacer = layoutItems[index] as? Spacer, previousItem is Spacer else { return }
             secondarySpacer.append(spacer)
         }
-        
+
         layoutItems.removeAll { (layoutItem) -> Bool in
             let spacer = layoutItem as? Spacer
             return secondarySpacer.contains { spacer === $0 }
@@ -93,7 +93,7 @@ extension GroupLayout {
         }
         return output
     }
-    
+
     var hasVisibleView: Bool {
         let visibleViews = layoutItems.filter { $0.isVisibleLayout }
         return visibleViews.count > 0
@@ -104,8 +104,8 @@ extension GroupLayout {
     var allOverlayGroup: [GroupLayout] {
         var groups = [GroupLayout]()
         groups.append(contentsOf: overlayGroups)
-        
-        layoutItems.forEach { (layoutItem) in
+
+        layoutItems.forEach { layoutItem in
             if let viewLayout = layoutItem as? UIViewLayout {
                 groups.append(contentsOf: viewLayout.overlayGroups)
             }
@@ -113,10 +113,10 @@ extension GroupLayout {
                 groups.append(contentsOf: groupLayout.allOverlayGroup)
             }
         }
-        
+
         return groups
     }
-    
+
     func resetViewHierachy() {
         body.resetYoga()
         body.removeFromSuperview()
@@ -131,14 +131,14 @@ extension GroupLayout {
             $0.resetViewHierachy()
         }
     }
-    
+
     /// Remove Subview hiện tại, construct lại hệ thống view mới
     func constructLayout() {
         let flex = self
         flex.prepareForRenderingLayout()
         flex.configureLayout()
     }
-    
+
     /// Layout lại vị trí view mới, những view bị hidden sẽ remove khỏi hệ thống layout.
     /// Nên gọi phương thức này sau khi set nội dung view và set hidden view hoàn tất.
     /// - Parameters:
@@ -146,10 +146,10 @@ extension GroupLayout {
     ///   - height: nil -> autoFit Height
     func updateLayoutChange(width: CGFloat? = nil, height: CGFloat? = nil) {
         constructLayout()
-        
+
         body.applyLayout(preservingOrigin: false, fixWidth: width, fixHeight: height)
-        
-        allOverlayGroup.forEach { (overlay) in
+
+        allOverlayGroup.forEach { overlay in
             guard let base = overlay.baseView else { return }
             overlay.overlayUpdateLayout(width: base.bounds.width, height: base.bounds.height)
 //            guard let superView = overlay.root.superview else { return }
@@ -157,16 +157,16 @@ extension GroupLayout {
 //            overlay.root.frame = newFrame
         }
     }
-    
+
     private func overlayUpdateLayout(width: CGFloat, height: CGFloat) {
         constructLayout()
         body.applyLayout(preservingOrigin: false, fixWidth: width, fixHeight: height)
         guard let superView = root.superview else { return }
         guard let base = baseView else { return }
-        guard let newFrame = superView.convertedFrame(subview: base) else {  return }
+        guard let newFrame = superView.convertedFrame(subview: base) else { return }
         root.frame = newFrame
     }
-    
+
     /// Tính toán size cần thiết để render layout
     /// - Parameters:
     ///   - width: nil nếu muốn fit chiều dài

@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public protocol AlignmentSetter {
     @discardableResult func mainAlign(_ value: MainAxisAlignment) -> Self
     @discardableResult func crossAlign(self value: CrossAxisAlignment) -> Self
@@ -17,17 +16,17 @@ public protocol AlignmentSetter {
 
 public extension AlignmentSetter where Self: LayoutItem {
     func mainAlign(_ value: MainAxisAlignment) -> Self {
-        self.attr.alignStack = value
+        attr.alignStack = value
         return self
     }
-    
+
     func crossAlign(self value: CrossAxisAlignment) -> Self {
-        self.attr.alignSelf = value
+        attr.alignSelf = value
         return self
     }
-    
+
     func crossAlign(items value: CrossAxisAlignment) -> Self {
-        self.attr.alignItems = value
+        attr.alignItems = value
         return self
     }
 }
