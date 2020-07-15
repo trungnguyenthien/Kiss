@@ -71,7 +71,7 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
             secondarySpacer.append(spacer)
         }
 
-        layoutItems.removeAll { (layoutItem) -> Bool in
+        layoutItems.removeAll { layoutItem -> Bool in
             let spacer = layoutItem as? Spacer
             return secondarySpacer.contains { spacer === $0 }
         }

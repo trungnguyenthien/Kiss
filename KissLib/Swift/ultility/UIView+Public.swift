@@ -32,6 +32,7 @@ public extension UIView {
         var hasSubLayout = false
 
         weak var currentGroupLayout: GroupLayout?
+
         init(view: UIView) {
             selfView = view
         }

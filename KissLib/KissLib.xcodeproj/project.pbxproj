@@ -78,6 +78,7 @@
 		87D0F48224BF40C5007210C0 /* YogaUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F48124BF40C5007210C0 /* YogaUtility.swift */; };
 		87D0F48424BF417E007210C0 /* UIView+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F48324BF417E007210C0 /* UIView+Private.swift */; };
 		87D0F48824BFB2FC007210C0 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = 87D0F48724BFB2FC007210C0 /* .swiftformat */; };
+		87D0F48A24BFB6B3007210C0 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 87D0F48924BFB6B3007210C0 /* .swiftlint.yml */; };
 		87E556C424BB0BD00088BAD3 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; };
 		87E556C524BB0BD00088BAD3 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		87E556E324BD4D9E0088BAD3 /* kiss-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87496AA524BA1B0A000B3D60 /* kiss-Info.plist */; };
@@ -207,6 +208,7 @@
 		87D0F48124BF40C5007210C0 /* YogaUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogaUtility.swift; sourceTree = "<group>"; };
 		87D0F48324BF417E007210C0 /* UIView+Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Private.swift"; sourceTree = "<group>"; };
 		87D0F48724BFB2FC007210C0 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
+		87D0F48924BFB6B3007210C0 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 		87496A9724BA1B0A000B3D60 = {
 			isa = PBXGroup;
 			children = (
+				87D0F48924BFB6B3007210C0 /* .swiftlint.yml */,
 				87D0F48724BFB2FC007210C0 /* .swiftformat */,
 				87496ABE24BA1BBF000B3D60 /* Swift */,
 				87496AF924BA1BF6000B3D60 /* yoga */,
@@ -548,6 +551,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87D0F48A24BFB6B3007210C0 /* .swiftlint.yml in Resources */,
 				87D0F48824BFB2FC007210C0 /* .swiftformat in Resources */,
 				87E556E324BD4D9E0088BAD3 /* kiss-Info.plist in Resources */,
 			);
@@ -588,7 +592,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed.\"\n  echo \"-- Please download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		87D0F48624BF5127007210C0 /* SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;

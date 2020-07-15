@@ -60,15 +60,15 @@ public class UIViewLayout: UIViewLayoutSetter {
 
 // MARK: - layout builder function
 
-extension UIViewLayout {
-    public func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
+public extension UIViewLayout {
+    func overlay(@GroupLayoutBuilder builder: () -> [GroupLayout]) -> Self {
         let groups = builder()
         groups.forEach { $0.baseView = self.body }
         overlayGroups.append(contentsOf: groups)
         return self
     }
 
-    public func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
+    func overlay(@GroupLayoutBuilder builder: () -> GroupLayout) -> Self {
         let group = builder()
         group.baseView = body
         overlayGroups.append(group)

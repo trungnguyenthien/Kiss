@@ -8,20 +8,20 @@
 import yoga
 postfix operator %
 
-extension Int {
-    public static postfix func % (value: Int) -> YGValue {
+internal extension Int {
+    static postfix func % (value: Int) -> YGValue {
         return YGValue(value: Float(value), unit: .percent)
     }
 }
 
-extension Float {
-    public static postfix func % (value: Float) -> YGValue {
+internal extension Float {
+    static postfix func % (value: Float) -> YGValue {
         return YGValue(value: value, unit: .percent)
     }
 }
 
-extension CGFloat {
-    public static postfix func % (value: CGFloat) -> YGValue {
+internal extension CGFloat {
+    static postfix func % (value: CGFloat) -> YGValue {
         return YGValue(value: Float(value), unit: .percent)
     }
 }
