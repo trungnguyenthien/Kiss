@@ -274,11 +274,11 @@
 			isa = PBXGroup;
 			children = (
 				87496AC024BA1BBF000B3D60 /* UIView+Public.swift */,
+				87496AC124BA1BBF000B3D60 /* Functions+Public.swift */,
 				87D0F48324BF417E007210C0 /* UIView+Private.swift */,
 				87D0F47F24BF40A5007210C0 /* Array+Private.swift */,
 				87D0F47D24BF4083007210C0 /* PrimitiveType+Private.swift */,
 				87496AC324BA1BBF000B3D60 /* Functions+Private.swift */,
-				87496AC124BA1BBF000B3D60 /* Functions+Public.swift */,
 				87D0F48124BF40C5007210C0 /* YogaUtility.swift */,
 			);
 			path = ultility;

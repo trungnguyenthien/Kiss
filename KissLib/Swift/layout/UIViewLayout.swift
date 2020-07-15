@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import YogaKit
 
-protocol UIViewLayoutSetter: LayoutItem, PaddingSetter, MarginSetter, SizeSetter, FlexLayoutItemProtocol, NSCopying { }
+protocol UIViewLayoutSetter: LayoutItem, MarginSetter, SizeSetter, FlexLayoutItemProtocol, NSCopying { }
 
 public class UIViewLayout: UIViewLayoutSetter {
     var attr = LayoutAttribute()
