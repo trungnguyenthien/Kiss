@@ -84,7 +84,7 @@ extension LayoutAttribute: NSCopying {
 // MARK: - Mapping LayoutAttribute to YGLayout
 
 extension LayoutAttribute {
-    func map(to yLayout: YGLayout) {
+    func map(to yLayout: YGLayout) { // swiftlint:disable:this cyclomatic_complexity
         yLayout.paddingLeft = YGValueOrUndefined(paddingLeft)
         yLayout.paddingRight = YGValueOrUndefined(paddingRight)
         yLayout.paddingTop = YGValueOrUndefined(paddingTop)

@@ -23,7 +23,6 @@
 		87496AE724BA1BBF000B3D60 /* LayoutAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496ACE24BA1BBF000B3D60 /* LayoutAttribute.swift */; };
 		87496AE824BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496ACF24BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift */; };
 		87496AE924BA1BBF000B3D60 /* ValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AD024BA1BBF000B3D60 /* ValueType.swift */; };
-		87496AEA24BA1BBF000B3D60 /* LayoutArrangeAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AD124BA1BBF000B3D60 /* LayoutArrangeAble.swift */; };
 		87496AEB24BA1BBF000B3D60 /* LayoutItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AD224BA1BBF000B3D60 /* LayoutItem.swift */; };
 		87496AEC24BA1BBF000B3D60 /* WrapLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AD324BA1BBF000B3D60 /* WrapLayout.swift */; };
 		87496AED24BA1BBF000B3D60 /* SelfAlignSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AD524BA1BBF000B3D60 /* SelfAlignSetter.swift */; };
@@ -78,6 +77,7 @@
 		87D0F48024BF40A5007210C0 /* Array+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F47F24BF40A5007210C0 /* Array+Private.swift */; };
 		87D0F48224BF40C5007210C0 /* YogaUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F48124BF40C5007210C0 /* YogaUtility.swift */; };
 		87D0F48424BF417E007210C0 /* UIView+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F48324BF417E007210C0 /* UIView+Private.swift */; };
+		87D0F48824BFB2FC007210C0 /* .swiftformat in Resources */ = {isa = PBXBuildFile; fileRef = 87D0F48724BFB2FC007210C0 /* .swiftformat */; };
 		87E556C424BB0BD00088BAD3 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; };
 		87E556C524BB0BD00088BAD3 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		87E556E324BD4D9E0088BAD3 /* kiss-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87496AA524BA1B0A000B3D60 /* kiss-Info.plist */; };
@@ -148,7 +148,6 @@
 		87496ACE24BA1BBF000B3D60 /* LayoutAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutAttribute.swift; sourceTree = "<group>"; };
 		87496ACF24BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexLayoutItemProtocol.swift; sourceTree = "<group>"; };
 		87496AD024BA1BBF000B3D60 /* ValueType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueType.swift; sourceTree = "<group>"; };
-		87496AD124BA1BBF000B3D60 /* LayoutArrangeAble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutArrangeAble.swift; sourceTree = "<group>"; };
 		87496AD224BA1BBF000B3D60 /* LayoutItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutItem.swift; sourceTree = "<group>"; };
 		87496AD324BA1BBF000B3D60 /* WrapLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WrapLayout.swift; sourceTree = "<group>"; };
 		87496AD524BA1BBF000B3D60 /* SelfAlignSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfAlignSetter.swift; sourceTree = "<group>"; };
@@ -207,6 +206,7 @@
 		87D0F47F24BF40A5007210C0 /* Array+Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Private.swift"; sourceTree = "<group>"; };
 		87D0F48124BF40C5007210C0 /* YogaUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YogaUtility.swift; sourceTree = "<group>"; };
 		87D0F48324BF417E007210C0 /* UIView+Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Private.swift"; sourceTree = "<group>"; };
+		87D0F48724BFB2FC007210C0 /* .swiftformat */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftformat; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +242,7 @@
 		87496A9724BA1B0A000B3D60 = {
 			isa = PBXGroup;
 			children = (
+				87D0F48724BFB2FC007210C0 /* .swiftformat */,
 				87496ABE24BA1BBF000B3D60 /* Swift */,
 				87496AF924BA1BF6000B3D60 /* yoga */,
 				87496B3C24BA1C37000B3D60 /* YogaKit */,
@@ -307,7 +308,6 @@
 				87496ACE24BA1BBF000B3D60 /* LayoutAttribute.swift */,
 				87496ACF24BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift */,
 				87496AD024BA1BBF000B3D60 /* ValueType.swift */,
-				87496AD124BA1BBF000B3D60 /* LayoutArrangeAble.swift */,
 			);
 			path = attributes;
 			sourceTree = "<group>";
@@ -548,6 +548,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87D0F48824BFB2FC007210C0 /* .swiftformat in Resources */,
 				87E556E324BD4D9E0088BAD3 /* kiss-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,7 +606,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftformat >/dev/null; then\n  swiftformat .\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+			shellScript = "if which swiftformat >/dev/null; then\n  swiftformat Swift\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -619,7 +620,6 @@
 				87496AE224BA1BBF000B3D60 /* HStackLayout.swift in Sources */,
 				87D0F47E24BF4083007210C0 /* PrimitiveType+Private.swift in Sources */,
 				87496AE424BA1BBF000B3D60 /* UIViewLayout.swift in Sources */,
-				87496AEA24BA1BBF000B3D60 /* LayoutArrangeAble.swift in Sources */,
 				87D0F48024BF40A5007210C0 /* Array+Private.swift in Sources */,
 				87496AF124BA1BBF000B3D60 /* PaddingSetter.swift in Sources */,
 				87496AE724BA1BBF000B3D60 /* LayoutAttribute.swift in Sources */,

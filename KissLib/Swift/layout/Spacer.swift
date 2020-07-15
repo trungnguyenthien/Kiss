@@ -27,7 +27,7 @@ public class Spacer: LayoutItem {
     }
 
     public var isVisibleLayout: Bool {
-        return true
+        true
     }
 }
 

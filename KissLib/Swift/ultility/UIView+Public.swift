@@ -15,14 +15,14 @@ private var kissAssociatedKey = "UIView.KissAssociatedKey"
 public extension UIView {
     /// Ẩn hiện view, ngược lại với isHidden
     var isVisible: Bool {
-        get { return !isHidden }
+        get { !isHidden }
         set { isHidden = !newValue }
     }
 
     var kiss: Kiss {
         guard let obj = objc_getAssociatedObject(self, &kissAssociatedKey) as? Kiss else {
             let newKiss = Kiss(view: self)
-            objc_setAssociatedObject(self, &kissAssociatedKey, newKiss, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(self, &kissAssociatedKey, newKiss, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             return newKiss
         }
         return obj
@@ -60,7 +60,7 @@ public extension UIView {
         }
 
         public var layout: UIViewLayout {
-            return selfView.layout
+            selfView.layout
         }
 
         public func updateChange(width: CGFloat? = nil, height: CGFloat? = nil) {
@@ -68,7 +68,7 @@ public extension UIView {
         }
 
         public func estimatedSize(width: CGFloat? = nil, height: CGFloat? = nil) -> CGSize {
-            return currentGroupLayout?.estimatedSize(width: width, height: height) ?? .zero
+            currentGroupLayout?.estimatedSize(width: width, height: height) ?? .zero
         }
 
         // MARK: - VSTACK LAYOUT

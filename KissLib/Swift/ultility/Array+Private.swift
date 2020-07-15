@@ -15,10 +15,10 @@ extension Array {
     }
 
     var firstIndex: Int {
-        return 0
+        0
     }
 
     var lastIndex: Int {
-        return count - 1
+        count - 1
     }
 }

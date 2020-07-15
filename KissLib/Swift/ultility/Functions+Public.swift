@@ -86,11 +86,11 @@ public func spacer(_ size: Double) -> Spacer {
 /// - Parameter grow: <#grow description#>
 /// - Returns: <#description#>
 public func growSpacer(_ grow: Double) -> Spacer {
-    return Spacer(grow: grow)
+    Spacer(grow: grow)
 }
 
 /// <#Description#>
 /// - Returns: <#description#>
 public func stretchSpacer() -> Spacer {
-    return Spacer()
+    Spacer()
 }

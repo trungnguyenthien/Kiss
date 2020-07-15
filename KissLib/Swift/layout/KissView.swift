@@ -10,20 +10,20 @@ import Foundation
 import UIKit
 
 open class KissView: UIView {
-    override public func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         kiss.updateChange(width: frame.width, height: frame.height)
     }
 
-    override public var intrinsicContentSize: CGSize {
-        return kiss.estimatedSize()
+    public override var intrinsicContentSize: CGSize {
+        kiss.estimatedSize()
     }
 
-    override open func sizeToFit() {
+    open override func sizeToFit() {
         kiss.updateChange()
     }
 
-    override open func sizeThatFits(_ size: CGSize) -> CGSize {
-        return kiss.estimatedSize(width: size.width, height: size.height)
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        kiss.estimatedSize(width: size.width, height: size.height)
     }
 }

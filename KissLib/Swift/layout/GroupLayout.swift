@@ -51,7 +51,7 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         }
     }
 
-    override public var isVisibleLayout: Bool {
+    public override var isVisibleLayout: Bool {
         if body.isHidden { return false }
 
         switch autoInvisibility {
@@ -96,7 +96,7 @@ extension GroupLayout {
 
     var hasVisibleView: Bool {
         let visibleViews = layoutItems.filter { $0.isVisibleLayout }
-        return visibleViews.count > 0
+        return !visibleViews.isEmpty
     }
 }
 

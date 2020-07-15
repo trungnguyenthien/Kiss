@@ -17,7 +17,7 @@ public class HStackLayout: GroupLayout {
         attr.alignItems = .stretch
     }
 
-    override public func copy(with zone: NSZone? = nil) -> Any {
+    public override func copy(with zone: NSZone? = nil) -> Any {
         let newInstance = HStackLayout()
         newInstance.layoutItems = layoutItems.copy(with: zone)
         newInstance.baseView = baseView
