@@ -10,7 +10,16 @@ import Foundation
 import UIKit
 import YogaKit
 
+extension Sequence where Element: UIView {
+    func removeFromCurrentSuperview() { forEach { $0.removeFromSuperview() } }
+}
+
 extension UIView {
+    func addSubviews(inLayout layout: GroupLayout) {
+        layout.uiContentViews.removeFromCurrentSuperview()
+        layout.uiContentViews.forEach { addSubview($0) }
+    }
+    
     // MARK: - VIEWLAYOUT
     var layout: UIViewLayout {
         // Nếu là custom view đã có sẵn layout rồi thì sử dụng bản copy của custom view đó
