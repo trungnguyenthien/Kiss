@@ -11,24 +11,18 @@ import UIKit
 import Kiss
 
 class UserKissCell: UICollectionViewCell {
-    let mailLabel = "ngthientrung@gmail.com".labelMediumBold
-    let titleLable = "Chiêm Điêng".labelMediumBold
-    let phoneNum = "(+84) 167 767 0064".labelMedium
-    let genderLabel = "GENDER: MALE".labelSmall
+    let mailLabel = "ngthientrung@gmail.com".label(.body)
+    let titleLabel = "My Title".label(.body)
+    let phoneNum = "(+84) 167 767 0064".label(.body)
+    let genderLabel = "Gender: Male".label(.body)
     let imageView = makeThumbnail()
     let ratingView = RatingView()
     let button = "Detail info".button
-    let view1 = makeView(.clear)
-    let view2 = makeView(.clear)
-    
-    lazy var tagLayer = hstack {
-        "❤️".labelMedium.kiss.layout
-    }.mainAlign(.start).padding(10).crossAlign(items: .end)
     
     lazy var stackInfoLayout = vstack {
         mailLabel.kiss.layout.marginTop(5)
         ratingView.kiss.layout.marginTop(5).height(30)
-        titleLable.kiss.layout.marginTop(5)
+        titleLabel.kiss.layout.marginTop(5)
         stretchSpacer()
         phoneNum.kiss.layout.marginTop(5)
         genderLabel.kiss.layout
@@ -42,27 +36,22 @@ class UserKissCell: UICollectionViewCell {
     }.padding(10).crossAlign(items: .start)
     
     lazy var vLayout = vstack {
-        imageView.kiss.layout.crossAlign(self: .stretch).ratio(2/2).overlay { tagLayer }
+        imageView.kiss.layout.crossAlign(self: .stretch).ratio(2/2)
         spacer(10)
         stackInfoLayout.cloned.growFull()
     }.padding(10).crossAlign(items: .start)
     
     func config(user: User, isPortrait: Bool) {
-        self.backgroundColor = .white
-        
+        backgroundColor = .white
         mailLabel.text = user.email
-        titleLable.text = "\(user.name.last) \(user.name.first)"
+        titleLabel.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
         genderLabel.text = user.gender.rawValue
         genderLabel.isVisible = user.gender == .male
         ratingView.isVisible = user.gender == .female
+        
         kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)
         kiss.updateChange(width: frame.size.width, height: frame.size.height)
-    }
-    
-    func preview() {
-        kiss.constructIfNeed(layout: vLayout)
-        kiss.updateChange()
     }
     
     override func layoutSubviews() {

@@ -22,6 +22,10 @@ class ViewController: UIViewController {
     private let cellKind = CellKind.kisscell
     let sampleCell = UserKissCell()
     
+    var gridKind: CollectionGridKind {
+        return CollectionGridKind()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.register(UserKissCell.self, forCellWithReuseIdentifier: CellKind.kisscell.rawValue)
@@ -52,15 +56,9 @@ class ViewController: UIViewController {
         cache.calculation = calculationHeight
     }
     
-    private func calculationHeight(_ row: Int) -> CGFloat {
-        sampleCell.config(user: datasource[row], isPortrait: isPortrait())
-        let size = sampleCell.kiss.estimatedSize(width: cellWidth(), height: nil)
-        return size.height
-    }
-    
-    private func rowHeight(_ row: Int) -> CGFloat {
-        let firstRowIndex = Int(CGFloat(row) / numberColumns()) * Int(numberColumns())
-        var lastRowIndex = firstRowIndex + Int(numberColumns())
+    func rowHeight(_ row: Int) -> CGFloat {
+        let firstRowIndex = Int(CGFloat(row) / CGFloat(gridKind.columns)) * gridKind.columns
+        var lastRowIndex = firstRowIndex + Int(gridKind.columns) - 1
         lastRowIndex = min(lastRowIndex, datasource.count - 1)
         let rowHeights = (firstRowIndex...lastRowIndex).map { cache.get(at: $0) }
         let max = rowHeights.max() ?? 0
@@ -81,6 +79,12 @@ class ViewController: UIViewController {
         }
     }
     
+    private func calculationHeight(_ row: Int) -> CGFloat {
+        sampleCell.config(user: datasource[row], isPortrait: gridKind.isVerticalCell)
+        let size = sampleCell.kiss.estimatedSize(width: gridKind.cellWidth, height: nil)
+        return size.height
+    }
+    
     private func updateBackgroundColor() {
         collectionView.backgroundColor = datasource.isEmpty ? .white : .gray
     }
@@ -94,24 +98,17 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellKind.rawValue, for: indexPath)
         if let cell = cell as? UserKissCell {
-            cell.config(user: datasource[indexPath.row], isPortrait: isPortrait())
+            cell.config(user: datasource[indexPath.row], isPortrait: gridKind.isVerticalCell)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: cellWidth(), height: rowHeight(indexPath.row))
-    }
-    
-    
-    func cellWidth() -> CGFloat {
-        return (UIScreen.main.bounds.width - numberColumns() - 1) / numberColumns()
-    }
-    
-    func numberColumns() -> CGFloat {
-        return isPortrait() ? 4 : 3
+        return CGSize(width: gridKind.cellWidth, height: rowHeight(indexPath.row))
     }
 }
+
+
 
 class CacheCellHeight {
     private var heightDict = [Int: CGFloat]()

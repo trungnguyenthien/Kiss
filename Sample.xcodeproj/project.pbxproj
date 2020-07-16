@@ -20,6 +20,9 @@
 		87BB37C024BE5DCA002DF909 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BD24BE5DCA002DF909 /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87BB37C124BE5DCA002DF909 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BE24BE5DCA002DF909 /* YogaKit.framework */; };
 		87BB37C224BE5DCA002DF909 /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BE24BE5DCA002DF909 /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		87D0F4AC24C108FA007210C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F4AB24C108FA007210C0 /* SceneDelegate.swift */; };
+		87D0F4B124C11257007210C0 /* CollectionGridKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F4B024C11257007210C0 /* CollectionGridKind.swift */; };
+		87D0F4B424C112CB007210C0 /* uiFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F4B324C112CB007210C0 /* uiFactory.swift */; };
 		87E556DA24BB61760088BAD3 /* Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E556D924BB61760088BAD3 /* Kiss.framework */; };
 		87E556DB24BB61760088BAD3 /* Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87E556D924BB61760088BAD3 /* Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -54,6 +57,9 @@
 		871D4E6E24B9B6B900DC3531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87BB37BD24BE5DCA002DF909 /* yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87BB37BE24BE5DCA002DF909 /* YogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87D0F4AB24C108FA007210C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		87D0F4B024C11257007210C0 /* CollectionGridKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGridKind.swift; sourceTree = "<group>"; };
+		87D0F4B324C112CB007210C0 /* uiFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uiFactory.swift; sourceTree = "<group>"; };
 		87E556D924BB61760088BAD3 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -101,8 +107,9 @@
 		871D4E0A24B9B1A400DC3531 /* Sample */ = {
 			isa = PBXGroup;
 			children = (
+				87D0F4B224C1128C007210C0 /* provider */,
+				87D0F4AF24C11248007210C0 /* utility */,
 				871D4E5F24B9B42F00DC3531 /* Common.swift */,
-				871D4E6124B9B42F00DC3531 /* RamdomUserProvider.swift */,
 				871D4E6224B9B42F00DC3531 /* RatingView.swift */,
 				871D4E6324B9B42F00DC3531 /* UserKissCell.swift */,
 				871D4E0B24B9B1A400DC3531 /* AppDelegate.swift */,
@@ -111,8 +118,26 @@
 				871D4E1624B9B1A600DC3531 /* LaunchScreen.storyboard */,
 				871D4E6D24B9B6B900DC3531 /* Main.storyboard */,
 				871D4E1924B9B1A600DC3531 /* Info.plist */,
+				87D0F4AB24C108FA007210C0 /* SceneDelegate.swift */,
 			);
 			path = Sample;
+			sourceTree = "<group>";
+		};
+		87D0F4AF24C11248007210C0 /* utility */ = {
+			isa = PBXGroup;
+			children = (
+				87D0F4B024C11257007210C0 /* CollectionGridKind.swift */,
+				87D0F4B324C112CB007210C0 /* uiFactory.swift */,
+			);
+			path = utility;
+			sourceTree = "<group>";
+		};
+		87D0F4B224C1128C007210C0 /* provider */ = {
+			isa = PBXGroup;
+			children = (
+				871D4E6124B9B42F00DC3531 /* RamdomUserProvider.swift */,
+			);
+			path = provider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,11 +234,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				871D4E6824B9B42F00DC3531 /* UserKissCell.swift in Sources */,
+				87D0F4AC24C108FA007210C0 /* SceneDelegate.swift in Sources */,
 				871D4E6524B9B42F00DC3531 /* ViewController.swift in Sources */,
+				87D0F4B124C11257007210C0 /* CollectionGridKind.swift in Sources */,
 				871D4E6624B9B42F00DC3531 /* RamdomUserProvider.swift in Sources */,
 				871D4E6424B9B42F00DC3531 /* Common.swift in Sources */,
 				871D4E6724B9B42F00DC3531 /* RatingView.swift in Sources */,
 				871D4E0C24B9B1A400DC3531 /* AppDelegate.swift in Sources */,
+				87D0F4B424C112CB007210C0 /* uiFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
