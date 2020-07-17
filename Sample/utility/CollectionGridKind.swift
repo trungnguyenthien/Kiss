@@ -42,7 +42,7 @@ enum CollectionGridKind {
         case .phoneLandscape: return 2
             
         case .padPortrait: return 4
-        case .padLandscape: return 2
+        case .padLandscape: return 3
         }
     }
     
