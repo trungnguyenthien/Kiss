@@ -23,6 +23,7 @@
 		87D0F4AC24C108FA007210C0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F4AB24C108FA007210C0 /* SceneDelegate.swift */; };
 		87D0F4B124C11257007210C0 /* CollectionGridKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F4B024C11257007210C0 /* CollectionGridKind.swift */; };
 		87D0F4B424C112CB007210C0 /* uiFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F4B324C112CB007210C0 /* uiFactory.swift */; };
+		87D0F4B624C2368A007210C0 /* SUICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D0F4B524C2368A007210C0 /* SUICell.swift */; };
 		87E556DA24BB61760088BAD3 /* Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E556D924BB61760088BAD3 /* Kiss.framework */; };
 		87E556DB24BB61760088BAD3 /* Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87E556D924BB61760088BAD3 /* Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		87D0F4AB24C108FA007210C0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		87D0F4B024C11257007210C0 /* CollectionGridKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionGridKind.swift; sourceTree = "<group>"; };
 		87D0F4B324C112CB007210C0 /* uiFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = uiFactory.swift; sourceTree = "<group>"; };
+		87D0F4B524C2368A007210C0 /* SUICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SUICell.swift; sourceTree = "<group>"; };
 		87E556D924BB61760088BAD3 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 				871D4E6D24B9B6B900DC3531 /* Main.storyboard */,
 				871D4E1924B9B1A600DC3531 /* Info.plist */,
 				87D0F4AB24C108FA007210C0 /* SceneDelegate.swift */,
+				87D0F4B524C2368A007210C0 /* SUICell.swift */,
 			);
 			path = Sample;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				871D4E6824B9B42F00DC3531 /* UserKissCell.swift in Sources */,
+				87D0F4B624C2368A007210C0 /* SUICell.swift in Sources */,
 				87D0F4AC24C108FA007210C0 /* SceneDelegate.swift in Sources */,
 				871D4E6524B9B42F00DC3531 /* ViewController.swift in Sources */,
 				87D0F4B124C11257007210C0 /* CollectionGridKind.swift in Sources */,

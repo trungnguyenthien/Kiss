@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     private let cache = CacheCellHeight()
     @IBOutlet weak var collectionView: UICollectionView!
     private let cellKind = CellKind.kisscell
-    let sampleCell = UserKissCell()
+    let sampleCell = UIKitCell()
     
     var gridKind: CollectionGridKind {
         return CollectionGridKind()
@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.register(UserKissCell.self, forCellWithReuseIdentifier: CellKind.kisscell.rawValue)
+        collectionView.register(UIKitCell.self, forCellWithReuseIdentifier: CellKind.kisscell.rawValue)
         updateBackgroundColor()
         
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -71,17 +71,18 @@ class ViewController: UIViewController {
         
         // Reload visible item for updating it's layout
         cache.clearAll()
-        self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
+        
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in
             guard let self = self else { return }
             // invalidateLayout for updating it's layout
-            self.collectionView.collectionViewLayout.invalidateLayout()
+            self.collectionView.reloadData()
+//            self.collectionView.collectionViewLayout.invalidateLayout()
         }
     }
     
     private func calculationHeight(_ row: Int) -> CGFloat {
-        sampleCell.config(user: datasource[row], isPortrait: gridKind.isVerticalCell)
-        let size = sampleCell.kiss.estimatedSize(width: gridKind.cellWidth, height: nil)
+        sampleCell.update(name: datasource[row].name.first, email: datasource[row].email)
+        let size = sampleCell.size(hardWidth: Double(gridKind.cellWidth))
         return size.height
     }
     
@@ -97,8 +98,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellKind.rawValue, for: indexPath)
-        if let cell = cell as? UserKissCell {
-            cell.config(user: datasource[indexPath.row], isPortrait: gridKind.isVerticalCell)
+        if let cell = cell as? UIKitCell {
+            cell.update(name: datasource[indexPath.row].name.first, email: datasource[indexPath.row].email)
         }
         return cell
     }
