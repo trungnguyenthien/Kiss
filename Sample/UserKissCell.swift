@@ -10,12 +10,19 @@ import Foundation
 import UIKit
 import Kiss
 
+let myfont = UIFont(name: "AvenirNextCondensed-MediumItalic", size: 14) ?? UIFont.systemFont(ofSize: 14)
+
 class UserKissCell: UICollectionViewCell {
-    let mailLabel = "ngthientrung@gmail.com".label(.body)
+    let mailLabel = "ngthientrung@gmail.com"
+        .label(.body)
+        .font(myfont)
+        .fontSize(22)
+        .textColor(.systemBlue)
+        .strikethrough(.double, color: .green)
     let titleLabel = "My Title".label(.body)
     let phoneNum = "(+84) 167 767 0064".label(.body)
     let genderLabel = "Gender: Male".label(.body)
-    let imageView = makeThumbnail()
+    let imageView = UIView().bgColor(.brown).stroke(size: 2, color: .green).cornerRadius(10)
     let ratingView = RatingView()
     let button = "Detail info".button
     
