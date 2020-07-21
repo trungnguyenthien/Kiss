@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol TextDecorator {
+public protocol TextDecorable {
     @discardableResult func text(_ string: String) -> Self
     @discardableResult func textColor(_ color: UIColor) -> Self
     /// The font used to display the text (let refer font name at https://github.com/lionhylra/iOS-UIFont-Names)
@@ -18,12 +18,17 @@ public protocol TextDecorator {
     @discardableResult func font(_ font: UIFont) -> Self
     /// The font's size used to display the text.
     @discardableResult func fontSize(_ size: CGFloat) -> Self
-    @discardableResult func underline(_ style: NSUnderlineStyle, color: UIColor) -> Self
+
     @discardableResult func strikethrough(_ style: NSUnderlineStyle, color: UIColor) -> Self
+    @discardableResult func strikethrough(_ style: NSUnderlineStyle) -> Self
+
+    @discardableResult func underline(_ style: NSUnderlineStyle) -> Self
+    @discardableResult func underline(_ style: NSUnderlineStyle, color: UIColor) -> Self
+
     @discardableResult func stroke(size: CGFloat, color: UIColor) -> Self
 }
 
-struct LabelAttribute {
+struct TextAttribute {
     var textColor: UIColor = .black
     var fontSize: CGFloat = 12
     var fontName: String = "SFUI-Regular"
@@ -70,15 +75,15 @@ struct LabelAttribute {
     }
 }
 
-private var key = "UILabel.LabelAttribute.Key"
+private var key = "UILabel.textAttribute.Key"
 
 extension UILabel {
-    var labelAttribute: LabelAttribute {
+    var textAttribute: TextAttribute {
         get {
-            guard let obj = objc_getAssociatedObject(self, &key) as? LabelAttribute else {
-                let newKiss = LabelAttribute()
-                objc_setAssociatedObject(self, &key, newKiss, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                return newKiss
+            guard let obj = objc_getAssociatedObject(self, &key) as? TextAttribute else {
+                let attribute = TextAttribute()
+                objc_setAssociatedObject(self, &key, attribute, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                return attribute
             }
             return obj
         }
@@ -88,62 +93,75 @@ extension UILabel {
     }
 }
 
-public extension TextDecorator where Self: UILabel {
+public extension TextDecorable where Self: UILabel {
     @discardableResult func underline(_ style: NSUnderlineStyle, color: UIColor) -> Self {
-        labelAttribute.underline = style
-        labelAttribute.underlineColor = color
-        attributedText = labelAttribute.attributes(text: text)
+        textAttribute.underline = style
+        textAttribute.underlineColor = color
+        attributedText = textAttribute.attributes(text: text)
         return self
     }
 
     @discardableResult func strikethrough(_ style: NSUnderlineStyle, color: UIColor) -> Self {
-        labelAttribute.strikethrough = style
-        labelAttribute.strikethroughColor = color
-        attributedText = labelAttribute.attributes(text: text)
+        textAttribute.strikethrough = style
+        textAttribute.strikethroughColor = color
+        attributedText = textAttribute.attributes(text: text)
         return self
     }
 
     @discardableResult func stroke(size: CGFloat, color: UIColor) -> Self {
-        labelAttribute.strokeWidth = size
-        labelAttribute.strokeColor = color
-        attributedText = labelAttribute.attributes(text: text)
+        textAttribute.strokeWidth = size
+        textAttribute.strokeColor = color
+        attributedText = textAttribute.attributes(text: text)
         return self
     }
 
-    @discardableResult func text(_ string: String) -> Self {
-        text = string
-        attributedText = labelAttribute.attributes(text: text)
+    @discardableResult func text(_: String) -> Self {
+        attributedText = textAttribute.attributes(text: text)
         return self
     }
 
     @discardableResult func textColor(_ color: UIColor) -> Self {
-        labelAttribute.textColor = color
-        attributedText = labelAttribute.attributes(text: text)
+        textAttribute.textColor = color
+        attributedText = textAttribute.attributes(text: text)
         return self
     }
 
     @discardableResult func font(name: String, size: CGFloat) -> Self {
-        labelAttribute.fontSize = size
-        labelAttribute.fontName = name
-        attributedText = labelAttribute.attributes(text: text)
+        textAttribute.fontSize = size
+        textAttribute.fontName = name
+        attributedText = textAttribute.attributes(text: text)
         return self
     }
 
     @discardableResult func font(_ font: UIFont) -> Self {
-        labelAttribute.fontSize = font.pointSize
-        labelAttribute.fontName = font.fontName
-        attributedText = labelAttribute.attributes(text: text)
+        textAttribute.fontSize = font.pointSize
+        textAttribute.fontName = font.fontName
+        attributedText = textAttribute.attributes(text: text)
         return self
     }
 
     @discardableResult func fontSize(_ size: CGFloat) -> Self {
-        labelAttribute.fontSize = size
-        attributedText = labelAttribute.attributes(text: text)
+        textAttribute.fontSize = size
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
+    @discardableResult func underline(_ style: NSUnderlineStyle) -> Self {
+        textAttribute.underline = style
+        textAttribute.underlineColor = nil
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
+    @discardableResult func strikethrough(_ style: NSUnderlineStyle) -> Self {
+        textAttribute.strikethrough = style
+        textAttribute.strikethroughColor = nil
+        attributedText = textAttribute.attributes(text: text)
         return self
     }
 }
 
-extension UILabel: TextDecorator {}
+extension UILabel: TextDecorable {}
 
 public extension String {
     func label() -> UILabel {

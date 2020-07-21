@@ -19,6 +19,7 @@ class UserKissCell: UICollectionViewCell {
         .fontSize(22)
         .textColor(.systemBlue)
         .strikethrough(.double, color: .green)
+        .underline(.patternDashDotDot, color: .clear)
     let titleLabel = "My Title".label(.body)
     let phoneNum = "(+84) 167 767 0064".label(.body)
     let genderLabel = "Gender: Male".label(.body)
