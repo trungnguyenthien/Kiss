@@ -31,7 +31,7 @@ public protocol TextDecorable {
 struct TextAttribute {
     var textColor: UIColor = .black
     var fontSize: CGFloat = 12
-    var fontName: String = "SFUI-Regular"
+    var fontName: String = UIFont.systemFont(ofSize: 1).familyName
 
     var underline: NSUnderlineStyle?
     var underlineColor: UIColor?
@@ -77,8 +77,8 @@ struct TextAttribute {
 
 private var key = "UILabel.textAttribute.Key"
 
-extension UILabel {
-    var textAttribute: TextAttribute {
+public extension UILabel {
+    internal var textAttribute: TextAttribute {
         get {
             guard let obj = objc_getAssociatedObject(self, &key) as? TextAttribute else {
                 let attribute = TextAttribute()
@@ -89,6 +89,15 @@ extension UILabel {
         }
         set {
             objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+
+    var kissText: String? {
+        get {
+            return text
+        }
+        set {
+            text(newValue ?? "")
         }
     }
 }
@@ -115,7 +124,8 @@ public extension TextDecorable where Self: UILabel {
         return self
     }
 
-    @discardableResult func text(_: String) -> Self {
+    @discardableResult func text(_ text: String) -> Self {
+        self.text = text
         attributedText = textAttribute.attributes(text: text)
         return self
     }
@@ -167,6 +177,7 @@ public extension String {
     func label() -> UILabel {
         let uilabel = UILabel()
         uilabel.text = self
+        uilabel.numberOfLines = 0
         return uilabel
     }
 }
