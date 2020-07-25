@@ -12,33 +12,36 @@ import Kiss
 
 let myfont = UIFont(name: "AvenirNextCondensed-MediumItalic", size: 14) ?? UIFont.systemFont(ofSize: 14)
 
-enum Builder {
+enum UIBuilder {
     static var nameText: KissTextBuilder {
         return KissTextBuilder()
-        .linebreak(.truncatingTail(2))
-        .textColor(.darkGray)
-        .underline(.single)
-        .style(.italic)
+            .font(myfont)
+            .linebreak(.truncatingTail(2))
+            .textColor(.darkGray)
+            .underline(.single)
+            .style(.italic)
     }
     
-    static var bodyText: KissTextBuilder {
+    static var infoText: KissTextBuilder {
         return KissTextBuilder()
-        .linebreak(.none)
-        .textColor(.black)
-        .font(.systemFont(ofSize: 12))
+            .linebreak(.none)
+            .textColor(.black)
+            .font(.systemFont(ofSize: 12))
+    }
+    
+    static func thumbnail() -> UIImageView {
+        return UIImageView()
+            .cornerRadius(15)
+            .background(.lightGray)
+            .stroke(size: 2, color: .secondarySystemFill)
     }
 }
 
 class UserKissCell: UICollectionViewCell {
-    let mailLabel = Builder.nameText.fontSize(16).label()
-    let titleLabel = Builder.bodyText.label()
-    let phoneNum =  Builder.bodyText.label()
-    let genderLabel =  Builder.bodyText.label()
-    
-    let imageView = UIView()
-        .background(.brown)
-        .stroke(size: 2, color: .green)
-        .cornerRadius(10)
+    let mailLabel = UIBuilder.nameText.fontSize(20).label()
+    let titleLabel = UIBuilder.infoText.label()
+    let phoneNum =  UIBuilder.infoText.label()
+    let imageView = UIBuilder.thumbnail()
     
     let ratingView = RatingView()
     let button = "Detail info".button
@@ -49,7 +52,6 @@ class UserKissCell: UICollectionViewCell {
         titleLabel.kiss.layout.marginTop(5)
         stretchSpacer()
         phoneNum.kiss.layout.marginTop(5)
-        genderLabel.kiss.layout
         button.kiss.layout.margin(5)
     }
     
@@ -70,8 +72,6 @@ class UserKissCell: UICollectionViewCell {
         mailLabel.text = user.email
         titleLabel.text = "\(user.name.last) \(user.name.first)"
         phoneNum.text = "Tel: \(user.phone)"
-        genderLabel.text = user.gender.rawValue
-        genderLabel.isVisible = user.gender == .male
         ratingView.isVisible = user.gender == .female
         
         kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)

@@ -138,17 +138,9 @@ extension UIFont {
         return UIFont(descriptor: descriptor, size: pointSize)
     }
 
-    var italic: UIFont {
-        with(traits: .traitItalic)
-    }
-
-    var bold: UIFont {
-        with(traits: .traitBold)
-    }
-
-    var boldItalic: UIFont {
-        with(traits: [.traitBold, .traitItalic])
-    }
+    var italic: UIFont { with(traits: .traitItalic) }
+    var bold: UIFont { with(traits: .traitBold) }
+    var boldItalic: UIFont { with(traits: [.traitBold, .traitItalic]) }
 }
 
 public struct KissTextBuilder {
@@ -163,6 +155,7 @@ public struct KissTextBuilder {
     var strokeColor: UIColor?
     var numberOfLines: Int = 0
     var textStyle = TextStyle.regular
+    var paragraph = NSMutableParagraphStyle()
 
     public init() {}
 
@@ -173,9 +166,6 @@ public struct KissTextBuilder {
         return label
     }
 
-    // Paragraph Style
-    var paragraph = NSMutableParagraphStyle()
-
     func attributes(text: String?) -> NSAttributedString {
         guard let text = text else { return NSAttributedString() }
 
@@ -185,9 +175,12 @@ public struct KissTextBuilder {
 
         switch textStyle {
         case .regular: ()
-        case .italic: font = font.italic
-        case .bold: font = font.bold
-        case .boldItalic: font = font.boldItalic
+        case .italic:
+            font = font.italic
+        case .bold:
+            font = font.bold
+        case .boldItalic:
+            font = font.boldItalic
         }
 
         let mutableAttribute = NSMutableAttributedString(
@@ -220,7 +213,6 @@ public struct KissTextBuilder {
     }
 }
 
-// private var key = "UILabel.textAttribute.Key"
 public class KissLabel: UILabel {
     var textAttribute = KissTextBuilder()
 
@@ -357,14 +349,5 @@ extension KissTextBuilder: TextDecorable {
         copy.strikethrough = style
         copy.strikethroughColor = nil
         return copy
-    }
-}
-
-public extension String {
-    func label() -> UILabel {
-        let uilabel = UILabel()
-        uilabel.text = self
-        uilabel.numberOfLines = 0
-        return uilabel
     }
 }
