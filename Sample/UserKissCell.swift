@@ -13,13 +13,15 @@ import Kiss
 let myfont = UIFont(name: "AvenirNextCondensed-MediumItalic", size: 14) ?? UIFont.systemFont(ofSize: 14)
 
 class UserKissCell: UICollectionViewCell {
-    let mailLabel = UILabel()
+    let mailLabel = KissLabelBuilder()
         .font(myfont)
+        .linebreak(.truncatingTail(2))
         .fontSize(22)
         .textColor(.systemBlue)
         .strikethrough(.double, color: .green)
         .underline(.patternDashDotDot, color: .clear)
-        .linebreak(.truncatingTail(1))
+        .lineSpacing(1.0)
+        .make()
     let titleLabel = "My Title".label(.body)
     let phoneNum = "(+84) 167 767 0064".label(.body)
     let genderLabel = "Gender: Male".label(.body)
@@ -51,10 +53,10 @@ class UserKissCell: UICollectionViewCell {
     
     func config(user: User, isPortrait: Bool) {
         backgroundColor = .white
-        mailLabel.kissText = user.email
-        titleLabel.kissText = "\(user.name.last) \(user.name.first)"
-        phoneNum.kissText = "Tel: \(user.phone)"
-        genderLabel.kissText = user.gender.rawValue
+        mailLabel.text = user.email
+        titleLabel.text = "\(user.name.last) \(user.name.first)"
+        phoneNum.text = "Tel: \(user.phone)"
+        genderLabel.text = user.gender.rawValue
         genderLabel.isVisible = user.gender == .male
         ratingView.isVisible = user.gender == .female
         

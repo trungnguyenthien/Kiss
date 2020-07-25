@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 public protocol TextDecorable {
-    /// The current text that is displayed by the label.
-    @discardableResult func text(_ string: String) -> Self
+//    /// The current text that is displayed by the label.
+//    @discardableResult func text(_ string: String) -> Self
 
     /// Use this attribute to specify the color of the text during rendering.
     /// If you do not specify this attribute, the text is rendered in black.
@@ -48,28 +48,28 @@ public protocol TextDecorable {
     // Paragraph Style
     /// The mode that should be used to break lines in the receiver.
     @discardableResult func linebreak(_ mode: LinebreakMode) -> Self
-    
+
     /// The indentation of the first line of the receiver.
     @discardableResult func firstLineHeadIndent(_ value: CGFloat) -> Self
-    
+
     /// The indentation of the receiver’s lines other than the first.
     @discardableResult func headIndent(_ value: CGFloat) -> Self
-    
+
     /// The trailing indentation of the receiver.
     @discardableResult func tailIndent(_ value: CGFloat) -> Self
-    
+
     /// The receiver’s maximum line height.
     @discardableResult func maxLineHeight(_ value: CGFloat) -> Self
-    
+
     /// The receiver’s minimum height.
     @discardableResult func minLineHeight(_ value: CGFloat) -> Self
-    
+
     /// The distance in points between the bottom of one line fragment and the top of the next.
     @discardableResult func lineSpacing(_ value: CGFloat) -> Self
-    
+
     /// The space after the end of the paragraph.
     @discardableResult func paragraphSpacing(_ value: CGFloat) -> Self
-    
+
     /// The text alignment of the receiver.
     @discardableResult func textAlignment(_ value: NSTextAlignment) -> Self
 }
@@ -77,28 +77,28 @@ public protocol TextDecorable {
 public enum LinebreakMode {
     case none
     /// Wrapping occurs at word boundaries, unless the word itself doesn’t fit on a single line.
-    case wordWrapping(UInt)
+    case wordWrapping(Int)
 
     /// Wrapping occurs before the first character that doesn’t fit.
-    case charWrapping(UInt)
+    case charWrapping(Int)
 
     /// Lines are simply not drawn past the edge of the text container.
-    case clipping(UInt)
+    case clipping(Int)
 
     /// The line is displayed so that the end fits in the container and the missing text
     /// at the beginning of the line is indicated by an ellipsis glyph.
     /// Although this mode works for multiline text, it is more often used for single line text.
-    case truncatingHead(UInt)
+    case truncatingHead(Int)
 
     /// The line is displayed so that the beginning fits in the container and the missing text
     /// at the end of the line is indicated by an ellipsis glyph.
     ///  Although this mode works for multiline text, it is more often used for single line text.
-    case truncatingTail(UInt)
+    case truncatingTail(Int)
 
     /// The line is displayed so that the beginning and end fit in the container
     /// and the missing text in the middle is indicated by an ellipsis glyph.
     /// This mode is used for single-line layout; using it with multiline text truncates the text into a single line.
-    case truncatingMiddle(UInt)
+    case truncatingMiddle(Int)
 
     var nsLinebreakMode: NSLineBreakMode {
         switch self {
@@ -111,9 +111,21 @@ public enum LinebreakMode {
         case .truncatingMiddle: return .byTruncatingMiddle
         }
     }
+
+    var numberOfLines: Int {
+        switch self {
+        case .none: return 0
+        case let .wordWrapping(lines): return lines
+        case let .charWrapping(lines): return lines
+        case let .clipping(lines): return lines
+        case let .truncatingHead(lines): return lines
+        case let .truncatingTail(lines): return lines
+        case let .truncatingMiddle(lines): return lines
+        }
+    }
 }
 
-struct TextAttribute {
+public struct KissLabelBuilder {
     var textColor: UIColor = .black
     var fontSize: CGFloat = 12
     var fontName: String = UIFont.systemFont(ofSize: 1).familyName
@@ -123,6 +135,16 @@ struct TextAttribute {
     var strikethroughColor: UIColor?
     var strokeWidth: CGFloat = 0
     var strokeColor: UIColor?
+    var numberOfLines: Int = 0
+
+    public init() {}
+
+    public func make() -> KissLabel {
+        let label = KissLabel()
+        label.textAttribute = self
+        label.numberOfLines = numberOfLines
+        return label
+    }
 
     // Paragraph Style
     var paragraph = NSMutableParagraphStyle()
@@ -164,179 +186,139 @@ struct TextAttribute {
     }
 }
 
-private var key = "UILabel.textAttribute.Key"
-public extension UILabel {
-    internal var textAttribute: TextAttribute {
-        get {
-            guard let obj = objc_getAssociatedObject(self, &key) as? TextAttribute else {
-                let attribute = TextAttribute()
-                objc_setAssociatedObject(self, &key, attribute, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                return attribute
-            }
-            return obj
-        }
-        set {
-            objc_setAssociatedObject(self, &key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
+// private var key = "UILabel.textAttribute.Key"
+public class KissLabel: UILabel {
+    var textAttribute = KissLabelBuilder()
 
-    var kissText: String? {
+    public override var text: String? {
         get {
-            return text
+            return attributedText?.string
         }
         set {
-            text(newValue ?? "")
+            numberOfLines = textAttribute.numberOfLines
+            lineBreakMode = textAttribute.paragraph.lineBreakMode
+            attributedText = textAttribute.attributes(text: newValue)
         }
     }
 }
 
-public extension TextDecorable where Self: UILabel {
-    @discardableResult func linebreak(_ mode: LinebreakMode) -> Self {
-        switch mode {
-        case .none:
-            numberOfLines = 0
-            textAttribute.paragraph.lineBreakMode = .byTruncatingTail
-        case let .wordWrapping(lines):
-            numberOfLines = Int(lines)
-            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
-        case let .charWrapping(lines):
-            numberOfLines = Int(lines)
-            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
-        case let .clipping(lines):
-            numberOfLines = Int(lines)
-            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
-        case let .truncatingHead(lines):
-            numberOfLines = Int(lines)
-            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
-        case let .truncatingTail(lines):
-            numberOfLines = Int(lines)
-            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
-        case let .truncatingMiddle(lines):
-            numberOfLines = Int(lines)
-            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
-        }
-
-        attributedText = textAttribute.attributes(text: text)
-        return self
+extension KissLabelBuilder: TextDecorable {
+    @discardableResult public func linebreak(_ mode: LinebreakMode) -> Self {
+        var copy = self
+        copy.numberOfLines = Int(mode.numberOfLines)
+        copy.paragraph.lineBreakMode = mode.nsLinebreakMode
+        return copy
     }
 
-    @discardableResult func firstLineHeadIndent(_ value: CGFloat) -> Self {
-        textAttribute.paragraph.firstLineHeadIndent = value
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func firstLineHeadIndent(_ value: CGFloat) -> Self {
+        let copy = self
+        copy.paragraph.firstLineHeadIndent = value
+        return copy
     }
 
-    @discardableResult func headIndent(_ value: CGFloat) -> Self {
-        textAttribute.paragraph.headIndent = value
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func headIndent(_ value: CGFloat) -> Self {
+        let copy = self
+        copy.paragraph.headIndent = value
+        return copy
     }
 
-    @discardableResult func tailIndent(_ value: CGFloat) -> Self {
-        textAttribute.paragraph.tailIndent = value
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func tailIndent(_ value: CGFloat) -> Self {
+        let copy = self
+        copy.paragraph.tailIndent = value
+        return copy
     }
 
-    @discardableResult func maxLineHeight(_ value: CGFloat) -> Self {
-        textAttribute.paragraph.maximumLineHeight = value
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func maxLineHeight(_ value: CGFloat) -> Self {
+        let copy = self
+        copy.paragraph.maximumLineHeight = value
+        return copy
     }
 
-    @discardableResult func minLineHeight(_ value: CGFloat) -> Self {
-        textAttribute.paragraph.minimumLineHeight = value
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func minLineHeight(_ value: CGFloat) -> Self {
+        let copy = self
+        copy.paragraph.minimumLineHeight = value
+        return copy
     }
 
-    @discardableResult func lineSpacing(_ value: CGFloat) -> Self {
-        textAttribute.paragraph.lineSpacing = value
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func lineSpacing(_ value: CGFloat) -> Self {
+        let copy = self
+        copy.paragraph.lineSpacing = value
+        return copy
     }
 
-    @discardableResult func paragraphSpacing(_ value: CGFloat) -> Self {
-        textAttribute.paragraph.paragraphSpacing = value
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func paragraphSpacing(_ value: CGFloat) -> Self {
+        let copy = self
+        copy.paragraph.paragraphSpacing = value
+        return copy
     }
 
-    @discardableResult func textAlignment(_ value: NSTextAlignment) -> Self {
-        textAttribute.paragraph.alignment = value
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func textAlignment(_ value: NSTextAlignment) -> Self {
+        let copy = self
+        copy.paragraph.alignment = value
+        return copy
     }
 
-    @discardableResult func underline(_ style: NSUnderlineStyle, color: UIColor) -> Self {
-        textAttribute.underline = style
-        textAttribute.underlineColor = color
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func underline(_ style: NSUnderlineStyle, color: UIColor) -> Self {
+        var copy = self
+        copy.underline = style
+        copy.underlineColor = color
+        return copy
     }
 
-    @discardableResult func strikethrough(_ style: NSUnderlineStyle, color: UIColor) -> Self {
-        textAttribute.strikethrough = style
-        textAttribute.strikethroughColor = color
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func strikethrough(_ style: NSUnderlineStyle, color: UIColor) -> Self {
+        var copy = self
+        copy.strikethrough = style
+        copy.strikethroughColor = color
+        return copy
     }
 
-    @discardableResult func stroke(size: CGFloat, color: UIColor) -> Self {
-        textAttribute.strokeWidth = size
-        textAttribute.strokeColor = color
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func stroke(size: CGFloat, color: UIColor) -> Self {
+        var copy = self
+        copy.strokeWidth = size
+        copy.strokeColor = color
+        return copy
     }
 
-    @discardableResult func text(_ text: String) -> Self {
-        self.text = text
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func textColor(_ color: UIColor) -> Self {
+        var copy = self
+        copy.textColor = color
+        return copy
     }
 
-    @discardableResult func textColor(_ color: UIColor) -> Self {
-        textAttribute.textColor = color
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func font(name: String, size: CGFloat) -> Self {
+        var copy = self
+        copy.fontSize = size
+        copy.fontName = name
+        return copy
     }
 
-    @discardableResult func font(name: String, size: CGFloat) -> Self {
-        textAttribute.fontSize = size
-        textAttribute.fontName = name
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func font(_ font: UIFont) -> Self {
+        var copy = self
+        copy.fontSize = font.pointSize
+        copy.fontName = font.fontName
+        return copy
     }
 
-    @discardableResult func font(_ font: UIFont) -> Self {
-        textAttribute.fontSize = font.pointSize
-        textAttribute.fontName = font.fontName
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func fontSize(_ size: CGFloat) -> Self {
+        var copy = self
+        copy.fontSize = size
+        return copy
     }
 
-    @discardableResult func fontSize(_ size: CGFloat) -> Self {
-        textAttribute.fontSize = size
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func underline(_ style: NSUnderlineStyle) -> Self {
+        var copy = self
+        copy.underline = style
+        copy.underlineColor = nil
+        return copy
     }
 
-    @discardableResult func underline(_ style: NSUnderlineStyle) -> Self {
-        textAttribute.underline = style
-        textAttribute.underlineColor = nil
-        attributedText = textAttribute.attributes(text: text)
-        return self
-    }
-
-    @discardableResult func strikethrough(_ style: NSUnderlineStyle) -> Self {
-        textAttribute.strikethrough = style
-        textAttribute.strikethroughColor = nil
-        attributedText = textAttribute.attributes(text: text)
-        return self
+    @discardableResult public func strikethrough(_ style: NSUnderlineStyle) -> Self {
+        var copy = self
+        copy.strikethrough = style
+        copy.strikethroughColor = nil
+        return copy
     }
 }
-
-extension UILabel: TextDecorable {}
 
 public extension String {
     func label() -> UILabel {
