@@ -26,6 +26,40 @@ public protocol TextDecorable {
     @discardableResult func underline(_ style: NSUnderlineStyle, color: UIColor) -> Self
 
     @discardableResult func stroke(size: CGFloat, color: UIColor) -> Self
+
+    // Paragraph Style
+    @discardableResult func linebreak(_ mode: LinebreakMode) -> Self
+
+    @discardableResult func firstLineHeadIndent(_ value: CGFloat) -> Self
+    @discardableResult func headIndent(_ value: CGFloat) -> Self
+    @discardableResult func tailIndent(_ value: CGFloat) -> Self
+    @discardableResult func maxLineHeight(_ value: CGFloat) -> Self
+    @discardableResult func minLineHeight(_ value: CGFloat) -> Self
+    @discardableResult func lineSpacing(_ value: CGFloat) -> Self
+    @discardableResult func paragraphSpacing(_ value: CGFloat) -> Self
+    @discardableResult func textAlignment(_ value: NSTextAlignment) -> Self
+}
+
+public enum LinebreakMode {
+    case none
+    case wordWrapping(UInt)
+    case charWrapping(UInt)
+    case clipping(UInt)
+    case truncatingHead(UInt)
+    case truncatingTail(UInt)
+    case truncatingMiddle(UInt)
+
+    var nsLinebreakMode: NSLineBreakMode {
+        switch self {
+        case .none: return .byTruncatingTail
+        case .wordWrapping: return .byWordWrapping
+        case .charWrapping: return .byCharWrapping
+        case .clipping: return .byClipping
+        case .truncatingHead: return .byTruncatingHead
+        case .truncatingTail: return .byTruncatingTail
+        case .truncatingMiddle: return .byTruncatingMiddle
+        }
+    }
 }
 
 struct TextAttribute {
@@ -42,11 +76,26 @@ struct TextAttribute {
     var strokeWidth: CGFloat = 0
     var strokeColor: UIColor?
 
+    // Paragraph Style
+//    var alignment = NSTextAlignment.left
+//    var firstLineHeadIndent: CGFloat = 0
+//    var headIndent: CGFloat = 0
+//    var tailIndent: CGFloat = 0
+//    var maxLineHeight: CGFloat = 0
+//    var minLineHeight: CGFloat = 0
+//    var lineSpacing: CGFloat = 0
+//    var paragraphSpacing: CGFloat = 0
+//    var linebreak = LinebreakMode.none
+
+    var paragraph = NSMutableParagraphStyle()
+
     func attributes(text: String?) -> NSAttributedString {
         guard let text = text else { return NSAttributedString() }
+
         guard let font = UIFont(name: fontName, size: fontSize) else {
             fatalError("Font name \"\(fontName)\" isn't supported.")
         }
+
         let mutableAttribute = NSMutableAttributedString(
             string: text, attributes: [.foregroundColor: textColor, .font: font]
         )
@@ -55,6 +104,8 @@ struct TextAttribute {
             let range = NSRange(location: 0, length: text.count)
             mutableAttribute.addAttribute(key, value: value, range: range)
         }
+
+        addAttr(.paragraphStyle, value: paragraph)
 
         if let strikethrough = strikethrough {
             addAttr(.strikethroughColor, value: strikethroughColor ?? textColor)
@@ -76,7 +127,6 @@ struct TextAttribute {
 }
 
 private var key = "UILabel.textAttribute.Key"
-
 public extension UILabel {
     internal var textAttribute: TextAttribute {
         get {
@@ -103,6 +153,83 @@ public extension UILabel {
 }
 
 public extension TextDecorable where Self: UILabel {
+    @discardableResult func linebreak(_ mode: LinebreakMode) -> Self {
+        switch mode {
+        case .none:
+            numberOfLines = 0
+            textAttribute.paragraph.lineBreakMode = .byTruncatingTail
+        case let .wordWrapping(lines):
+            numberOfLines = Int(lines)
+            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
+        case let .charWrapping(lines):
+            numberOfLines = Int(lines)
+            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
+        case let .clipping(lines):
+            numberOfLines = Int(lines)
+            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
+        case let .truncatingHead(lines):
+            numberOfLines = Int(lines)
+            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
+        case let .truncatingTail(lines):
+            numberOfLines = Int(lines)
+            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
+        case let .truncatingMiddle(lines):
+            numberOfLines = Int(lines)
+            textAttribute.paragraph.lineBreakMode = mode.nsLinebreakMode
+        }
+
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
+    @discardableResult func firstLineHeadIndent(_ value: CGFloat) -> Self {
+        textAttribute.paragraph.firstLineHeadIndent = value
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
+    @discardableResult func headIndent(_ value: CGFloat) -> Self {
+        textAttribute.paragraph.headIndent = value
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
+    @discardableResult func tailIndent(_ value: CGFloat) -> Self {
+        textAttribute.paragraph.tailIndent = value
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
+    @discardableResult func maxLineHeight(_ value: CGFloat) -> Self {
+        textAttribute.paragraph.maximumLineHeight = value
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
+    @discardableResult func minLineHeight(_ value: CGFloat) -> Self {
+        textAttribute.paragraph.minimumLineHeight = value
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
+    @discardableResult func lineSpacing(_ value: CGFloat) -> Self {
+        textAttribute.paragraph.lineSpacing = value
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
+    @discardableResult func paragraphSpacing(_ value: CGFloat) -> Self {
+        textAttribute.paragraph.paragraphSpacing = value
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
+    @discardableResult func textAlignment(_ value: NSTextAlignment) -> Self {
+        textAttribute.paragraph.alignment = value
+        attributedText = textAttribute.attributes(text: text)
+        return self
+    }
+
     @discardableResult func underline(_ style: NSUnderlineStyle, color: UIColor) -> Self {
         textAttribute.underline = style
         textAttribute.underlineColor = color

@@ -1,11 +1,3 @@
-//
-//  PokeProvider.swift
-//  MemCache
-//
-//  Created by グエンティエン　チュン on 6/9/20.
-//  Copyright © 2020 Yahoo!Japan. All rights reserved.
-//
-
 import Foundation
 
 struct RamdomUserProvider {
