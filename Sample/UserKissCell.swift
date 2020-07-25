@@ -40,7 +40,7 @@ enum UIBuilder {
 class UserKissCell: UICollectionViewCell {
     let mailLabel = UIBuilder.nameText.fontSize(20).label()
     let titleLabel = UIBuilder.infoText.label()
-    let phoneNum =  UIBuilder.infoText.label()
+    let phoneNum =  UIBuilder.infoText.textView()
     let imageView = UIBuilder.thumbnail()
     
     let ratingView = RatingView()
