@@ -12,7 +12,7 @@
 		870C462124BAAABC006F6235 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; platformFilter = ios; };
 		870C462224BAAABC006F6235 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8717B89E24C5E3A200C6710A /* UIView+Decor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8717B89D24C5E3A200C6710A /* UIView+Decor.swift */; };
-		8717B8A024C5E3B300C6710A /* UILabel+Decor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8717B89F24C5E3B300C6710A /* UILabel+Decor.swift */; };
+		8717B8A024C5E3B300C6710A /* KissLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8717B89F24C5E3B300C6710A /* KissLabel.swift */; };
 		8717B8A224C6478000C6710A /* IconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8717B8A124C6478000C6710A /* IconLabel.swift */; };
 		87496ADB24BA1BBF000B3D60 /* UIView+Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC024BA1BBF000B3D60 /* UIView+Public.swift */; };
 		87496ADC24BA1BBF000B3D60 /* Functions+Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC124BA1BBF000B3D60 /* Functions+Public.swift */; };
@@ -136,7 +136,7 @@
 
 /* Begin PBXFileReference section */
 		8717B89D24C5E3A200C6710A /* UIView+Decor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Decor.swift"; sourceTree = "<group>"; };
-		8717B89F24C5E3B300C6710A /* UILabel+Decor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Decor.swift"; sourceTree = "<group>"; };
+		8717B89F24C5E3B300C6710A /* KissLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KissLabel.swift; sourceTree = "<group>"; };
 		8717B8A124C6478000C6710A /* IconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabel.swift; sourceTree = "<group>"; };
 		87496AA124BA1B0A000B3D60 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87496AA524BA1B0A000B3D60 /* kiss-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "kiss-Info.plist"; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				8717B89D24C5E3A200C6710A /* UIView+Decor.swift */,
-				8717B89F24C5E3B300C6710A /* UILabel+Decor.swift */,
+				8717B89F24C5E3B300C6710A /* KissLabel.swift */,
 				8717B8A124C6478000C6710A /* IconLabel.swift */,
 			);
 			path = decor;
@@ -630,7 +630,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8717B8A024C5E3B300C6710A /* UILabel+Decor.swift in Sources */,
+				8717B8A024C5E3B300C6710A /* KissLabel.swift in Sources */,
 				87496ADE24BA1BBF000B3D60 /* Functions+Private.swift in Sources */,
 				87496AE824BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift in Sources */,
 				87496AE224BA1BBF000B3D60 /* HStackLayout.swift in Sources */,

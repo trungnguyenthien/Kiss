@@ -10,9 +10,6 @@ import Foundation
 import UIKit
 
 public protocol TextDecorable {
-//    /// The current text that is displayed by the label.
-//    @discardableResult func text(_ string: String) -> Self
-
     /// Use this attribute to specify the color of the text during rendering.
     /// If you do not specify this attribute, the text is rendered in black.
     @discardableResult func textColor(_ color: UIColor) -> Self
@@ -72,6 +69,16 @@ public protocol TextDecorable {
 
     /// The text alignment of the receiver.
     @discardableResult func textAlignment(_ value: NSTextAlignment) -> Self
+
+    /// TextStyle: regular, italic, bold, boldItalic
+    @discardableResult func style(_ value: TextStyle) -> Self
+}
+
+public enum TextStyle {
+    case regular
+    case italic
+    case bold
+    case boldItalic
 }
 
 public enum LinebreakMode {
@@ -125,7 +132,26 @@ public enum LinebreakMode {
     }
 }
 
-public struct KissLabelBuilder {
+extension UIFont {
+    private func with(traits: UIFontDescriptor.SymbolicTraits) -> UIFont {
+        guard let descriptor = fontDescriptor.withSymbolicTraits(traits) else { return self }
+        return UIFont(descriptor: descriptor, size: pointSize)
+    }
+
+    var italic: UIFont {
+        with(traits: .traitItalic)
+    }
+
+    var bold: UIFont {
+        with(traits: .traitBold)
+    }
+
+    var boldItalic: UIFont {
+        with(traits: [.traitBold, .traitItalic])
+    }
+}
+
+public struct KissTextBuilder {
     var textColor: UIColor = .black
     var fontSize: CGFloat = 12
     var fontName: String = UIFont.systemFont(ofSize: 1).familyName
@@ -136,10 +162,11 @@ public struct KissLabelBuilder {
     var strokeWidth: CGFloat = 0
     var strokeColor: UIColor?
     var numberOfLines: Int = 0
+    var textStyle = TextStyle.regular
 
     public init() {}
 
-    public func make() -> KissLabel {
+    public func label() -> KissLabel {
         let label = KissLabel()
         label.textAttribute = self
         label.numberOfLines = numberOfLines
@@ -152,8 +179,15 @@ public struct KissLabelBuilder {
     func attributes(text: String?) -> NSAttributedString {
         guard let text = text else { return NSAttributedString() }
 
-        guard let font = UIFont(name: fontName, size: fontSize) else {
+        guard var font = UIFont(name: fontName, size: fontSize) else {
             fatalError("Font name \"\(fontName)\" isn't supported.")
+        }
+
+        switch textStyle {
+        case .regular: ()
+        case .italic: font = font.italic
+        case .bold: font = font.bold
+        case .boldItalic: font = font.boldItalic
         }
 
         let mutableAttribute = NSMutableAttributedString(
@@ -188,7 +222,7 @@ public struct KissLabelBuilder {
 
 // private var key = "UILabel.textAttribute.Key"
 public class KissLabel: UILabel {
-    var textAttribute = KissLabelBuilder()
+    var textAttribute = KissTextBuilder()
 
     public override var text: String? {
         get {
@@ -202,7 +236,13 @@ public class KissLabel: UILabel {
     }
 }
 
-extension KissLabelBuilder: TextDecorable {
+extension KissTextBuilder: TextDecorable {
+    @discardableResult public func style(_ value: TextStyle) -> Self {
+        var copy = self
+        copy.textStyle = value
+        return copy
+    }
+
     @discardableResult public func linebreak(_ mode: LinebreakMode) -> Self {
         var copy = self
         copy.numberOfLines = Int(mode.numberOfLines)

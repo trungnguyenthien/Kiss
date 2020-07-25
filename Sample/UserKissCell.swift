@@ -12,20 +12,34 @@ import Kiss
 
 let myfont = UIFont(name: "AvenirNextCondensed-MediumItalic", size: 14) ?? UIFont.systemFont(ofSize: 14)
 
-class UserKissCell: UICollectionViewCell {
-    let mailLabel = KissLabelBuilder()
-        .font(myfont)
+enum Builder {
+    static var nameText: KissTextBuilder {
+        return KissTextBuilder()
         .linebreak(.truncatingTail(2))
-        .fontSize(22)
-        .textColor(.systemBlue)
-        .strikethrough(.double, color: .green)
-        .underline(.patternDashDotDot, color: .clear)
-        .lineSpacing(1.0)
-        .make()
-    let titleLabel = "My Title".label(.body)
-    let phoneNum = "(+84) 167 767 0064".label(.body)
-    let genderLabel = "Gender: Male".label(.body)
-    let imageView = UIView().bgColor(.brown).stroke(size: 2, color: .green).cornerRadius(10)
+        .textColor(.darkGray)
+        .underline(.single)
+        .style(.italic)
+    }
+    
+    static var bodyText: KissTextBuilder {
+        return KissTextBuilder()
+        .linebreak(.none)
+        .textColor(.black)
+        .font(.systemFont(ofSize: 12))
+    }
+}
+
+class UserKissCell: UICollectionViewCell {
+    let mailLabel = Builder.nameText.fontSize(16).label()
+    let titleLabel = Builder.bodyText.label()
+    let phoneNum =  Builder.bodyText.label()
+    let genderLabel =  Builder.bodyText.label()
+    
+    let imageView = UIView()
+        .background(.brown)
+        .stroke(size: 2, color: .green)
+        .cornerRadius(10)
+    
     let ratingView = RatingView()
     let button = "Detail info".button
     

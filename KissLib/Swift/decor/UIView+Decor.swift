@@ -9,16 +9,16 @@
 import Foundation
 import UIKit
 
-public protocol ViewDecorator {
-    @discardableResult func bgColor(_ color: UIColor) -> Self
+public protocol ViewDecorable {
+    @discardableResult func background(_ color: UIColor) -> Self
     @discardableResult func stroke(size: Double, color: UIColor) -> Self
     @discardableResult func cornerRadius(_ radius: Double) -> Self
 }
 
-extension UIView: ViewDecorator {}
+extension UIView: ViewDecorable {}
 
-public extension ViewDecorator where Self: UIView {
-    @discardableResult func bgColor(_ color: UIColor) -> Self {
+public extension ViewDecorable where Self: UIView {
+    @discardableResult func background(_ color: UIColor) -> Self {
         backgroundColor = color
         return self
     }
