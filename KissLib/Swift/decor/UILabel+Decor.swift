@@ -10,43 +10,94 @@ import Foundation
 import UIKit
 
 public protocol TextDecorable {
+    /// The current text that is displayed by the label.
     @discardableResult func text(_ string: String) -> Self
+
+    /// Use this attribute to specify the color of the text during rendering.
+    /// If you do not specify this attribute, the text is rendered in black.
     @discardableResult func textColor(_ color: UIColor) -> Self
-    /// The font used to display the text (let refer font name at https://github.com/lionhylra/iOS-UIFont-Names)
+
+    /// The font used to display the text
+    /// (let refer font name at https://github.com/lionhylra/iOS-UIFont-Names)
     @discardableResult func font(name: String, size: CGFloat) -> Self
+
     /// The font used to display the text.
     @discardableResult func font(_ font: UIFont) -> Self
+
     /// The font's size used to display the text.
     @discardableResult func fontSize(_ size: CGFloat) -> Self
 
+    /// Applies a strikethrough to the text.
     @discardableResult func strikethrough(_ style: NSUnderlineStyle, color: UIColor) -> Self
+
+    /// Applies a strikethrough to the text.
     @discardableResult func strikethrough(_ style: NSUnderlineStyle) -> Self
 
+    /// Applies an underline to the text.
     @discardableResult func underline(_ style: NSUnderlineStyle) -> Self
+
+    /// Applies an underline to the text.
     @discardableResult func underline(_ style: NSUnderlineStyle, color: UIColor) -> Self
 
+    /// Applies an stroke to the text.
+    /// - Parameters:
+    ///   - size: This value is specified as a percentage of the font point size. Specify 0 (the default) for no additional changes.
+    ///   - color: stroke's color
     @discardableResult func stroke(size: CGFloat, color: UIColor) -> Self
 
     // Paragraph Style
+    /// The mode that should be used to break lines in the receiver.
     @discardableResult func linebreak(_ mode: LinebreakMode) -> Self
-
+    
+    /// The indentation of the first line of the receiver.
     @discardableResult func firstLineHeadIndent(_ value: CGFloat) -> Self
+    
+    /// The indentation of the receiver’s lines other than the first.
     @discardableResult func headIndent(_ value: CGFloat) -> Self
+    
+    /// The trailing indentation of the receiver.
     @discardableResult func tailIndent(_ value: CGFloat) -> Self
+    
+    /// The receiver’s maximum line height.
     @discardableResult func maxLineHeight(_ value: CGFloat) -> Self
+    
+    /// The receiver’s minimum height.
     @discardableResult func minLineHeight(_ value: CGFloat) -> Self
+    
+    /// The distance in points between the bottom of one line fragment and the top of the next.
     @discardableResult func lineSpacing(_ value: CGFloat) -> Self
+    
+    /// The space after the end of the paragraph.
     @discardableResult func paragraphSpacing(_ value: CGFloat) -> Self
+    
+    /// The text alignment of the receiver.
     @discardableResult func textAlignment(_ value: NSTextAlignment) -> Self
 }
 
 public enum LinebreakMode {
     case none
+    /// Wrapping occurs at word boundaries, unless the word itself doesn’t fit on a single line.
     case wordWrapping(UInt)
+
+    /// Wrapping occurs before the first character that doesn’t fit.
     case charWrapping(UInt)
+
+    /// Lines are simply not drawn past the edge of the text container.
     case clipping(UInt)
+
+    /// The line is displayed so that the end fits in the container and the missing text
+    /// at the beginning of the line is indicated by an ellipsis glyph.
+    /// Although this mode works for multiline text, it is more often used for single line text.
     case truncatingHead(UInt)
+
+    /// The line is displayed so that the beginning fits in the container and the missing text
+    /// at the end of the line is indicated by an ellipsis glyph.
+    ///  Although this mode works for multiline text, it is more often used for single line text.
     case truncatingTail(UInt)
+
+    /// The line is displayed so that the beginning and end fit in the container
+    /// and the missing text in the middle is indicated by an ellipsis glyph.
+    /// This mode is used for single-line layout; using it with multiline text truncates the text into a single line.
     case truncatingMiddle(UInt)
 
     var nsLinebreakMode: NSLineBreakMode {
@@ -66,27 +117,14 @@ struct TextAttribute {
     var textColor: UIColor = .black
     var fontSize: CGFloat = 12
     var fontName: String = UIFont.systemFont(ofSize: 1).familyName
-
     var underline: NSUnderlineStyle?
     var underlineColor: UIColor?
-
     var strikethrough: NSUnderlineStyle?
     var strikethroughColor: UIColor?
-
     var strokeWidth: CGFloat = 0
     var strokeColor: UIColor?
 
     // Paragraph Style
-//    var alignment = NSTextAlignment.left
-//    var firstLineHeadIndent: CGFloat = 0
-//    var headIndent: CGFloat = 0
-//    var tailIndent: CGFloat = 0
-//    var maxLineHeight: CGFloat = 0
-//    var minLineHeight: CGFloat = 0
-//    var lineSpacing: CGFloat = 0
-//    var paragraphSpacing: CGFloat = 0
-//    var linebreak = LinebreakMode.none
-
     var paragraph = NSMutableParagraphStyle()
 
     func attributes(text: String?) -> NSAttributedString {
