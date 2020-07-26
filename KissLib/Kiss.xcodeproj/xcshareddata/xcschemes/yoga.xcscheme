@@ -4,7 +4,7 @@
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "NO">
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "87496AA024BA1B0A000B3D60"
-               BuildableName = "Kiss.framework"
-               BlueprintName = "Kiss"
-               ReferencedContainer = "container:KissLib.xcodeproj">
+               BlueprintIdentifier = "87496AF724BA1BF6000B3D60"
+               BuildableName = "yoga.framework"
+               BlueprintName = "yoga"
+               ReferencedContainer = "container:Kiss.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,10 +50,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "87496AA024BA1B0A000B3D60"
-            BuildableName = "Kiss.framework"
-            BlueprintName = "Kiss"
-            ReferencedContainer = "container:KissLib.xcodeproj">
+            BlueprintIdentifier = "87496AF724BA1BF6000B3D60"
+            BuildableName = "yoga.framework"
+            BlueprintName = "yoga"
+            ReferencedContainer = "container:Kiss.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
