@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Kiss
+import UIBuilder
 
 private let imageName = "ic_star"
 private let iconSize: Double = 24

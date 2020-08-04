@@ -11,11 +11,6 @@
 		870C462024BAAAB6006F6235 /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496B3B24BA1C37000B3D60 /* YogaKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		870C462124BAAABC006F6235 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; platformFilter = ios; };
 		870C462224BAAABC006F6235 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87496AF824BA1BF6000B3D60 /* yoga.framework */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8717B89E24C5E3A200C6710A /* UIView+Decor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8717B89D24C5E3A200C6710A /* UIView+Decor.swift */; };
-		8717B8A024C5E3B300C6710A /* KissLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8717B89F24C5E3B300C6710A /* KissLabel.swift */; };
-		8717B8A224C6478000C6710A /* IconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8717B8A124C6478000C6710A /* IconLabel.swift */; };
-		8717B8A424CC373100C6710A /* KissTextBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8717B8A324CC373100C6710A /* KissTextBuilder.swift */; };
-		8717B8A624CC387A00C6710A /* KissTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8717B8A524CC387A00C6710A /* KissTextView.swift */; };
 		87496ADB24BA1BBF000B3D60 /* UIView+Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC024BA1BBF000B3D60 /* UIView+Public.swift */; };
 		87496ADC24BA1BBF000B3D60 /* Functions+Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC124BA1BBF000B3D60 /* Functions+Public.swift */; };
 		87496ADE24BA1BBF000B3D60 /* Functions+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87496AC324BA1BBF000B3D60 /* Functions+Private.swift */; };
@@ -137,11 +132,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8717B89D24C5E3A200C6710A /* UIView+Decor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Decor.swift"; sourceTree = "<group>"; };
-		8717B89F24C5E3B300C6710A /* KissLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KissLabel.swift; sourceTree = "<group>"; };
-		8717B8A124C6478000C6710A /* IconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabel.swift; sourceTree = "<group>"; };
-		8717B8A324CC373100C6710A /* KissTextBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KissTextBuilder.swift; sourceTree = "<group>"; };
-		8717B8A524CC387A00C6710A /* KissTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KissTextView.swift; sourceTree = "<group>"; };
 		87496AA124BA1B0A000B3D60 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87496AA524BA1B0A000B3D60 /* kiss-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "kiss-Info.plist"; sourceTree = "<group>"; };
 		87496AC024BA1BBF000B3D60 /* UIView+Public.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Public.swift"; sourceTree = "<group>"; };
@@ -248,18 +238,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8717B89C24C5E33900C6710A /* decor */ = {
-			isa = PBXGroup;
-			children = (
-				8717B8A324CC373100C6710A /* KissTextBuilder.swift */,
-				8717B89D24C5E3A200C6710A /* UIView+Decor.swift */,
-				8717B89F24C5E3B300C6710A /* KissLabel.swift */,
-				8717B8A524CC387A00C6710A /* KissTextView.swift */,
-				8717B8A124C6478000C6710A /* IconLabel.swift */,
-			);
-			path = decor;
-			sourceTree = "<group>";
-		};
 		87496A9724BA1B0A000B3D60 = {
 			isa = PBXGroup;
 			children = (
@@ -286,7 +264,6 @@
 		87496ABE24BA1BBF000B3D60 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				8717B89C24C5E33900C6710A /* decor */,
 				87496ABF24BA1BBF000B3D60 /* ultility */,
 				87496AC624BA1BBF000B3D60 /* layout */,
 				87496AA524BA1B0A000B3D60 /* kiss-Info.plist */,
@@ -636,17 +613,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8717B8A024C5E3B300C6710A /* KissLabel.swift in Sources */,
 				87496ADE24BA1BBF000B3D60 /* Functions+Private.swift in Sources */,
 				87496AE824BA1BBF000B3D60 /* FlexLayoutItemProtocol.swift in Sources */,
 				87496AE224BA1BBF000B3D60 /* HStackLayout.swift in Sources */,
 				87D0F47E24BF4083007210C0 /* PrimitiveType+Private.swift in Sources */,
 				87496AE424BA1BBF000B3D60 /* UIViewLayout.swift in Sources */,
-				8717B8A424CC373100C6710A /* KissTextBuilder.swift in Sources */,
 				87D0F48024BF40A5007210C0 /* Array+Private.swift in Sources */,
 				87496AF124BA1BBF000B3D60 /* PaddingSetter.swift in Sources */,
-				8717B8A624CC387A00C6710A /* KissTextView.swift in Sources */,
-				8717B89E24C5E3A200C6710A /* UIView+Decor.swift in Sources */,
 				87496AE724BA1BBF000B3D60 /* LayoutAttribute.swift in Sources */,
 				87D0F48424BF417E007210C0 /* UIView+Private.swift in Sources */,
 				87D0F48224BF40C5007210C0 /* YogaUtility.swift in Sources */,
@@ -661,7 +634,6 @@
 				87496AED24BA1BBF000B3D60 /* SelfAlignSetter.swift in Sources */,
 				87496AE924BA1BBF000B3D60 /* ValueType.swift in Sources */,
 				87496AE324BA1BBF000B3D60 /* KissView.swift in Sources */,
-				8717B8A224C6478000C6710A /* IconLabel.swift in Sources */,
 				87496AEE24BA1BBF000B3D60 /* OverlayLayoutAble.swift in Sources */,
 				87496AF224BA1BBF000B3D60 /* SizeSetter.swift in Sources */,
 				87496AEF24BA1BBF000B3D60 /* MarginSetter.swift in Sources */,

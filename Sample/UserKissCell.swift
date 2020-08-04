@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 import Kiss
+import UIBuilder
 
 let myfont = UIFont(name: "AvenirNextCondensed-MediumItalic", size: 14) ?? UIFont.systemFont(ofSize: 14)
 
 enum UIBuilder {
-    static var nameText: KissTextBuilder {
-        return KissTextBuilder()
+    static var nameText: TextBuilder {
+        return TextBuilder()
             .font(myfont)
             .linebreak(.truncatingTail(2))
             .textColor(.darkGray)
@@ -22,8 +23,8 @@ enum UIBuilder {
             .style(.italic)
     }
     
-    static var infoText: KissTextBuilder {
-        return KissTextBuilder()
+    static var infoText: TextBuilder {
+        return TextBuilder()
             .linebreak(.none)
             .textColor(.black)
             .font(.systemFont(ofSize: 12))

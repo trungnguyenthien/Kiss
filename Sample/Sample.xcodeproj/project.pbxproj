@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		87BB37BF24BE5DCA002DF909 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BD24BE5DCA002DF909 /* yoga.framework */; };
-		87BB37C024BE5DCA002DF909 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BD24BE5DCA002DF909 /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		87BB37C124BE5DCA002DF909 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BE24BE5DCA002DF909 /* YogaKit.framework */; };
-		87BB37C224BE5DCA002DF909 /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87BB37BE24BE5DCA002DF909 /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87CB751F24D9A7140086B893 /* uiFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751124D9A7130086B893 /* uiFactory.swift */; };
 		87CB752024D9A7140086B893 /* CollectionGridKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751224D9A7130086B893 /* CollectionGridKind.swift */; };
 		87CB752124D9A7140086B893 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751324D9A7130086B893 /* ViewController.swift */; };
@@ -23,8 +19,14 @@
 		87CB752924D9A7140086B893 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751C24D9A7140086B893 /* Common.swift */; };
 		87CB752A24D9A7140086B893 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751D24D9A7140086B893 /* SceneDelegate.swift */; };
 		87CB752B24D9A7140086B893 /* UserKissCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751E24D9A7140086B893 /* UserKissCell.swift */; };
-		87E556DA24BB61760088BAD3 /* Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E556D924BB61760088BAD3 /* Kiss.framework */; };
-		87E556DB24BB61760088BAD3 /* Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87E556D924BB61760088BAD3 /* Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		87CB752D24D9AC830086B893 /* UIBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB752C24D9AC830086B893 /* UIBuilder.framework */; };
+		87CB752E24D9AC830086B893 /* UIBuilder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB752C24D9AC830086B893 /* UIBuilder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		87CB753224D9AC970086B893 /* Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB752F24D9AC970086B893 /* Kiss.framework */; };
+		87CB753324D9AC970086B893 /* Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB752F24D9AC970086B893 /* Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		87CB753424D9AC970086B893 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB753024D9AC970086B893 /* yoga.framework */; };
+		87CB753524D9AC970086B893 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB753024D9AC970086B893 /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		87CB753624D9AC970086B893 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB753124D9AC970086B893 /* YogaKit.framework */; };
+		87CB753724D9AC970086B893 /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB753124D9AC970086B893 /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,9 +36,10 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				87BB37C024BE5DCA002DF909 /* yoga.framework in Embed Frameworks */,
-				87E556DB24BB61760088BAD3 /* Kiss.framework in Embed Frameworks */,
-				87BB37C224BE5DCA002DF909 /* YogaKit.framework in Embed Frameworks */,
+				87CB753324D9AC970086B893 /* Kiss.framework in Embed Frameworks */,
+				87CB753724D9AC970086B893 /* YogaKit.framework in Embed Frameworks */,
+				87CB752E24D9AC830086B893 /* UIBuilder.framework in Embed Frameworks */,
+				87CB753524D9AC970086B893 /* yoga.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,6 +63,10 @@
 		87CB751C24D9A7140086B893 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		87CB751D24D9A7140086B893 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		87CB751E24D9A7140086B893 /* UserKissCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKissCell.swift; sourceTree = "<group>"; };
+		87CB752C24D9AC830086B893 /* UIBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIBuilder.framework; path = Carthage/Build/iOS/UIBuilder.framework; sourceTree = "<group>"; };
+		87CB752F24D9AC970086B893 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87CB753024D9AC970086B893 /* yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87CB753124D9AC970086B893 /* YogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E556D924BB61760088BAD3 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -68,9 +75,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87BB37BF24BE5DCA002DF909 /* yoga.framework in Frameworks */,
-				87E556DA24BB61760088BAD3 /* Kiss.framework in Frameworks */,
-				87BB37C124BE5DCA002DF909 /* YogaKit.framework in Frameworks */,
+				87CB753224D9AC970086B893 /* Kiss.framework in Frameworks */,
+				87CB753624D9AC970086B893 /* YogaKit.framework in Frameworks */,
+				87CB752D24D9AC830086B893 /* UIBuilder.framework in Frameworks */,
+				87CB753424D9AC970086B893 /* yoga.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +88,10 @@
 		457BECC3F3EC70539AC63738 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				87CB752F24D9AC970086B893 /* Kiss.framework */,
+				87CB753024D9AC970086B893 /* yoga.framework */,
+				87CB753124D9AC970086B893 /* YogaKit.framework */,
+				87CB752C24D9AC830086B893 /* UIBuilder.framework */,
 				87BB37BD24BE5DCA002DF909 /* yoga.framework */,
 				87BB37BE24BE5DCA002DF909 /* YogaKit.framework */,
 				87E556D924BB61760088BAD3 /* Kiss.framework */,
@@ -363,6 +375,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -386,6 +402,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
