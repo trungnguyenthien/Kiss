@@ -19,8 +19,6 @@
 		87CB752924D9A7140086B893 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751C24D9A7140086B893 /* Common.swift */; };
 		87CB752A24D9A7140086B893 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751D24D9A7140086B893 /* SceneDelegate.swift */; };
 		87CB752B24D9A7140086B893 /* UserKissCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751E24D9A7140086B893 /* UserKissCell.swift */; };
-		87CB752D24D9AC830086B893 /* UIBuilder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB752C24D9AC830086B893 /* UIBuilder.framework */; };
-		87CB752E24D9AC830086B893 /* UIBuilder.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB752C24D9AC830086B893 /* UIBuilder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87CB753224D9AC970086B893 /* Kiss.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB752F24D9AC970086B893 /* Kiss.framework */; };
 		87CB753324D9AC970086B893 /* Kiss.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB752F24D9AC970086B893 /* Kiss.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87CB753424D9AC970086B893 /* yoga.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB753024D9AC970086B893 /* yoga.framework */; };
@@ -38,7 +36,6 @@
 			files = (
 				87CB753324D9AC970086B893 /* Kiss.framework in Embed Frameworks */,
 				87CB753724D9AC970086B893 /* YogaKit.framework in Embed Frameworks */,
-				87CB752E24D9AC830086B893 /* UIBuilder.framework in Embed Frameworks */,
 				87CB753524D9AC970086B893 /* yoga.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -77,7 +74,6 @@
 			files = (
 				87CB753224D9AC970086B893 /* Kiss.framework in Frameworks */,
 				87CB753624D9AC970086B893 /* YogaKit.framework in Frameworks */,
-				87CB752D24D9AC830086B893 /* UIBuilder.framework in Frameworks */,
 				87CB753424D9AC970086B893 /* yoga.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +147,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 871D4E1C24B9B1A600DC3531 /* Build configuration list for PBXNativeTarget "Sample" */;
 			buildPhases = (
+				87CB753824D9AF160086B893 /* Run Carthage */,
 				871D4E0424B9B1A400DC3531 /* Sources */,
 				871D4E0524B9B1A400DC3531 /* Frameworks */,
 				871D4E0624B9B1A400DC3531 /* Resources */,
@@ -230,6 +227,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "for f in $(find $CODESIGNING_FOLDER_PATH -name '*.framework')\ndo\n    codesign --force --sign \"${CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements --timestamp=none \"$f\"\ndone\n";
+		};
+		87CB753824D9AF160086B893 /* Run Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/UIBuilder.framework",
+			);
+			name = "Run Carthage";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/UIBuilder.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage bootstrap\n/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
