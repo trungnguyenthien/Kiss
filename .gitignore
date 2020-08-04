@@ -91,3 +91,6 @@ iOSInjectionProject/
 KissUI-Lib/Carthage/*
 .DS_Store
 KissUI-Lib/.DS_Store
+
+
+Sample/Carthage/*
