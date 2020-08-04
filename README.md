@@ -1,4 +1,4 @@
-![image-20200726084248979](https://tva1.sinaimg.cn/large/007S8ZIlgy1gh44p09jjgj30ha09ujt7.jpg)
+![image-20200717045843879](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggtjn04jycj315e09w40l.jpg)
 
 <p align="center">
   <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" /></a> <a href="https://raw.githubusercontent.com/layoutBox/PinLayout/master/LICENSE"><img src="https://img.shields.io/cocoapods/l/PinLayout.svg" /></a>
@@ -8,7 +8,6 @@
 Kiss is based on `facebook/yoga` (ReactNative's layout engine) for layout of **UIKit**-**Control** with much more **SIMPLE** code style than Apple's LayoutContraint. 
 
 Kiss has group layout container `vstack / hstack / wrap` similiar to **SwiftUI**.
-Bên cạnh đó, Kiss cung cấp thêm 1 số class Builder để tạo UI control ngắn gọn và tái sử dụng tốt hơn.
 
 ### Requirements
 
@@ -18,22 +17,11 @@ Bên cạnh đó, Kiss cung cấp thêm 1 số class Builder để tạo UI cont
 
 - Swift 5.1+
 
-### Guideline
-
-* Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
-* Overlay Layer (`overlay()`)
-* Main Alignment - Cross Alignment 
-* Size, Margin, Padding 
-* Spacer Items (spacer, growSpacer, stretchSpacer)
-* Tip: Custom View with Kiss Layout
-* Tip: Multiple Layout
-* Tip: Share Layout to other layout containers
-
 ### Installation
 
-##### ⛔️ CocoaPods (not yet 🙏 )
+##### CocoaPods (not yet 🙏 )
 
-##### ✅ Carthage 
+##### Carthage 
 
 To integrate Kiss into your Xcode project using Carthage, specify it in your `Cartfile`:
 
