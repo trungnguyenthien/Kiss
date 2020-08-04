@@ -13,7 +13,7 @@ import UIBuilder
 
 let myfont = UIFont(name: "AvenirNextCondensed-MediumItalic", size: 14) ?? UIFont.systemFont(ofSize: 14)
 
-enum UIBuilder {
+enum Builder {
     static var nameText: TextBuilder {
         return TextBuilder()
             .font(myfont)
@@ -39,10 +39,10 @@ enum UIBuilder {
 }
 
 class UserKissCell: UICollectionViewCell {
-    let mailLabel = UIBuilder.nameText.fontSize(20).label()
-    let titleLabel = UIBuilder.infoText.label()
-    let phoneNum =  UIBuilder.infoText.textView()
-    let imageView = UIBuilder.thumbnail()
+    let mailLabel = Builder.nameText.fontSize(20).label()
+    let titleLabel = Builder.infoText.label()
+    let phoneNum =  Builder.infoText.textView()
+    let imageView = Builder.thumbnail()
     
     let ratingView = RatingView()
     let button = "Detail info".button
