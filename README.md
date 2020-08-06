@@ -8,7 +8,6 @@
 Kiss is based on `facebook/yoga` (ReactNative's layout engine) for layout of **UIKit**-**Control** with much more **SIMPLE** code style than Apple's LayoutContraint. 
 
 Kiss has group layout container `vstack / hstack / wrap` similiar to **SwiftUI**.
-Bên cạnh đó, Kiss cung cấp thêm 1 số class Builder để tạo UI control ngắn gọn và tái sử dụng tốt hơn.
 
 ### Requirements
 
@@ -21,13 +20,21 @@ Bên cạnh đó, Kiss cung cấp thêm 1 số class Builder để tạo UI cont
 ### Guideline
 
 * Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
-* Overlay Layer (`overlay()`)
 * Main Alignment - Cross Alignment 
+* Overlay Layer (`overlay()`)
 * Size, Margin, Padding 
 * Spacer Items (spacer, growSpacer, stretchSpacer)
 * Tip: Custom View with Kiss Layout
 * Tip: Multiple Layout
 * Tip: Share Layout to other layout containers
+
+#### 💋 Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
+
+
+
+#### 💋 Main Alignment - Cross Alignment 
+
+
 
 ### Installation
 

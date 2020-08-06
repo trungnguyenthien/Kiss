@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		87CB751F24D9A7140086B893 /* uiFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751124D9A7130086B893 /* uiFactory.swift */; };
 		87CB752024D9A7140086B893 /* CollectionGridKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751224D9A7130086B893 /* CollectionGridKind.swift */; };
-		87CB752124D9A7140086B893 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751324D9A7130086B893 /* ViewController.swift */; };
+		87CB752124D9A7140086B893 /* CustomCellVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB751324D9A7130086B893 /* CustomCellVC.swift */; };
 		87CB752224D9A7140086B893 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CB751424D9A7130086B893 /* Main.storyboard */; };
 		87CB752324D9A7140086B893 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87CB751524D9A7130086B893 /* Assets.xcassets */; };
 		87CB752524D9A7140086B893 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CB751724D9A7130086B893 /* LaunchScreen.storyboard */; };
@@ -49,7 +49,7 @@
 		87BB37BE24BE5DCA002DF909 /* YogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CB751124D9A7130086B893 /* uiFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uiFactory.swift; sourceTree = "<group>"; };
 		87CB751224D9A7130086B893 /* CollectionGridKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionGridKind.swift; sourceTree = "<group>"; };
-		87CB751324D9A7130086B893 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		87CB751324D9A7130086B893 /* CustomCellVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCellVC.swift; sourceTree = "<group>"; };
 		87CB751424D9A7130086B893 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		87CB751524D9A7130086B893 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87CB751624D9A7130086B893 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +98,7 @@
 		871D4DFF24B9B1A400DC3531 = {
 			isa = PBXGroup;
 			children = (
+				87CB753B24DC44AB0086B893 /* sampleVc */,
 				87CB751824D9A7130086B893 /* AppDelegate.swift */,
 				87CB751524D9A7130086B893 /* Assets.xcassets */,
 				87CB751C24D9A7140086B893 /* Common.swift */,
@@ -105,11 +106,8 @@
 				87CB751724D9A7130086B893 /* LaunchScreen.storyboard */,
 				87CB751424D9A7130086B893 /* Main.storyboard */,
 				87CB751924D9A7130086B893 /* provider */,
-				87CB751B24D9A7140086B893 /* RatingView.swift */,
 				87CB751D24D9A7140086B893 /* SceneDelegate.swift */,
-				87CB751E24D9A7140086B893 /* UserKissCell.swift */,
 				87CB751024D9A7130086B893 /* utility */,
-				87CB751324D9A7130086B893 /* ViewController.swift */,
 				871D4E0924B9B1A400DC3531 /* Products */,
 				457BECC3F3EC70539AC63738 /* Frameworks */,
 			);
@@ -138,6 +136,32 @@
 				87CB751A24D9A7130086B893 /* RamdomUserProvider.swift */,
 			);
 			path = provider;
+			sourceTree = "<group>";
+		};
+		87CB753B24DC44AB0086B893 /* sampleVc */ = {
+			isa = PBXGroup;
+			children = (
+				87CB753D24DC44DD0086B893 /* hstack */,
+				87CB753C24DC44C20086B893 /* customCell */,
+			);
+			path = sampleVc;
+			sourceTree = "<group>";
+		};
+		87CB753C24DC44C20086B893 /* customCell */ = {
+			isa = PBXGroup;
+			children = (
+				87CB751B24D9A7140086B893 /* RatingView.swift */,
+				87CB751324D9A7130086B893 /* CustomCellVC.swift */,
+				87CB751E24D9A7140086B893 /* UserKissCell.swift */,
+			);
+			path = customCell;
+			sourceTree = "<group>";
+		};
+		87CB753D24DC44DD0086B893 /* hstack */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = hstack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,7 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87CB752624D9A7140086B893 /* AppDelegate.swift in Sources */,
-				87CB752124D9A7140086B893 /* ViewController.swift in Sources */,
+				87CB752124D9A7140086B893 /* CustomCellVC.swift in Sources */,
 				87CB752724D9A7140086B893 /* RamdomUserProvider.swift in Sources */,
 				87CB752824D9A7140086B893 /* RatingView.swift in Sources */,
 				87CB751F24D9A7140086B893 /* uiFactory.swift in Sources */,

@@ -14,7 +14,7 @@ enum CellKind: String {
     case constraint
 }
 
-class ViewController: UIViewController {
+class CustomCellVC: UIViewController {
     let provider = RamdomUserProvider()
     var datasource: [User] = []
     private let cache = CacheCellHeight()
@@ -90,7 +90,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CustomCellVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return datasource.count
     }
