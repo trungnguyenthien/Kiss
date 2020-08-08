@@ -65,25 +65,14 @@ class CustomCellVC: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        
         // Reload visible item for updating it's layout
         gridKind = CollectionGridKind(width: size.width, height: size.height)
         cache.clearAll()
-        DispatchQueue.main.async {
-            self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
-        }
-        
-//        self.collectionView.collectionViewLayout.invalidateLayout()
-        coordinator.animate(alongsideTransition: nil) { [weak self] _ in
-            guard let self = self else { return }
-            // invalidateLayout for updating it's layout
-//            self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
-            self.collectionView.collectionViewLayout.invalidateLayout()
-        }
+        collectionView.reloadLayoutAfterRotating(coordinator: coordinator)
     }
     
     private func calculationHeight(_ row: Int) -> CGFloat {
-        sampleCell.config(user: datasource[row], isPortrait: gridKind.isVerticalCell)
+        sampleCell.config(user: datasource[row].userCellModel, isPortrait: gridKind.isVerticalCell)
         let size = sampleCell.kiss.estimatedSize(width: gridKind.cellWidth, height: nil)
         return size.height
     }
@@ -101,7 +90,7 @@ extension CustomCellVC: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellKind.rawValue, for: indexPath)
         if let cell = cell as? UserKissCell {
-            cell.config(user: datasource[indexPath.row], isPortrait: gridKind.isVerticalCell)
+            cell.config(user: datasource[indexPath.row].userCellModel, isPortrait: gridKind.isVerticalCell)
         }
         return cell
     }
@@ -128,5 +117,23 @@ class CacheCellHeight {
         let newValue = calculation(row)
         heightDict[row] = newValue
         return newValue
+    }
+}
+
+struct UserCellModel: Hashable {
+    let title: String
+    let email: String
+    let phone: String
+    let isMale: Bool
+}
+
+extension User {
+    var userCellModel: UserCellModel {
+        .init(
+            title: self.name.first + " " + self.name.last,
+            email: self.email,
+            phone: "Tel: \(self.phone)",
+            isMale: self.gender == .male
+        )
     }
 }

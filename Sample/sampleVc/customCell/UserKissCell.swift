@@ -68,14 +68,14 @@ class UserKissCell: UICollectionViewCell {
         imageView.kiss.layout.crossAlign(self: .stretch).ratio(2/2)
         spacer(10)
         stackInfoLayout.cloned.growFull()
-    }.padding(10).crossAlign(items: .start)
+        }.padding(10).crossAlign(items: .start)
     
-    func config(user: User, isPortrait: Bool) {
+    func config(user: UserCellModel, isPortrait: Bool) {
         backgroundColor = .white
         mailLabel.text = user.email
-        titleLabel.text = "\(user.name.last) \(user.name.first)"
-        phoneNum.text = "Tel: \(user.phone)"
-        ratingView.isVisible = user.gender == .female
+        titleLabel.text = user.title
+        phoneNum.text = user.phone
+        ratingView.isVisible = !user.isMale
         
         kiss.constructIfNeed(layout: isPortrait ? vLayout : hLayout)
         kiss.updateChange(width: frame.size.width, height: frame.size.height)

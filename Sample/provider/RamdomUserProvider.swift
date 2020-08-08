@@ -2,7 +2,7 @@ import Foundation
 
 struct RamdomUserProvider {
     private let notFoundError = NSError(domain: "User Not Found", code: 404, userInfo: nil)
-    private let baseURL = "https://randomuser.me/api/?results=50&nat=us&page="
+    private let baseURL = "https://randomuser.me/api/?results=200&nat=us&page="
     private func makeUrl(page: Int) -> String {
         return baseURL + "\(page)"
     }

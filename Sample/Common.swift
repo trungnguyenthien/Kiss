@@ -51,3 +51,16 @@ extension UIImageView {
         }.resume()
     }
 }
+
+extension UICollectionView {
+    func reloadLayoutAfterRotating(coordinator: UIViewControllerTransitionCoordinator) {
+        DispatchQueue.main.async {
+            self.reloadItems(at: self.indexPathsForVisibleItems)
+        }
+        
+        coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+            guard let self = self else { return }
+            self.collectionViewLayout.invalidateLayout()
+        }
+    }
+}
