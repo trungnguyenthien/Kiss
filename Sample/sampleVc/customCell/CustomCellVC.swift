@@ -22,7 +22,7 @@ class CustomCellVC: UIViewController {
     private let cellKind = CellKind.kisscell
     let sampleCell = UserKissCell()
     
-    var gridKind = CollectionGridKind()
+    lazy var gridKind = CollectionGridKind(width: view.frame.width, height: view.frame.height)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +60,6 @@ class CustomCellVC: UIViewController {
         lastRowIndex = min(lastRowIndex, datasource.count - 1)
         let rowHeights = (firstRowIndex...lastRowIndex).map { cache.get(at: $0) }
         let max = rowHeights.max() ?? 0
-//        print("row = \(row), \tfirstRowIndex = \(firstRowIndex), lastRowIndex = \(lastRowIndex), rowHeights = \(rowHeights), max = \(max)")
         return max
     }
     
@@ -70,10 +69,15 @@ class CustomCellVC: UIViewController {
         // Reload visible item for updating it's layout
         gridKind = CollectionGridKind(width: size.width, height: size.height)
         cache.clearAll()
-        self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
+        DispatchQueue.main.async {
+            self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
+        }
+        
+//        self.collectionView.collectionViewLayout.invalidateLayout()
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in
             guard let self = self else { return }
             // invalidateLayout for updating it's layout
+//            self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
     }

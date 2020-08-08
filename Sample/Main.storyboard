@@ -216,7 +216,7 @@
                                 </connections>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mqc-Rx-qao" firstAttribute="trailing" secondItem="XFc-tg-VFG" secondAttribute="trailing" id="RfF-Ph-WaZ"/>
                             <constraint firstItem="mqc-Rx-qao" firstAttribute="bottom" secondItem="XFc-tg-VFG" secondAttribute="bottom" id="rSC-Sg-6rE"/>

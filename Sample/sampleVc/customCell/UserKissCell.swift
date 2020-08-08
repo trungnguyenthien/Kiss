@@ -47,6 +47,8 @@ class UserKissCell: UICollectionViewCell {
     let ratingView = RatingView()
     let button = "Detail info".button
     
+    lazy var mainView = view(.clear)
+    
     lazy var stackInfoLayout = vstack {
         mailLabel.kiss.layout.marginTop(5)
         ratingView.kiss.layout.marginTop(5).height(30)
