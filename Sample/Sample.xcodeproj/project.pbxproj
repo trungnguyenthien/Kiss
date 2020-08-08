@@ -25,6 +25,7 @@
 		87CB753524D9AC970086B893 /* yoga.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB753024D9AC970086B893 /* yoga.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87CB753624D9AC970086B893 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB753124D9AC970086B893 /* YogaKit.framework */; };
 		87CB753724D9AC970086B893 /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB753124D9AC970086B893 /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		87CB753F24DE2DE50086B893 /* HStackSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB753E24DE2DE50086B893 /* HStackSampleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +65,7 @@
 		87CB752F24D9AC970086B893 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CB753024D9AC970086B893 /* yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CB753124D9AC970086B893 /* YogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87CB753E24DE2DE50086B893 /* HStackSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackSampleView.swift; sourceTree = "<group>"; };
 		87E556D924BB61760088BAD3 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 			children = (
 				87CB753D24DC44DD0086B893 /* hstack */,
 				87CB753C24DC44C20086B893 /* customCell */,
+				87CB753E24DE2DE50086B893 /* HStackSampleView.swift */,
 			);
 			path = sampleVc;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87CB753F24DE2DE50086B893 /* HStackSampleView.swift in Sources */,
 				87CB752624D9A7140086B893 /* AppDelegate.swift in Sources */,
 				87CB752124D9A7140086B893 /* CustomCellVC.swift in Sources */,
 				87CB752724D9A7140086B893 /* RamdomUserProvider.swift in Sources */,

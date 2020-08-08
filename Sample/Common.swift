@@ -8,9 +8,28 @@
 
 import Foundation
 import UIKit
+import UIBuilder
 
 let small = 4.0
 let medium = 8.0
+
+func medium(text: String, line: Int) -> UILabel {
+    let label = TextBuilder().fontSize(16).linebreak(.truncatingTail(line)).textColor(.darkText).label()
+    label.text = text
+    return label
+}
+
+func large(text: String, line: Int) -> UILabel {
+    let label = TextBuilder().fontSize(24).linebreak(.truncatingTail(line)).textColor(.black).label()
+    label.text = text
+    return label
+}
+
+func view(_ color: UIColor) -> UIView {
+    let view = UIView()
+    view.backgroundColor = color
+    return view
+}
 
 extension UIImageView {
     func download(url: String) {

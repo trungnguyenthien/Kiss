@@ -34,10 +34,10 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         return self
     }
 
-    func insert(view: UIViewLayout, at index: Int) {
-        body.insertSubview(view.body, at: index)
-        body.yoga.markDirty()
-    }
+//    func insert(view: UIViewLayout, at index: Int) {
+//        body.insertSubview(view.body, at: index)
+//        body.yoga.markDirty()
+//    }
 
     func resetForcedValue() {
         layoutItems.forEach {
@@ -118,6 +118,7 @@ extension GroupLayout {
 
     func resetViewHierachy() {
         body.resetYoga()
+        body.yoga.markDirty()
         body.removeFromSuperview()
         layoutItems.forEach {
             $0.root.resetYoga()
