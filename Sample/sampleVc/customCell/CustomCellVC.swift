@@ -22,9 +22,7 @@ class CustomCellVC: UIViewController {
     private let cellKind = CellKind.kisscell
     let sampleCell = UserKissCell()
     
-    var gridKind: CollectionGridKind {
-        return CollectionGridKind()
-    }
+    var gridKind = CollectionGridKind()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +68,7 @@ class CustomCellVC: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         
         // Reload visible item for updating it's layout
+        gridKind = CollectionGridKind(width: size.width, height: size.height)
         cache.clearAll()
         self.collectionView.reloadItems(at: self.collectionView.indexPathsForVisibleItems)
         coordinator.animate(alongsideTransition: nil) { [weak self] _ in

@@ -26,13 +26,26 @@ var isLanscape: Bool {
 }
 
 enum CollectionGridKind {
-    case phonePortrait, phoneLandscape, padPortrait, padLandscape
+    case phonePortrait(CGFloat)
+    case phoneLandscape(CGFloat)
+    case padPortrait(CGFloat)
+    case padLandscape(CGFloat)
+    
+    init(width: CGFloat, height: CGFloat) {
+        let isPortrait = width < height
+        if isPad && isPortrait {
+            self = isPortrait ? .padPortrait(width) : .padLandscape(width)
+        } else {
+            self = isPortrait ? .phonePortrait(width) : .phoneLandscape(width)
+        }
+    }
     
     init() {
+        let width = UIScreen.main.bounds.width
         if isPad && isPortrait {
-            self = isPortrait ? .padPortrait : .padLandscape
+            self = isPortrait ? .padPortrait(width) : .padLandscape(width)
         } else {
-            self = isPortrait ? .phonePortrait : .phoneLandscape
+            self = isPortrait ? .phonePortrait(width) : .phoneLandscape(width)
         }
     }
     
@@ -46,6 +59,18 @@ enum CollectionGridKind {
         }
     }
     
+    
+    var width: CGFloat {
+        switch self {
+        case let .padLandscape(width),
+             let .padPortrait(width),
+             let .phonePortrait(width),
+             let .phoneLandscape(width):
+            return width
+        }
+    }
+    
+    
     var isVerticalCell: Bool {
         switch self {
         case .phonePortrait:  return true
@@ -57,6 +82,6 @@ enum CollectionGridKind {
     }
     
     var cellWidth: CGFloat {
-        return ((UIScreen.main.bounds.width) / CGFloat(columns)) - 1
+        return (width / CGFloat(columns)) - 1
     }
 }
