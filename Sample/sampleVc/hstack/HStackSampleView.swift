@@ -14,13 +14,16 @@ class HStackSampleView: UIView {
     let blueView = view(.blue)
     let redView = view(.red)
     let greenView = view(.green)
-    let text1 = medium(text: "Horizontal Stack Layout", line: 2).background(.orange)
+    let text1 = large(text: "Horizontal Stack Layout", line: 2).background(.orange)
+    let text2 = large(text: "Horizontal Stack Layout", line: 2).background(.lightGray)
+    
     lazy var layout1 = hstack {
-        blueView.kiss.layout.height(100).grow(1).margin(5)
+        blueView.kiss.layout.growFull().ratio(1/2).margin(5)
         text1.kiss.layout.grow(2).margin(5).crossAlign(self: .start)
-        redView.kiss.layout.height(100).grow(1).margin(5)
-        greenView.kiss.layout.height(150).grow(1).margin(5)
-    }
+        text2.kiss.layout.grow(2).margin(5).crossAlign(self: .start).marginTop(20)
+        redView.kiss.layout.grow(1).margin(5)
+        greenView.kiss.layout.height(80).grow(1).margin(5)
+    }.padding(10)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

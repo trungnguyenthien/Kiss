@@ -27,6 +27,7 @@
 		87CB753624D9AC970086B893 /* YogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB753124D9AC970086B893 /* YogaKit.framework */; };
 		87CB753724D9AC970086B893 /* YogaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87CB753124D9AC970086B893 /* YogaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87CB753F24DE2DE50086B893 /* HStackSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CB753E24DE2DE50086B893 /* HStackSampleView.swift */; };
+		87EB8BDA24E0C50C00A3A7CA /* VStackSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EB8BD924E0C50C00A3A7CA /* VStackSampleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +70,7 @@
 		87CB753124D9AC970086B893 /* YogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CB753E24DE2DE50086B893 /* HStackSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HStackSampleView.swift; sourceTree = "<group>"; };
 		87E556D924BB61760088BAD3 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87EB8BD924E0C50C00A3A7CA /* VStackSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VStackSampleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +111,6 @@
 				87CB751624D9A7130086B893 /* Info.plist */,
 				87CB751724D9A7130086B893 /* LaunchScreen.storyboard */,
 				87CB751424D9A7130086B893 /* Main.storyboard */,
-				87CB751924D9A7130086B893 /* provider */,
 				87CB751D24D9A7140086B893 /* SceneDelegate.swift */,
 				87CB751024D9A7130086B893 /* utility */,
 				871D4E0924B9B1A400DC3531 /* Products */,
@@ -135,20 +136,12 @@
 			path = utility;
 			sourceTree = "<group>";
 		};
-		87CB751924D9A7130086B893 /* provider */ = {
-			isa = PBXGroup;
-			children = (
-				87CB751A24D9A7130086B893 /* RamdomUserProvider.swift */,
-			);
-			path = provider;
-			sourceTree = "<group>";
-		};
 		87CB753B24DC44AB0086B893 /* sampleVc */ = {
 			isa = PBXGroup;
 			children = (
+				87EB8BD824E0C4FE00A3A7CA /* vstack */,
 				87CB753D24DC44DD0086B893 /* hstack */,
 				87CB753C24DC44C20086B893 /* customCell */,
-				87CB753E24DE2DE50086B893 /* HStackSampleView.swift */,
 			);
 			path = sampleVc;
 			sourceTree = "<group>";
@@ -156,6 +149,7 @@
 		87CB753C24DC44C20086B893 /* customCell */ = {
 			isa = PBXGroup;
 			children = (
+				87CB751A24D9A7130086B893 /* RamdomUserProvider.swift */,
 				87CB751B24D9A7140086B893 /* RatingView.swift */,
 				87CB751324D9A7130086B893 /* CustomCellVC.swift */,
 				87CB751E24D9A7140086B893 /* UserKissCell.swift */,
@@ -166,8 +160,17 @@
 		87CB753D24DC44DD0086B893 /* hstack */ = {
 			isa = PBXGroup;
 			children = (
+				87CB753E24DE2DE50086B893 /* HStackSampleView.swift */,
 			);
 			path = hstack;
+			sourceTree = "<group>";
+		};
+		87EB8BD824E0C4FE00A3A7CA /* vstack */ = {
+			isa = PBXGroup;
+			children = (
+				87EB8BD924E0C50C00A3A7CA /* VStackSampleView.swift */,
+			);
+			path = vstack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +294,7 @@
 				87CB752724D9A7140086B893 /* RamdomUserProvider.swift in Sources */,
 				87CB752824D9A7140086B893 /* RatingView.swift in Sources */,
 				87CB751F24D9A7140086B893 /* uiFactory.swift in Sources */,
+				87EB8BDA24E0C50C00A3A7CA /* VStackSampleView.swift in Sources */,
 				87CB752024D9A7140086B893 /* CollectionGridKind.swift in Sources */,
 				87CB752B24D9A7140086B893 /* UserKissCell.swift in Sources */,
 				87CB752924D9A7140086B893 /* Common.swift in Sources */,

@@ -14,19 +14,19 @@ let small = 4.0
 let medium = 8.0
 
 func medium(text: String, line: Int) -> UILabel {
-    let label = TextBuilder().fontSize(16).linebreak(.truncatingTail(line)).textColor(.darkText).label()
+    let label = TextBuilder().fontSize(16).linebreak(.truncatingTail(line)).textColor(.darkText).label().cornerRadius(5)
     label.text = text
     return label
 }
 
 func large(text: String, line: Int) -> UILabel {
-    let label = TextBuilder().fontSize(24).linebreak(.truncatingTail(line)).textColor(.black).label()
+    let label = TextBuilder().fontSize(24).linebreak(.truncatingTail(line)).textColor(.black).label().cornerRadius(5)
     label.text = text
     return label
 }
 
 func view(_ color: UIColor) -> UIView {
-    let view = UIView()
+    let view = UIView().cornerRadius(5)
     view.backgroundColor = color
     return view
 }

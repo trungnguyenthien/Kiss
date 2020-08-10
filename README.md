@@ -30,6 +30,39 @@ Kiss has group layout container `vstack / hstack / wrap` similiar to **SwiftUI**
 
 #### 💋 Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
 
+Kiss hiện đang cung cấp 3 Group Layout căn bản để bố cục vị trí view trên layout:
+
+##### ⭐️ Hstack: Horizontal Stack Layout
+
+```swift
+/**
+Đây là những method support tạo ra UIView, UILabel bình thường.
+Tôi recommend nên 
+**/
+let blueView = view(.blue)
+let redView = view(.red)
+let greenView = view(.green)
+let text1 = large(text: "Horizontal Stack Layout", line: 2).background(.orange)
+let text2 = large(text: "Horizontal Stack Layout", line: 2).background(.lightGray)
+
+hstack {
+	blueView.kiss.layout.ratio(1/2).margin(5)
+	text1.kiss.layout.grow(2).margin(5).crossAlign(self: .start)
+	text2.kiss.layout.grow(2).margin(5).crossAlign(self: .start).marginTop(20)
+	redView.kiss.layout.grow(1).margin(5)
+	greenView.kiss.layout.height(80).grow(1).margin(5)
+}.padding(10)
+```
+
+![image-20200810064742842](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghldnuoab8j30go09dmxo.jpg)
+
+Lưu ý: Các item trong hstack phải có thể xác định được WidthValue, bằng 1 trong các cách sau để xác định WidthValue:
+
+* Nếu item là UILabel hoặc UIView có content (vd: UISwitch) thì sẽ có width mặc định fit với content của item.
+* Hard WidthValue bằng `.width(value)`
+* Xác định WidthValue nếu đã cố định được HeightValue bằng `.ratio(wValue/hValue)`. Ví dụ ở trên, `.ratio(1/2)` là `width/height = 1/2`
+* Nếu Group đã xác định được WidthValue, có thể xác định WidthValue của item bằng `.grow(value)`
+
 
 
 #### 💋 Main Alignment - Cross Alignment 
