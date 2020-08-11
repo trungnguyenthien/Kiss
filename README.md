@@ -20,6 +20,7 @@ Kiss has group layout container `vstack / hstack / wrap` similiar to **SwiftUI**
 ### Guideline
 
 * Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
+* Show/Hide item in layout
 * Main Alignment - Cross Alignment 
 * Overlay Layer (`overlay()`)
 * Size, Margin, Padding 

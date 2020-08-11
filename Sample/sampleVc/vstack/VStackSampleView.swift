@@ -53,12 +53,3 @@ class VStackSampleView: UIView {
         kiss.estimatedSize(width: size.width, height: size.height)
     }
 }
-//
-//  VStackSampleView.swift
-//  Sample
-//
-//  Created by Trung on 8/10/20.
-//  Copyright © 2020 trungnguyenthien. All rights reserved.
-//
-
-import Foundation

@@ -90,15 +90,15 @@
                                             <segue destination="nu6-dx-s5b" kind="push" id="fkv-DR-fNi"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="GOF-Rd-373">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="GOF-Rd-373">
                                         <rect key="frame" x="0.0" y="158.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="GOF-Rd-373" id="vYi-do-eii">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sample: wrap" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDw-yt-zIy">
-                                                    <rect key="frame" x="10" y="10" width="394" height="24"/>
+                                                    <rect key="frame" x="10" y="10" width="363" height="24"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -110,6 +110,9 @@
                                                 <constraint firstItem="lDw-yt-zIy" firstAttribute="centerY" secondItem="vYi-do-eii" secondAttribute="centerY" id="TcW-lW-g46"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="CLq-gI-cuV" kind="push" id="ArA-S6-wSZ"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="24j-Ip-buH">
                                         <rect key="frame" x="0.0" y="202" width="414" height="43.5"/>
@@ -222,6 +225,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6l-MS-f6m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1965" y="-147"/>
+        </scene>
+        <!--Wrap-->
+        <scene sceneID="Hj6-Dr-thN">
+            <objects>
+                <viewController id="CLq-gI-cuV" userLabel="Wrap" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c5c-k7-2EV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3a-b7-X17" userLabel="sampleView" customClass="WrapSampleView" customModule="Sample" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uxF-DI-jIk" firstAttribute="trailing" secondItem="F3a-b7-X17" secondAttribute="trailing" id="5w2-ZL-2gN"/>
+                            <constraint firstItem="F3a-b7-X17" firstAttribute="top" secondItem="uxF-DI-jIk" secondAttribute="top" id="9QL-i6-bjV"/>
+                            <constraint firstItem="uxF-DI-jIk" firstAttribute="bottom" secondItem="F3a-b7-X17" secondAttribute="bottom" id="e4i-s6-Jvd"/>
+                            <constraint firstItem="F3a-b7-X17" firstAttribute="leading" secondItem="uxF-DI-jIk" secondAttribute="leading" id="sEz-Jf-lrH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uxF-DI-jIk"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="fgy-Yo-oBx"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yMn-sd-r5t" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2833" y="-147"/>
         </scene>
         <!--Kiss Cell-->
         <scene sceneID="vvU-Hh-EE4">
