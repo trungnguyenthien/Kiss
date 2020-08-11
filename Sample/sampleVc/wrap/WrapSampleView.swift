@@ -41,7 +41,7 @@ class WrapSampleView: UIView {
         tag5.kiss.layout.margin(10)
         // Align center of line
         view3.kiss.layout.width(50).height(20).margin(10).crossAlign(self: .center)
-    }.padding(10)
+    }.padding(10).mainAlign(.center)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
