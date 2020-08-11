@@ -33,11 +33,13 @@ class WrapSampleView: UIView {
     lazy var layout1 = wrap {
         tag1.kiss.layout.margin(10)
         tag2.kiss.layout.margin(10)
+        // Align bottom of line
         view1.kiss.layout.width(100).height(20).margin(10).crossAlign(self: .end)
         tag3.kiss.layout.margin(10)
         tag4.kiss.layout.margin(10)
         view2.kiss.layout.width(200).height(40).margin(10)
         tag5.kiss.layout.margin(10)
+        // Align center of line
         view3.kiss.layout.width(50).height(20).margin(10).crossAlign(self: .center)
     }.padding(10)
     
