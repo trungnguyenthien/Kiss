@@ -1,9 +1,10 @@
-/**
+/*
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * This source code is licensed under the MIT license found in the LICENSE
- * file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
+
 #pragma once
 #include "YGNode.h"
 #include "Yoga-internal.h"
@@ -30,7 +31,7 @@
 //
 // - endOfLineIndex: Its the end index of the last flex item which was examined
 //   and it may or may not be part of the current line(as it may be absolutely
-//   positioned or inculding it may have caused to overshoot availableInnerDim)
+//   positioned or including it may have caused to overshoot availableInnerDim)
 //
 // - relativeChildren: Maintain a vector of the child nodes that can shrink
 //   and/or grow.
@@ -63,6 +64,8 @@ inline bool YGValueEqual(
 // difference between two floats is less than 0.0001f or both are undefined.
 bool YGFloatsEqual(const float a, const float b);
 
+bool YGDoubleEqual(const double a, const double b);
+
 float YGFloatMax(const float a, const float b);
 
 YGFloatOptional YGFloatOptionalMax(
@@ -71,8 +74,8 @@ YGFloatOptional YGFloatOptionalMax(
 
 float YGFloatMin(const float a, const float b);
 
-// This custom float comparision function compares the array of float with
-// YGFloatsEqual, as the default float comparision operator will not work(Look
+// This custom float comparison function compares the array of float with
+// YGFloatsEqual, as the default float comparison operator will not work(Look
 // at the comments of YGFloatsEqual function).
 template <std::size_t size>
 bool YGFloatArrayEqual(
@@ -140,3 +143,5 @@ inline YGFloatOptional YGResolveValueMargin(
     const float ownerSize) {
   return value.isAuto() ? YGFloatOptional{0} : YGResolveValue(value, ownerSize);
 }
+
+void throwLogicalErrorWithMessage(const char* message);

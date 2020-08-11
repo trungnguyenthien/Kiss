@@ -23,7 +23,7 @@ class VStackSampleView: UIView {
         uiswitch.kiss.layout
         text1.kiss.layout.margin(5)
         redView.kiss.layout.grow(1).margin(5)
-        greenView.kiss.layout.growFull().ratio(1/1).margin(5)
+        greenView.kiss.layout.growFull().ratio(3/1).margin(5)
     }.padding(10)
     
     override init(frame: CGRect) {
