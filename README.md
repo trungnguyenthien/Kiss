@@ -37,7 +37,8 @@ Kiss hiện đang cung cấp 3 Group Layout căn bản để bố cục vị tr�
 ```swift
 /**
 Đây là những method support tạo ra UIView, UILabel bình thường.
-Tôi recommend nên 
+Tôi recommend nên tách code tạo, design control với code layout vị trí, frame control 
+(không nên trộn chung với nhau như SwiftUI)
 **/
 let blueView = view(.blue)
 let redView = view(.red)
@@ -63,7 +64,19 @@ Lưu ý: Các item trong hstack phải có thể xác định được WidthValu
 * Xác định WidthValue nếu đã cố định được HeightValue bằng `.ratio(wValue/hValue)`. Ví dụ ở trên, `.ratio(1/2)` là `width/height = 1/2`
 * Nếu Group đã xác định được WidthValue, có thể xác định WidthValue của item bằng `.grow(value)`
 
+##### ⭐️ Vstack: Vertical Stack Layout
 
+```swift
+vstack {
+	blueView.kiss.layout.height(40).margin(5)
+	uiswitch.kiss.layout
+	text1.kiss.layout.margin(5)
+	redView.kiss.layout.grow(1).margin(5)
+	greenView.kiss.layout.grow(0.5).ratio(2/1).margin(5)
+}.padding(10)
+```
+
+![image-20200811221104689](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghn9z0dtbmj30go09dmxi.jpg)
 
 #### 💋 Main Alignment - Cross Alignment 
 
