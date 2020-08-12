@@ -20,7 +20,10 @@ func medium(text: String, line: Int) -> UILabel {
 }
 
 func large(text: String, line: Int) -> UILabel {
-    let label = TextBuilder().fontSize(24).linebreak(.truncatingTail(line)).textColor(.black).label().cornerRadius(5)
+    let label = TextBuilder()
+        .fontSize(16)
+        .linebreak(.truncatingTail(line))
+        .textColor(.black).label().cornerRadius(5)
     label.text = text
     return label
 }

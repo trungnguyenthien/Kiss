@@ -12,10 +12,9 @@ import Kiss
 import UIBuilder
 
 private func makeTag(_ text: String) -> UILabel {
-    let label = large(text: " \(text) ", line: 1)
-        .background(.yellow)
-        .cornerRadius(4)
-        .stroke(size: 1, color: .darkText)
+    let label = large(text: "| \(text) |", line: 1)
+        .background(MaterialColor.grey100)
+        .stroke(size: 1, color: MaterialColor.black)
     return label
 }
 
@@ -37,7 +36,7 @@ class WrapSampleView: UIView {
         view1.kiss.layout.width(100).height(20).margin(10).crossAlign(self: .end)
         tag3.kiss.layout.margin(10)
         tag4.kiss.layout.margin(10)
-        view2.kiss.layout.width(200).height(40).margin(10)
+        view2.kiss.layout.width(100).height(40).margin(10)
         tag5.kiss.layout.margin(10)
         // Align center of line
         view3.kiss.layout.width(50).height(20).margin(10).crossAlign(self: .center)
