@@ -1,6 +1,6 @@
 
 
-![image-20200726084248979](https://tva1.sinaimg.cn/large/007S8ZIlgy1gh44p09jjgj30ha09ujt7.jpg)
+![image-20200813204548358](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpiqrtzoyj306y03umxt.jpg)
 
 <p align="center">
   <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" /></a> <a href="https://raw.githubusercontent.com/layoutBox/PinLayout/master/LICENSE"><img src="https://img.shields.io/cocoapods/l/PinLayout.svg" /></a>
