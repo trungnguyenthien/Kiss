@@ -97,7 +97,7 @@ hstack {
 }.padding(10)
 ```
 
-![image-20200810064742842](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghldnuoab8j30go09dmxo.jpg)
+![image-20200810064742842](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpht25rv9j30go09d3ys.jpg)
 
 Lưu ý: Các item trong hstack phải có thể xác định được WidthValue, bằng 1 trong các cách sau để xác định WidthValue:
 
@@ -118,7 +118,7 @@ vstack {
 }.padding(10)
 ```
 
-![image-20200811221104689](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghn9z0dtbmj30go09dmxi.jpg)
+![image-20200811221104689](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpht6qnmwj30go09daaf.jpg)
 
 Lưu ý: Tương tự hstack, vstack cũng yêu cầu item phải xác định được HeightValue:
 
