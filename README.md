@@ -66,7 +66,9 @@ class HelloWorldView: UIView {
 
 
 
-![image-20200813195855335](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghphjks5b1j31h90u0aer.jpg)
+![image-20200813200701392](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghphmd5f9fj30m80cjta0.jpg)
+
+
 
 #### 💋 Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
 
