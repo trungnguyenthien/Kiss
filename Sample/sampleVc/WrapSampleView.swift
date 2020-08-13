@@ -12,10 +12,19 @@ import Kiss
 import UIBuilder
 
 private func makeTag(_ text: String) -> UILabel {
-    let label = large(text: "| \(text) |", line: 1)
+    let label = large(text: "  \(text)  ", line: 1)
         .background(MaterialColor.grey100)
         .stroke(size: 1, color: MaterialColor.black)
     return label
+}
+
+private func box(
+    _ width: Double,
+    _ height: Double,
+    _ color: UIColor = MaterialColor.blue600
+) -> Kiss.UIViewLayout {
+    return view(color).cornerRadius(4)
+        .kiss.layout.margin(5).size(width, height)
 }
 
 class WrapSampleView: UIView {
@@ -30,16 +39,16 @@ class WrapSampleView: UIView {
     let view3 = view(.green)
     
     lazy var layout1 = wrap {
-        tag1.kiss.layout.margin(10)
-        tag2.kiss.layout.margin(10)
-        // Align bottom of line
-        view1.kiss.layout.width(100).height(20).margin(10).crossAlign(self: .end)
-        tag3.kiss.layout.margin(10)
-        tag4.kiss.layout.margin(10)
-        view2.kiss.layout.width(100).height(40).margin(10)
-        tag5.kiss.layout.margin(10)
-        // Align center of line
-        view3.kiss.layout.width(50).height(20).margin(10).crossAlign(self: .center)
+        box(50, 50)
+        box(150, 20, .green).crossAlign(self: .start)
+        box(50, 80)
+        box(100, 50)
+        box(50, 10, .orange).crossAlign(self: .end)
+        box(150, 50)
+        box(150, 20, .red).crossAlign(self: .center)
+        box(50, 80)
+        box(100, 50)
+        box(50, 50)
     }.padding(10).mainAlign(.center)
     
     override init(frame: CGRect) {

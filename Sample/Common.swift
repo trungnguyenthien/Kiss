@@ -22,7 +22,7 @@ func medium(text: String, line: Int) -> UILabel {
 func large(text: String, line: Int) -> UILabel {
     let label = TextBuilder()
         .fontSize(16)
-        .linebreak(.truncatingTail(line))
+        .linebreak(.truncatingTail(line)).textAlignment(.center)
         .textColor(.black).label().cornerRadius(5)
     label.text = text
     return label

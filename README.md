@@ -1,3 +1,5 @@
+
+
 ![image-20200726084248979](https://tva1.sinaimg.cn/large/007S8ZIlgy1gh44p09jjgj30ha09ujt7.jpg)
 
 <p align="center">
@@ -19,7 +21,9 @@ Kiss has group layout container `vstack / hstack / wrap` similiar to **SwiftUI**
 
 ### Guideline
 
+* Hello World
 * Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
+* Mix Layout
 * Show/Hide item in layout
 * Main Alignment - Cross Alignment 
 * Overlay Layer (`overlay()`)
@@ -28,6 +32,41 @@ Kiss has group layout container `vstack / hstack / wrap` similiar to **SwiftUI**
 * Tip: Custom View with Kiss Layout
 * Tip: Multiple Layout
 * Tip: Share Layout to other layout containers
+
+#### 💋 Hello World
+
+```swift
+
+class HelloWorldView: UIView {
+    lazy var mainLayout = wrap {
+        // This is UILabel, you can add any UIView to kiss layout
+        label("HELLO ", .red).kiss.layout
+        label("WORLD ", .orange).kiss.layout
+    }.padding(10).mainAlign(.center)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        // Set current layout is mainLayout
+        // If you need switch to other layout, let use this method again.
+        kiss.constructIfNeed(layout: mainLayout)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        kiss.constructIfNeed(layout: mainLayout)
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        // Update layout for new size
+        kiss.updateChange(width: frame.width, height: frame.height)
+    }
+}
+```
+
+
+
+![image-20200813195855335](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghphjks5b1j31h90u0aer.jpg)
 
 #### 💋 Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
 
@@ -63,7 +102,7 @@ Lưu ý: Các item trong hstack phải có thể xác định được WidthValu
 * Nếu item là UILabel hoặc UIView có content (vd: UISwitch) thì sẽ có width mặc định fit với content của item.
 * Hard WidthValue bằng `.width(value)`
 * Xác định WidthValue nếu đã cố định được HeightValue bằng `.ratio(wValue/hValue)`. Ví dụ ở trên, `.ratio(1/2)` là `width/height = 1/2`
-* Nếu Group đã xác định được WidthValue, có thể xác định WidthValue của item bằng `.grow(value)`
+* Nếu HStack đã xác định được WidthValue, có thể xác định WidthValue của item bằng `.grow(value)`
 
 ##### ⭐️ Vstack: Vertical Stack Layout
 
@@ -78,6 +117,42 @@ vstack {
 ```
 
 ![image-20200811221104689](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghn9z0dtbmj30go09dmxi.jpg)
+
+Lưu ý: Tương tự hstack, vstack cũng yêu cầu item phải xác định được HeightValue:
+
+* Nếu item là UILabel hoặc UIView có content (vd: UISwitch) thì sẽ có height mặc định fit với content của item.
+* Hard HeightValue bằng `.height(value)`
+* Xác định HeightValue nếu đã cố định được WidthValue bằng `.ratio(wValue/hValue)`. 
+* Nếu VStack đã xác định được HeightValue, có thể xác định HeightValue của item bằng `.grow(value)`
+
+##### ⭐️ Wrap: Horizontal Wrap Layout
+
+```swift
+func box(
+    _ width: Double,
+    _ height: Double,
+    _ color: UIColor = MaterialColor.blue600
+) -> Kiss.UIViewLayout {
+    return view(color).cornerRadius(4).kiss.layout.margin(5).size(width, height)
+}
+
+wrap {
+	box(50, 50)
+	box(150, 20, .green).crossAlign(self: .start) // Green box's aligned at top of line
+	box(50, 80)
+	box(100, 50)
+	box(50, 10, .orange).crossAlign(self: .end) // Orange box's aligned at bottom of line
+	box(150, 50)
+	box(150, 20, .red).crossAlign(self: .center) // Red box's aligned at center of line
+	box(50, 80)
+	box(100, 50)
+	box(50, 50)
+}.padding(10).mainAlign(.center) // All boxes are aligned center
+```
+
+
+
+![image-20200813192614046](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpggh0pagj30yk0gswfc.jpg)
 
 #### 💋 Main Alignment - Cross Alignment 
 
