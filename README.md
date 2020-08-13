@@ -64,11 +64,38 @@ class HelloWorldView: UIView {
 }
 ```
 
+![image-20200813211927192](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpjps7agyj30go09eq3n.jpg)
 
 
-![image-20200813200701392](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghphmd5f9fj30m80cjta0.jpg)
+
+#### 💋 Mix Layout
+
+```swift
+vstack {
+        label("Let try new layout solution", MaterialColor.red700)
+            .kiss.layout.margin(10)
+        
+        view(MaterialColor.green600)
+            .cornerRadius(5).stroke(size: 1, color: .brown)
+            .kiss.layout.crossAlign(self: .stretch).height(100).margin(10)
+        
+        hstack {
+            box(50, 50)
+            box(50, 50)
+            box(50, 50)
+            box(50, 50)
+            box(50, 50)
+        }.mainAlign(.center)
+        
+        view(MaterialColor.pink500)
+            .cornerRadius(5).stroke(size: 1, color: .brown)
+            .kiss.layout.crossAlign(self: .stretch).height(50).margin(10)
+}.padding(10)
+```
 
 
+
+![image-20200813211717324](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpjntazhfj30go09lmxs.jpg)
 
 #### 💋 Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
 

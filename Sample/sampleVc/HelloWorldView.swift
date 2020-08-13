@@ -11,7 +11,7 @@ import UIKit
 import Kiss
 import UIBuilder
 
-func label(_ text: String, _ color: UIColor) -> UILabel {
+private func label(_ text: String, _ color: UIColor) -> UILabel {
     let label = TextBuilder()
         .fontSize(72)
         .textColor(color)
