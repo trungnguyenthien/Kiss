@@ -23,7 +23,7 @@ Kiss has group layout container `vstack / hstack / wrap` similiar to **SwiftUI**
 
 * Hello World
 * Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
-* Mix Layout
+* Combine Layout
 * Show/Hide item in layout
 * Main Alignment - Cross Alignment 
 * Overlay Layer (`overlay()`)
@@ -68,7 +68,58 @@ class HelloWorldView: UIView {
 
 
 
-#### 💋 Mix Layout
+Một số object và method thường dùng:
+
+##### ⭐️ `hostView`.kiss.vstack(), `hostView`.kiss.hstack(), `hostView`.kiss.wrap()
+
+Return Group Layout cho `hostView`. Những layout item khi được declare trong các group layout sẽ được addSubview vào trong `hostView`.
+
+Lưu ý: Kiss Library cung cấp các global function `vstack(), hstack(), wrap()` cũng có chức năng tạo layout tương tự `kiss.vstack(), kiss.hstack(), kiss.wrap()`  , Khác nhau là các Global-Function sẽ tạo các UIView mới và bố cục layout item trong UIView mới đó, còn Kiss-Function sẽ bố cục ngay cho `hostView` đó.
+
+```swift
+class SampleView: UIView {
+    lazy var ownerLayout = kiss.hstack {
+        // this control is inserted in self
+        UILabel().kiss.layout
+    }
+
+    let nonOwnerLayout = hstack {
+        // this control is inserted in new UIView
+        UILabel().kiss.layout
+    }
+}
+```
+
+##### ⭐️ `hostView`.kiss.constructIfNeed()
+
+Sử dụng method này để lựa chọn Layout cần apply. Khi Group Layout được apply, các item bên trong sẽ được move sang `hostView`.
+
+Method sẽ skip nếu 2 lần liên tiếp chọn cùng 1 layout.
+
+##### ⭐️ `hostView`.kiss.updateChange(width: CGFloat? = **nil**, height: CGFloat? = **nil**)
+
+Bố cục lại item ứng với kích thước `hostView` được chỉ định trong parameter (ứng với layout đang được construct)
+
+* (width: 400, height: 200): arrange item lại để phù hợp với kích thước (400, 200) của `hostView`
+* (width: 400): arrange item lại để phù hợp với chiều dài 400, chiều cao fit với content layout.
+* (height: 200): arrange item lại để phù hợp với chiều cao 200, chiều dài fit với content layout.
+* Nil-width, Nil-height: arrange item lại để chiều dài, chiều cao fit với content layout.
+
+> Method này thường được sử dụng trong `layoutSubviews` hoặc khi muốn bố cục lại item sau khi set data, set hidden cho các item (vd: trong `UICollectionViewCell`)
+
+##### ⭐️ `hostView`.kiss.estimatedSize(width: CGFloat? = **nil**, height: CGFloat? = **nil**) -> CGSize
+
+Xác định size layout ứng với kích thước `hostView` được chỉ định trong parameter (ứng với layout đang được construct).
+
+Tham số (width, height) trong `estimatedSize` tương tự như trong `updateChange`.
+
+Method `estimatedSize` hoạt động độc lập với `updateChange` và hoàn toàn không ảnh hưởng đến bố cục hiện tại của item. Việc tính toán hoàn toàn dựa trên thuật toán của `yoga` .
+
+> Method này thường được sử dụng trong tính toán `sizeForItem` hoặc heightForRow trong `UICollectionView`/`UITableView`. Hoặc khi muốn override lại các method: `sizeThatFits` hoặc `intrinsicContentSize`.
+
+#### 💋 Combine Layout together
+
+We can wrap group layout (`vstack`, `hstack`, `wrap`) into others, then consider them as layout item (`UIViewLayout`)
 
 ```swift
 vstack {
@@ -93,9 +144,81 @@ vstack {
 }.padding(10)
 ```
 
-
-
 ![image-20200813211717324](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpjntazhfj30go09lmxs.jpg)
+
+##### ⭐️ `cloned` layout
+
+Chúng tôi recommend bạn không nên dùng trực tiếp 1 layout con cho nhiều layout cha.
+
+```swift
+class SampleView: UIView {
+    lazy var subLayout = vstack {
+        UIView().kiss.layout
+    }
+    
+    lazy var parentLayout1 = vstack {
+        UIView().kiss.layout
+        subLayout.margin(10)
+    }
+    
+    lazy var parentLayout2 = wrap {
+        UILabel().kiss.layout
+        subLayout.margin(15)
+    }
+}
+```
+
+Do `subLayout` lúc này cùng refer đến 1 instance nên những setting bên trong từng parent layout có thể sẽ không giữ được như mong muốn. Các bạn nên cloned ra thành các instance để quản lý các layout attribute (margin, padding, alignment,...) không bị ảnh hưởng lẫn nhau.
+
+```swift
+    lazy var parentLayout1 = vstack {
+        UIView().kiss.layout
+        subLayout.cloned.margin(10)
+    }
+    
+    lazy var parentLayout2 = wrap {
+        UILabel().kiss.layout
+        subLayout.cloned.margin(15)
+    }
+```
+
+
+
+#### 💋 Show/Hide item in layout
+
+Khi bạn set thuộc tính `isHidden` của item (là một UIView) đồng nghĩa bạn đã remove item này khỏi hệ thống layout của kiss.
+
+```swift
+    lazy var mainLayout = vstack {
+        view1.kiss.layout // isHidden == false
+        view2.kiss.layout // isHidden == false
+        view3.kiss.layout // isHidden == false
+        view4.kiss.layout // isHidden == false
+        view5.kiss.layout // isHidden == false
+    }
+```
+
+Khi `isHidden == true` , và layout được cập nhật lại bằng method `updateChange()`, layout sẽ được render lại như dưới đây
+
+```swift
+    lazy var mainLayout = vstack {
+        view1.kiss.layout // isHidden == false
+        view2.kiss.layout // isHidden == false
+        view3.kiss.layout // isHidden == false
+        // view4.kiss.layout // isHidden == true, or isVisible == false
+        view5.kiss.layout // isHidden == false
+    }
+```
+
+> Chỉ là quan điểm cá nhân thôi nhé. Tôi không thích sử dụng thuộc tính `isHidden` mà Apple cung cấp (tôi thường bị mistake khi xài thuộc tính này), nên đã bổ sung thêm thuộc tính `isVisible` ngược lại với `isHidden` để luồng suy nghĩ không bị đảo chiều. **"No Visbile, No Display"**
+
+
+
+Đối với GroupLayout, bạn cũng có thể bật thuộc tính isHidden để ẩn/hiện trên layout, ngoài ra, tôi có cung cấp thêm thuộc tính `.autoInvisible(.allInvisible)` sẽ tự Invisible nếu tất cả item trong layout đã bị invisible. 
+
+
+
+#### 💋 Main Alignment - Cross Alignment 
 
 #### 💋 Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
 
