@@ -32,6 +32,8 @@ private func box(
 
 
 class MixLayoutView: UIView {
+    var box1 = view(.black)
+    var box2 = view(.red)
     lazy var mainLayout =  vstack {
         label("Let try new layout solution", MaterialColor.red700)
             .kiss.layout.margin(10)
@@ -40,13 +42,10 @@ class MixLayoutView: UIView {
             .cornerRadius(5).stroke(size: 1, color: .brown)
             .kiss.layout.crossAlign(self: .stretch).height(100).margin(10)
         
-        hstack {
-            box(50, 50)
-            box(50, 50)
-            box(50, 50)
-            box(50, 50)
-            box(50, 50)
-        }.mainAlign(.center)
+        view(.green).kiss.hstack {
+            box1.kiss.layout.size(50, 20).margin(5)
+            box2.kiss.layout.size(50, 50).margin(5)
+            }.mainAlign(.center).autoInvisible(.allInvisible).padding(20)
         
         view(MaterialColor.pink500)
             .cornerRadius(5).stroke(size: 1, color: .brown)
@@ -68,6 +67,11 @@ class MixLayoutView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         // Update layout for new size
+        
+        let willHiddenBox12 = frame.width > frame.height
+        box1.isHidden = willHiddenBox12
+        box2.isHidden = willHiddenBox12
+        
         kiss.updateChange(width: frame.width, height: frame.height)
     }
 }

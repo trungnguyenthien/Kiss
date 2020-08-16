@@ -34,11 +34,6 @@ public class GroupLayout: UIViewLayout, GroupLayoutSetter {
         return self
     }
 
-//    func insert(view: UIViewLayout, at index: Int) {
-//        body.insertSubview(view.body, at: index)
-//        body.yoga.markDirty()
-//    }
-
     func resetForcedValue() {
         layoutItems.forEach {
             $0.attr.forcedLeft = $0.attr.userMarginLeft
@@ -178,4 +173,9 @@ extension GroupLayout {
         let fixHeight = height ?? .nan
         return body.yoga.calculateLayout(with: CGSize(width: fixWidth, height: fixHeight))
     }
+}
+
+func addSubviewIfVisible(item: LayoutItem, to body: UIView) {
+    guard item.isVisibleLayout else { return }
+    body.addSubview(item.root)
 }

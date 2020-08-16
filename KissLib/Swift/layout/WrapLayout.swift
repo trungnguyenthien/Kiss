@@ -57,7 +57,7 @@ public class WrapLayout: GroupLayout {
             guard let flex = $0 as? FlexLayoutItemProtocol else { return }
             flex.configureLayout()
             $0.root.removeFromSuperview()
-            body.addSubview($0.root)
+            addSubviewIfVisible(item: $0, to: body)
         }
     }
 

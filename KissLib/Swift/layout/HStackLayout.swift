@@ -44,7 +44,6 @@ public class HStackLayout: GroupLayout {
             yLayout.flexDirection = .row
             yLayout.flexWrap = .noWrap
             yLayout.isIncludedInLayout = self.isVisibleLayout
-
             self.attr.map(to: yLayout)
         }
 
@@ -52,7 +51,7 @@ public class HStackLayout: GroupLayout {
             guard let flex = $0 as? FlexLayoutItemProtocol else { return }
             flex.configureLayout()
             $0.root.removeFromSuperview()
-            body.addSubview($0.root)
+            addSubviewIfVisible(item: $0, to: body)
         }
     }
 
