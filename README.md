@@ -198,7 +198,7 @@ Khi bạn set thuộc tính `isHidden` của item (là một UIView) đồng ngh
     }
 ```
 
-Khi `isHidden == true` , và layout được cập nhật lại bằng method `updateChange()`, layout sẽ được render lại như dưới đây
+Khi `isHidden == true` , và layout được cập nhật lại bằng method `updateChange()`, layout sẽ được render lại và remove các invisible view ra khỏi parentView.
 
 ```swift
     lazy var mainLayout = vstack {
@@ -212,11 +212,35 @@ Khi `isHidden == true` , và layout được cập nhật lại bằng method `u
 
 > Chỉ là quan điểm cá nhân thôi nhé. Tôi không thích sử dụng thuộc tính `isHidden` mà Apple cung cấp (tôi thường bị mistake khi xài thuộc tính này), nên đã bổ sung thêm thuộc tính `isVisible` ngược lại với `isHidden` để luồng suy nghĩ không bị đảo chiều. **"No Visbile, No Display"**
 
+#### `autoInvisible` attribute
 
+Đối với GroupLayout, bạn cũng có thể bật thuộc tính isHidden để ẩn/hiện trên layout, ngoài ra, tôi có cung cấp thêm thuộc tính `.autoInvisible(.allInvisible)` sẽ tự Invisible nếu tất cả item trong layout đã bị invisible. Mặc định các GroupLayout sẽ được  set là `.autoInvisible(.never)`.
 
-Đối với GroupLayout, bạn cũng có thể bật thuộc tính isHidden để ẩn/hiện trên layout, ngoài ra, tôi có cung cấp thêm thuộc tính `.autoInvisible(.allInvisible)` sẽ tự Invisible nếu tất cả item trong layout đã bị invisible. 
+##### ⭐️ Case: `.autoInvisible(.never)`
 
+```swift
+        view(.green).kiss.hstack {
+            box1.kiss.layout.size(50, 20).margin(5) // isHidden == true
+            box2.kiss.layout.size(50, 50).margin(5) // isHidden == true
+        }.mainAlign(.center).autoInvisible(.never).padding(20)
+```
 
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghsu9zdfhnj30h809wmxi.jpg" alt="image-20200816173749613" style="zoom:50%;" />
+
+Vì layout của GreenView có `padding` là 20, nên dù các item bên trong đã invisible nên vẫn có chiều cao là 40.
+
+##### ⭐️ Case: `.autoInvisible(.allInvisible)`
+
+```swift
+        view(.green).kiss.hstack {
+            box1.kiss.layout.size(50, 20).margin(5) // isHidden == true
+            box2.kiss.layout.size(50, 50).margin(5) // isHidden == true
+        }.mainAlign(.center).autoInvisible(.allInvisible).padding(20)
+```
+
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghsu9ylvnmj30h809w3yu.jpg" alt="image-20200816174011630" style="zoom:50%;" />
+
+Khi GroupLayout được set `.autoInvisible(.allInvisible)`, khi các item bên trong invisible, thì Group này sẽ không được add và ParentLayout.
 
 #### 💋 Main Alignment - Cross Alignment 
 
@@ -247,7 +271,7 @@ hstack {
 }.padding(10)
 ```
 
-![image-20200810064742842](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpht25rv9j30go09d3ys.jpg)
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpht25rv9j30go09d3ys.jpg" alt="image-20200810064742842" style="zoom:50%;" />
 
 Lưu ý: Các item trong hstack phải có thể xác định được WidthValue, bằng 1 trong các cách sau để xác định WidthValue:
 
@@ -268,7 +292,7 @@ vstack {
 }.padding(10)
 ```
 
-![image-20200811221104689](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpht6qnmwj30go09daaf.jpg)
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpht6qnmwj30go09daaf.jpg" alt="image-20200811221104689" style="zoom:50%;" />
 
 Lưu ý: Tương tự hstack, vstack cũng yêu cầu item phải xác định được HeightValue:
 
@@ -304,7 +328,7 @@ wrap {
 
 
 
-![image-20200813192614046](https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpggh0pagj30yk0gswfc.jpg)
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpggh0pagj30yk0gswfc.jpg" alt="image-20200813192614046" style="zoom: 50%;" />
 
 #### 💋 Main Alignment - Cross Alignment 
 
@@ -324,7 +348,7 @@ github "trungnguyenthien/kiss"
 
 Then, run `carthage update` to build the framework and drag the built `Kiss.framework`  and nested frameworked   `yoga.framework`, `YOgaKit.framework` into your Xcode project.
 
-![007S8ZIlgy1ggr8if2eu5j30vi08ymy2](https://tva1.sinaimg.cn/large/007S8ZIlgy1ggr8rxmjj4j30m20693yx.jpg)
+<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggr8rxmjj4j30m20693yx.jpg" alt="007S8ZIlgy1ggr8if2eu5j30vi08ymy2" style="zoom:67%;" />
 
 ##### Sign-in Embed framework
 
