@@ -34,22 +34,24 @@ private func box(
 class MixLayoutView: UIView {
     var box1 = view(.black)
     var box2 = view(.red)
+    var box3 = view(.blue)
     lazy var mainLayout =  vstack {
         label("Let try new layout solution", MaterialColor.red700)
             .kiss.layout.margin(10)
         
-        view(MaterialColor.green600)
-            .cornerRadius(5).stroke(size: 1, color: .brown)
-            .kiss.layout.crossAlign(self: .stretch).height(100).margin(10)
+//        view(MaterialColor.green600)
+//            .cornerRadius(5).stroke(size: 1, color: .brown)
+//            .kiss.layout.crossAlign(self: .stretch).height(100).margin(10)
         
         view(.green).kiss.hstack {
-            box1.kiss.layout.size(50, 20).margin(5)
-            box2.kiss.layout.size(50, 50).margin(5)
-            }.mainAlign(.center).autoInvisible(.allInvisible).padding(20)
+            box1.kiss.layout.margin(5).height(30).width(70).crossAlign(self: .start)
+            box2.kiss.layout.margin(5).width(70).crossAlign(self: .start)
+            box3.kiss.layout.margin(5).height(70).width(70).crossAlign(self: .start)
+        }.padding(20).mainAlign(.start).crossAlign(items: .stretch).minHeight(200)
         
-        view(MaterialColor.pink500)
-            .cornerRadius(5).stroke(size: 1, color: .brown)
-            .kiss.layout.crossAlign(self: .stretch).height(50).margin(10)
+//        view(MaterialColor.pink500)
+//            .cornerRadius(5).stroke(size: 1, color: .brown)
+//            .kiss.layout.crossAlign(self: .stretch).height(50).margin(10)
     }.padding(10)
     
     override init(frame: CGRect) {
@@ -66,12 +68,6 @@ class MixLayoutView: UIView {
     
     public override func layoutSubviews() {
         super.layoutSubviews()
-        // Update layout for new size
-        
-        let willHiddenBox12 = frame.width > frame.height
-        box1.isHidden = willHiddenBox12
-        box2.isHidden = willHiddenBox12
-        
         kiss.updateChange(width: frame.width, height: frame.height)
     }
 }

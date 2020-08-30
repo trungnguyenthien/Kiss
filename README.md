@@ -186,7 +186,7 @@ Do `subLayout` lúc này cùng refer đến 1 instance nên những setting bên
 
 #### 💋 Show/Hide item in layout
 
-Khi bạn set thuộc tính `isHidden` của item (là một UIView) đồng nghĩa bạn đã remove item này khỏi hệ thống layout của kiss.
+Khi set thuộc tính `isHidden` của item (là một UIView) đồng nghĩa bạn đã remove item này khỏi hệ thống layout của kiss.
 
 ```swift
     lazy var mainLayout = vstack {
@@ -243,6 +243,18 @@ Vì layout của GreenView có `padding` là 20, nên dù các item bên trong �
 Khi GroupLayout được set `.autoInvisible(.allInvisible)`, khi các item bên trong invisible, thì Group này sẽ không được add và ParentLayout.
 
 #### 💋 Main Alignment - Cross Alignment 
+
+Kiss sử dụng khái niệm 2 trục của flexbox để align item trong layout. Tùy vào layout đang sử dụng mà giá trị alignment có cách bố cục khác nhau:
+
+* Main Axis: Trục sắp xếp các item trong layout.
+  * Vstack: xếp item từ top đến bottom =>  `start` aignment means align from **top**, `end` alignment means align from **bottom**.
+  * HStack, Wrap: xếp item từ left đến right => `start` alignment means align from **left**, `end` alignment means align from **right**.
+
+* Cross Axis: Trục vuông với Main Axis. 
+
+
+
+![image-20200829172334549](https://tva1.sinaimg.cn/large/007S8ZIlgy1gi7utktt1dj31hg0kc0us.jpg)
 
 #### 💋 Stack layout (`vstack()`, ` hstack()`,  `wrap()`)
 
