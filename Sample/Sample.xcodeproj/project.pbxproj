@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -72,7 +72,6 @@
 		87CB751C24D9A7140086B893 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		87CB751D24D9A7140086B893 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		87CB751E24D9A7140086B893 /* UserKissCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserKissCell.swift; sourceTree = "<group>"; };
-		87CB752C24D9AC830086B893 /* UIBuilder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIBuilder.framework; path = Carthage/Build/iOS/UIBuilder.framework; sourceTree = "<group>"; };
 		87CB752F24D9AC970086B893 /* Kiss.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kiss.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CB753024D9AC970086B893 /* yoga.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = yoga.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CB753124D9AC970086B893 /* YogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +100,6 @@
 				87CB752F24D9AC970086B893 /* Kiss.framework */,
 				87CB753024D9AC970086B893 /* yoga.framework */,
 				87CB753124D9AC970086B893 /* YogaKit.framework */,
-				87CB752C24D9AC830086B893 /* UIBuilder.framework */,
 				87BB37BD24BE5DCA002DF909 /* yoga.framework */,
 				87BB37BE24BE5DCA002DF909 /* YogaKit.framework */,
 				87E556D924BB61760088BAD3 /* Kiss.framework */,
@@ -180,7 +178,6 @@
 				871D4E0424B9B1A400DC3531 /* Sources */,
 				871D4E0524B9B1A400DC3531 /* Frameworks */,
 				871D4E0624B9B1A400DC3531 /* Resources */,
-				870C462424BAAC63006F6235 /* ShellScript */,
 				87E556D824BB61550088BAD3 /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -209,7 +206,7 @@
 				};
 			};
 			buildConfigurationList = 871D4E0324B9B1A400DC3531 /* Build configuration list for PBXProject "Sample" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.4";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -240,26 +237,10 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		870C462424BAAC63006F6235 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "for f in $(find $CODESIGNING_FOLDER_PATH -name '*.framework')\ndo\n    codesign --force --sign \"${CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements --timestamp=none \"$f\"\ndone\n";
-		};
 		87CB753824D9AF160086B893 /* Run Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			alwaysOutOfDate = 1;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -271,11 +252,10 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/UIBuilder.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n/usr/local/bin/carthage bootstrap\n/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -426,14 +406,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,14 +433,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

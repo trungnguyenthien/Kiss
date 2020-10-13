@@ -34,7 +34,7 @@ enum Builder {
         return UIImageView()
             .cornerRadius(15)
             .background(.lightGray)
-            .stroke(size: 2, color: .secondarySystemFill)
+            .stroke(size: 2, color: .green)
     }
 }
 

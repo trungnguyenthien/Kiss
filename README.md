@@ -342,7 +342,17 @@ wrap {
 
 <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghpggh0pagj30yk0gswfc.jpg" alt="image-20200813192614046" style="zoom: 50%;" />
 
-#### 💋 Main Alignment - Cross Alignment 
+#### 💋 MainAlignment - CrossAlignment 
+
+Trước khi đi vào khái niệm Main/CrossAlignment, chúng ta cần hiểu về khái niệm Main/CrossAxis. Vì YogaKit xây dựng dựa trên ý tưởng FlexBox nên trong Kiss vẫn dùng các khái niệm này.
+
+MainAxis là chiều chính khi xếp item vào Layout. Đối với HStack và Wrap là chiều từ trái (start) sang phải (end), đối với VStack là chiều từ trên (start) xuống dưới (end). MainAlignment với các giá trị `.start`, `.end`, `.center` xác định cách sắp xếp item vào layout theo MainAxis.
+
+CrossAxis là chiều tạo với Main Axis thành 1 góc 90 độ. Đối với HStack và Wrap là chiều từ trên (start) xuống dưới (end), đối với VStack là chiều từ trái (start) sang phải (end). CrossAlignment với các giá trị `.start`, `.end`, `.center`, `.stretch` xác định cách sắp xếp item trên layout theo CrossAxis. Với giá trị `.stretch` item không có CrossWidth sẽ có CrossWidth bằng max CrossWidth so với các item cùng hàng/cột.
+
+![image-20201012213020155](https://tva1.sinaimg.cn/large/007S8ZIlgy1gjmx7lwbf4j31840owtaq.jpg)
+
+
 
 
 
